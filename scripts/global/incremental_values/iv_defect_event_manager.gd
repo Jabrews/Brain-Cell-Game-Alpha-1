@@ -1,11 +1,11 @@
 extends Node
 
 ### defect event manager parent ### 
-var defect_event_update_timer_duration = 30
+var defect_event_update_timer_duration = 10
 
-var no_event_chance = 50
-var jolt_cell_container_chance = 20
-var jolt_hidden_stat_interpreter_chance = 40
+var no_event_chance = 40
+var jolt_cell_container_chance = 30
+var jolt_hidden_stat_interpreter_chance = 30
 
 ####################################
 

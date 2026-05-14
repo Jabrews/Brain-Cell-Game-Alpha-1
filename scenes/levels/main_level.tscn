@@ -251,11 +251,13 @@ script = ExtResource("18_58boi")
 [node name="JoltHiddenStatInterpreter" type="Node" parent="GameManager/DefectEventManager" unique_id=85726172]
 script = ExtResource("20_5xq6v")
 
-[node name="JoltCellContainer" type="Node" parent="GameManager/DefectEventManager" unique_id=2134717966]
+[node name="JoltCellContainer" type="Node" parent="GameManager/DefectEventManager" unique_id=2134717966 node_paths=PackedStringArray("cell_container_parent_node")]
 script = ExtResource("21_eiw2m")
+cell_container_parent_node = NodePath("../../../Characters/ContainerParentNode")
 
 [node name="DefectEventUpdateTimer" type="Timer" parent="GameManager/DefectEventManager" unique_id=1548402198]
-wait_time = 10.0
+wait_time = 5.0
+one_shot = true
 
 [node name="UI" parent="." unique_id=885223017 instance=ExtResource("14_c0gn3")]
 

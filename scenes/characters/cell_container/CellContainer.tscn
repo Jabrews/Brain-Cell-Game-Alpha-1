@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bnuq0c6f8wub" path="res://scripts/characters/cell_container/state_machine/states/picked_up_state.gd" id="4_gniwj"]
 [ext_resource type="Script" uid="uid://lfjn23tkn8tv" path="res://scripts/characters/cell_container/state_machine/states/jolt_state.gd" id="6_e5wqa"]
 [ext_resource type="Script" uid="uid://c85008xthgpgt" path="res://scripts/characters/cell_container/interactable_pickup.gd" id="9_gniwj"]
+[ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="11_3womk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jnj3"]
 albedo_color = Color(0.94036186, 5.174056e-06, 1.1551381e-06, 1)
@@ -24,6 +25,22 @@ size = Vector3(0.8, 0.8, 0.8)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ne0dv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ay8s5"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dly6q"]
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 5.9999776
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_anjkl"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("11_3womk")
+texture_filter = 0
+billboard_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sm0qd"]
+material = SubResource("StandardMaterial3D_anjkl")
+size = Vector2(0.1, 0.1)
+orientation = 2
 
 [node name="CellContainer" type="CharacterBody3D" unique_id=2054877919 groups=["brain_cell_container"]]
 collision_layer = 4
@@ -46,7 +63,7 @@ script = ExtResource("3_lgqnw")
 script = ExtResource("6_e5wqa")
 
 [node name="DefectIncreaseDelayTimer" type="Timer" parent="StateMachine/Jolt" unique_id=1011068641]
-wait_time = 4.0
+wait_time = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1293978698]
 mesh = SubResource("BoxMesh_7es7g")
@@ -75,3 +92,11 @@ script = ExtResource("9_gniwj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractablePickup" unique_id=1367502610]
 shape = SubResource("BoxShape3D_ay8s5")
+
+[node name="JoltParticles" type="GPUParticles3D" parent="." unique_id=1030320004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43260992, 0)
+emitting = false
+amount = 12
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_dly6q")
+draw_pass_1 = SubResource("PlaneMesh_sm0qd")

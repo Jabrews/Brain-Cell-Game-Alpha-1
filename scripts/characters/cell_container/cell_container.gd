@@ -22,6 +22,9 @@ func _ready() -> void:
 	GLCellManagerBus.connect('cell_deleted', _handle_cell_deleted)
 	GLCellManagerBus.connect('cell_changed', _handle_cell_changed)
 	
+	# jolt cell container event (defect manager)
+	GLDefectEventMangerBus.connect('event_cell_container_jolt', _handle_cell_container_jolt)
+	
 # STATE MACHINE SWITCH HELPER 
 func switch_cell_state(new_state : String, picked_up_ray_cast : RayCast3D = null) :
 	
@@ -66,6 +69,11 @@ func _handle_cell_changed(changed_brain_cell : BrainCell) :
 		screen_stat_displays.update_screen(designated_brain_cell)
 	
 	
+func _handle_cell_container_jolt(cell_name : String) :
+	if cell_name == designated_brain_cell.name :
+		state_machine.switch_state(state_machine.State.JOLT)		
+		
+		
 
 	
 	

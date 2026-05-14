@@ -6,6 +6,7 @@ var stat_interpreter_stat_type = null
 # components
 @onready var parent_container : CharacterBody3D = $"../.."
 @onready var defect_increase_delay_timer : Timer = $DefectIncreaseDelayTimer
+@onready var jolt_particles : GPUParticles3D =  $"../../JoltParticles"
 
 ### SHAKE AND SCALE SETTINGS ####
 var base_positon : Vector3
@@ -38,6 +39,8 @@ func state_start() :
 	base_scale = parent_container.scale 
 	# start defect increase timer
 	defect_increase_delay_timer.start()
+	# start particles
+	jolt_particles.emitting = true
 	
 	create_jolt_tween()
 	
@@ -110,5 +113,7 @@ func state_end() :
 	parent_container.position = base_positon 
 	# stop timer
 	defect_increase_delay_timer.stop()	
+	# end particles
+	jolt_particles.emitting = false
 
 	

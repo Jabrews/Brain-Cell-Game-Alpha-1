@@ -7,6 +7,9 @@ extends Node
 
 func _ready() -> void:
 	defect_event_update_timer.connect("timeout", _on_defect_event_update_timer_timeout)
+	
+	# start and set wait time
+	defect_event_update_timer.wait_time = IVDefectEventManager.defect_event_update_timer_duration
 	defect_event_update_timer.start()
 
 
@@ -19,11 +22,13 @@ func _on_defect_event_update_timer_timeout() -> void:
 	var ran_num = randi_range(1, 100)
 
 	if ran_num <= no_event_chance:
+		print('no event')
 		# no event
 		pass
 
 	elif ran_num <= no_event_chance + jolt_hidden_stat_interpreter_chance:
 		# jolt hidden stat interpreter
+		print('interpreter jolt')
 		jolt_hidden_stat_interpreter._handle_jolt()
 
 	elif ran_num <= (
@@ -32,6 +37,11 @@ func _on_defect_event_update_timer_timeout() -> void:
 		+ jolt_cell_container_chance
 	):
 		# jolt cell container
-		pass
+		print('container jolt')
+		jolt_cell_container._handle_jolt()
+	
+	# start timer again with correct wait time
+	defect_event_update_timer.wait_time = IVDefectEventManager.defect_event_update_timer_duration
+	defect_event_update_timer.start()
 	
  
