@@ -6,6 +6,7 @@ extends Node
 @onready var time_left_label : Label = $TimeLeft
 @onready var speed_up_sprite : Sprite2D = $SpeedSprite
 @onready var screen_swap_handler : Node = $"../ScreenSwapHandler"
+@onready var interpreter_finished_sound : AudioStreamPlayer3D = $InterpreterFinishedSound
 
 var panel_cell : BrainCell
 
@@ -43,6 +44,7 @@ func _handle_progress_timer_timeout() :
 	if total_progress >= total_duration : 
 		var stat_type = get_parent().interpreter_type 
 		GLCellManagerBus.emit_signal('hidden_stat_interpreted', panel_cell, stat_type)
+		interpreter_finished_sound.play()
 		# reset progress
 		reset_progress()
 

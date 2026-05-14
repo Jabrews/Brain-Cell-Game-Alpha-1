@@ -21,10 +21,13 @@ func _on_breed_confirm_btn_down() :
 	
 	# stop if not both cells exist
 	if cell_1 == null or cell_2 == null :
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
 		return
 	elif IVCellBreeding.curr_cell_breeding_attempt == IVCellBreeding.max_cell_breeding_attempts :
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
 		return
 	else :
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
 		IVCellBreeding.curr_cell_breeding_attempt += 1	
 		GLCellBreederBus.emit_signal('player_breeded_cells', cell_1, cell_2)
 	

@@ -13,6 +13,7 @@ var panel_cell : BrainCell
 @onready var interpreter_screen : Control = $InterpreterScreen
 @onready var stat_name_label_1 : Label = $NoCellDetected/StatName
 @onready var stat_name_label_2 : Label = $InterpreterScreen/StatName
+@onready var interpreter_invalid_stat_sound : AudioStreamPlayer3D = $InterpreterInvalidStatSound
 
 
 func _ready() -> void:
@@ -77,6 +78,7 @@ func handle_panel_cell_loaded() -> void:
 	# if invalid hidden stat
 	if not cell_has_hidden_stat :
 		screen_swap_handler.swap_screen('no_hidden')
+		interpreter_invalid_stat_sound.play()
 		interpreter_screen._load_panel_cell(null)
 		return
 	
@@ -97,6 +99,7 @@ func check_cell_has_hidden_stat(cell : BrainCell) -> bool:
 		
 		'community' :
 			return cell.community_hidden
+			
 	
 	return false
 ###############################################

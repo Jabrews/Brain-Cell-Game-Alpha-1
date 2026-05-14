@@ -34,6 +34,7 @@ func _process(_delta: float) -> void:
 	if movement_possible:
 		movement_possible_transforming()
 	
+	
 		
 func display_hover():
 	
@@ -93,8 +94,7 @@ func handle_create_bouncing_sprite() :
 		bouncing_sprite.global_position = orignal_mesh.global_position + Vector3(1, 1, 1) # adjust
 	# notice sprite is billboard so not roation nessesary
 	bouncing_sprite.show_bouncing_sprite()
-	
-	
+
 	
 	
 	

@@ -24,5 +24,11 @@ var jolt_intelligence_chance = 66
 var jolt_community_chance = 100
 
 # the value in which we increase
-var jolt_defect_increase = 20
+var interpreter_jolt_defect_increase = 20
+######################################
+
+### jolt cell container ###
+
+# the value in which we increase
+var cell_container_jolt_defect_increase = 10
 ######################################

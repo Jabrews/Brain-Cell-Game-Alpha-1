@@ -28,6 +28,7 @@ func _ready() -> void:
 func handle_pris_spawn_btn_pressed() : 	
 	
 	if finale_round_loop_active :	
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
 		return
 	
 	# reset curr picked for new selection
@@ -44,6 +45,9 @@ func handle_pris_spawn_btn_pressed() :
 # get new prisoners into spot
 func _handle_get_newest_prisoner_cells(new_prisoner_cells : Array[BrainCell]) : 
 	
+	# this means 'attempt next turn was success'
+	# therfore btn succes
+	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
 
 	
 	# reset all seats 

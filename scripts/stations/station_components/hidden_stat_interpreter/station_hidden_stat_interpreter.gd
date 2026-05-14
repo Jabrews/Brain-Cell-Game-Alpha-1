@@ -18,6 +18,8 @@ var active_container : CharacterBody3D
 @onready var main_screen_hidden_stat_interpreter : Node2D = $InterpreterTv/TvFrontPannel/SubViewport/MainScreenHiddenStatInterpreter
 @onready var interpreter_screen : Control = $InterpreterTv/TvFrontPannel/SubViewport/MainScreenHiddenStatInterpreter/InterpreterScreen
 @onready var broken_particles : GPUParticles3D = $BrokenParticles
+@onready var jolt_start_sound : AudioStreamPlayer3D = $JoltStartSound
+@onready var jolt_spark_sound : AudioStreamPlayer3D = $JoltSparkSound
 
 
 func _ready() -> void:
@@ -58,6 +60,14 @@ func _handle_jolt(selected_interpreter_names: Array) -> void:
 		
 		if int_name == interpreter_type :
 			
+			# only play jolt start sound if just one interpreter 
+			if len(selected_interpreter_names) == 1 : 
+				jolt_start_sound.play()
+				
+			# always play spark
+			jolt_spark_sound.play()
+			
+			
 			start_jolt()
 			return
 
@@ -85,7 +95,13 @@ func start_jolt() -> void:
 func reset_jolt() -> void:
 	
 	if not jolt_active:
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
 		return
+	else :
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
+		jolt_spark_sound.stop()
+		jolt_start_sound.stop()
+		
 	
 	jolt_active = false
 	

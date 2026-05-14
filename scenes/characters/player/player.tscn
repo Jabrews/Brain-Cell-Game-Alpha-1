@@ -8,6 +8,17 @@
 [ext_resource type="Script" uid="uid://crdf4bvgvnn7k" path="res://scripts/characters/player/ray_casts/useable_item_ray.gd" id="6_mk55u"]
 [ext_resource type="Script" uid="uid://br22ikxgw6y14" path="res://scripts/characters/player/usable_item_hand_preview/useable_item_hand_preview.gd" id="7_mk55u"]
 [ext_resource type="Texture2D" uid="uid://dkrsadavve8qw" path="res://models/usable_items/serum_items/defect_shot.png" id="8_xuses"]
+[ext_resource type="Script" uid="uid://lko3a88glus8" path="res://scripts/characters/player/player_local_sounds.gd" id="9_blysn"]
+[ext_resource type="AudioStream" uid="uid://fpo4lf5q2cy6" path="res://sounds/player_local_sounds/interactable/btn_press_failed.mp3" id="9_bsn6e"]
+[ext_resource type="AudioStream" uid="uid://dqq7en1oace1s" path="res://sounds/player_local_sounds/interactable/drop_item.mp3" id="10_blysn"]
+[ext_resource type="AudioStream" uid="uid://dao0axcmib5eh" path="res://sounds/player_local_sounds/interactable/pickup_item.mp3" id="11_hv5x3"]
+[ext_resource type="AudioStream" uid="uid://dbc0sn4gcabov" path="res://sounds/player_local_sounds/interactable/panel_cell_loaded.mp3" id="12_ykrpk"]
+[ext_resource type="AudioStream" uid="uid://bsbyb7sk1wftk" path="res://sounds/player_local_sounds/interactable/shot_used.mp3" id="14_hv5x3"]
+[ext_resource type="AudioStream" uid="uid://d3aj42ig37u6p" path="res://sounds/player_local_sounds/interactable/btn_press_success.mp3" id="15_ykrpk"]
+[ext_resource type="AudioStream" uid="uid://c3mxhttrv603h" path="res://sounds/player_local_sounds/cell_container/cell_dropped.mp3" id="16_4kqyw"]
+[ext_resource type="AudioStream" uid="uid://cknpbebnp5q51" path="res://sounds/player_local_sounds/cell_container/cell_pickup.mp3" id="17_svuau"]
+[ext_resource type="AudioStream" uid="uid://cnocqhs0uxqvf" path="res://sounds/player_local_sounds/hidden_stat_interpreter/all_jolt_sound.mp3" id="18_svuau"]
+[ext_resource type="AudioStream" uid="uid://c8b6nbrvrxedl" path="res://sounds/player_local_sounds/prisoner_spawner/prisoner_selected.mp3" id="19_ro20i"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
 height = 3.0
@@ -72,3 +83,59 @@ script = ExtResource("7_mk55u")
 visible = false
 texture_filter = 0
 texture = ExtResource("8_xuses")
+
+[node name="PlayerLocalSounds" type="Node3D" parent="." unique_id=761381406]
+script = ExtResource("9_blysn")
+
+[node name="BtnPressFailed" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=905892133]
+stream = ExtResource("9_bsn6e")
+volume_db = -30.0
+bus = &"SFX"
+
+[node name="DropItem" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=1223173848]
+stream = ExtResource("11_hv5x3")
+volume_db = -7.0
+pitch_scale = 0.9
+bus = &"SFX"
+
+[node name="PickupItem" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=2051800071]
+stream = ExtResource("10_blysn")
+volume_db = -15.0
+max_db = 2.0
+bus = &"SFX"
+
+[node name="PanelCellLoaded" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=676968665]
+stream = ExtResource("12_ykrpk")
+volume_db = 30.0
+pitch_scale = 0.8
+bus = &"SFX"
+
+[node name="ShotUsed" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=537762101]
+stream = ExtResource("14_hv5x3")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="BtnPressSuccess" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=752298268]
+stream = ExtResource("15_ykrpk")
+volume_db = -20.0
+pitch_scale = 0.8
+
+[node name="CellContainerDropped" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=1641382466]
+stream = ExtResource("16_4kqyw")
+volume_db = -20.0
+bus = &"SFX"
+
+[node name="CellContainerPickup" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=1033250377]
+stream = ExtResource("17_svuau")
+volume_db = -20.0
+bus = &"SFX"
+
+[node name="HiddenInterpreterAllJolt" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=1611324764]
+stream = ExtResource("18_svuau")
+pitch_scale = 0.9
+bus = &"SFX"
+
+[node name="PrisonerSelected" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=790383614]
+stream = ExtResource("19_ro20i")
+volume_db = -5.5
+bus = &"SFX"

@@ -16,6 +16,8 @@ func _handle_jolt() :
 			"event_hidden_stat_interpreter_jolt",
 			["strength", "intelligence", "community"]
 		)
+		# emit sound
+		GLPlayerLocalSoundsBus.emit_signal('sound_hidden_stat_interpreter_all_jolt')
 	
 	# single interpreter jolt
 	else:

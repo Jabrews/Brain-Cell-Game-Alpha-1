@@ -7,6 +7,7 @@ var stat_interpreter_stat_type = null
 @onready var parent_container : CharacterBody3D = $"../.."
 @onready var defect_increase_delay_timer : Timer = $DefectIncreaseDelayTimer
 @onready var jolt_particles : GPUParticles3D =  $"../../JoltParticles"
+@onready var jolt_sound_loop : AudioStreamPlayer3D = $JoltSoundLoop
 
 ### SHAKE AND SCALE SETTINGS ####
 var base_positon : Vector3
@@ -41,6 +42,8 @@ func state_start() :
 	defect_increase_delay_timer.start()
 	# start particles
 	jolt_particles.emitting = true
+	
+	jolt_sound_loop.play()
 	
 	create_jolt_tween()
 	
@@ -100,7 +103,7 @@ func _handle_defect_increase_delay_timer_timeout() :
 	if stat_interpreter_stat_type != null : 
 		GLCellManagerBus.emit_signal('interpreter_jolt_increase_cell_defect', designated_brain_cell, stat_interpreter_stat_type)
 	else :
-		pass
+		GLCellManagerBus.emit_signal('cell_container_jolt_increase_cell_defect', designated_brain_cell)
 
 func state_end() : 
 	# get rid of obj refrence
@@ -115,5 +118,7 @@ func state_end() :
 	defect_increase_delay_timer.stop()	
 	# end particles
 	jolt_particles.emitting = false
+	
+	jolt_sound_loop.stop()
 
 	

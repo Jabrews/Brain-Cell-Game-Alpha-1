@@ -14,6 +14,7 @@ func _ready() -> void:
 	GLCellManagerBus.connect('delete_selected_collected_cell', _handle_delete_selected_collected_cell)
 	GLCellManagerBus.connect('hidden_stat_interpreted', _handle_hidden_stat_interpreted)
 	GLCellManagerBus.connect('interpreter_jolt_increase_cell_defect', _handle_interpreter_jolt_increase_cell_defect)
+	GLCellManagerBus.connect('cell_container_jolt_increase_cell_defect', _handle_cell_container_jolt_increase_cell_defect)
 	GLCellManagerBus.connect('delete_cells_for_next_round', _handle_delete_cells_for_next_round)
 	
 	## DEBUG
@@ -21,8 +22,9 @@ func _ready() -> void:
 
 #### setters ####
 func set_collected_cells(new_cells : Array[BrainCell]) -> void :
-	collected_cells = new_cells
-	GLCellManagerBus.collected_cells_refrence = new_cells
+	
+	collected_cells = new_cells 
+	GLCellManagerBus.collected_cells_refrence = new_cells  
 	GLCellManagerBus.emit_signal('cells_updated')
 
 func set_prisoner_cells(new_cells : Array[BrainCell]) -> void :
@@ -55,8 +57,13 @@ func update_collected_cells(cells_to_update: Array[BrainCell]) -> void:
 				updated_cell = update_cell
 				GLCellManagerBus.emit_signal('cell_changed', update_cell)
 				break
-		
-		new_collected_cells.append(updated_cell)
+				
+		var cell_dead = check_collected_cell_dead(updated_cell)
+		if cell_dead : 
+
+			GLCellManagerBus.emit_signal('cell_deleted',updated_cell.name)
+		else : 
+			new_collected_cells.append(updated_cell)
 	
 	set_collected_cells(new_collected_cells)
 
@@ -132,6 +139,31 @@ func delete_prisoner_cells(cells_to_delete : Array[BrainCell]) -> void :
 
 ######################
 
+### CHECK IF CELL DEAD ####
+func check_collected_cell_dead(collected_cell: BrainCell) -> bool:
+	
+	# check max defect
+	if collected_cell.strength_defect >= IVCellCreator.max_stat_value:
+		GLCellManagerBus.emit_signal('cell_deleted', collected_cell.name)
+		return true
+		
+	elif collected_cell.intelligence_defect >= IVCellCreator.max_stat_value:
+		GLCellManagerBus.emit_signal('cell_deleted', collected_cell.name)
+		return true
+		
+	elif collected_cell.community_defect >= IVCellCreator.max_stat_value:
+		GLCellManagerBus.emit_signal('cell_deleted', collected_cell.name)
+		return true
+	
+	# check lifespan
+	if collected_cell.life_span <= 0:
+		GLCellManagerBus.emit_signal('cell_deleted', collected_cell.name)
+		return true
+	
+	return false
+##############################
+
+
 
 #### CORE ####
 func _handle_prisoner_picked_by_player(prisoner_cell : BrainCell):
@@ -196,9 +228,8 @@ func _handle_hidden_stat_interpreted(selected_cell : BrainCell, selected_stat : 
 		
 		
 func _handle_interpreter_jolt_increase_cell_defect(selected_cell : BrainCell, selected_stat : String) :
-	
-	# TODO Replace with incremental value
-	var jolt_defect_increase_amount = IVDefectEventManager.jolt_defect_increase
+			
+	var jolt_defect_increase_amount = IVDefectEventManager.interpreter_jolt_defect_increase
 	
 	match selected_stat :
 		'strength' :
@@ -209,6 +240,16 @@ func _handle_interpreter_jolt_increase_cell_defect(selected_cell : BrainCell, se
 			selected_cell.community_defect += jolt_defect_increase_amount
 	update_collected_cells([selected_cell])
 	
+
+func _handle_cell_container_jolt_increase_cell_defect(selected_cell : BrainCell) :
+	
+		var jolt_defect_increase_amount = IVDefectEventManager.cell_container_jolt_defect_increase
+	
+		selected_cell.strength_defect += jolt_defect_increase_amount 
+		selected_cell.intelligence_defect += jolt_defect_increase_amount 
+		selected_cell.community_defect += jolt_defect_increase_amount
+	
+		update_collected_cells([selected_cell])
 	
 func _handle_delete_cells_for_next_round() :
 	
@@ -220,6 +261,7 @@ func _handle_delete_cells_for_next_round() :
 	
 	set_collected_cells([])
 	set_prisoner_cells([])
+
 
 #func _handle_debug(new_collected_cells : Array[BrainCell], new_target_cell : BrainCell) : 
 	#print('DEBUG : getting debug created cells')

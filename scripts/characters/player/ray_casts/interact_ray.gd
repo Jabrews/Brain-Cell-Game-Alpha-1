@@ -21,6 +21,12 @@ func _process(_delta):
 			player_holding_item = false
 			held_item = null
 			ray_cast_controller_parent.set_ray_mode('none')
+			
+		# if cell container play sound 
+		if collider.get_parent() : 
+			if collider.get_parent().is_in_group('brain_cell_container') :
+					GLPlayerLocalSoundsBus.emit_signal('sound_cell_container_dropped')
+					
 		return
 	
 	# --- NO COLLIDER ---
@@ -41,6 +47,13 @@ func _process(_delta):
 		player_holding_item = true
 		held_item = collider
 		ray_cast_controller_parent.set_ray_mode('interact')
+		
+		# if cell container play sound 
+		if collider.get_parent() :
+			if collider.get_parent().is_in_group('brain_cell_container') :
+				GLPlayerLocalSoundsBus.emit_signal('sound_cell_container_pickup')
+		
+		
 		return
 	
 	# --- GENERIC ---

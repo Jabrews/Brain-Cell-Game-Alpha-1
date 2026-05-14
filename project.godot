@@ -14,6 +14,10 @@ config/name="BrainCellGameProtyping02"
 run/main_scene="uid://67iqy5ev4jbk"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
+[audio]
+
+buses/default_bus_layout=""
+
 [autoload]
 
 GLGameManagerBus="*uid://bq7756fbeml3p"
@@ -27,6 +31,7 @@ IVCellBreeding="*uid://hq47hvvcumxe"
 IVCellCreator="*uid://c8458oarjridp"
 GLDefectEventMangerBus="*uid://u0ouc3rgmdes"
 IVDefectEventManager="*uid://si4em4f5hd8a"
+GLPlayerLocalSoundsBus="*uid://cglf8040qhlog"
 
 [debug]
 

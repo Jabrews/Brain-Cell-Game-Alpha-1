@@ -33,7 +33,6 @@ func _handle_attempt_next_turn():
 		GLGameManagerBus.current_turn += 1
 		GLGameManagerBus.emit_signal('finale_turn')
 		initate_next_turn()
-		return
 	else : 
 		GLGameManagerBus.current_turn += 1
 		initate_next_turn()

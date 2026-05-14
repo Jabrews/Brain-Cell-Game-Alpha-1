@@ -22,7 +22,7 @@ func create_prisoner_cells() -> Array[BrainCell]:
 			10,
 			10,
 			10,
-			1000,
+			1,
 			5,
 			5,
 			5,

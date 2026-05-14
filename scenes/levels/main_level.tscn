@@ -44,6 +44,16 @@ fog_enabled = true
 fog_light_color = Color(0.10628634, 0.11559991, 0.025737353, 1)
 fog_density = 0.05
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_5xq6v"]
+size = Vector3(7, 1.6, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5xq6v"]
+albedo_color = Color(0.25, 0.1375, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eiw2m"]
+material = SubResource("StandardMaterial3D_5xq6v")
+size = Vector3(7, 1.6, 2)
+
 [node name="MainLevel" type="Node3D" unique_id=716844902]
 
 [node name="Enviroment" type="Node" parent="." unique_id=1213802307]
@@ -167,6 +177,15 @@ mesh = SubResource("BoxMesh_umov7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall4" unique_id=1160025713]
 shape = SubResource("BoxShape3D_7xrfk")
+
+[node name="Table" type="StaticBody3D" parent="Enviroment" unique_id=52613112]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8.488618, 0.61549616, 6.052988)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Table" unique_id=600621715]
+shape = SubResource("BoxShape3D_5xq6v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Table" unique_id=188454426]
+mesh = SubResource("BoxMesh_eiw2m")
 
 [node name="Characters" type="Node" parent="." unique_id=1683906565]
 

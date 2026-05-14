@@ -4,6 +4,7 @@ var designated_brain_cell : BrainCell
 
 # components
 @onready var screen_stat_displays: Node2D = $StatDisplay/StatMesh/SubViewport/StatDisplay
+@onready var defect_color_manager : Node = $DefectColorManager
 
 # state machine
 @onready var state_machine : Node = $StateMachine
@@ -24,6 +25,9 @@ func _ready() -> void:
 	
 	# jolt cell container event (defect manager)
 	GLDefectEventMangerBus.connect('event_cell_container_jolt', _handle_cell_container_jolt)
+	
+	# update color and opacity
+	defect_color_manager.update_defect_color_manager(designated_brain_cell)
 	
 # STATE MACHINE SWITCH HELPER 
 func switch_cell_state(new_state : String, picked_up_ray_cast : RayCast3D = null) :
@@ -60,13 +64,14 @@ func _physics_process(delta: float) -> void:
 		
 func _handle_cell_deleted(cell_name : String) : 
 	if cell_name == designated_brain_cell.name :
-		self.queue_free()
+		state_machine.switch_state(state_machine.State.DYING)		
 
 
 func _handle_cell_changed(changed_brain_cell : BrainCell) : 
 	if changed_brain_cell.name == designated_brain_cell.name : 
 		designated_brain_cell = changed_brain_cell
 		screen_stat_displays.update_screen(designated_brain_cell)
+		defect_color_manager.update_defect_color_manager(designated_brain_cell)
 	
 	
 func _handle_cell_container_jolt(cell_name : String) :

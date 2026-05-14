@@ -25,6 +25,7 @@ func _handle_body_entered(body) :
 	if body.is_in_group('brain_cell_container') and not loaded_body:
 		loaded_body = body		
 		cell_reciever._handle_panel_body_recieved(loaded_body)
+		GLPlayerLocalSoundsBus.emit_signal('sound_panel_cell_loaded')
 
 
 func _handle_body_exited(body) :

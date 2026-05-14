@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://p6k0peysmtom" path="res://scripts/stations/station_screens/hidden_stat_interpreter/interpreter_screen.gd" id="4_eqhy8"]
 [ext_resource type="Shader" uid="uid://ddx8hfxji5q2p" path="res://scripts/shaders/hidden_interpreter_bar.gdshader" id="5_6yj01"]
 [ext_resource type="Texture2D" uid="uid://d1e3rhotl2pef" path="res://models/hidden_stat_interpreter_bar/speed_hidden_stat_interpreter_bar-export.png" id="5_gbtm5"]
+[ext_resource type="AudioStream" uid="uid://c7ncshh48gvd7" path="res://sounds/hidden_stat_interpreter/interpreter_finished.mp3" id="10_5dhbe"]
+[ext_resource type="AudioStream" uid="uid://bms6utcoxkhyg" path="res://sounds/hidden_stat_interpreter/interpreter_invalid_stat.mp3" id="11_ynmey"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d47jm"]
 shader = ExtResource("1_1k4jl")
@@ -111,6 +113,11 @@ texture = ExtResource("5_gbtm5")
 
 [node name="InterpreterProgressTimer" type="Timer" parent="InterpreterScreen" unique_id=1893559594]
 
+[node name="InterpreterFinishedSound" type="AudioStreamPlayer3D" parent="InterpreterScreen" unique_id=830681626]
+stream = ExtResource("10_5dhbe")
+pitch_scale = 1.1
+bus = &"SFX"
+
 [node name="NoCellDetected" type="Control" parent="." unique_id=1896628736]
 visible = false
 layout_mode = 3
@@ -202,3 +209,9 @@ theme_override_fonts/font = ExtResource("2_d47jm")
 theme_override_font_sizes/font_size = 30
 text = "Reset"
 horizontal_alignment = 1
+
+[node name="InterpreterInvalidStatSound" type="AudioStreamPlayer3D" parent="." unique_id=974521641]
+stream = ExtResource("11_ynmey")
+volume_db = -15.0
+pitch_scale = 0.9
+bus = &"SFX"

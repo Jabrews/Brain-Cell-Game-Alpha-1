@@ -19,6 +19,7 @@ func _process(_delta):
 			player_holding_item = false
 			# raycast manager
 			toggle_ray_cast_manager(false)
+			GLPlayerLocalSoundsBus.emit_signal('sound_item_dropped')
 				
 
 
@@ -36,6 +37,7 @@ func _process(_delta):
 					collider.queue_free()
 					# raycast manager
 					toggle_ray_cast_manager(true)
+					GLPlayerLocalSoundsBus.emit_signal('sound_item_pickup')
 					
 	# USE USABLE ITEM #
 	if player_holding_item :
@@ -51,6 +53,7 @@ func handle_item_use(collider) :
 			
 			# increment shot energy downward
 			held_useable_item_obj.item_energy -= 1
+			GLPlayerLocalSoundsBus.emit_signal('sound_shot_used')
 			if held_useable_item_obj.item_energy <= 0 :
 				player_holding_item = false				
 				GLUsableItemBus.emit_signal('useable_item_used', true, held_useable_item_obj)
@@ -63,6 +66,7 @@ func handle_item_use(collider) :
 				
 		## HIDDEN SHOT ###
 		elif held_useable_item_obj.item_type == 'hidden_shot' :
+			GLPlayerLocalSoundsBus.emit_signal('sound_shot_used')
 			GLUsableItemBus.emit_signal('use_hidden_shot', collider.designated_brain_cell, held_useable_item_obj)
 			player_holding_item = false
 			GLUsableItemBus.emit_signal('useable_item_used', true, held_useable_item_obj)

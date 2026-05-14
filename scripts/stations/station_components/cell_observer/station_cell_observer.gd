@@ -43,10 +43,12 @@ func _move_button_pressed(button_side : String) :
 	var button_increment_valid : bool = verify_observed_index_exist(potential_index)
 	
 	if button_increment_valid :
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
 		observed_index = potential_index
 		screen_observer_list_index.update_list_curr(observed_index)
 		update_screen()
 	else :
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
 		return
 
 
