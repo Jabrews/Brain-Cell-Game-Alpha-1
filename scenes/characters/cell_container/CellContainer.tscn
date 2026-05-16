@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://q5i8mv06vwpr" path="res://scenes/characters/reusable/stat_display/stat_display.tscn" id="4_0dogw"]
 [ext_resource type="Script" uid="uid://bnuq0c6f8wub" path="res://scripts/characters/cell_container/state_machine/states/picked_up_state.gd" id="4_gniwj"]
 [ext_resource type="Script" uid="uid://lfjn23tkn8tv" path="res://scripts/characters/cell_container/state_machine/states/jolt_state.gd" id="6_e5wqa"]
+[ext_resource type="AudioStream" uid="uid://btw7txl21eg5m" path="res://sounds/cell_container/cell_death.mp3" id="6_sm0qd"]
 [ext_resource type="Script" uid="uid://bordwo36uc145" path="res://scripts/characters/cell_container/defect_color_manager.gd" id="7_dly6q"]
+[ext_resource type="AudioStream" uid="uid://df3u4pfv8ifjd" path="res://sounds/cell_container/cell_infection_increase.mp3" id="8_anjkl"]
 [ext_resource type="Script" uid="uid://c85008xthgpgt" path="res://scripts/characters/cell_container/interactable_pickup.gd" id="9_gniwj"]
 [ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="11_3womk"]
 
@@ -66,6 +68,12 @@ script = ExtResource("4_gniwj")
 [node name="Dying" type="Node" parent="StateMachine" unique_id=814044771]
 script = ExtResource("3_lgqnw")
 
+[node name="DyingSound" type="AudioStreamPlayer3D" parent="StateMachine/Dying" unique_id=276841212]
+stream = ExtResource("6_sm0qd")
+volume_db = -10.0
+max_db = -3.983
+pitch_scale = 0.93
+
 [node name="Jolt" type="Node" parent="StateMachine" unique_id=388978317]
 script = ExtResource("6_e5wqa")
 
@@ -79,6 +87,10 @@ pitch_scale = 0.96
 
 [node name="DefectColorManager" type="Node" parent="." unique_id=1650420213]
 script = ExtResource("7_dly6q")
+
+[node name="DefectIncreaseSound" type="AudioStreamPlayer3D" parent="DefectColorManager" unique_id=550401705]
+stream = ExtResource("8_anjkl")
+pitch_scale = 0.65
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1293978698]
 mesh = SubResource("BoxMesh_7es7g")

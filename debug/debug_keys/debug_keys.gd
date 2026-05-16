@@ -2,13 +2,17 @@ extends Node
 
 # componets
 @export var cell_manager : Node
+@export var useable_item_manager : Node3D
 
 
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed('debug1') :	
 		
-		GLDefectEventMangerBus.emit_signal('event_hidden_stat_interpreter_jolt', ['strength'])
+		
+		print(useable_item_manager.players_useable_items )
+		
+		#GLDefectEventMangerBus.emit_signal('event_hidden_stat_interpreter_jolt', ['strength'])
 		
 		#print('DEBUG ACTIVATED - printing cell collection via refrences')
 		#var collected_array_len = len(GLCellManagerBus.collected_cells_refrence)

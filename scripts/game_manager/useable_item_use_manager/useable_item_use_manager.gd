@@ -16,13 +16,11 @@ func create_class_refrences() :
 #####################
 
 
-func _handle_use_defect_shot(selected_brain_cell : BrainCell, useable_item_obj : UseableItemObject) : 
-	print('use defect shot on  : ', selected_brain_cell, ' with : ', useable_item_obj.item_energy)
+func _handle_use_defect_shot(selected_brain_cell : BrainCell, _useable_item_obj : UseableItemObject) : 
 	selected_brain_cell.strength_defect -= 5
 	GLCellManagerBus.emit_signal('cell_changed', selected_brain_cell)
 	
-func _handle_use_hidden_shot(selected_brain_cell : BrainCell, useable_item_obj : UseableItemObject) : 
-	print('use hidden shot on  : ', selected_brain_cell, ' with : ', useable_item_obj.item_energy)
+func _handle_use_hidden_shot(selected_brain_cell : BrainCell, _useable_item_obj : UseableItemObject) : 
 	selected_brain_cell.strength_hidden = false
 	GLCellManagerBus.emit_signal('cell_changed', selected_brain_cell)
 	

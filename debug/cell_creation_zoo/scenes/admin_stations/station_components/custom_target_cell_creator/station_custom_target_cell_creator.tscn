@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c6tbuqlj6j8hb"]
+
+[ext_resource type="Script" uid="uid://c2hej8frpi8n4" path="res://debug/cell_creation_zoo/scripts/admin_stations/station_components/custom_target_cell_creator/station_custom_target_cell_creator.gd" id="1_f1ucy"]
+
+[node name="CustomTargetCellCreator" type="Node3D" unique_id=1247186669]
+script = ExtResource("1_f1ucy")

@@ -1,12 +1,15 @@
 extends Node
 
 @onready var cell_container_parent : CharacterBody3D = $"../.."
+@onready var dying_sound : AudioStreamPlayer3D = $DyingSound
 
 func state_start() : 
 	
 	# stop processing/movement if needed
 	cell_container_parent.set_physics_process(false)
 	cell_container_parent.set_process(false)
+	
+	dying_sound.play()
 	
 	var tween = create_tween()
 	
@@ -51,5 +54,6 @@ func state_start() :
 	)
 	
 	await tween.finished
+	
 	
 	cell_container_parent.queue_free()

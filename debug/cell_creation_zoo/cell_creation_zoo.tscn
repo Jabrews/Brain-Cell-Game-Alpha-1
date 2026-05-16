@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://dxe7ce5123xhv"]
+
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="1_6vq0o"]
+[ext_resource type="PackedScene" uid="uid://5aiid51oaqct" path="res://scenes/characters/player/player.tscn" id="2_atjgp"]
+[ext_resource type="PackedScene" uid="uid://bdeea230vpeuc" path="res://debug/cell_creation_zoo/scenes/admin_stations/station_components/useable_item_manager/useable_item_manager.tscn" id="2_f34n8"]
+[ext_resource type="PackedScene" uid="uid://dmogk8sx2taw7" path="res://scenes/stations/station_components/prisoner_spawner/station_prisoner_spawner.tscn" id="3_mnydp"]
+[ext_resource type="Script" uid="uid://cpkqywia8d0vr" path="res://debug/cell_creation_zoo/scripts/game_manager/cell_creator/rewrite_cell_creator.gd" id="3_qsd23"]
+[ext_resource type="Script" uid="uid://h5e4wiwx5h7u" path="res://debug/cell_creation_zoo/scripts/game_manager/cell_creator/observe_player_hand/observe_player_hand.gd" id="5_qsd23"]
+[ext_resource type="Script" uid="uid://btrk8thxj8lrw" path="res://scripts/game_manager/game_manager/game_manager.gd" id="11_hfdts"]
+[ext_resource type="Script" uid="uid://i003iyh8ukpu" path="res://scripts/game_manager/cell_creator/helpers/name_manager.gd" id="13_tcwxf"]
+[ext_resource type="Script" uid="uid://nk2lf7d5nvix" path="res://scripts/game_manager/cell_manager/cell_manager.gd" id="14_a3len"]
+[ext_resource type="Script" uid="uid://c1rgmnomu07eu" path="res://scripts/game_manager/useable_item_use_manager/useable_item_use_manager.gd" id="15_g5ap4"]
+[ext_resource type="Script" uid="uid://bq0ciwf5iwqn8" path="res://scripts/game_manager/cell_breeder/cell_breeder.gd" id="16_0vfmc"]
+[ext_resource type="Script" uid="uid://dwoglnhxat218" path="res://scripts/game_manager/cell_breeder/clean_stat_helper/clean_stat_helper.gd" id="17_figcq"]
+[ext_resource type="Script" uid="uid://c43va367qf4cs" path="res://scripts/game_manager/cell_breeder/defect_stat_helper/defect_stat_helper.gd" id="18_k0qid"]
+[ext_resource type="Script" uid="uid://d4a6fy8scdx18" path="res://scripts/game_manager/defect_event_manager/defect_event_manager.gd" id="19_cfuol"]
+[ext_resource type="Script" uid="uid://2at8c3hwj8eb" path="res://scripts/game_manager/defect_event_manager/jolt_hidden_stat_interpreter.gd" id="20_simt2"]
+[ext_resource type="Script" uid="uid://md6nime7jqke" path="res://scripts/game_manager/defect_event_manager/jolt_cell_container.gd" id="21_ird4n"]
+[ext_resource type="PackedScene" uid="uid://c023cc2aha7id" path="res://scenes/ui/ui.tscn" id="22_gqlvs"]
+[ext_resource type="Script" uid="uid://dt7mr4gkrn8ip" path="res://debug/debug_keys/debug_keys.gd" id="24_16rmh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3rg7i"]
+size = Vector3(50, 0.1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gd6pf"]
+size = Vector3(50, 0.1, 50)
+
+[sub_resource type="Environment" id="Environment_sist0"]
+background_mode = 1
+ambient_light_color = Color(0.20110431, 0.21357447, 0.074715756, 1)
+fog_enabled = true
+fog_light_color = Color(0.10628634, 0.11559991, 0.025737353, 1)
+fog_density = 0.05
+
+[node name="CellCreationZoo" type="Node3D" unique_id=866251292]
+
+[node name="Enviroment" type="Node" parent="." unique_id=1851665635]
+
+[node name="Floor" type="StaticBody3D" parent="Enviroment" unique_id=948512703]
+collision_layer = 2
+collision_mask = 0
+
+[node name="FloorMesh" type="MeshInstance3D" parent="Enviroment/Floor" unique_id=1249299214]
+mesh = SubResource("BoxMesh_3rg7i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Floor" unique_id=1387989467]
+shape = SubResource("BoxShape3D_gd6pf")
+
+[node name="Lights" type="Node3D" parent="Enviroment" unique_id=95194832]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Enviroment/Lights" unique_id=2141950400]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+omni_range = 89.985
+omni_attenuation = -0.091
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment" unique_id=1950785719]
+environment = SubResource("Environment_sist0")
+
+[node name="Labels" type="Node" parent="Enviroment" unique_id=144310067]
+
+[node name="SpawnUseableItems" type="Label3D" parent="Enviroment/Labels" unique_id=1579509757]
+transform = Transform3D(-1, 0, 1.1920929e-07, 0, 1, 0, -1.1920929e-07, 0, -1, -13.443134, 2.9277499, 9.396862)
+text = "Spawn Useable
+Items
+"
+font = ExtResource("1_6vq0o")
+font_size = 128
+
+[node name="Characters" type="Node" parent="." unique_id=1416599628]
+
+[node name="Player" parent="Characters" unique_id=1124472616 instance=ExtResource("2_atjgp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2, -7)
+
+[node name="ContainerParentNode" type="Node" parent="Characters" unique_id=1524949709]
+
+[node name="PrisonerParentNode" type="Node" parent="Characters" unique_id=613332228]
+
+[node name="AdminStations" type="Node" parent="." unique_id=1952091491]
+
+[node name="UseableItemManager" parent="AdminStations" unique_id=1873661262 node_paths=PackedStringArray("player") instance=ExtResource("2_f34n8")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13, 0.81773186, 8)
+player = NodePath("../../Characters/Player")
+
+[node name="GameManager" type="Node" parent="." unique_id=1879228085]
+script = ExtResource("11_hfdts")
+
+[node name="CellCreator" type="Node" parent="GameManager" unique_id=1972731124]
+script = ExtResource("3_qsd23")
+
+[node name="NameManager" type="Node" parent="GameManager/CellCreator" unique_id=1007382807]
+script = ExtResource("13_tcwxf")
+
+[node name="ObservePlayerHand" type="Node" parent="GameManager/CellCreator" unique_id=219222664 node_paths=PackedStringArray("useable_item_manager")]
+script = ExtResource("5_qsd23")
+useable_item_manager = NodePath("../../../AdminStations/UseableItemManager")
+
+[node name="CellManager" type="Node" parent="GameManager" unique_id=1190475219]
+script = ExtResource("14_a3len")
+
+[node name="UseableItemUseManager" type="Node" parent="GameManager" unique_id=139652811]
+script = ExtResource("15_g5ap4")
+
+[node name="CellBreeder" type="Node" parent="GameManager" unique_id=851897390 node_paths=PackedStringArray("name_manager")]
+script = ExtResource("16_0vfmc")
+name_manager = NodePath("../CellCreator/NameManager")
+
+[node name="CleanStatHelper" type="Node" parent="GameManager/CellBreeder" unique_id=298252442]
+script = ExtResource("17_figcq")
+
+[node name="DefectStatHelper" type="Node" parent="GameManager/CellBreeder" unique_id=1306813385]
+script = ExtResource("18_k0qid")
+
+[node name="DefectEventManager" type="Node" parent="GameManager" unique_id=1050190723]
+script = ExtResource("19_cfuol")
+
+[node name="JoltHiddenStatInterpreter" type="Node" parent="GameManager/DefectEventManager" unique_id=100756158]
+script = ExtResource("20_simt2")
+
+[node name="JoltCellContainer" type="Node" parent="GameManager/DefectEventManager" unique_id=881792339]
+script = ExtResource("21_ird4n")
+
+[node name="DefectEventUpdateTimer" type="Timer" parent="GameManager/DefectEventManager" unique_id=100025612]
+wait_time = 5.0
+one_shot = true
+
+[node name="Node" type="Node" parent="GameManager" unique_id=1487615607]
+
+[node name="UI" parent="." unique_id=885223017 instance=ExtResource("22_gqlvs")]
+
+[node name="DEBUG" type="Node" parent="." unique_id=746718364 node_paths=PackedStringArray("cell_manager", "useable_item_manager")]
+script = ExtResource("24_16rmh")
+cell_manager = NodePath("../GameManager/CellManager")
+useable_item_manager = NodePath("../AdminStations/UseableItemManager")
+
+[node name="Stations" type="Node" parent="." unique_id=562713139]
+
+[node name="PrisonerStations" type="Node" parent="Stations" unique_id=1597092031]
+
+[node name="PrisonerSpawner" parent="Stations/PrisonerStations" unique_id=491906121 node_paths=PackedStringArray("prisoners_parent_node") instance=ExtResource("3_mnydp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
+prisoners_parent_node = NodePath("../../../Characters/PrisonerParentNode")

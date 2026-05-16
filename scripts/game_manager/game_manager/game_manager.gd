@@ -9,8 +9,8 @@ func _ready() :
 	connect_signals()
 	create_class_refrences()
 
-	#print('DEBUG : on game manager turned of init next round. breaks main level')
-	GLCellCreatorBus.emit_signal('create_cells', true)
+	print('DEBUG : on game manager turned of create cells . breaks main level')
+	#GLCellCreatorBus.emit_signal('create_cells', true)
 	
 	
 ##### INIT HELPERS ######

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="BrainCellGameProtyping02"
-run/main_scene="uid://67iqy5ev4jbk"
+run/main_scene="uid://dxe7ce5123xhv"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [audio]
@@ -32,6 +32,7 @@ IVCellCreator="*uid://c8458oarjridp"
 GLDefectEventMangerBus="*uid://u0ouc3rgmdes"
 IVDefectEventManager="*uid://si4em4f5hd8a"
 GLPlayerLocalSoundsBus="*uid://cglf8040qhlog"
+GLUseableItemManagerBus="*uid://3n1b1m8squok"
 
 [debug]
 

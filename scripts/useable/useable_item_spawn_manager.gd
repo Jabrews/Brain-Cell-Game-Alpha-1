@@ -5,6 +5,8 @@ extends Node
 @onready var spawn_pos: Node3D = $SpawnPos
 @onready var useable_item_scene: PackedScene = preload("res://scenes/useable/useable_item.tscn")
 
+var current_id : int = 0
+
 func _ready() -> void:
 	connect_signals()
 	spawn_item_batch()
@@ -16,6 +18,7 @@ func spawn_item_batch():
 	var defect_shots_to_spawn = IVUseableItemSpawner.defect_shots_to_spawn
 	
 	var new_defect_shot = UseableItemObject.new(
+		0, # dont set id yet
 		'defect_shot', 
 		true,
 		3
@@ -26,6 +29,7 @@ func spawn_item_batch():
 	var hidden_shots_to_spawn = IVUseableItemSpawner.hidden_shots_to_spawn
 	
 	var new_hidden_shot = UseableItemObject.new(
+		0, # dont set id yet
 		'hidden_shot', 
 		false,
 		0,
@@ -42,8 +46,11 @@ func create_item(useable_item_obj : UseableItemObject):
 	add_child(useable_item_instance)
 	useable_item_instance.global_position = spawn_pos.global_position
 	
+	current_id += 1
+	
 	# IMPORTANT: duplicate object so each item is independent
 	var item_copy = UseableItemObject.new(
+		current_id,
 		useable_item_obj.item_type,
 		useable_item_obj.item_has_energy,
 		useable_item_obj.item_energy
@@ -62,6 +69,7 @@ func create_item_at_player(useable_item_dropped : UseableItemObject):
 	
 	# IMPORTANT: duplicate dropped state
 	var item_copy = UseableItemObject.new(
+		useable_item_dropped.item_id,
 		useable_item_dropped.item_type,
 		useable_item_dropped.item_has_energy,
 		useable_item_dropped.item_energy

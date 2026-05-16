@@ -94,7 +94,6 @@ bus = &"SFX"
 
 [node name="DropItem" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=1223173848]
 stream = ExtResource("11_hv5x3")
-volume_db = -7.0
 pitch_scale = 0.9
 bus = &"SFX"
 
