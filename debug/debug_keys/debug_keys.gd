@@ -2,15 +2,15 @@ extends Node
 
 # componets
 @export var cell_manager : Node
-@export var useable_item_manager : Node3D
+#@export var useable_item_manager : Node3D
+@export var observe_player_hand : Node
 
 
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed('debug1') :	
 		
-		
-		print(useable_item_manager.players_useable_items )
+		observe_player_hand.find_case()
 		
 		#GLDefectEventMangerBus.emit_signal('event_hidden_stat_interpreter_jolt', ['strength'])
 		

@@ -5,7 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://bdeea230vpeuc" path="res://debug/cell_creation_zoo/scenes/admin_stations/station_components/useable_item_manager/useable_item_manager.tscn" id="2_f34n8"]
 [ext_resource type="PackedScene" uid="uid://dmogk8sx2taw7" path="res://scenes/stations/station_components/prisoner_spawner/station_prisoner_spawner.tscn" id="3_mnydp"]
 [ext_resource type="Script" uid="uid://cpkqywia8d0vr" path="res://debug/cell_creation_zoo/scripts/game_manager/cell_creator/rewrite_cell_creator.gd" id="3_qsd23"]
+[ext_resource type="PackedScene" uid="uid://c6tbuqlj6j8hb" path="res://debug/cell_creation_zoo/scenes/admin_stations/station_components/custom_target_cell_creator/station_custom_target_cell_creator.tscn" id="4_p761y"]
+[ext_resource type="PackedScene" uid="uid://de3jqpctfmyja" path="res://debug/cell_creation_zoo/scenes/admin_stations/station_components/custom_collected_cell_creator/station_custom_collected_cell_creator.tscn" id="5_hg8ni"]
 [ext_resource type="Script" uid="uid://h5e4wiwx5h7u" path="res://debug/cell_creation_zoo/scripts/game_manager/cell_creator/observe_player_hand/observe_player_hand.gd" id="5_qsd23"]
+[ext_resource type="PackedScene" uid="uid://d3feijklrh11s" path="res://scenes/stations/station_components/cell_container_spawner/station_cell_container_spawner.tscn" id="6_4fqsq"]
+[ext_resource type="PackedScene" uid="uid://4k0l8pgdp2wr" path="res://scenes/stations/station_components/cell_trash_can/cell_trash_can.tscn" id="7_asniq"]
 [ext_resource type="Script" uid="uid://btrk8thxj8lrw" path="res://scripts/game_manager/game_manager/game_manager.gd" id="11_hfdts"]
 [ext_resource type="Script" uid="uid://i003iyh8ukpu" path="res://scripts/game_manager/cell_creator/helpers/name_manager.gd" id="13_tcwxf"]
 [ext_resource type="Script" uid="uid://nk2lf7d5nvix" path="res://scripts/game_manager/cell_manager/cell_manager.gd" id="14_a3len"]
@@ -66,6 +70,22 @@ Items
 font = ExtResource("1_6vq0o")
 font_size = 128
 
+[node name="TargetCreation" type="Label3D" parent="Enviroment/Labels" unique_id=545105432]
+transform = Transform3D(-1, 0, 1.1920929e-07, 0, 1, 0, -1.1920929e-07, 0, -1, -4.0306797, 5.644397, 8.826611)
+text = "Custom Target 
+Creation
+"
+font = ExtResource("1_6vq0o")
+font_size = 100
+
+[node name="CollectedCellCreation" type="Label3D" parent="Enviroment/Labels" unique_id=2043064970]
+transform = Transform3D(-7.54979e-08, 0, -1, 0, 1, 0, 1, 0, -7.54979e-08, 2.8050804, 5.644397, 2.283815)
+text = "Collected Cell
+Creation
+"
+font = ExtResource("1_6vq0o")
+font_size = 100
+
 [node name="Characters" type="Node" parent="." unique_id=1416599628]
 
 [node name="Player" parent="Characters" unique_id=1124472616 instance=ExtResource("2_atjgp")]
@@ -80,6 +100,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2, -7)
 [node name="UseableItemManager" parent="AdminStations" unique_id=1873661262 node_paths=PackedStringArray("player") instance=ExtResource("2_f34n8")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -13, 0.81773186, 8)
 player = NodePath("../../Characters/Player")
+
+[node name="CustomTargetCellCreator" parent="AdminStations" unique_id=1247186669 instance=ExtResource("4_p761y")]
+transform = Transform3D(-1, 0, 8.940697e-08, 0, 1, 0, -8.940697e-08, 0, -1, -4, 0.78359604, 7.993)
+visible = false
+
+[node name="CustomCollectedCellCreator" parent="AdminStations" unique_id=1787808242 node_paths=PackedStringArray("name_manager") instance=ExtResource("5_hg8ni")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 0.82342625, 2)
+visible = false
+name_manager = NodePath("../../GameManager/CellCreator/NameManager")
+
+[node name="CellContainerSpawner" parent="AdminStations" unique_id=1385341540 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("6_4fqsq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3779736, 0, -3)
+cell_container_parent_node = NodePath("../../Characters/ContainerParentNode")
+
+[node name="CellTrashCan" parent="AdminStations" unique_id=995289130 instance=ExtResource("7_asniq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 7)
 
 [node name="GameManager" type="Node" parent="." unique_id=1879228085]
 script = ExtResource("11_hfdts")
@@ -123,14 +159,12 @@ script = ExtResource("21_ird4n")
 wait_time = 5.0
 one_shot = true
 
-[node name="Node" type="Node" parent="GameManager" unique_id=1487615607]
-
 [node name="UI" parent="." unique_id=885223017 instance=ExtResource("22_gqlvs")]
 
-[node name="DEBUG" type="Node" parent="." unique_id=746718364 node_paths=PackedStringArray("cell_manager", "useable_item_manager")]
+[node name="DEBUG" type="Node" parent="." unique_id=746718364 node_paths=PackedStringArray("cell_manager", "observe_player_hand")]
 script = ExtResource("24_16rmh")
 cell_manager = NodePath("../GameManager/CellManager")
-useable_item_manager = NodePath("../AdminStations/UseableItemManager")
+observe_player_hand = NodePath("../GameManager/CellCreator/ObservePlayerHand")
 
 [node name="Stations" type="Node" parent="." unique_id=562713139]
 

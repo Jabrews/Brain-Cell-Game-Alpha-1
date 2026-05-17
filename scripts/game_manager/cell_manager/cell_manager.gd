@@ -19,6 +19,11 @@ func _ready() -> void:
 	
 	## DEBUG
 	#GLCellManagerBus.connect('debug_collected_cells_and_target_create', _handle_debug)
+	
+	## CREATION ZOO
+	print('DEBUG : cell manager is connecting signals for cell creation zoo')
+	GLCreationZooBus.connect('admin_create_target_cell', _handle_admin_create_target_cell)
+	GLCreationZooBus.connect('admin_create_collected_cell', _handle_create_collected_cell)	
 
 #### setters ####
 func set_collected_cells(new_cells : Array[BrainCell]) -> void :
@@ -263,7 +268,30 @@ func _handle_delete_cells_for_next_round() :
 	set_prisoner_cells([])
 
 
+### OTHER ZOOS ###
+
 #func _handle_debug(new_collected_cells : Array[BrainCell], new_target_cell : BrainCell) : 
 	#print('DEBUG : getting debug created cells')
 	#set_target_cell(new_target_cell)
 	#set_collected_cells(new_collected_cells)
+###################
+
+
+#### CREATION ZOO ####
+
+func _handle_admin_create_target_cell(new_target_cell : BrainCell) :
+	set_target_cell(new_target_cell)
+
+func _handle_create_collected_cell(new_collected_cell : BrainCell) :
+	# add to collection
+	var new_collection = collected_cells
+	
+	new_collection.append(new_collected_cell)
+	set_collected_cells(new_collection)
+	
+	# spawn container 
+	GLCellManagerBus.emit_signal('cell_added_to_collection', new_collected_cell)
+#####################
+	
+	
+	

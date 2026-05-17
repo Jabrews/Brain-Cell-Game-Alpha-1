@@ -1,0 +1,333 @@
+[gd_scene format=3 uid="uid://de3jqpctfmyja"]
+
+[ext_resource type="Script" uid="uid://hisbi5q2c44x" path="res://debug/cell_creation_zoo/scripts/admin_stations/station_components/custom_collected_cell_creator/station_custom_collected_cell_creator.gd" id="1_aw67f"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="1_j4e7q"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_aw67f"]
+[ext_resource type="Script" uid="uid://kclpe1sqsjud" path="res://debug/cell_creation_zoo/scripts/admin_stations/station_components/creator_btns/btn_indicator_direction.gd" id="3_6n07a"]
+[ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="4_i5f1d"]
+[ext_resource type="PackedScene" uid="uid://c5tb2u3nb0fa0" path="res://scenes/hoverable_mesh_scenes/hidden_stat_reveal_btn.tscn" id="5_ubgvq"]
+[ext_resource type="PackedScene" uid="uid://dmtd6w1i541n8" path="res://reusable/hoverable/bouncing_sprite_scenes/key_e.tscn" id="6_fdpm0"]
+[ext_resource type="Script" uid="uid://875dda7h4v56" path="res://debug/cell_creation_zoo/scripts/admin_stations/station_components/creator_btns/btn_increment_target_stat.gd" id="7_p0qbx"]
+[ext_resource type="Script" uid="uid://8olteq4vdsow" path="res://debug/cell_creation_zoo/scripts/admin_stations/station_components/custom_collected_cell_creator/btns/btn_create_.gd" id="9_6n07a"]
+[ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="9_xvlbb"]
+[ext_resource type="Script" uid="uid://bpayu4ss3e72m" path="res://debug/cell_creation_zoo/scripts/admin_stations/station_components/creator_btns/btn_reset.gd" id="10_6n07a"]
+[ext_resource type="PackedScene" uid="uid://51jntlvt64gn" path="res://debug/cell_creation_zoo/scenes/admin_stations/station_screens/custom_collected_cell_creator/screen_custom_collected_cell_creator.tscn" id="11_aw67f"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4ibu3"]
+size = Vector3(6, 1.5, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_744aa"]
+size = Vector3(6, 1.5, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fm2ka"]
+albedo_color = Color(0.8867241, 0.8878624, 0.20849493, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2bnvu"]
+material = SubResource("StandardMaterial3D_fm2ka")
+size = Vector3(0.3, 0.1, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ol0u3"]
+size = Vector3(0.62, 0.1, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7d8ev"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pqqmv"]
+material = SubResource("StandardMaterial3D_fm2ka")
+size = Vector3(0.4, 0.12, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_63ctu"]
+size = Vector3(0.4, 0.12, 0.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sawox"]
+material = SubResource("StandardMaterial3D_fm2ka")
+size = Vector3(0.62, 0.1, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b8rld"]
+albedo_color = Color(0.8867241, 0.8878624, 0.20849493, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i5f1d"]
+material = SubResource("StandardMaterial3D_b8rld")
+size = Vector3(0.62, 0.1, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ubgvq"]
+size = Vector3(0.62, 0.1, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fdpm0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e8uoe"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kv5ps"]
+material = SubResource("StandardMaterial3D_e8uoe")
+size = Vector3(0.1, 3.2, 5.4)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1l7oy"]
+viewport_path = NodePath("PrisonerCreateLimitTv/TvFrontPannel/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6gon6"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_1l7oy")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ii5k0"]
+material = SubResource("StandardMaterial3D_6gon6")
+size = Vector2(4.96, 2.9)
+orientation = 0
+
+[node name="CustomCollectedCellCreator" type="Node3D" unique_id=1787808242]
+script = ExtResource("1_aw67f")
+
+[node name="Table" type="StaticBody3D" parent="." unique_id=784050001]
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Table" unique_id=505721527]
+mesh = SubResource("BoxMesh_4ibu3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table" unique_id=1642525110]
+shape = SubResource("BoxShape3D_744aa")
+
+[node name="Labels" type="Node3D" parent="." unique_id=596576637]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.052801847, 0)
+
+[node name="StatUp" type="Label3D" parent="Labels" unique_id=1790463808]
+transform = Transform3D(-4.371138e-08, 1, 4.3711395e-08, 1.7682974e-07, -4.371139e-08, 1, 1, 4.371139e-08, -1.7682974e-07, -2.3767838, 0.8643162, -0.20939575)
+text = "<"
+font = ExtResource("1_j4e7q")
+font_size = 50
+
+[node name="StatDown" type="Label3D" parent="Labels" unique_id=2099037133]
+transform = Transform3D(1.3113416e-07, -1, -4.371141e-08, 1.7682974e-07, -4.371139e-08, 1, -1, -1.3113416e-07, 1.7682974e-07, -2.3637366, 0.8643162, 0.30933863)
+text = "<"
+font = ExtResource("1_j4e7q")
+font_size = 50
+
+[node name="StatSelector" type="Label3D" parent="Labels" unique_id=795311260]
+transform = Transform3D(1, 0, -1.7682974e-07, 0, 1, 0, 1.7682974e-07, 0, 1, -2.3611479, 0.60303116, 0.76031685)
+text = "Stat 
+Selector"
+font = ExtResource("2_aw67f")
+font_size = 24
+
+[node name="Increase" type="Label3D" parent="Labels" unique_id=985504697]
+transform = Transform3D(-4.371138e-08, 1, 4.3711395e-08, 1.7682974e-07, -4.371139e-08, 1, 1, 4.371139e-08, -1.7682974e-07, -0.3923365, 0.87943363, 0.17359318)
+text = "+"
+font = ExtResource("1_j4e7q")
+font_size = 70
+
+[node name="Decrease" type="Label3D" parent="Labels" unique_id=1770605973]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.39975834, 0.8862932, 0.12036468)
+text = "-"
+font = ExtResource("1_j4e7q")
+font_size = 70
+
+[node name="ValueIncrements" type="Label3D" parent="Labels" unique_id=673268002]
+transform = Transform3D(1, 0, -1.7682974e-07, 0, 1, 0, 1.7682974e-07, 0, 1, 0.011224866, 0.60303116, 0.76031685)
+text = "Value
+Increments"
+font = ExtResource("2_aw67f")
+font_size = 24
+
+[node name="Create" type="Label3D" parent="Labels" unique_id=245783135]
+transform = Transform3D(1, 0, -1.7682974e-07, 1.7682974e-07, -4.371139e-08, 1, -7.1054274e-15, -1, -4.371139e-08, 2.0973802, 0.8643162, 0.17431189)
+text = "Create "
+font = ExtResource("1_j4e7q")
+font_size = 40
+
+[node name="Initializecontrolls" type="Label3D" parent="Labels" unique_id=100403823]
+transform = Transform3D(1, 0, -1.7682974e-07, 0, 1, 0, 1.7682974e-07, 0, 1, 1.7920952, 0.60303116, 0.7662382)
+text = "Create n Reset"
+font = ExtResource("2_aw67f")
+font_size = 24
+
+[node name="Reset" type="Label3D" parent="Labels" unique_id=412689631]
+transform = Transform3D(1, 0, -1.7682974e-07, 1.7682974e-07, -4.371139e-08, 1, -7.1054274e-15, -1, -4.371139e-08, 1.290909, 0.8643162, 0.17431189)
+text = "Reset"
+font = ExtResource("1_j4e7q")
+font_size = 40
+
+[node name="Btns" type="Node3D" parent="." unique_id=2147061118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.052801847, 0)
+
+[node name="StatUpBtn" type="StaticBody3D" parent="Btns" unique_id=2013701920 node_paths=PackedStringArray("custom_creator_parent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3719816, 0.81201017, 0.30652595)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_6n07a")
+custom_creator_parent = NodePath("../..")
+direction = "up"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Btns/StatUpBtn" unique_id=746581411]
+mesh = SubResource("BoxMesh_2bnvu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Btns/StatUpBtn" unique_id=78775051]
+shape = SubResource("BoxShape3D_ol0u3")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="Btns/StatUpBtn" unique_id=2026171887 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("4_i5f1d")
+hover_mesh_scene = ExtResource("5_ubgvq")
+hover_mesh_scale = 0.1
+orignal_mesh = NodePath("../MeshInstance3D")
+bouncing_sprite_scene = ExtResource("6_fdpm0")
+custom_b_sprite_pos = Vector3(0.2, 1, 0.8)
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Btns/StatUpBtn/HoverableMesh" unique_id=446097270]
+shape = SubResource("BoxShape3D_7d8ev")
+
+[node name="StatDownBtn" type="StaticBody3D" parent="Btns" unique_id=2063994007 node_paths=PackedStringArray("custom_creator_parent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.37157, 0.8036163, -0.20260221)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_6n07a")
+custom_creator_parent = NodePath("../..")
+direction = "down"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Btns/StatDownBtn" unique_id=1131965982]
+mesh = SubResource("BoxMesh_2bnvu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Btns/StatDownBtn" unique_id=2079159358]
+shape = SubResource("BoxShape3D_ol0u3")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="Btns/StatDownBtn" unique_id=249077309 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("4_i5f1d")
+hover_mesh_scene = ExtResource("5_ubgvq")
+hover_mesh_scale = 0.1
+orignal_mesh = NodePath("../MeshInstance3D")
+bouncing_sprite_scene = ExtResource("6_fdpm0")
+custom_b_sprite_pos = Vector3(0.2, 1, 0.8)
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Btns/StatDownBtn/HoverableMesh" unique_id=370036371]
+shape = SubResource("BoxShape3D_7d8ev")
+
+[node name="IncreaseBtn" type="StaticBody3D" parent="Btns" unique_id=2084145460 node_paths=PackedStringArray("custom_creator_parent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38602406, 0.81201017, 0.14839101)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("7_p0qbx")
+custom_creator_parent = NodePath("../..")
+increment_type = "increase"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Btns/IncreaseBtn" unique_id=427042671]
+mesh = SubResource("BoxMesh_pqqmv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Btns/IncreaseBtn" unique_id=1654452521]
+shape = SubResource("BoxShape3D_63ctu")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="Btns/IncreaseBtn" unique_id=1239200565 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("4_i5f1d")
+hover_mesh_scene = ExtResource("5_ubgvq")
+hover_mesh_scale = 0.1
+orignal_mesh = NodePath("../MeshInstance3D")
+bouncing_sprite_scene = ExtResource("6_fdpm0")
+custom_b_sprite_pos = Vector3(0.2, 1, 0.8)
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Btns/IncreaseBtn/HoverableMesh" unique_id=1184898787]
+shape = SubResource("BoxShape3D_7d8ev")
+
+[node name="DecreaseBtn" type="StaticBody3D" parent="Btns" unique_id=683133800 node_paths=PackedStringArray("custom_creator_parent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3906229, 0.81201017, 0.14839101)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("7_p0qbx")
+custom_creator_parent = NodePath("../..")
+increment_type = "decrease"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Btns/DecreaseBtn" unique_id=1772928620]
+mesh = SubResource("BoxMesh_pqqmv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Btns/DecreaseBtn" unique_id=944603070]
+shape = SubResource("BoxShape3D_63ctu")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="Btns/DecreaseBtn" unique_id=459244622 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("4_i5f1d")
+hover_mesh_scene = ExtResource("5_ubgvq")
+hover_mesh_scale = 0.1
+orignal_mesh = NodePath("../MeshInstance3D")
+bouncing_sprite_scene = ExtResource("6_fdpm0")
+custom_b_sprite_pos = Vector3(0.2, 1, 0.8)
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Btns/DecreaseBtn/HoverableMesh" unique_id=1850024870]
+shape = SubResource("BoxShape3D_7d8ev")
+
+[node name="CreateBtn" type="StaticBody3D" parent="Btns" unique_id=1817619709]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0612133, 0.81201017, 0.19224447)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("9_6n07a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Btns/CreateBtn" unique_id=74445289]
+mesh = SubResource("BoxMesh_sawox")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Btns/CreateBtn" unique_id=697056167]
+shape = SubResource("BoxShape3D_ol0u3")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="Btns/CreateBtn" unique_id=735670066 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("4_i5f1d")
+hover_mesh_scene = ExtResource("5_ubgvq")
+hover_mesh_scale = 0.1
+orignal_mesh = NodePath("../MeshInstance3D")
+bouncing_sprite_scene = ExtResource("6_fdpm0")
+custom_b_sprite_pos = Vector3(0.2, 1, 0.8)
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Btns/CreateBtn/HoverableMesh" unique_id=1021896615]
+shape = SubResource("BoxShape3D_7d8ev")
+
+[node name="ResetBtn" type="StaticBody3D" parent="Btns" unique_id=485750188 node_paths=PackedStringArray("custom_creator_parent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.282071, 0.81201017, 0.19224447)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("10_6n07a")
+custom_creator_parent = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Btns/ResetBtn" unique_id=1368015452]
+mesh = SubResource("BoxMesh_i5f1d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Btns/ResetBtn" unique_id=519011396]
+shape = SubResource("BoxShape3D_ubgvq")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="Btns/ResetBtn" unique_id=865587433 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("4_i5f1d")
+hover_mesh_scene = ExtResource("5_ubgvq")
+hover_mesh_scale = 0.05
+hover_mesh_scale_x = 0.05
+orignal_mesh = NodePath("../MeshInstance3D")
+bouncing_sprite_scene = ExtResource("6_fdpm0")
+custom_b_sprite_pos = Vector3(0.2, 1, 0.8)
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Btns/ResetBtn/HoverableMesh" unique_id=2118529]
+shape = SubResource("BoxShape3D_fdpm0")
+
+[node name="CollectedCellTV" type="Node3D" parent="." unique_id=1942647438]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -1.2799282, -0.7899425)
+
+[node name="TvBackPannel" type="MeshInstance3D" parent="CollectedCellTV" unique_id=51106902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+mesh = SubResource("BoxMesh_kv5ps")
+
+[node name="TvFrontPannel" type="MeshInstance3D" parent="CollectedCellTV" unique_id=1682433405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05148697, 4, 0)
+mesh = SubResource("PlaneMesh_ii5k0")
+script = ExtResource("9_xvlbb")
+
+[node name="SubViewport" type="SubViewport" parent="CollectedCellTV/TvFrontPannel" unique_id=291190434]
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="CustomCollectedCellCreator" parent="CollectedCellTV/TvFrontPannel/SubViewport" unique_id=2033089594 instance=ExtResource("11_aw67f")]
