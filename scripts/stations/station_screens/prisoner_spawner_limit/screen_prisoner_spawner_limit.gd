@@ -21,6 +21,8 @@ func update_pris_spawner_limit_screen() :
 	
 	# turn
 	var curr_turn = GLGameManagerBus.max_turns - GLGameManagerBus.current_turn
+	print('updating update pris spawner limit screen')
+	print('max turn : ', GLGameManagerBus.max_turns, ' - ', 'curr turn : ', GLGameManagerBus.current_turn)
 	shuffles_left_label.text = str(curr_turn)
 
 	# round

@@ -8,7 +8,6 @@ func _handle_hidden(constructor : CellConstructor, new_prisoners : Array[BrainCe
 
 	for stat_to_hide : StatsToHide in constructor.stats_to_hide:
 		
-		print('selected stat to hide : ', stat_to_hide)
 
 		var stat_items = []
 
@@ -35,33 +34,21 @@ func _handle_hidden(constructor : CellConstructor, new_prisoners : Array[BrainCe
 						'clean_value': cell.community
 					})
 		
-		print('items for stat_items')
-		for stat_item in stat_items :
-			print('cell_name : ', stat_item['cell'].name, ' vale : ', str(stat_item['clean_value']))
-
 		# highest values first
 		stat_items.sort_custom(func(a, b):
 			return a['clean_value'] > b['clean_value']
 		)
 		
-		print ('items afer sorting : ')
-		for stat_item in stat_items :
-			print('cell_name : ', stat_item['cell'].name, ' vale : ', str(stat_item['clean_value']))
 		
 		# optional randomness
 		var ran_chance_num = randi_range(0, 100)
 
-		if ran_chance_num >= 75 :
+		if ran_chance_num >= 85 :
 
 			# only remove if enough cells still remain
 			if len(stat_items) > stat_to_hide.quantity :
-
 				stat_items.remove_at(0)
-
-				print('removing first index. list now looks like')
-				for stat_item in stat_items :
-					print('cell_name : ', stat_item['cell'].name, ' vale : ', str(stat_item['clean_value']))
-
+				
 		# hide top stats
 		var max_quantity = stat_to_hide.quantity
 		var curr_quantity = 0
@@ -99,7 +86,6 @@ func _handle_hidden(constructor : CellConstructor, new_prisoners : Array[BrainCe
 
 					cell.community_hidden = true
 
-			print('hiding stat on cell : ', cell.name)
 
 			curr_quantity += 1
 

@@ -17,9 +17,9 @@ func create_class_refrences() :
 
 
 func _handle_use_defect_shot(selected_brain_cell : BrainCell, _useable_item_obj : UseableItemObject) : 
-	selected_brain_cell.strength_defect -= 30
-	selected_brain_cell.intelligence_defect -= 30
-	selected_brain_cell.community_defect -= 30
+	selected_brain_cell.strength_defect -= 75
+	selected_brain_cell.intelligence_defect -= 75
+	selected_brain_cell.community_defect -= 75
 	GLCellManagerBus.emit_signal('cell_changed', selected_brain_cell)
 	
 func _handle_use_hidden_shot(selected_brain_cell : BrainCell, _useable_item_obj : UseableItemObject) : 

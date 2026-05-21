@@ -32,12 +32,6 @@ func handle_create_cells(_include_target : bool = false) -> void:
 	if creation_case == 'none' :
 		new_prisoner_cells = assemble_cells.assemble()
 	
-	print('created prisoners')
-	print('round : ', str(GLGameManagerBus.current_round))
-	print('turn: ', str(GLGameManagerBus.current_turn))
-	
-	
-	
 	cell_manager.set_prisoner_cells(new_prisoner_cells)
 	GLCellCreatorBus.emit_signal('get_newest_prisoner_cells', new_prisoner_cells)
 	

@@ -10,9 +10,9 @@ var current_active_stat_indicator_index : int = 0
 func _ready() -> void:
 	current_target_cell = BrainCell.new(
 		'head',
-		295,
-		285,
-		310,
+		365,
+		375,
+		370,
 		3,
 		0,
 		0,

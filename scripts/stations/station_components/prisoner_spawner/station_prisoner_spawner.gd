@@ -41,6 +41,7 @@ func handle_pris_spawn_btn_pressed() :
 	# initate next round logic. this will create prisoners 
 	# wont do anything if target compare.
 	GLGameManagerBus.emit_signal('attempt_next_turn')
+	
 
 # get new prisoners into spot
 func _handle_get_newest_prisoner_cells(new_prisoner_cells : Array[BrainCell]) : 

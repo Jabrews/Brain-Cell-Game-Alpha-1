@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://j4c7k48cr0ha" path="res://scenes/stations/station_screens/prisoner_spawner_limit/screen_prisoner_spawner_limit.tscn" id="4_6o7yi"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="4_deqyp"]
 [ext_resource type="Script" uid="uid://cf2h6svscors0" path="res://reusable/modular_scripts/character_spot/character_spot.gd" id="6_1en1e"]
+[ext_resource type="PackedScene" uid="uid://c746r67f0tqyg" path="res://scenes/stations/station_screens/prisoner_spawner_limit/screen_pick_quanity.tscn" id="9_uu2ri"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r2y5v"]
 size = Vector3(1.2, 1.2, 1.2)
@@ -48,6 +49,25 @@ albedo_texture = SubResource("ViewportTexture_deqyp")
 [sub_resource type="PlaneMesh" id="PlaneMesh_deqyp"]
 material = SubResource("StandardMaterial3D_6gon6")
 size = Vector2(4.96, 2.9)
+orientation = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1en1e"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uu2ri"]
+material = SubResource("StandardMaterial3D_1en1e")
+size = Vector3(0.1, 1.5, 2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6d2ud"]
+viewport_path = NodePath("MaxPickQuanityTV/TvFrontPannel/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7fjcn"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_6d2ud")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h3ftc"]
+material = SubResource("StandardMaterial3D_7fjcn")
+size = Vector2(1.72, 1.32)
 orientation = 0
 
 [node name="PrisonerSpawner" type="Node3D" unique_id=491906121]
@@ -140,3 +160,20 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(480, 270)
 
 [node name="PrisonerSpawnerLimit" parent="PrisonerCreateLimitTv/TvFrontPannel/SubViewport" unique_id=992716731 instance=ExtResource("4_6o7yi")]
+
+[node name="MaxPickQuanityTV" type="Node3D" parent="." unique_id=1298595146]
+transform = Transform3D(1.0000001, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1.0000001, -0.097587585, 6.5105653, 0)
+
+[node name="TvBackPannel" type="MeshInstance3D" parent="MaxPickQuanityTV" unique_id=1808794888]
+mesh = SubResource("BoxMesh_uu2ri")
+
+[node name="TvFrontPannel" type="MeshInstance3D" parent="MaxPickQuanityTV" unique_id=1108185661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05915284, 0, 0)
+mesh = SubResource("PlaneMesh_h3ftc")
+script = ExtResource("4_deqyp")
+
+[node name="SubViewport" type="SubViewport" parent="MaxPickQuanityTV/TvFrontPannel" unique_id=1182755498]
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="ScreenPickQuanity" parent="MaxPickQuanityTV/TvFrontPannel/SubViewport" unique_id=1842729366 instance=ExtResource("9_uu2ri")]

@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://c746r67f0tqyg"]
+
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://reusable/shaders/scan_lines.gdshader" id="1_lmee3"]
+[ext_resource type="Script" uid="uid://b7ddupvar7m0r" path="res://scripts/stations/station_screens/prisoner_spawner_limit/screen_pick_quanity.gd" id="1_vq06t"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_vq06t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hyn0q"]
+shader = ExtResource("1_lmee3")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[node name="ScreenPickQuanity" type="Node2D" unique_id=1842729366]
+script = ExtResource("1_vq06t")
+
+[node name="BG" type="ColorRect" parent="." unique_id=2094206089]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 2.0
+offset_right = 480.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=1074928384]
+material = SubResource("ShaderMaterial_hyn0q")
+offset_right = 480.0
+offset_bottom = 270.0
+
+[node name="LeftToPick" type="Label" parent="." unique_id=2126572857]
+offset_left = 63.0
+offset_top = 16.0
+offset_right = 423.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("2_vq06t")
+theme_override_font_sizes/font_size = 30
+text = "LEFT TO PICK"
+
+[node name="PickNum" type="Label" parent="." unique_id=1109369163]
+offset_left = 217.0
+offset_top = 94.0
+offset_right = 577.0
+offset_bottom = 158.0
+theme_override_fonts/font = ExtResource("2_vq06t")
+theme_override_font_sizes/font_size = 64
+text = "0"

@@ -34,6 +34,7 @@ func _handle_cell_deleted(cell_name : String) :
 func _handle_cell_changed(changed_brain_cell : BrainCell) : 
 	if changed_brain_cell.name == designated_brain_cell.name : 
 		designated_brain_cell = changed_brain_cell
+		screen_stat_displays.update_screen(designated_brain_cell)
 
 	
 	

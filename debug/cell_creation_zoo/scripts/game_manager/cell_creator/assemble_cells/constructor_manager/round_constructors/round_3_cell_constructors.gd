@@ -105,7 +105,7 @@ var turn_3 : Array[CellConstructor] = [
 	CellConstructor.new(
 		2,
 		'medium-elevated',
-		['above_average'],
+		['equal'],
 		[
 		StatsToHide.new('intelligence', 1)	,
 		StatsToHide.new('strength', 1),
@@ -114,7 +114,7 @@ var turn_3 : Array[CellConstructor] = [
 	CellConstructor.new(
 		2,
 		'medium-elevated',
-		['high'],
+		['above_average'],
 		[
 		StatsToHide.new('strength', 1),
 		StatsToHide.new('intelligence', 1)
@@ -157,5 +157,4 @@ var turn_4 : Array[CellConstructor] = [
 	),
 ]
 
-var turn_5 : Array[CellConstructor] = [
-]
+# NOTE . turn 5 exist but we just repeat turn 2 or 3. i forgor

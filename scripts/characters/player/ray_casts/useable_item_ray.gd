@@ -72,7 +72,9 @@ func drop_usable_item() -> void:
 
 func handle_item_use(collider) -> void:
 
-	if not collider.is_in_group('brain_cell_container'):
+	if not collider.is_in_group("brain_cell_container") \
+	and not collider.is_in_group("prisoner"):
+		print("not in group")
 		return
 
 
