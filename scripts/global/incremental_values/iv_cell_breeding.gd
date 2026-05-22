@@ -3,6 +3,9 @@ extends Node
 var max_cell_breeding_attempts = 5
 var curr_cell_breeding_attempt = 0
 
+### FOR CELL CONTAINER ###
+var newly_breeded_cell_can_die_from_defect : bool = false
+
 
 #### CLEAN stat helper ####
 

@@ -29,6 +29,8 @@ func _ready() -> void:
 	# update color and opacity
 	defect_color_manager.update_defect_color_manager(designated_brain_cell)
 	
+	check_for_cell_dead_on_start()
+	
 # STATE MACHINE SWITCH HELPER 
 func switch_cell_state(new_state : String, picked_up_ray_cast : RayCast3D = null) :
 	
@@ -77,6 +79,33 @@ func _handle_cell_changed(changed_brain_cell : BrainCell) :
 func _handle_cell_container_jolt(cell_name : String) :
 	if cell_name == designated_brain_cell.name :
 		state_machine.switch_state(state_machine.State.JOLT)		
+		
+		
+func check_for_cell_dead_on_start() :
+	
+	var defect_death_event : bool = false
+	
+	# check if stat defect is in death range
+	if designated_brain_cell.strength_defect >= IVCellCreator.max_stat_value :
+		defect_death_event = true
+	elif designated_brain_cell.strength_defect >= IVCellCreator.max_stat_value :
+		defect_death_event = true
+	elif designated_brain_cell.strength_defect >= IVCellCreator.max_stat_value :
+		defect_death_event = true
+	
+	if defect_death_event :
+		# if they can die then kill em	
+		if IVCellBreeding.newly_breeded_cell_can_die_from_defect :
+			
+			await get_tree().create_timer(1.0).timeout
+			GLCellManagerBus.emit_signal('delete_selected_collected_cell', designated_brain_cell)
+			# if not. that was players free chance. now next badly breeded cell will die
+			state_machine.switch_state(state_machine.State.DYING)		
+		else :
+			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
+			return
+
+			
 		
 		
 

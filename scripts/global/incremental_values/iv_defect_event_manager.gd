@@ -10,7 +10,6 @@ var jolt_hidden_stat_interpreter_chance = 30
 ####################################
 
 
-
 ### jolt hidden stat interpreter ###
 
 # all get a jolt

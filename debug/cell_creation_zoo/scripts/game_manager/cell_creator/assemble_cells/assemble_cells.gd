@@ -8,6 +8,7 @@ extends Node
 @onready var create_clean_stats : Node = $HelperCreateClean
 @onready var create_defect_stats : Node = $HelperCreateDefect
 @onready var create_hidden_stats : Node = $HelperHidden
+@onready var clean_stat_due_order : Node = $HelperCleanStatDueOrder
 
 func assemble() :
 	var current_round : int = GLGameManagerBus.current_round
@@ -16,6 +17,11 @@ func assemble() :
 	var cell_contructors : Array[CellConstructor] = constructer_manager.get_cell_constructor(current_round, current_turn)
 	
 	var new_prisoner_cells : Array[BrainCell]
+	
+	# verify clean stat due order before going foward
+	cell_contructors = clean_stat_due_order._verify_user_clean_stat_due_order(cell_contructors)
+	
+	
 	
 	for contructor : CellConstructor in cell_contructors :
 		var new_cells : Array[BrainCell] = create_cells_with_constructor(contructor)				

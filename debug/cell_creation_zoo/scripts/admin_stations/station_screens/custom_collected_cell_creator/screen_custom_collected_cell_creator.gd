@@ -83,7 +83,7 @@ func _update_custom_cell_screen(designated_brain_cell : BrainCell) :
 
 func update_bar_value(prisoner_cell : BrainCell, target_cell : BrainCell):
 
-	var max_val = IVCellCreator.target_stat_max
+	var max_val = IVCellCreator.max_stat_value
 
 	# prisoner (yellow)
 	var strength_norm = float(prisoner_cell.strength) / max_val
@@ -115,7 +115,7 @@ func update_bar_value(prisoner_cell : BrainCell, target_cell : BrainCell):
 func update_display_labels(prisoner_cell: BrainCell):
 	for label in large_labels:
 		
-		var max_value = IVCellCreator.target_stat_max
+		var max_value = IVCellCreator.max_stat_value
 		#label.text = str(GlIncrementalValues.target_range_max)	
 		label.text = str(max_value)
 		
@@ -126,7 +126,7 @@ func update_display_labels(prisoner_cell: BrainCell):
 func update_defect_bar(prisoner_cell: BrainCell):
 	
 	#var max_value = GlIncrementalValues.target_range_max
-	var max_value = IVCellCreator.target_stat_max
+	var max_value = IVCellCreator.max_stat_value
 	
 	for bar in defect_state_bars:
 		bar.max_value = max_value

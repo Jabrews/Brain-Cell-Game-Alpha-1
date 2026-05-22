@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://4k0l8pgdp2wr" path="res://scenes/stations/station_components/cell_trash_can/cell_trash_can.tscn" id="7_asniq"]
 [ext_resource type="PackedScene" uid="uid://cej4tenf7rct1" path="res://debug/cell_creation_zoo/scenes/admin_stations/station_components/round_controller/station_round_controller.tscn" id="8_6vq0o"]
 [ext_resource type="PackedScene" uid="uid://ct6x2gs11mlvm" path="res://debug/cell_creation_zoo/scenes/admin_stations/station_components/instant_hidden_stat_interpreter/station_instant_hidden_stat_interpreter.tscn" id="8_cg5uc"]
+[ext_resource type="PackedScene" uid="uid://b7chvyy35lyhj" path="res://debug/cell_creation_zoo/scenes/admin_stations/station_components/toggle_clean_stat_due_order/station_toggle_clean_stat_due_order.tscn" id="10_0vfmc"]
 [ext_resource type="Script" uid="uid://btrk8thxj8lrw" path="res://scripts/game_manager/game_manager/game_manager.gd" id="11_hfdts"]
 [ext_resource type="Script" uid="uid://i003iyh8ukpu" path="res://scripts/game_manager/cell_creator/helpers/name_manager.gd" id="13_tcwxf"]
 [ext_resource type="Script" uid="uid://nk2lf7d5nvix" path="res://scripts/game_manager/cell_manager/cell_manager.gd" id="14_a3len"]
@@ -25,6 +26,7 @@
 [ext_resource type="Script" uid="uid://c8pkmawjyoqkg" path="res://debug/cell_creation_zoo/scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/assemble_helper_hidden.gd" id="18_g5ap4"]
 [ext_resource type="Script" uid="uid://c43va367qf4cs" path="res://scripts/game_manager/cell_breeder/defect_stat_helper/defect_stat_helper.gd" id="18_k0qid"]
 [ext_resource type="Script" uid="uid://d4a6fy8scdx18" path="res://scripts/game_manager/defect_event_manager/defect_event_manager.gd" id="19_cfuol"]
+[ext_resource type="Script" uid="uid://jmocst43abrd" path="res://debug/cell_creation_zoo/scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/helper_clean_stat_due_order.gd" id="20_figcq"]
 [ext_resource type="Script" uid="uid://2at8c3hwj8eb" path="res://scripts/game_manager/defect_event_manager/jolt_hidden_stat_interpreter.gd" id="20_simt2"]
 [ext_resource type="Script" uid="uid://md6nime7jqke" path="res://scripts/game_manager/defect_event_manager/jolt_cell_container.gd" id="21_ird4n"]
 [ext_resource type="PackedScene" uid="uid://c023cc2aha7id" path="res://scenes/ui/ui.tscn" id="22_gqlvs"]
@@ -231,6 +233,9 @@ interpreter_type = "intelligence"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.890549, 0, -6.3179317)
 interpreter_type = "community"
 
+[node name="ToggleCleanStatDueOrder" parent="AdminStations" unique_id=1764108659 instance=ExtResource("10_0vfmc")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -15, 1, 8)
+
 [node name="GameManager" type="Node" parent="." unique_id=1879228085]
 script = ExtResource("11_hfdts")
 
@@ -259,6 +264,9 @@ script = ExtResource("16_d3ij1")
 
 [node name="HelperHidden" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=1142646990]
 script = ExtResource("18_g5ap4")
+
+[node name="HelperCleanStatDueOrder" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=1763035053]
+script = ExtResource("20_figcq")
 
 [node name="CellManager" type="Node" parent="GameManager" unique_id=1190475219]
 script = ExtResource("14_a3len")

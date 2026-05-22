@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://b7chvyy35lyhj"]
+
+[ext_resource type="Script" uid="uid://c3rf0183unhdm" path="res://debug/cell_creation_zoo/scripts/admin_stations/station_components/toggle_clean_stat_due_order/toggle_btn.gd" id="1_1uyqr"]
+[ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="2_cwj04"]
+[ext_resource type="PackedScene" uid="uid://c5tb2u3nb0fa0" path="res://scenes/hoverable_mesh_scenes/hidden_stat_reveal_btn.tscn" id="3_5hs2f"]
+[ext_resource type="PackedScene" uid="uid://dmtd6w1i541n8" path="res://reusable/hoverable/bouncing_sprite_scenes/key_e.tscn" id="4_fgm6b"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dt716"]
+size = Vector3(1.865, 2, 0.35)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_386u6"]
+size = Vector3(1.865, 2, 0.35)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fm2ka"]
+albedo_color = Color(0.8867241, 0.8878624, 0.20849493, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dqeas"]
+material = SubResource("StandardMaterial3D_fm2ka")
+size = Vector3(0.55, 0.55, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rssbc"]
+size = Vector3(0.55, 0.55, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3v2fc"]
+
+[node name="ToggleCleanStatDueOrder" type="Node3D" unique_id=1764108659]
+
+[node name="Table" type="StaticBody3D" parent="." unique_id=823316764]
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Table" unique_id=801298903]
+mesh = SubResource("BoxMesh_dt716")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table" unique_id=1303604223]
+shape = SubResource("BoxShape3D_386u6")
+
+[node name="OnOffDisplay" type="Label3D" parent="." unique_id=686278661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009983122, 0.034811318, 0.38196802)
+text = "Off"
+font_size = 45
+
+[node name="ToggleBtn" type="StaticBody3D" parent="." unique_id=1746233707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024263442, 0.015348852, 0.3049872)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_1uyqr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ToggleBtn" unique_id=1805512403]
+mesh = SubResource("BoxMesh_dqeas")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ToggleBtn" unique_id=320857684]
+shape = SubResource("BoxShape3D_rssbc")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="ToggleBtn" unique_id=744748995 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("2_cwj04")
+hover_mesh_scene = ExtResource("3_5hs2f")
+hover_mesh_scale = 0.3
+hover_mesh_scale_x = 0.2
+orignal_mesh = NodePath("../MeshInstance3D")
+bouncing_sprite_scene = ExtResource("4_fgm6b")
+custom_b_sprite_pos = Vector3(0.2, 1, 0.8)
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ToggleBtn/HoverableMesh" unique_id=598709041]
+shape = SubResource("BoxShape3D_3v2fc")
+
+[node name="Header" type="Label3D" parent="." unique_id=1143319055]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.87312067, 0.18318474)
+text = "Toggle Clean Stat Due Order"
+font_size = 21
+
+[node name="Paragraph" type="Label3D" parent="." unique_id=910366785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.611287, 0.18318474)
+text = "This will tell cell_assembler to check
+user's collected cells for their clean stats
+- before serving up a higher stat case
+"
+font_size = 14

@@ -34,6 +34,7 @@ IVDefectEventManager="*uid://si4em4f5hd8a"
 GLPlayerLocalSoundsBus="*uid://cglf8040qhlog"
 GLUseableItemManagerBus="*uid://3n1b1m8squok"
 GLCreationZooBus="*uid://cwpc3er86tusm"
+GLToggleCleanStatDueOrder="*uid://cxpprop4his5a"
 
 [debug]
 

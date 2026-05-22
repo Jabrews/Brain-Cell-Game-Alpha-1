@@ -32,11 +32,4 @@ func update_pick_display(extra_picks : int = 0) :
 	
 	var picks_left = max_prisoner_pick - curr_prisoners_picked
 	
-	print(
-		'max pris pick : ',
-		str(max_prisoner_pick),
-		' curr pris pick : ',
-		str(curr_prisoners_picked)
-	)
-	
 	pick_num_left_label.text = str(picks_left)
