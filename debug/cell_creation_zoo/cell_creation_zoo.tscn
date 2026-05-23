@@ -30,6 +30,7 @@
 [ext_resource type="Script" uid="uid://2at8c3hwj8eb" path="res://scripts/game_manager/defect_event_manager/jolt_hidden_stat_interpreter.gd" id="20_simt2"]
 [ext_resource type="Script" uid="uid://md6nime7jqke" path="res://scripts/game_manager/defect_event_manager/jolt_cell_container.gd" id="21_ird4n"]
 [ext_resource type="Script" uid="uid://cpwlh4yswfk85" path="res://debug/cell_creation_zoo/scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/helper_hidden_defect_trap.gd" id="21_k0qid"]
+[ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://debug/cell_creation_zoo/scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="22_cfuol"]
 [ext_resource type="PackedScene" uid="uid://c023cc2aha7id" path="res://scenes/ui/ui.tscn" id="22_gqlvs"]
 [ext_resource type="Script" uid="uid://dt7mr4gkrn8ip" path="res://debug/debug_keys/debug_keys.gd" id="24_16rmh"]
 [ext_resource type="Script" uid="uid://dqclu2g7q3o15" path="res://scripts/stations/station_components/cell_breeding/station_cell_breeding.gd" id="29_a3len"]
@@ -271,6 +272,9 @@ script = ExtResource("20_figcq")
 
 [node name="HelperHiddenDefectTrap" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=564304725]
 script = ExtResource("21_k0qid")
+
+[node name="IncrementalValueController" type="Node" parent="GameManager" unique_id=1447225374]
+script = ExtResource("22_cfuol")
 
 [node name="CellManager" type="Node" parent="GameManager" unique_id=1190475219]
 script = ExtResource("14_a3len")

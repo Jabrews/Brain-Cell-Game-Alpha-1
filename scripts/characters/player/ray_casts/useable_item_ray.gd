@@ -132,6 +132,25 @@ func handle_item_use(collider) -> void:
 		)
 
 		handle_item_used_up(held_useable_item_obj)
+	
+	## STERIOD ###
+	elif held_useable_item_obj.item_type == 'steroid' :
+		
+		GLPlayerLocalSoundsBus.emit_signal('sound_pills_used')
+		
+		GLUsableItemBus.emit_signal(
+			'use_steroid',
+			collider.designated_brain_cell,
+			held_useable_item_obj
+		)
+
+		GLUsableItemBus.emit_signal(
+			'useable_item_used',
+			true,
+			held_useable_item_obj
+		)
+
+		handle_item_used_up(held_useable_item_obj)
 
 
 

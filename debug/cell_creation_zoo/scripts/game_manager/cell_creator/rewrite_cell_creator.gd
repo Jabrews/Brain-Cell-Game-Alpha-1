@@ -5,6 +5,7 @@ extends Node
 @onready var name_manager : Node = $NameManager
 @onready var observe_player_hand : Node = $ObservePlayerHand
 @onready var assemble_cells : Node = $AssembleCells
+@onready var incrmental_value_controller : Node = $"../IncrementalValueController"
 
 # class helpers
 var debug_create_cells : DEBUGCreateCells
@@ -25,8 +26,12 @@ func create_class_refrences() :
 	
 func handle_create_cells(_include_target : bool = false) -> void:
 	
-	var new_prisoner_cells : Array[BrainCell]
+	# update incremental values
+	var curr_round = GLGameManagerBus.current_round
+	var curr_turn = GLGameManagerBus.current_turn
+	incrmental_value_controller.change_progression_step(curr_round, curr_turn)
 	
+	var new_prisoner_cells : Array[BrainCell]
 	var creation_case = observe_player_hand.find_case()
 	
 	if creation_case == 'none' :

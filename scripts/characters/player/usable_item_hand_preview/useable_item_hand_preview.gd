@@ -6,6 +6,7 @@ extends Node
 # textures
 @onready var defect_shot_png : Texture = preload("res://models/usable_items/serum_items/defect_shot.png")
 @onready var hidden_shot_png : Texture = preload("res://models/usable_items/serum_items/hidden_shot_item.png")
+@onready var steroid_png : Texture = preload("res://models/usable_items/steriod/steriod.png")
 
 func _ready() -> void:
 	GLUsableItemBus.connect('useable_item_picked_up', _handle_useable_item_picked_up)
@@ -19,6 +20,8 @@ func _handle_useable_item_picked_up(useable_item_obj : UseableItemObject) :
 			hand_preview_sprite.texture = defect_shot_png
 		'hidden_shot' :
 			hand_preview_sprite.texture = hidden_shot_png
+		'steroid' :
+			hand_preview_sprite.texture = steroid_png 
 		_ : 
 			push_error('non valid item type for hand display found')
 	

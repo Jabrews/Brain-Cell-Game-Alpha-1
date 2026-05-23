@@ -21,10 +21,10 @@ size = Vector3(0.6, 0.6, 0.6)
 [sub_resource type="BoxShape3D" id="BoxShape3D_5wi5l"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jsoas"]
-size = Vector3(4, 1.5, 1.5)
+size = Vector3(5.5, 1.5, 1.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jsoas"]
-size = Vector3(4, 1.5, 1.5)
+size = Vector3(5.5, 1.5, 1.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d3y2t"]
 resource_name = "Material"
@@ -76,7 +76,7 @@ size = Vector3(1, 0.3, 1)
 script = ExtResource("1_2v3ru")
 
 [node name="SpawnHiddenShotBtn" type="StaticBody3D" parent="." unique_id=1228901719]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1020291, 1.0527494, 0.3049872)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.102029, 1.0527494, 0.3049872)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_jsoas")
@@ -104,7 +104,7 @@ original_coll_shape = NodePath("../CollisionShape3D")
 shape = SubResource("BoxShape3D_5wi5l")
 
 [node name="SpawnDefectShotBtn" type="StaticBody3D" parent="." unique_id=1005524581]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.014413, 1.0527494, 0.3049872)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0144129, 1.0527494, 0.3049872)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_jsoas")
@@ -131,6 +131,34 @@ original_coll_shape = NodePath("../CollisionShape3D")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnDefectShotBtn/HoverableMesh" unique_id=1491320139]
 shape = SubResource("BoxShape3D_5wi5l")
 
+[node name="SpawnSteroidShotBtn" type="StaticBody3D" parent="." unique_id=832646175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10648036, 1.0527494, 0.3049872)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_jsoas")
+item_type = "steroid"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SpawnSteroidShotBtn" unique_id=1509187489]
+mesh = SubResource("BoxMesh_h05tv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnSteroidShotBtn" unique_id=1782300118]
+shape = SubResource("BoxShape3D_esyl7")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="SpawnSteroidShotBtn" unique_id=24266380 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("2_stkmr")
+hover_mesh_scene = ExtResource("3_2v3ru")
+hover_mesh_scale = 0.3
+hover_mesh_scale_x = 0.2
+orignal_mesh = NodePath("../MeshInstance3D")
+bouncing_sprite_scene = ExtResource("4_dgvqa")
+custom_b_sprite_pos = Vector3(0.2, 1, 0.8)
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnSteroidShotBtn/HoverableMesh" unique_id=1540978252]
+shape = SubResource("BoxShape3D_5wi5l")
+
 [node name="Table" type="StaticBody3D" parent="." unique_id=1246923728]
 collision_layer = 2
 collision_mask = 0
@@ -144,21 +172,27 @@ shape = SubResource("BoxShape3D_jsoas")
 [node name="Labels" type="Node3D" parent="." unique_id=974068976]
 
 [node name="DefectShot" type="Label3D" parent="Labels" unique_id=509895172]
-transform = Transform3D(1, 0, -1.7682974e-07, 0, 1, 0, 1.7682974e-07, 0, 1, -0.9905546, 0.48192024, 0.76031685)
+transform = Transform3D(1, 0, -1.7682974e-07, 0, 1, 0, 1.7682974e-07, 0, 1, -1.9905546, 0.48192024, 0.76031685)
 text = "Defect
 Shot"
 font = ExtResource("5_stkmr")
 font_size = 34
 
 [node name="HiddenShot" type="Label3D" parent="Labels" unique_id=38295014]
-transform = Transform3D(1, 0, -1.7682974e-07, 0, 1, 0, 1.7682974e-07, 0, 1, 1.1383994, 0.48192024, 0.76031685)
+transform = Transform3D(1, 0, -1.7682974e-07, 0, 1, 0, 1.7682974e-07, 0, 1, 2.1383994, 0.48192024, 0.76031685)
 text = "Hidden
 Shot"
 font = ExtResource("5_stkmr")
 font_size = 34
 
+[node name="Steroid" type="Label3D" parent="Labels" unique_id=43578604]
+transform = Transform3D(1, 0, -1.7682974e-07, 0, 1, 0, 1.7682974e-07, 0, 1, -0.12069106, 0.48192024, 0.76031685)
+text = "Steroid"
+font = ExtResource("5_stkmr")
+font_size = 34
+
 [node name="SpawnItemPos" type="Node3D" parent="." unique_id=734468157]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7157936, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7157936, 1)
 
 [node name="ItemTrashcan" type="Node3D" parent="." unique_id=1673686126]
 transform = Transform3D(0.7, 0, 0, 0, 0.35, 0, 0, 0, 0.7, 2.8165836, -0.7572479, 0)

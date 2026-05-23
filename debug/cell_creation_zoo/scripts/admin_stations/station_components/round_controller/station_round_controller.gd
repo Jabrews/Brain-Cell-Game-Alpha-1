@@ -29,6 +29,7 @@ func _handle_round_controller_increment_up_btn(cycle_type : String, increment_ty
 		push_error('non valid round/turn type found from btn press')
 	
 	update_label_display()
+	GLIncrementalValueControllerBus.emit_signal('progression_change', GLGameManagerBus.current_round, GLGameManagerBus.current_turn)
 
 		
 func update_label_display() :

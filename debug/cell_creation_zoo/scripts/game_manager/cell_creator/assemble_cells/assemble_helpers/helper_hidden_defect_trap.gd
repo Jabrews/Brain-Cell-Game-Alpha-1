@@ -62,11 +62,10 @@ func increase_hidden_stat_defect_event(
 			
 			# verify valid cell found
 			if selected_trap_cell == null :
-				print('hidden trap failed. not enough valid hidden cells')
 				continue
 			
 			print(
-				'hidden trap planted. stat : ',
+				'DEBUG : hidden trap planted. stat : ',
 				hidden_stat_type,
 				' cell : ',
 				selected_trap_cell.name
@@ -87,7 +86,6 @@ func increase_hidden_stat_defect_event(
 				'community' :
 					selected_trap_cell.community_defect += increase_defect_value
 			
-			print('hidden trap defect increased by 50%')
 			
 			return true
 	

@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://cknpbebnp5q51" path="res://sounds/player_local_sounds/cell_container/cell_pickup.mp3" id="17_svuau"]
 [ext_resource type="AudioStream" uid="uid://cnocqhs0uxqvf" path="res://sounds/player_local_sounds/hidden_stat_interpreter/all_jolt_sound.mp3" id="18_svuau"]
 [ext_resource type="AudioStream" uid="uid://c8b6nbrvrxedl" path="res://sounds/player_local_sounds/prisoner_spawner/prisoner_selected.mp3" id="19_ro20i"]
+[ext_resource type="AudioStream" uid="uid://v65a064u7mp1" path="res://sounds/player_local_sounds/interactable/pill_used.mp3" id="20_8y75b"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
 height = 3.0
@@ -129,3 +130,7 @@ pitch_scale = 0.9
 [node name="PrisonerSelected" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=790383614]
 stream = ExtResource("19_ro20i")
 volume_db = -5.5
+
+[node name="PillUsed" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=448050370]
+stream = ExtResource("20_8y75b")
+volume_db = -10.0

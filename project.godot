@@ -35,6 +35,8 @@ GLPlayerLocalSoundsBus="*uid://cglf8040qhlog"
 GLUseableItemManagerBus="*uid://3n1b1m8squok"
 GLCreationZooBus="*uid://cwpc3er86tusm"
 GLToggleCleanStatDueOrder="*uid://cxpprop4his5a"
+GLIncrementalValueControllerBus="*uid://c2vcs23b2da80"
+IVItemStats="*uid://cvxq3etkgp5gc"
 
 [debug]
 

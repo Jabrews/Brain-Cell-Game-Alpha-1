@@ -14,6 +14,9 @@ func _on_btn_interacted() :
 	
 	elif item_type == 'hidden' :
 		parent_manager._spawn_item_btn_pressed(item_type)
+		
+	elif item_type == 'steroid' :
+		parent_manager._spawn_item_btn_pressed(item_type)	
 	
 	else :
 		push_error('invalid item type for spawn item btn')

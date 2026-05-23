@@ -41,6 +41,13 @@ func _spawn_item_btn_pressed(spawn_item_type : String) :
 				false,
 				0,
 			) 
+		'steroid' :
+			item_to_spawn = UseableItemObject.new(
+				current_id,
+				'steroid', 
+				false,
+				0,
+			) 		
 		_: 
 			push_error('invalid item type for useable_item_manager')
 	
