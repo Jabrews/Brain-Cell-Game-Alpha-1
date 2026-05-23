@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="BrainCellGameProtyping02"
-run/main_scene="uid://dxe7ce5123xhv"
+run/main_scene="uid://67iqy5ev4jbk"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [audio]

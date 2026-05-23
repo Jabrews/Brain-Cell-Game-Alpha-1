@@ -9,8 +9,7 @@ func _ready() :
 	connect_signals()
 	create_class_refrences()
 
-	print('DEBUG : on game manager turned of create cells . breaks main level')
-	#GLCellCreatorBus.emit_signal('create_cells', true)
+	GLCellCreatorBus.emit_signal('create_cells', true)
 	
 	
 ##### INIT HELPERS ######
@@ -27,18 +26,14 @@ func create_class_refrences() :
 func _handle_attempt_next_turn(): 
 	var curr_turn = GLGameManagerBus.current_turn
 	var max_turns = GLGameManagerBus.max_turns
-
-	print('DEBUG : over-ride handle attempt next turn logic. prisoner gen btn')
 	
-	GLCellCreatorBus.emit_signal('create_cells', false)
-	
-	#if curr_turn == max_turns - 1 :
-		#GLGameManagerBus.current_turn += 1
-		#GLGameManagerBus.emit_signal('finale_turn')
-		#initate_next_turn()
-	#else : 
-		#GLGameManagerBus.current_turn += 1
-		#initate_next_turn()
+	if curr_turn == max_turns - 1 :
+		GLGameManagerBus.current_turn += 1
+		GLGameManagerBus.emit_signal('finale_turn')
+		initate_next_turn()
+	else : 
+		GLGameManagerBus.current_turn += 1
+		initate_next_turn()
 
 	
 func initate_next_turn() : 
@@ -53,7 +48,6 @@ func initate_next_round() :
 		get_tree().current_scene.queue_free()
 	
 	# update round logic
-	# NOTE : if moved around prisoner spawn limit scren wont update properly 
 	GLGameManagerBus.current_round += 1
 	GLGameManagerBus.current_turn = 0
 	

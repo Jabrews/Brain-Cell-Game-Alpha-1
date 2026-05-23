@@ -4,6 +4,22 @@ func _create(clean_range : String) -> Array[float]:
 	
 	var target_cell : BrainCell = GLCellManagerBus.target_cell_refrence
 	
+	# note : this only happens on first turn
+	if not target_cell :
+		target_cell = BrainCell.new(
+			'placeholder-target-cell',
+			100,
+			100,
+			100,
+			300,
+			0,			
+			0,			
+			0,
+		)	
+	
+	
+	
+	
 	var str_clean = create_stat(target_cell.strength, clean_range)
 	var int_clean = create_stat(target_cell.intelligence, clean_range)
 	var com_clean = create_stat(target_cell.community, clean_range)

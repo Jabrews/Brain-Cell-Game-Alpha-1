@@ -2,7 +2,7 @@ extends Node
 
 # components
 @onready var constructer_manager : Node = $ConstructorManager
-@export var name_manager : Node
+@onready var name_manager : Node = $"../NameManager"
 
 # components helpers
 @onready var create_clean_stats : Node = $HelperCreateClean
