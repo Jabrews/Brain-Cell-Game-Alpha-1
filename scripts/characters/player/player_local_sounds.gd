@@ -12,6 +12,7 @@ extends Node
 @onready var s_hidden_interprter_all_jolt : AudioStreamPlayer3D = $HiddenInterpreterAllJolt
 @onready var s_prisoner_selected : AudioStreamPlayer3D = $PrisonerSelected
 @onready var s_pills_used : AudioStreamPlayer3D = $PillUsed
+@onready var s_axe_swing : AudioStreamPlayer3D = $AxeSwing
 
 
 func _ready() -> void:
@@ -38,6 +39,7 @@ func _ready() -> void:
 	GLPlayerLocalSoundsBus.connect('sound_hidden_stat_interpreter_all_jolt', _handle_hidden_stat_interpreter_all_jolt)
 	GLPlayerLocalSoundsBus.connect('prisoner_selected', _handle_prisoner_selected)
 	GLPlayerLocalSoundsBus.connect('sound_pills_used', _handle_pills_used)
+	GLPlayerLocalSoundsBus.connect('sound_axe_swing', _handle_axe_swing)
 
 
 func _handle_sound_btn_press_failed() -> void:
@@ -75,6 +77,9 @@ func _handle_prisoner_selected() :
 
 func _handle_pills_used() :
 	play_sound(s_pills_used)
+
+func _handle_axe_swing() :
+	play_sound(s_axe_swing)
 
 func play_sound(sound_player : AudioStreamPlayer3D) -> void:
 	

@@ -14,6 +14,12 @@ var speed : float = 20.0
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
+	# update char refrence state
+	GLPlayerState.player_refrence = self
+	
+	
+	
+	
 func _physics_process(delta: float) -> void:
 	
 	
@@ -50,7 +56,3 @@ func set_ray_cast_rotation() :
 	pass # want to match cam pivot mouse rortation. so if they look up and down it follows
 	
 	
-
-
-		
-		

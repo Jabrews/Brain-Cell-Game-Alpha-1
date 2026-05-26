@@ -9,14 +9,15 @@ extends Node
 
 var player_refrence : CharacterBody3D
 
+
 func _ready() -> void:
 	movement_delay_timer.connect('timeout', _handle_movement_delay_timer_timeout)
 
 
 func state_start() : 
-	player_refrence = get_parent().get_parent().get_parent().get_parent().get_node("Player")
+	player_refrence = GLPlayerState.player_refrence
 
-func state_process(delta) : 
+func state_process(_delta) : 
 	
 	# await getting player refrence
 	if not player_refrence :

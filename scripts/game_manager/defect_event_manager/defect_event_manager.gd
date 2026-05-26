@@ -12,6 +12,7 @@ func _ready() -> void:
 	defect_event_update_timer.wait_time = IVDefectEventManager.defect_event_update_timer_duration
 	
 	#print('DEBUG : defect_event_manager does not run so no infection events')
+	return
 	defect_event_update_timer.start()
 
 
