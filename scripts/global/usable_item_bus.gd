@@ -1,5 +1,6 @@
 extends Node
 
+signal spawn_new_usable_items()
 
 # all useable items
 signal useable_item_picked_up(useable_item_obj : UseableItemObject)

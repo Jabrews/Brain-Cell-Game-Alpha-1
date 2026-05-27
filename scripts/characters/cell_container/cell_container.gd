@@ -10,6 +10,9 @@ var designated_brain_cell : BrainCell
 @onready var state_machine : Node = $StateMachine
 @onready var picked_up_state : Node = $StateMachine/PickedUp # for ray cast
 
+# when they die from breeding prevent
+var spawn_flesh_bug_on_death : bool = true
+
 
 func _ready() -> void:
 	# update name in tree

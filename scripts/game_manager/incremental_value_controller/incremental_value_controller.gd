@@ -16,6 +16,7 @@ func change_progression_step(round : int, turn : int) :
 
 	if last_round != round :
 		handle_round(round)
+		GLUsableItemBus.emit_signal('spawn_new_usable_items')
 		last_round = round
 	
 	handle_turns(round, turn)
@@ -35,10 +36,10 @@ func handle_round(round : int):
 			IVCellBreeding.max_cell_breeding_attempts = 5
 			IVCellBreeding.curr_cell_breeding_attempt = 0
 			## BREEDING SCALING ##
-			IVCellBreeding.low_add_percant_scale = 0.6
-			IVCellBreeding.high_add_percant_scale = 0.5
-			IVCellBreeding.low_subtract_percant_scale = 0.7
-			IVCellBreeding.high_subtract_percant_scale = 0.6
+			IVCellBreeding.low_add_percant_scale = 0.9
+			IVCellBreeding.high_add_percant_scale = 0.7
+			IVCellBreeding.low_subtract_percant_scale = 0.9
+			IVCellBreeding.high_subtract_percant_scale = 0.8
 			## CELL CREATOR ##
 			IVCellCreator.max_stat_value = 160
 			## USEABLE ITEMS ##

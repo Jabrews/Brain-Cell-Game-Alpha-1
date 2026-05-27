@@ -2,7 +2,7 @@ extends Node
 
 
 var max_rounds = 4
-var current_round = 1
+var current_round = 2
 
 var max_turns = 4
 var current_turn = 0

@@ -8,8 +8,7 @@ extends Node
 func _ready() : 
 	connect_signals()
 	create_class_refrences()
-
-	#GLCellCreatorBus.emit_signal('create_cells', true)
+	GLCellCreatorBus.emit_signal('create_cells', true)
 	
 	
 ##### INIT HELPERS ######

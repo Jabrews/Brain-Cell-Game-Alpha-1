@@ -36,21 +36,21 @@ extends Node
 
 # hidden stats
 @onready var hidden_stat_blockers : Array[Sprite2D] = [
-	$StatDisplay/ProgressBars/HideStats/StrengthHide, 
-	$StatDisplay/ProgressBars/HideStats/IntelligenceHide, 
+	$StatDisplay/ProgressBars/HideStats/StrengthHide,
+	$StatDisplay/ProgressBars/HideStats/IntelligenceHide,
 	$StatDisplay/ProgressBars/HideStats/CommunityHide
 ]
 
 func _ready() -> void:
 	
-	stat_display.visible = false	
+	stat_display.visible = false
 	
 	clean_strength_bar.material = clean_strength_bar.material.duplicate()
 	clean_intelligence_bar.material = clean_intelligence_bar.material.duplicate()
 	clean_community_bar.material = clean_community_bar.material.duplicate()
 
 # main entry point for updating 
-func _handle_panel_cell_recieved(designated_brain_cell : BrainCell) : 
+func _handle_panel_cell_recieved(designated_brain_cell : BrainCell) :
 	
 	# when panel cell is null (not on panel)
 	if not designated_brain_cell :
@@ -60,7 +60,7 @@ func _handle_panel_cell_recieved(designated_brain_cell : BrainCell) :
 		return
 		
 	stat_display.visible = true
-	no_cell_display.visible = false 
+	no_cell_display.visible = false
 	prisoner_name_label.text = designated_brain_cell.name
 	life_span_label.text = 'lifespan - ' + str(designated_brain_cell.life_span)
 	
@@ -107,7 +107,7 @@ func update_bar_value(prisoner_cell : BrainCell, target_cell : BrainCell):
 func update_display_labels(prisoner_cell: BrainCell):
 	for label in large_labels:
 		
-		var max_value = IVCellCreator.target_stat_max
+		var max_value = IVCellCreator.max_stat_value
 		#label.text = str(GlIncrementalValues.target_range_max)	
 		label.text = str(max_value)
 		
@@ -118,7 +118,7 @@ func update_display_labels(prisoner_cell: BrainCell):
 func update_defect_bar(prisoner_cell: BrainCell):
 	
 	#var max_value = GlIncrementalValues.target_range_max
-	var max_value = IVCellCreator.target_stat_max
+	var max_value = IVCellCreator.max_stat_value
 	
 	for bar in defect_state_bars:
 		bar.max_value = max_value

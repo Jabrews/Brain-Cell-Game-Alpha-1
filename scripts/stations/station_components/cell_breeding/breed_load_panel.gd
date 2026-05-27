@@ -18,12 +18,14 @@ func _ready() -> void:
 func _handle_body_entered(body) : 
 	if body.is_in_group('brain_cell_container') and not loaded_cell :
 		loaded_cell = body.designated_brain_cell		
+		body.spawn_flesh_bug_on_death  = false
 		cell_reciever._handle_breeding_panel_cell_recieved(loaded_cell, breeding_panel_side)
 
 func _handle_body_exited(body) :
 	if body.is_in_group('brain_cell_container') : 
 		if body.designated_brain_cell == loaded_cell :
 			loaded_cell = null
+			body.spawn_flesh_bug_on_death  = true
 			cell_reciever._handle_breeding_panel_cell_recieved(loaded_cell, breeding_panel_side)
 
 

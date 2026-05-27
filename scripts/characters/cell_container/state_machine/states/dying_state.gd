@@ -70,6 +70,13 @@ func state_start() :
 
 
 func create_flesh_slug():
+	
+	
+	# prevent spawining flesh slug if dying on breeder
+	if not cell_container_parent.spawn_flesh_bug_on_death  :
+		return
+	
+	
 	var flesh_slug = flesh_slug_instance.instantiate()
 
 	flesh_bug_parent_node.add_child(flesh_slug)

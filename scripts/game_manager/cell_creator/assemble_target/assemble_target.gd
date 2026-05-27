@@ -8,10 +8,12 @@ extends Node
 func assemble() :
 
 	var max_stat_value = IVCellCreator.max_stat_value
-	
-	var target_strength = randi_range(max_stat_value * 0.80, max_stat_value)
-	var target_intelligence = randi_range(max_stat_value * 0.80, max_stat_value )
-	var target_community = randi_range(max_stat_value * 0.80, max_stat_value )
+
+	var min_value = int(max_stat_value * 0.75)
+
+	var target_strength = randi_range(min_value, max_stat_value)
+	var target_intelligence = randi_range(min_value, max_stat_value)
+	var target_community = randi_range(min_value, max_stat_value)
 	
 	var new_name = name_manager.pick_target_names()
 	
