@@ -1,5 +1,6 @@
 extends Node
 
+@warning_ignore("shadowed_global_identifier")
 func update_defect_event_values(round : int , turn : int) :
 	
 	# on turn 0 never have defect event occur

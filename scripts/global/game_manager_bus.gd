@@ -14,3 +14,4 @@ signal proceed_next_round()
 # emitted
 signal finale_turn()
 signal finale_turn_ended_new_round_proceed()
+signal next_turn_process()

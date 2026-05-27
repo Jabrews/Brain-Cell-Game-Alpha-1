@@ -17,13 +17,10 @@ func _ready() -> void:
 func connect_signals():
 
 	GLUsableItemBus.connect("useable_item_dropped", _handle_useable_item_dropped)
+	GLUsableItemBus.connect('spawn_new_usable_items', spawn_turn_items)
 
 	# next turn signal
 	#GLCellCreatorBus.connect('procc', _handle_next_turn)
-
-
-func _handle_next_turn(_new_prisoners) :
-	spawn_turn_items()
 
 
 func spawn_turn_items():

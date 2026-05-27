@@ -44,6 +44,7 @@ func compare_cells(selected_brain_cell : BrainCell) :
 	if max_points >= 40: 
 		handle_compare_finished(true)
 	else :
+		#handle_compare_finished(false)
 		handle_compare_finished(false)
 	
 func compare_stat(target_stat : float, selected_stat : float) :

@@ -4,17 +4,12 @@ extends Node
 
 func _ready() -> void:
 	connect_signals()
-	create_class_refrences()
 
 #### INIT FUNCS #####
 func connect_signals() : 
 	GLUsableItemBus.connect('use_defect_shot', _handle_use_defect_shot)
 	GLUsableItemBus.connect('use_hidden_shot', _handle_use_hidden_shot)
 	GLUsableItemBus.connect('use_steroid', _handle_use_steroid)
-
-func create_class_refrences() : 
-	pass
-#####################
 
 
 func _handle_use_defect_shot(selected_brain_cell : BrainCell, _useable_item_obj : UseableItemObject) : 

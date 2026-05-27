@@ -16,10 +16,16 @@ func change_progression_step(round : int, turn : int) :
 
 	if last_round != round :
 		handle_round(round)
+		
+		# any event calls
 		GLUsableItemBus.emit_signal('spawn_new_usable_items')
+		
 		last_round = round
 	
 	handle_turns(round, turn)
+	
+	# any event calls
+	GLGameManagerBus.emit_signal('next_turn_process')
 	
 	
 
@@ -47,6 +53,9 @@ func handle_round(round : int):
 			IVUseableItemSpawner.defect_shots_to_spawn = 0
 			IVUseableItemSpawner.hidden_shots_to_spawn = 0
 			IVUseableItemSpawner.steroids_to_spawn = 0
+			## SHAREHOLDER OFFERS ##
+			IVShareholderOffers.item_offer_turn = 3
+			IVShareholderOffers.stat_offer_turn = 2
 			
 		2 :
 
@@ -68,7 +77,10 @@ func handle_round(round : int):
 			IVItemStats.defect_shot_decrease = 45
 			IVUseableItemSpawner.defect_shots_to_spawn = 1
 			IVUseableItemSpawner.hidden_shots_to_spawn = 0
-			IVUseableItemSpawner.steroids_to_spawn = 0
+			IVUseableItemSpawner.steroids_to_spawn = 5
+			## SHAREHOLDER OFFERS ##
+			IVShareholderOffers.item_offer_turn = 3
+			IVShareholderOffers.stat_offer_turn = 2
 		3 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
 			## TURNS ##
@@ -84,6 +96,9 @@ func handle_round(round : int):
 			IVUseableItemSpawner.defect_shots_to_spawn = 1
 			IVUseableItemSpawner.hidden_shots_to_spawn = 1
 			IVUseableItemSpawner.steroids_to_spawn = 0
+			## SHAREHOLDER OFFERS ##
+			IVShareholderOffers.item_offer_turn = 2
+			IVShareholderOffers.stat_offer_turn = 3		
 		4 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
 			## TURNS ##
@@ -99,6 +114,9 @@ func handle_round(round : int):
 			IVUseableItemSpawner.defect_shots_to_spawn = 1
 			IVUseableItemSpawner.hidden_shots_to_spawn = 2
 			IVUseableItemSpawner.steroids_to_spawn = 0
+			## SHAREHOLDER OFFERS ##
+			IVShareholderOffers.item_offer_turn = 2
+			IVShareholderOffers.stat_offer_turn = 3		
 	
 @warning_ignore("shadowed_global_identifier")
 func handle_turns(round : int, turn : int) :
