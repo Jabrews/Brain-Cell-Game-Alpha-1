@@ -5,12 +5,16 @@ extends Node
 @onready var mesh_instance : MeshInstance3D = $"../../MeshInstance3D"
 @onready var dying_particles : GPUParticles3D = $"../../DyingParticles"
 @onready var death_sound : AudioStreamPlayer3D = $"../../PixelExsplode"
+@onready var worm_moving_sound : AudioStreamPlayer3D = $"../../WormMovingSound"
 
 
 func _ready() -> void: 
 	pass
 
-func state_start() : 
+func state_start() :
+	
+	# hacky fix to stopping sound continie
+	worm_moving_sound.max_db = -24.0
 	
 	await get_tree().create_timer(0.2).timeout
 	parent_slug.velocity = Vector3.ZERO
@@ -24,6 +28,7 @@ func state_start() :
 	death_sound.play()
 	
 	await dying_particles.finished
+	
 	
 	parent_slug.queue_free()
 

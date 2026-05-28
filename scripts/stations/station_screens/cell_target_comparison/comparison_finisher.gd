@@ -45,7 +45,7 @@ func compare_cells(selected_brain_cell : BrainCell) :
 		handle_compare_finished(true)
 	else :
 		#handle_compare_finished(false)
-		handle_compare_finished(false)
+		handle_compare_finished(true)
 	
 func compare_stat(target_stat : float, selected_stat : float) :
 	

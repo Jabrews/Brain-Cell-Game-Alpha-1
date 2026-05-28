@@ -40,6 +40,8 @@ func generate_clean_stats(cell_1 : BrainCell, cell_2 : BrainCell) -> Array[int] 
 func resolve_clean_stat(stat_array : Array, target_value : float, increase_case_min : float) -> float:
 	var stat_high = stat_array[0]
 	var stat_low = stat_array[1]
+	
+	
 
 	# increase case
 	if increase_case_min <= stat_low:

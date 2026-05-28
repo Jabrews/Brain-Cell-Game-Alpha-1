@@ -152,6 +152,19 @@ func _handle_arrow_phase(arrow_type_active : String, key : String, cell_left: Br
 
 	var movement_percent : float = 0.0
 
+	## case two ##
+	# when this is active we always give max returns from breeding
+
+	if GLShareholderOfferState.offer_2_active :
+		if GLShareholderOfferState.display_stat_offer_active_debug_messages :
+			print_debug('offer 2')
+		
+		# we return 3 not because it is getting farther from org. pos but for the trickery
+		return 3
+	##############
+
+
+
 	if high_low_stat[0] != 0:
 		movement_percent = abs(
 			finale_value - high_low_stat[0]

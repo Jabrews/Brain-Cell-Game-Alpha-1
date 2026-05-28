@@ -6,23 +6,30 @@ extends Node
 @onready var serve_stat_offer_parent : Control = $ServeStatOffer
 @onready var header_label : Label = $HeaderLabel
 @onready var blur_bg : ColorRect = $BlurBg
+# helpers
+@onready var helper_stat_offer_active_toggle : Node = $HelperStatOfferActiveToggle
 
 
 func _ready() -> void:
 	GLGameManagerBus.connect('next_turn_process', _handle_next_turn) 
+	GLGameManagerBus.connect('proceed_next_round', _handle_next_round)
+	
 
 func _handle_next_turn() :
 	var curr_turn = GLGameManagerBus.current_turn
-	var curr_round  = GLGameManagerBus.current_round
 	
 	# check for item offer
 	if curr_turn == IVShareholderOffers.item_offer_turn :
+		GLShareholderOfferState.await_user_choose_shareholder_offer_before_create= true
 		handle_item_offer()
 	
 	# check for stat offer
 	if curr_turn == IVShareholderOffers.stat_offer_turn:
-		handle_card_offer()
-		
+		GLShareholderOfferState.await_user_choose_shareholder_offer_before_create= true
+		handle_stat_offer()
+
+func _handle_next_round() :
+	helper_stat_offer_active_toggle._handle_reset_active_stat_offer()
 		
 	
 func handle_item_offer() :
@@ -37,7 +44,7 @@ func handle_item_offer() :
 	# reset items to offer
 	GLShareholderOfferState.items_to_offer = ['defect_shot', 'hidden_shot', 'steroid']
 
-func handle_card_offer() :
+func handle_stat_offer() :
 	
 	var shareholder_stat_offer : Array[StatOfferItem]
 	
@@ -56,6 +63,7 @@ func handle_card_offer() :
 		_ :
 			push_error('unable to find round : ', str(curr_round), ' for handle_shareholder_card_offer')
 		
+	
 	# set cards
 	stat_offer_card_1.update(shareholder_stat_offer[0])	
 	stat_offer_card_2.update(shareholder_stat_offer[1])	
@@ -67,7 +75,7 @@ func handle_card_picked(offer_type : String, offer_card : TextureRect) :
 	
 	var tween = create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-
+	
 	# move card downward off screen
 	tween.tween_property(
 		offer_card,
@@ -89,8 +97,18 @@ func handle_card_picked(offer_type : String, offer_card : TextureRect) :
 	toggle_display_lock(false)
 
 	if offer_type == "stat":
-		stat_offer_card_1.visible = false
-		stat_offer_card_2.visible = false
+		# toggle visible 
+		serve_stat_offer_parent.visible = false
+		# put stat offer card to where it belongs
+		# get stat offer objects
+		var stat_offer: StatOfferItem = offer_card.designated_stat_offer 
+		# use helper to toggle vars
+		helper_stat_offer_active_toggle._handle_toggle_active_stat_offer(stat_offer.offer_id)
+		
+	# let creator know its okay to create cells again	
+	GLShareholderOfferState.await_user_choose_shareholder_offer_before_create = false
+	GLShareholderOfferState.emit_signal('create_prisoner_cells_user_chose_shareholder_offer')
+		
 	
 	
 func toggle_display_lock(toggleValue : bool) :

@@ -30,9 +30,15 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed('attack') :	
 		if card_hover.visible :
 			up_down_tween.kill()
+			# reset position. this is important for when card re-appears, getting it in the right pos
+			position = starting_pos
 			shareholder_offer_manager.handle_card_picked('stat', self)
 
 func update(stat_offer : StatOfferItem) :
+	
+	position = starting_pos
+	modulate.a = 1.0
+	
 	designated_stat_offer = stat_offer
 	
 	match designated_stat_offer.effect_type :

@@ -92,9 +92,9 @@ func check_for_cell_dead_on_start() :
 	# check if stat defect is in death range
 	if designated_brain_cell.strength_defect >= IVCellCreator.max_stat_value :
 		defect_death_event = true
-	elif designated_brain_cell.strength_defect >= IVCellCreator.max_stat_value :
+	if designated_brain_cell.strength_defect >= IVCellCreator.max_stat_value :
 		defect_death_event = true
-	elif designated_brain_cell.strength_defect >= IVCellCreator.max_stat_value :
+	if designated_brain_cell.strength_defect >= IVCellCreator.max_stat_value :
 		defect_death_event = true
 	
 	if defect_death_event :

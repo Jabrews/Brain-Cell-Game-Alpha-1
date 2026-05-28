@@ -53,6 +53,17 @@ func increase_defect_stat_case(high_stat : float, low_stat : float) :
 	
 	var new_defect_value : float
 	
+	## case two ##
+	# defect stat not only always uses max returns. but also an additonaly 15%
+	if GLShareholderOfferState.display_stat_offer_active_debug_messages :
+		print('offer 2 in breeding defect_stat_helper')
+	if GLShareholderOfferState.offer_2_active :
+		# we dont do max effect because i dont want to outright add them. very hard later on in game
+		# this is because we already add more at the end
+		high_percent_of_max = 0.70
+	##############
+	
+	
 	# depending on value increase the defect stat 
 	# 0.1 10% of max | 1.0 100% of max
 
@@ -81,6 +92,16 @@ func increase_defect_stat_case(high_stat : float, low_stat : float) :
 	else :
 	#FIVE
 		new_defect_value = high_stat + low_stat
+		
+		
+	
+	## case two ##
+	# defect stat not only always uses max returns. but also an additonaly 15%
+	if GLShareholderOfferState.display_stat_offer_active_debug_messages :
+		print('offer 2 in breeding defect_stat_helper')
+	if GLShareholderOfferState.offer_2_active :
+		new_defect_value += (IVCellCreator.max_stat_value * .10)
+	##############
 	
 	return new_defect_value
 	

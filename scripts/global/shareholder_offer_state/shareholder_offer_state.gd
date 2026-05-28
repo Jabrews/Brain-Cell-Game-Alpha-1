@@ -1,15 +1,27 @@
 extends Node
 
+# debug
+var display_stat_offer_active_debug_messages : bool = true
+
+# lets shareholder offers toggle manager know to turn off all prior offers when new round
+signal next_round_stat_offers()
+
+# tells cell_prisoner_cretor to await offer card being chose
+var await_user_choose_shareholder_offer_before_create : bool = false
+signal create_prisoner_cells_user_chose_shareholder_offer()
+
+
+
 ##### item offer #####
 var items_to_offer = ['defect_shot', 'hidden_shot', 'steroid']
 ######################
 
 var round_1_stat_offers : Array[StatOfferItem] = [
 	StatOfferItem.new(
-		'effects_prisoners', 1, 'Only 3 prisoners can be picked throughout the round, but their clean stats are moderately better.'
+		'effects_prisoners', 1, 'Only 3 possible prisoners can be picked throughout the round, but all their clean stats are increased by 10%.'
 	),
 	StatOfferItem.new(
-		'effects_breeding', 2, 'All breeding results gain 15% increased clean stats, but defect increases by 20%.'
+		'effects_breeding', 2, 'All breeding results give max postive returns. However, defect stat get another additional 20% value from breeding'
 	)
 ]
 var round_2_stat_offers : Array[StatOfferItem] = [
