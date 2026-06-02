@@ -54,12 +54,12 @@ func update_defect_color_manager(designated_brain_cell : BrainCell) -> void:
 		material.albedo_color = color
 
 
-func get_highest_defect_stat(designated_brain_cell) :
+func get_highest_defect_stat(designated_brain_cell : BrainCell) :
 	
 	var cell_defect_stats = {
-		'strength' : designated_brain_cell.strength_defect,
-		'intelligence' : designated_brain_cell.intelligence_defect,
-		'community' : designated_brain_cell.community_defect,
+		'strength' : designated_brain_cell.strength.defect,
+		'intelligence' : designated_brain_cell.intelligence.defect,
+		'community' : designated_brain_cell.community.defect,
 	}
 	
 	var highest_value : float = 0.0

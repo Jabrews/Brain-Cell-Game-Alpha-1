@@ -135,11 +135,11 @@ func update_target_stat() :
 	
 	match stat_type :
 		'strength' :
-			target_stat_value = target_cell.strength
+			target_stat_value = target_cell.strength.value
 		'intelligence' :
-			target_stat_value = target_cell.intelligence
+			target_stat_value = target_cell.intelligence.value
 		'community' :
-			target_stat_value = target_cell.community
+			target_stat_value = target_cell.community.value
 	
 	screen_cap_control.update_target_stat(target_stat_value)
 	

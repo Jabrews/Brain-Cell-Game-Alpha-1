@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="1_dm2c2"]
 [ext_resource type="Script" uid="uid://djv2nat4pj4k2" path="res://scripts/stations/station_components/cell_observer/station_cell_observer.gd" id="1_mxvxd"]
-[ext_resource type="PackedScene" uid="uid://dsue0cgfnvhh8" path="res://scenes/stations/station_screens/cell_observer/screen_cell_observer.tscn" id="2_0cbq6"]
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="2_55rwl"]
 [ext_resource type="PackedScene" uid="uid://c5tb2u3nb0fa0" path="res://scenes/hoverable_mesh_scenes/hidden_stat_reveal_btn.tscn" id="3_0cbq6"]
 [ext_resource type="Script" uid="uid://bu5fpwig1067p" path="res://scripts/stations/station_components/cell_observer/observer_move_button.gd" id="3_1u1lk"]
+[ext_resource type="PackedScene" uid="uid://c2rxycwqgbsjl" path="res://reusable/basic_receiver_screen/basic_receiver_screen.tscn" id="3_f8y3u"]
 [ext_resource type="PackedScene" uid="uid://dmtd6w1i541n8" path="res://reusable/hoverable/bouncing_sprite_scenes/key_e.tscn" id="4_6dmfr"]
 [ext_resource type="PackedScene" uid="uid://bex7onw4dih4n" path="res://scenes/stations/station_screens/cell_observer/screen_observer_list_index.tscn" id="4_f8y3u"]
 
@@ -74,7 +74,8 @@ script = ExtResource("1_dm2c2")
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 
-[node name="ScreenCellObserver" parent="ObserverTV/TvFrontPannel/SubViewport" unique_id=267969835 instance=ExtResource("2_0cbq6")]
+[node name="BasicReciverScreen" parent="ObserverTV/TvFrontPannel/SubViewport" unique_id=724718654 instance=ExtResource("3_f8y3u")]
+disable_progress_labels = false
 
 [node name="ListIndexTV" type="Node3D" parent="." unique_id=1913127265]
 

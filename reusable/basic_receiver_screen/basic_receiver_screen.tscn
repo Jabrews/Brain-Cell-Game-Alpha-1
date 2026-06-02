@@ -1,0 +1,445 @@
+[gd_scene format=3 uid="uid://c2rxycwqgbsjl"]
+
+[ext_resource type="Script" uid="uid://b3iwy26amomw3" path="res://reusable/basic_receiver_screen/basic_receiver_screen.gd" id="1_v6ql6"]
+[ext_resource type="Script" uid="uid://dgve5okrinx1j" path="res://reusable/basic_receiver_screen/helpers/reset_stat_display.gd" id="2_1mnjr"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://reusable/shaders/scan_lines.gdshader" id="2_dst7k"]
+[ext_resource type="Script" uid="uid://b24o4p2hdc818" path="res://reusable/basic_receiver_screen/helpers/display_target_cell.gd" id="2_jqv5s"]
+[ext_resource type="Script" uid="uid://bgifedwjyl0jb" path="res://reusable/basic_receiver_screen/helpers/handle_disabled_stats.gd" id="2_ugf3e"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="3_jqv5s"]
+[ext_resource type="Shader" uid="uid://1h7isoi7cv3c" path="res://reusable/shaders/target_progress_bar.gdshader" id="4_ugf3e"]
+[ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="5_1mnjr"]
+[ext_resource type="Script" uid="uid://bhxfi2gu87akq" path="res://reusable/basic_receiver_screen/helpers/display_cell.gd" id="5_r00lu"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="6_r00lu"]
+[ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="7_dqnac"]
+[ext_resource type="Texture2D" uid="uid://dgpsdn572nveo" path="res://models/screens/infection_bar/progress_bar_over.png" id="8_ekdri"]
+[ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://reusable/shaders/hidden_stat_distort.gdshader" id="9_cih2x"]
+[ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="10_hij5s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8usb6"]
+shader = ExtResource("2_dst7k")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t5il4"]
+shader = ExtResource("9_cih2x")
+shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
+shader_parameter/duration = 2.0
+shader_parameter/distortion_strength = 0.02
+shader_parameter/distortion_speed = 2.0
+shader_parameter/noise_texture = ExtResource("10_hij5s")
+shader_parameter/noise_scale = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tqrwa"]
+load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xkdsf"]
+shader = ExtResource("4_ugf3e")
+shader_parameter/prisoner_value = 0.0
+shader_parameter/target_value = 0.0
+shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/red_color = Color(0.29803923, 0.02745098, 0.06666667, 1)
+shader_parameter/overlap_opacity = 0.10000000475
+shader_parameter/edge_padding = 5.0
+
+[node name="BasicReciverScreen" type="Node2D" unique_id=724718654]
+script = ExtResource("1_v6ql6")
+
+[node name="ResetStatDisplay" type="Node" parent="." unique_id=212830192]
+script = ExtResource("2_1mnjr")
+
+[node name="HandleDisabledStats" type="Node" parent="." unique_id=216930498]
+script = ExtResource("2_ugf3e")
+
+[node name="DisplayTargetCell" type="Node" parent="." unique_id=694868084]
+script = ExtResource("2_jqv5s")
+
+[node name="DisplayCell" type="Node" parent="." unique_id=846407473]
+script = ExtResource("5_r00lu")
+
+[node name="BG" type="ColorRect" parent="." unique_id=1644504805]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 2.0
+offset_right = 480.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=1824220964]
+material = SubResource("ShaderMaterial_8usb6")
+offset_right = 480.0
+offset_bottom = 270.0
+metadata/_edit_use_anchors_ = true
+
+[node name="StatDisplay" type="Control" parent="." unique_id=412575760]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CellName" type="Label" parent="StatDisplay" unique_id=179676983]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 19.0
+offset_right = 328.0
+offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("3_jqv5s")
+theme_override_font_sizes/font_size = 20
+text = "None
+"
+horizontal_alignment = 1
+
+[node name="CellLifeSpan" type="Label" parent="StatDisplay" unique_id=323910199]
+layout_mode = 0
+offset_left = 308.0
+offset_top = 6.0
+offset_right = 482.0
+offset_bottom = 52.97059
+theme_override_fonts/font = ExtResource("3_jqv5s")
+theme_override_font_sizes/font_size = 12
+text = " Lifespan - 4
+"
+horizontal_alignment = 1
+
+[node name="HideStats" type="Control" parent="StatDisplay" unique_id=2014924575]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthHide" type="Sprite2D" parent="StatDisplay/HideStats" unique_id=787634540]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_t5il4")
+position = Vector2(305, 75)
+texture = SubResource("CompressedTexture2D_tqrwa")
+
+[node name="IntelligenceHide" type="Sprite2D" parent="StatDisplay/HideStats" unique_id=2079331092]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_t5il4")
+position = Vector2(305, 150)
+texture = SubResource("CompressedTexture2D_tqrwa")
+
+[node name="CommunityHide" type="Sprite2D" parent="StatDisplay/HideStats" unique_id=1745647043]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_t5il4")
+position = Vector2(306, 227)
+texture = SubResource("CompressedTexture2D_tqrwa")
+
+[node name="DefectBars" type="Control" parent="StatDisplay" unique_id=1530602115]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DefectStrengthBar" type="TextureProgressBar" parent="StatDisplay/DefectBars" unique_id=2033451502]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 149.0
+offset_top = 75.0
+offset_right = 457.0
+offset_bottom = 102.0
+scale = Vector2(1, 0.32000244)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("7_dqnac")
+texture_progress = ExtResource("8_ekdri")
+
+[node name="DefectIntelligenceBar" type="TextureProgressBar" parent="StatDisplay/DefectBars" unique_id=1751299071]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 2.15
+anchor_bottom = 2.15
+offset_left = 149.0
+offset_top = 75.0
+offset_right = 457.0
+offset_bottom = 102.0
+scale = Vector2(1, 0.32000244)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("7_dqnac")
+texture_progress = ExtResource("8_ekdri")
+
+[node name="DefectCommunityBar" type="TextureProgressBar" parent="StatDisplay/DefectBars" unique_id=1511057644]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 4.025
+anchor_bottom = 4.025
+offset_left = 149.0
+offset_top = 75.0
+offset_right = 457.0
+offset_bottom = 102.0
+scale = Vector2(1, 0.32000244)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("7_dqnac")
+texture_progress = ExtResource("8_ekdri")
+
+[node name="ProgressBars" type="Control" parent="StatDisplay" unique_id=1467444573]
+anchors_preset = 0
+
+[node name="StrengthBar" type="Sprite2D" parent="StatDisplay/ProgressBars" unique_id=1261779286]
+texture_filter = 1
+material = SubResource("ShaderMaterial_xkdsf")
+position = Vector2(303, 70)
+scale = Vector2(0.993, 0.715)
+texture = ExtResource("5_1mnjr")
+
+[node name="IntelligenceBar" type="Sprite2D" parent="StatDisplay/ProgressBars" unique_id=1381149560]
+texture_filter = 1
+material = SubResource("ShaderMaterial_xkdsf")
+position = Vector2(303, 145)
+scale = Vector2(0.993, 0.715)
+texture = ExtResource("5_1mnjr")
+
+[node name="CommunityBar" type="Sprite2D" parent="StatDisplay/ProgressBars" unique_id=719801457]
+texture_filter = 1
+material = SubResource("ShaderMaterial_xkdsf")
+position = Vector2(303, 222)
+scale = Vector2(0.993, 0.715)
+texture = ExtResource("5_1mnjr")
+
+[node name="StengthLabel" type="Label" parent="StatDisplay/ProgressBars" unique_id=47486304]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 64.0
+offset_right = 162.0
+offset_bottom = 87.0
+theme_override_fonts/font = ExtResource("3_jqv5s")
+theme_override_font_sizes/font_size = 14
+text = "Strength"
+
+[node name="IntelligenceLabel" type="Label" parent="StatDisplay/ProgressBars" unique_id=1272712862]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 141.0
+offset_right = 176.0
+offset_bottom = 164.0
+scale = Vector2(1, 1.2399988)
+theme_override_fonts/font = ExtResource("3_jqv5s")
+theme_override_font_sizes/font_size = 11
+text = "Intelligence"
+
+[node name="CommunityLabel" type="Label" parent="StatDisplay/ProgressBars" unique_id=1784749889]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 215.0
+offset_right = 152.0
+offset_bottom = 238.0
+theme_override_fonts/font = ExtResource("3_jqv5s")
+theme_override_font_sizes/font_size = 14
+text = "Community"
+
+[node name="ProgressLabels" type="Control" parent="StatDisplay" unique_id=960681084]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MinMaxLabels" type="Control" parent="StatDisplay/ProgressLabels" unique_id=1252939053]
+anchors_preset = 0
+
+[node name="Strength" type="Control" parent="StatDisplay/ProgressLabels/MinMaxLabels" unique_id=276624610]
+anchors_preset = 0
+offset_top = -19.0
+offset_bottom = -19.0
+
+[node name="MaxLabel" type="Label" parent="StatDisplay/ProgressLabels/MinMaxLabels/Strength" unique_id=183994969]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 47.0
+offset_right = 476.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(0.796243, 0.796243, 0.796243, 1)
+theme_override_fonts/font = ExtResource("6_r00lu")
+theme_override_font_sizes/font_size = 16
+text = "150"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MinLabel" type="Label" parent="StatDisplay/ProgressLabels/MinMaxLabels/Strength" unique_id=1838991074]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 48.0
+offset_right = 172.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0.796243, 0.796243, 0.796243, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("6_r00lu")
+theme_override_font_sizes/font_size = 18
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intelligence" type="Control" parent="StatDisplay/ProgressLabels/MinMaxLabels" unique_id=1780657216]
+anchors_preset = 0
+offset_top = -9.0
+offset_bottom = -9.0
+
+[node name="MaxLabel" type="Label" parent="StatDisplay/ProgressLabels/MinMaxLabels/Intelligence" unique_id=1011231043]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 113.0
+offset_right = 476.0
+offset_bottom = 149.0
+theme_override_colors/font_color = Color(0.796243, 0.796243, 0.796243, 1)
+theme_override_fonts/font = ExtResource("6_r00lu")
+theme_override_font_sizes/font_size = 16
+text = "150"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MinLabel" type="Label" parent="StatDisplay/ProgressLabels/MinMaxLabels/Intelligence" unique_id=1123066119]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 114.0
+offset_right = 172.0
+offset_bottom = 150.0
+theme_override_colors/font_color = Color(0.796243, 0.796243, 0.796243, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("6_r00lu")
+theme_override_font_sizes/font_size = 18
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="Control" parent="StatDisplay/ProgressLabels/MinMaxLabels" unique_id=176187424]
+anchors_preset = 0
+offset_top = -2.0
+offset_bottom = -2.0
+
+[node name="MaxLabel" type="Label" parent="StatDisplay/ProgressLabels/MinMaxLabels/Community" unique_id=1875767931]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 180.0
+offset_right = 476.0
+offset_bottom = 216.0
+theme_override_colors/font_color = Color(0.796243, 0.796243, 0.796243, 1)
+theme_override_fonts/font = ExtResource("6_r00lu")
+theme_override_font_sizes/font_size = 16
+text = "150"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MinLabel" type="Label" parent="StatDisplay/ProgressLabels/MinMaxLabels/Community" unique_id=1186650036]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 181.0
+offset_right = 172.0
+offset_bottom = 217.0
+theme_override_colors/font_color = Color(0.796243, 0.796243, 0.796243, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("6_r00lu")
+theme_override_font_sizes/font_size = 18
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrValueLabels" type="Control" parent="StatDisplay/ProgressLabels" unique_id=305700133]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthCurrLabel" type="Label" parent="StatDisplay/ProgressLabels/CurrValueLabels" unique_id=2120806324]
+layout_mode = 0
+offset_left = 219.0
+offset_top = 57.0
+offset_right = 387.0
+offset_bottom = 80.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("3_jqv5s")
+theme_override_font_sizes/font_size = 11
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntelligenceCurrLabel" type="Label" parent="StatDisplay/ProgressLabels/CurrValueLabels" unique_id=152705114]
+layout_mode = 0
+offset_left = 219.0
+offset_top = 133.0
+offset_right = 387.0
+offset_bottom = 156.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("3_jqv5s")
+theme_override_font_sizes/font_size = 11
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CommunityCurrLabel" type="Label" parent="StatDisplay/ProgressLabels/CurrValueLabels" unique_id=1684668197]
+layout_mode = 0
+offset_left = 219.0
+offset_top = 208.0
+offset_right = 387.0
+offset_bottom = 231.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("3_jqv5s")
+theme_override_font_sizes/font_size = 11
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OffDisableLabels" type="Control" parent="StatDisplay" unique_id=2132381243]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthOffLabel" type="Label" parent="StatDisplay/OffDisableLabels" unique_id=320228149]
+visible = false
+layout_mode = 0
+offset_left = 219.0
+offset_top = 57.0
+offset_right = 387.0
+offset_bottom = 80.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("3_jqv5s")
+theme_override_font_sizes/font_size = 11
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntelligenceOffLabel" type="Label" parent="StatDisplay/OffDisableLabels" unique_id=67840532]
+visible = false
+layout_mode = 0
+offset_left = 219.0
+offset_top = 132.0
+offset_right = 387.0
+offset_bottom = 155.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("3_jqv5s")
+theme_override_font_sizes/font_size = 11
+text = "off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CommunityOffLabel" type="Label" parent="StatDisplay/OffDisableLabels" unique_id=618707826]
+visible = false
+layout_mode = 0
+offset_left = 219.0
+offset_top = 210.0
+offset_right = 387.0
+offset_bottom = 233.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("3_jqv5s")
+theme_override_font_sizes/font_size = 11
+text = "off"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -11,15 +11,54 @@ extends Node
 # offer helpers
 @onready var offer_five : Node = $OfferHelpers/OfferFive
 
-func assemble() :
-	return
+func assemble(cell_constructor : CellConstructor) -> Array[BrainCell]:
+
+	var prisoner_cells : Array[BrainCell] = []
+
+	for i in range(cell_constructor.cell_quantity):
+
+		var clean_strength : BrainCellStat= create_clean_stats._create(
+			cell_constructor.strength
+		)
+
+		var clean_intelligence : BrainCellStat = create_clean_stats._create(
+			cell_constructor.intelligence
+		)
+
+		var clean_community : BrainCellStat = create_clean_stats._create(
+			cell_constructor.community
+		)
+
+		var new_name = name_manager.pick_prisoner_names()
+		var life_span = randi_range(2, 4)
+
+		var new_prisoner_cell = BrainCell.new(
+			new_name,
+			clean_strength,
+			clean_intelligence,
+			clean_community,
+			life_span,
+		)
+
+		prisoner_cells.append(new_prisoner_cell)
+
+
+	return prisoner_cells
+		
+		
+		
+		
+		
+	
+	
+	
 	#var current_round : int = GLGameManagerBus.current_round
 	
 	#var cell_contructors : Array[CellConstructor] = constructer_manager.get_cell_constructor(current_round)
 	
 	#var new_prisoner_cells : Array[BrainCell]
 	
-	# verify clean stat due order before going foward
+	# verify clean stat due order beforeCreated going foward
 	
 	## offer 5 
 	# reduce amount of hidden stats by half. starting with best constructors
@@ -51,7 +90,7 @@ func assemble() :
 		#var clean_stats : Array[float] = create_clean_stats._create(constructor.clean_ranges)
 		#var defect_stats : Array[float] = create_defect_stats._create(cell_index, constructor, clean_stats)
 		#
-		#var life_span = randi_range(2, 4)
+
 		#
 		#var new_name =  name_manager.pick_prisoner_names()
 		#var new_prisoner_cell = BrainCell.new(

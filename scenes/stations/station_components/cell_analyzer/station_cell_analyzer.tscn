@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bka5qpiah2tfk" path="res://reusable/load_panel/load_panel_cell.gd" id="1_1g30i"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="1_6wfuo"]
-[ext_resource type="PackedScene" uid="uid://jbuaiy8gqarp" path="res://scenes/stations/station_screens/cell_analyzer_stats/screen_cell_analyzer_stats.tscn" id="2_2nk5p"]
+[ext_resource type="PackedScene" uid="uid://c2rxycwqgbsjl" path="res://reusable/basic_receiver_screen/basic_receiver_screen.tscn" id="3_1g30i"]
+[ext_resource type="PackedScene" uid="uid://dxnvnd8c7u204" path="res://reusable/basic_receiver_screen/placeholder_screens/no_cell_loaded.tscn" id="4_ja2gh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r2y5v"]
 size = Vector3(4.5, 0.277, 4.5)
@@ -42,7 +43,7 @@ orientation = 0
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_1g30i")
-cell_reciever = NodePath("../AnyalizerDisplayStatTv/TvFrontPannel/SubViewport/CellAnalyzerStats")
+cell_reciever = NodePath("../AnyalizerDisplayStatTv/TvFrontPannel/SubViewport/BasicReciverScreen")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LoadCellPanel" unique_id=69288836]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03862305, 0)
@@ -76,4 +77,6 @@ disable_3d = true
 canvas_item_default_texture_filter = 0
 size = Vector2i(480, 270)
 
-[node name="CellAnalyzerStats" parent="AnyalizerDisplayStatTv/TvFrontPannel/SubViewport" unique_id=507165404 instance=ExtResource("2_2nk5p")]
+[node name="BasicReciverScreen" parent="AnyalizerDisplayStatTv/TvFrontPannel/SubViewport" unique_id=724718654 instance=ExtResource("3_1g30i")]
+disable_progress_labels = false
+invalid_cell_placeholder_screen = ExtResource("4_ja2gh")

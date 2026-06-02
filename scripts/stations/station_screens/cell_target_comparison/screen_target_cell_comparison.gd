@@ -58,9 +58,9 @@ func update_bar_max() :
 
 func update_bar_value(target_cell : BrainCell) :
 	# set progress bars	
-	strength_bar.value = target_cell.strength
-	intelligence_bar.value = target_cell.intelligence
-	community_bar.value = target_cell.community
+	strength_bar.value = target_cell.strength.value
+	intelligence_bar.value = target_cell.intelligence.value
+	community_bar.value = target_cell.community.value
 
 func update_display_labels(target_brain_cell : BrainCell) :
 	for label in large_labels :

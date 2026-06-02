@@ -3,13 +3,13 @@ extends CharacterBody3D
 var designated_brain_cell : BrainCell 
 
 # components
-@onready var screen_stat_displays: Node2D = $StatDisplay/StatMesh/SubViewport/StatDisplay
+@onready var screen_basic_reciever: Node2D = $StatDisplay/StatMesh/SubViewport/BasicRecieverScreen
 
 func _ready() -> void:
 	
 	await get_tree().process_frame
 	
-	screen_stat_displays.update_screen(designated_brain_cell)
+	screen_basic_reciever._handle_brain_cell_recieved(designated_brain_cell)
 	
 	# des. cell listenrs
 	GLCellManagerBus.connect('cell_deleted', _handle_cell_deleted)
@@ -34,7 +34,7 @@ func _handle_cell_deleted(cell_name : String) :
 func _handle_cell_changed(changed_brain_cell : BrainCell) : 
 	if changed_brain_cell.name == designated_brain_cell.name : 
 		designated_brain_cell = changed_brain_cell
-		screen_stat_displays.update_screen(designated_brain_cell)
+		screen_basic_reciever._handle_brain_cell_recieved(designated_brain_cell)
 
 	
 	

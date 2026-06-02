@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 		#
 		#for cell in GLCellManagerBus.collected_cells_refrence: 
 			#print('name : ', cell.name, ' strength : ', str(cell.strength), ' strength-def : ', str(cell.strength_defect))
-		#
+			
 		#print('DEBUG FINISHED')
 		#print('stat offer 1 active : ', GLShareholderOfferState.offer_1_active)
 		#print('stat offer 2 active : ', GLShareholderOfferState.offer_2_active)
@@ -36,14 +36,13 @@ func _process(_delta: float) -> void:
 	
 	
 	if Input.is_action_just_pressed('debug2') :	
-		#print('DEBUG ACTIVATED - printing cell collection via manager')
-		#var collected_array_len = len(cell_manager.collected_cells)
-		#print('array len : ', str(collected_array_len))		
-		#
-		#for cell : BrainCell in cell_manager.collected_cells: 
-			#print('name : ', cell.name, ' strength : ', str(cell.strength), ' strength-def : ', str(cell.strength_defect))
-			#print(cell.intelligence_defect)
-		#
-		#print('DEBUG FINISHED')
-		pass
+		print('DEBUG ACTIVATED - printing cell collection via manager')
+		var collected_array_len = len(cell_manager.collected_cells)
+		print('array len : ', str(collected_array_len))		
+		
+		for cell : BrainCell in cell_manager.collected_cells: 
+			print('name : ', cell.name, ' strength : ', str(cell.strength), ' strength-def : ', str(cell.strength_defect))
+			print(cell.intelligence_defect)
+		
+		print('DEBUG FINISHED')
 #

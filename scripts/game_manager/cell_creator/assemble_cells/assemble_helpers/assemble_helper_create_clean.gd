@@ -1,100 +1,72 @@
 extends Node
 
-func _create(clean_range : String) -> Array[float]:
+func _create(stat_constructor : StatConstructor) :
+	
+	#var target_stat : float = get_corrispondin
+	
+	# if stat is disabled return null	
+	if stat_constructor.stat_enabled == false:
+		return BrainCellStat.new(
+			stat_constructor.stat_type,
+			false,
+			0.0,
+			0.0,
+			false,
+		)
+	
+	var stat_value = generate_random_stat_value(stat_constructor.stat_base_clean_value)
+	
+	stat_value = detect_and_apply_stap_cap(stat_value, stat_constructor.stat_cap_status)
+	
+	stat_value = clamp(stat_value, 0, IVCellCreator.max_stat_value) 
+	stat_value = round(stat_value* 10.0) / 10.0
+	
+	return BrainCellStat.new(
+		stat_constructor.stat_type,
+		true,
+		stat_value,
+		0.0,
+		false,
+	)
+	
+	
+func get_corrisponding_target_stat(stat_type : String) -> float :
 	
 	var target_cell : BrainCell = GLCellManagerBus.target_cell_refrence
 	
-	# note : this only happens on first turn
-	if not target_cell :
-		target_cell = BrainCell.new(
-			'placeholder-target-cell',
-			100,
-			100,
-			100,
-			300,
-			0,			
-			0,			
-			0,
-		)	
-	
-	
-	
-	
-	var str_clean = create_stat(clean_range)
-	var int_clean = create_stat(clean_range)
-	var com_clean = create_stat(clean_range)
-	var clean_stats : Array[float] = [
-		str_clean,
-		int_clean,
-		com_clean
-	]
-	
-	return clean_stats
-	
+	match stat_type : 
+		'strength' :
+			return target_cell.strength.value
+		'intelligence' :
+			return target_cell.intelligence.value
+		'community' :		
+			return target_cell.community.value
+		_ :
+			push_error('invalid stat_type')
+			return 0.0
 
+func generate_random_stat_value(stat_base : float) :
+	
+	var random_change = randi_range(-50, 20)
+	stat_base += random_change
+	
+	return stat_base
 
-func create_stat(clean_range : String) -> float:
+func detect_and_apply_stap_cap(stat_value : float, stat_cap_status : String ) -> float:
 
-	var random_diffrence = randi_range(0, 30)
-	
-	var clean_stat : float
-	
+	if stat_cap_status == "none":
+		return stat_value
 
-	# round 1 balancing baseline:
-	# early rounds were designed around a target stat cap of 160.
-	# as max target stats increase in later rounds,
-	# clean stat generation must scale relative to that original balance point
-	# instead of relying purely on flat percentages.
-	var round_1_max_value = 160
-	# measures how much stronger the current round cap is
-	# compared to the original round 1 balancing target
-	var difference_from_round_1_max = (IVCellCreator.max_stat_value - round_1_max_value) * .2
-	
-	var max_value = IVCellCreator.max_stat_value
-	
-	
-	if clean_range == 'lowest' : 	
-		clean_stat = max_value * .05
-		clean_stat -= difference_from_round_1_max 
-			
-	elif clean_range == 'low':
-		clean_stat = max_value * .10
-		clean_stat -= difference_from_round_1_max
-	
-	elif clean_range == 'medium-low' :
-		clean_stat = max_value * .20
-		clean_stat -= difference_from_round_1_max 
-		
-	elif clean_range == 'medium':
-		clean_stat = max_value * .30
-		clean_stat -= difference_from_round_1_max 
-		
-		
-	elif clean_range == 'medium-elevated':
-		clean_stat = max_value * .40
-		clean_stat -= difference_from_round_1_max 	
-		
-	elif clean_range == 'high':
-		clean_stat = max_value * .60
-		clean_stat -= difference_from_round_1_max 	
-	
-	else :
-		push_error("invalid clean range : ", clean_range )
-	
-	
-	clean_stat += random_diffrence
-	
-	## offer one ##
-	# we increase clean stats by 10%
-	if GLShareholderOfferState.offer_1_active :
-		if GLShareholderOfferState.display_stat_offer_active_debug_messages :
-			print_debug('offer 1')
-		
-		clean_stat += (IVCellCreator.max_stat_value * 0.20)
-	#############
-	
-	
-	# round to 0.0 decimal
-	clean_stat = round(clean_stat * 10.0) / 10.0
+	elif stat_cap_status == "caution":
+		var random_change = randi_range(-30, -10)
+		stat_value += random_change
 
-	return clean_stat
+	elif stat_cap_status == "warning":
+		var random_change = randi_range(-40, -20)
+		stat_value += random_change
+
+	else:
+		push_error("invalid stat cap: %s" % stat_cap_status)
+		return stat_value
+
+	return stat_value

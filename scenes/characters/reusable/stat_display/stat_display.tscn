@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://q5i8mv06vwpr"]
 
-[ext_resource type="Script" uid="uid://cu33dn3jgrbs" path="res://scripts/characters/reusable/stat_display_screen/stat_tv_mesh.gd" id="1_fo6nq"]
-[ext_resource type="PackedScene" uid="uid://g72258alma4c" path="res://scenes/characters/reusable/stat_display/screen_stat_display.tscn" id="2_0e66n"]
-[ext_resource type="Script" uid="uid://cchk7xtrx48en" path="res://scripts/characters/reusable/stat_display_screen/stat_display_area.gd" id="3_2uw1u"]
+[ext_resource type="Script" uid="uid://4dkkevad5m2s" path="res://scripts/characters/reusable/stat_display/stat_tv_mesh.gd" id="1_fo6nq"]
+[ext_resource type="PackedScene" uid="uid://c2rxycwqgbsjl" path="res://reusable/basic_receiver_screen/basic_receiver_screen.tscn" id="2_fo6nq"]
+[ext_resource type="Script" uid="uid://kok7afrrnhpc" path="res://scripts/characters/reusable/stat_display/stat_display_area.gd" id="3_fo6nq"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_gogr5"]
 viewport_path = NodePath("StatDisplay/StatMesh/SubViewport")
@@ -28,12 +28,13 @@ script = ExtResource("1_fo6nq")
 [node name="SubViewport" type="SubViewport" parent="StatMesh" unique_id=659531028]
 size = Vector2i(476, 266)
 
-[node name="StatDisplay" parent="StatMesh/SubViewport" unique_id=907959932 instance=ExtResource("2_0e66n")]
+[node name="BasicRecieverScreen" parent="StatMesh/SubViewport" unique_id=724718654 instance=ExtResource("2_fo6nq")]
+disable_progress_labels = false
 
 [node name="StatDisplayArea" type="Area3D" parent="." unique_id=487541945 groups=["stat_display_area"]]
 collision_layer = 64
 collision_mask = 0
-script = ExtResource("3_2uw1u")
+script = ExtResource("3_fo6nq")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StatDisplayArea" unique_id=1722532323]
 shape = SubResource("BoxShape3D_8yf24")

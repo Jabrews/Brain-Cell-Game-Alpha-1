@@ -155,14 +155,14 @@ mesh = SubResource("BoxMesh_tgbuk")
 [node name="StatControllPanels" type="Node3D" parent="." unique_id=1287241135]
 
 [node name="StatControlPanel" parent="StatControllPanels" unique_id=1645837205 instance=ExtResource("1_qwe67")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16118121, -0.5525918)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5347993, -0.5525918)
 
 [node name="StatControlPanel2" parent="StatControllPanels" unique_id=495379902 instance=ExtResource("1_qwe67")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.299606, -0.5525918)
 stat_type = "intelligence"
 
 [node name="StatControlPanel3" parent="StatControllPanels" unique_id=2028583582 instance=ExtResource("1_qwe67")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.520535, -0.5525918)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13132548, -0.5525918)
 stat_type = "community"
 
 [node name="EnergyPanel" type="Node3D" parent="." unique_id=856706255]

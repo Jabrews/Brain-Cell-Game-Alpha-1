@@ -3,7 +3,7 @@ extends CharacterBody3D
 var designated_brain_cell : BrainCell
 
 # components
-@onready var screen_stat_displays: Node2D = $StatDisplay/StatMesh/SubViewport/StatDisplay
+@onready var screen_basic_reciever: Node2D = $StatDisplay/StatMesh/SubViewport/BasicRecieverScreen
 @onready var defect_color_manager : Node = $DefectColorManager
 @onready var offer_turn_into_flesh_bug_delay : Timer = $OfferTurnIntoFleshBugDelay
 
@@ -29,7 +29,7 @@ func _ready() -> void:
 		offer_turn_into_flesh_bug_delay.wait_time = turn_delay_time
 		offer_turn_into_flesh_bug_delay.start()
 		
-	screen_stat_displays.update_screen(designated_brain_cell)
+	screen_basic_reciever._handle_brain_cell_recieved(designated_brain_cell)
 	
 	# des. cell changing listeners
 	GLCellManagerBus.connect("cell_deleted", _handle_cell_deleted)
@@ -109,7 +109,7 @@ func _handle_cell_changed(changed_brain_cell : BrainCell) :
 		
 	
 	
-	screen_stat_displays.update_screen(designated_brain_cell)
+	screen_basic_reciever._handle_brain_cell_recieved(designated_brain_cell)
 	defect_color_manager.update_defect_color_manager(designated_brain_cell)
 	
 	check_for_cell_dead_on_update()
@@ -126,9 +126,9 @@ func _handle_cell_container_jolt(cell_name : String) :
 func has_fatal_defect() -> bool:
 	
 	return (
-		designated_brain_cell.strength_defect >= IVCellCreator.max_stat_value
-		or designated_brain_cell.intelligence_defect >= IVCellCreator.max_stat_value
-		or designated_brain_cell.community_defect >= IVCellCreator.max_stat_value
+		designated_brain_cell.strength.defect>= IVCellCreator.max_stat_value
+		or designated_brain_cell.intelligence.defect>= IVCellCreator.max_stat_value
+		or designated_brain_cell.community.defect>= IVCellCreator.max_stat_value
 	)
 
 

@@ -1,12 +1,8 @@
 extends Node
 
 # componets
-@onready var screen_cell_observer : Node2D = $ObserverTV/TvFrontPannel/SubViewport/ScreenCellObserver
+@onready var basic_screen_observer : Node2D = $ObserverTV/TvFrontPannel/SubViewport/BasicReciverScreen
 @onready var screen_observer_list_index  :Node2D = $ListIndexTV/TvFrontPannel/SubViewport/ScreenObserverListIndex
-
-
-@onready var stat_display : Control = $ObserverTV/TvFrontPannel/SubViewport/ScreenCellObserver/StatDisplay
-@onready var no_cell_stat_display : Control = $ObserverTV/TvFrontPannel/SubViewport/ScreenCellObserver/NoCellDisplay
 
 var observed_index : int = 0
 var observed_list : Array[BrainCell]
@@ -52,17 +48,6 @@ func _move_button_pressed(button_side : String) :
 		return
 
 
-func update_display() :
-	
-	if len(observed_list) == 0 :
-		stat_display.visible = false
-		no_cell_stat_display.visible = true
-		
-	else :
-		stat_display.visible = true 
-		no_cell_stat_display.visible = false 
-
-
 func update_observed_list() :
 	
 	# get collected cells
@@ -79,10 +64,8 @@ func update_observed_list() :
 	observed_list = new_observed_list
 	
 	# update display
-	update_display()
 	screen_observer_list_index.update_list_max(observed_list)
 
-	
 	
 	# if no cells reset index and stop
 	if len(observed_list) == 0 :
@@ -121,4 +104,5 @@ func update_screen() :
 	var active_cell : BrainCell = observed_list[observed_index]
 	
 	# update observer
-	screen_cell_observer._handle_observer_cell_recieved(active_cell)
+	basic_screen_observer._handle_brain_cell_recieved(active_cell)
+	

@@ -63,9 +63,9 @@ func update_bar_value(prisoner_cell : BrainCell, target_cell : BrainCell):
 	var max_val = IVCellCreator.max_stat_value
 
 	# prisoner (yellow)
-	var strength_norm = float(prisoner_cell.strength) / max_val
-	var intelligence_norm = float(prisoner_cell.intelligence) / max_val
-	var community_norm = float(prisoner_cell.community) / max_val
+	var strength_norm = float(prisoner_cell.strength.value) / max_val
+	var intelligence_norm = float(prisoner_cell.intelligence.value) / max_val
+	var community_norm = float(prisoner_cell.community.value) / max_val
 
 	# target (red)
 	var target_strength_norm = 0.0
@@ -73,9 +73,9 @@ func update_bar_value(prisoner_cell : BrainCell, target_cell : BrainCell):
 	var target_community_norm = 0.0
 
 	if target_cell:
-		target_strength_norm = float(target_cell.strength) / max_val
-		target_intelligence_norm = float(target_cell.intelligence) / max_val
-		target_community_norm = float(target_cell.community) / max_val
+		target_strength_norm = float(target_cell.strength.value) / max_val
+		target_intelligence_norm = float(target_cell.intelligence.value) / max_val
+		target_community_norm = float(target_cell.community.value) / max_val
 
 	# strength
 	clean_strength_bar.material.set_shader_parameter("prisoner_value", strength_norm)

@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 ## export vars
-@export var mouse_sensitivity_x := 0.007
-@export var mouse_sensitivity_y := 0.002
+@export var mouse_sensitivity_x := 0.006
+@export var mouse_sensitivity_y := 0.004
 
 ## components
 @onready var camera_pivot : Node3D = $CameraPivot
@@ -50,7 +50,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		camera_pivot.rotate_y(-event.relative.x * mouse_sensitivity_x)
 		camera.rotate_x(-event.relative.y * mouse_sensitivity_y)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70), deg_to_rad(80))
 
 func set_ray_cast_rotation() :
 	pass # want to match cam pivot mouse rortation. so if they look up and down it follows

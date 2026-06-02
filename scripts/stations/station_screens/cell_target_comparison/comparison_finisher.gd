@@ -29,9 +29,9 @@ func compare_cells(selected_brain_cell : BrainCell) :
 	var max_points : int = 100
 	
 	# get diffrence in each stat
-	var str_point_diffrence = compare_stat(target_cell.strength, selected_brain_cell.strength)	
-	var int_point_diffrence = compare_stat(target_cell.intelligence, selected_brain_cell.intelligence)	
-	var com_point_diffrence = compare_stat(target_cell.community, selected_brain_cell.community)	
+	var str_point_diffrence = compare_stat(target_cell.strength.value, selected_brain_cell.strength.value)	
+	var int_point_diffrence = compare_stat(target_cell.intelligence.value, selected_brain_cell.intelligence.value)	
+	var com_point_diffrence = compare_stat(target_cell.community.value, selected_brain_cell.community.value)	
 	
 	# apply points to max
 	var total_point_diff = str_point_diffrence + int_point_diffrence + com_point_diffrence

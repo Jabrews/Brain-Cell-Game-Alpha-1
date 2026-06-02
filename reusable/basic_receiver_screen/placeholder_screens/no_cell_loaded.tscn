@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dxnvnd8c7u204"]
+
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://reusable/shaders/scan_lines.gdshader" id="1_up7y8"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_8rb6d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_486v1"]
+shader = ExtResource("1_up7y8")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[node name="NoCellLoaded" type="Node2D" unique_id=1123638695]
+
+[node name="BG" type="ColorRect" parent="." unique_id=1215076355]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 2.0
+offset_right = 480.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=1219762720]
+material = SubResource("ShaderMaterial_486v1")
+offset_right = 480.0
+offset_bottom = 270.0
+metadata/_edit_use_anchors_ = true
+
+[node name="NoCellDisplay" type="Control" parent="." unique_id=1553568501]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="PrisonerName" type="Label" parent="NoCellDisplay" unique_id=1492947011]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 73.0
+offset_right = 452.0
+offset_bottom = 162.0
+theme_override_fonts/font = ExtResource("2_8rb6d")
+theme_override_font_sizes/font_size = 20
+text = "No Cell Loaded Yet. 
+
+
+Put on panel to start"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true

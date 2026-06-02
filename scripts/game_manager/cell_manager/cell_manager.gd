@@ -37,7 +37,7 @@ func set_collected_cells(new_cells : Array[BrainCell]) -> void :
 func set_prisoner_cells(new_cells : Array[BrainCell]) -> void :
 	prisoner_cells = new_cells
 	GLCellManagerBus.prisoner_cells_refrence = new_cells
-	GLCellManagerBus.emit_signal('cells_updated')
+	GLCellManagerBus.emit_signal("cells_updated")
 
 func set_target_cell(new_cell : BrainCell) -> void :
 	target_cell = new_cell
