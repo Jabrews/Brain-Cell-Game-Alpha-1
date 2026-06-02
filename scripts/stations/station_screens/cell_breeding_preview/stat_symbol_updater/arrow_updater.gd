@@ -31,25 +31,25 @@ func _handle_arrow_type(key : String, cell_left : BrainCell, cell_right: BrainCe
 	match key : 
 		'str'  :
 			high_low_stat = get_highest_lowest_stat(
-				cell_left.strength,
-				cell_right.strength
+				cell_left.strength.value,
+				cell_right.strength.value
 			)
-			target_stat = target_cell.strength
+			target_stat = target_cell.strength.value
 			
 			
 		'int' : 
 			high_low_stat = get_highest_lowest_stat(
-				cell_left.intelligence,
-				cell_right.intelligence
+				cell_left.intelligence.value,
+				cell_right.intelligence.value
 			)
-			target_stat = target_cell.intelligence
+			target_stat = target_cell.intelligence.value
 			
 		'com' :
 			high_low_stat = get_highest_lowest_stat(
-				cell_left.community,
-				cell_right.community
+				cell_left.community.value,
+				cell_right.community.value
 			)
-			target_stat = target_cell.community	
+			target_stat = target_cell.community.value
 			
 		_:		
 			push_error('no key value found for _handle_detect_over_warning')
@@ -117,24 +117,24 @@ func _handle_arrow_phase(arrow_type_active : String, key : String, cell_left: Br
 	match key : 
 		'str'  :
 			high_low_stat = get_highest_lowest_stat(
-				cell_left.strength,
-				cell_right.strength
+				cell_left.strength.value,
+				cell_right.strength.value
 			)
-			target_stat = target_cell.strength
+			target_stat = target_cell.strength.value
 			
 		'int' : 
 			high_low_stat = get_highest_lowest_stat(
-				cell_left.intelligence,
-				cell_right.intelligence
+				cell_left.intelligence.value,
+				cell_right.intelligence.value
 			)
-			target_stat = target_cell.intelligence
+			target_stat = target_cell.intelligence.value
 			
 		'com' :
 			high_low_stat = get_highest_lowest_stat(
-				cell_left.community,
-				cell_right.community
+				cell_left.community.value,
+				cell_right.community.value
 			)
-			target_stat = target_cell.community
+			target_stat = target_cell.community.value
 			
 		_:		
 			push_error('no key value found for _handle_detect_over_warning')

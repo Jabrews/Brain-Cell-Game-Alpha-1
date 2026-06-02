@@ -18,22 +18,22 @@ func _handle_detect_question_mark(
 		
 		'str' :
 			if (
-				cell_left.strength_hidden
-				or cell_right.strength_hidden
+				cell_left.strength.hidden
+				or cell_right.strength.hidden
 			):
 				found_hidden_stat = true
 				
 		'int' :
 			if (
-				cell_left.intelligence_hidden
-				or cell_right.intelligence_hidden
+				cell_left.intelligence.hidden
+				or cell_right.intelligence.hidden
 			):
 				found_hidden_stat = true
 				
 		'com' :
 			if (
-				cell_left.community_hidden
-				or cell_right.community_hidden
+				cell_left.community.hidden
+				or cell_right.community.hidden
 			):
 				found_hidden_stat = true
 				

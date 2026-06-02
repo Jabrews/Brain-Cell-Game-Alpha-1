@@ -35,8 +35,8 @@ func increase_clean_stat_case(stat_high : float, stat_low : float, target_stat :
 		#print('under half of target  :', stat_high, ' ', stat_low)
 		#stat_high += stat_low 
 		
-		var curr_round = GLGameManagerBus.current_turn
-		var max_round = GLGameManagerBus.max_turns
+		var curr_round = GLGameManagerBus.current_round
+		var max_round = GLGameManagerBus.max_rounds
 		
 		var half_round = max_round * 0.5
 		
@@ -54,8 +54,8 @@ func increase_clean_stat_case(stat_high : float, stat_low : float, target_stat :
 		#print('over half of target  :', stat_high, ' ', stat_low)
 		#stat_high += stat_low
 		
-		var curr_round = GLGameManagerBus.current_turn
-		var max_round = GLGameManagerBus.max_turns
+		var curr_round = GLGameManagerBus.current_round
+		var max_round = GLGameManagerBus.max_rounds
 		
 		var half_round = max_round * 0.5
 		

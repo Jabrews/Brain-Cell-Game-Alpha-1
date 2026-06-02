@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://jq2kvlbx7keh"]
+
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="1_uy44j"]
+
+[node name="NoCellLeft" type="Node2D" unique_id=1358732828]
+
+[node name="Bg" type="ColorRect" parent="." unique_id=191826828]
+offset_left = 55.0
+offset_top = 55.0
+offset_right = 219.0
+offset_bottom = 225.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="CellName" type="Label" parent="." unique_id=632073516]
+offset_left = 31.0
+offset_top = 110.0
+offset_right = 251.0
+offset_bottom = 172.0
+theme_override_fonts/font = ExtResource("1_uy44j")
+theme_override_font_sizes/font_size = 10
+text = "No Cell found..
+
+place on panel 
+to load
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

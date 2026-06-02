@@ -15,20 +15,20 @@ func _handle_detect_over_warning(key : String, cell_left : BrainCell, cell_right
 	match key :
 		'str'  :
 			high_low_stat = get_highest_lowest_stat(
-				cell_left.strength,
-				cell_right.strength
+				cell_left.strength.value,
+				cell_right.strength.value
 			)
 			
 		'int' :
 			high_low_stat = get_highest_lowest_stat(
-				cell_left.intelligence,
-				cell_right.intelligence
+				cell_left.intelligence.value,
+				cell_right.intelligence.value
 			)
 			
 		'com' :
 			high_low_stat = get_highest_lowest_stat(
-				cell_left.community,
-				cell_right.community
+				cell_left.community.value,
+				cell_right.community.value
 			)
 			
 		_:
@@ -56,13 +56,13 @@ func _handle_detect_over_warning(key : String, cell_left : BrainCell, cell_right
 	
 	match key :
 		'str'  :
-			target_stat = target_cell.strength
+			target_stat = target_cell.strength.value
 			
 		'int' :
-			target_stat = target_cell.intelligence
+			target_stat = target_cell.intelligence.value
 			
 		'com' :
-			target_stat = target_cell.community
+			target_stat = target_cell.community.value
 			
 		_:
 			push_error('no key value found for _handle_detect_over_warning')

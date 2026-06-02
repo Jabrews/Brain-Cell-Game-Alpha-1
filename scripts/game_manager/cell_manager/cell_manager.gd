@@ -258,6 +258,8 @@ func _handle_interpreter_jolt_increase_cell_defect(selected_cell : BrainCell, se
 func _handle_cell_container_jolt_increase_cell_defect(selected_cell : BrainCell) :
 	
 		var jolt_defect_increase_amount = IVDefectEventManager.cell_container_jolt_defect_increase
+		
+		return
 	
 		selected_cell.strength_defect += jolt_defect_increase_amount 
 		selected_cell.intelligence_defect += jolt_defect_increase_amount 

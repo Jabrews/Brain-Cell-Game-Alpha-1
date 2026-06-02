@@ -21,27 +21,27 @@ func _handle_checkmarks(panel_side : String, cell : BrainCell) :
 	var target = GLCellManagerBus.target_cell_refrence
 	
 	var display_strength_check : bool = check_stat_radius_to_target_stat(
-		cell.strength,
-		target.strength
+		cell.strength.value,
+		target.strength.value
 	)
 	
 	var display_intelligence_check : bool = check_stat_radius_to_target_stat(
-		cell.intelligence,
-		target.intelligence
+		cell.intelligence.value,
+		target.intelligence.value
 	)
 	
 	var display_community_check : bool = check_stat_radius_to_target_stat(
-		cell.community,
-		target.community
+		cell.community.value,
+		target.community.value
 	)
 	
-	if cell.strength_hidden :
+	if cell.strength.hidden:
 		display_strength_check = false	
 	
-	if cell.intelligence_hidden :
+	if cell.intelligence.hidden:
 		display_intelligence_check = false
 	
-	if cell.community_hidden :
+	if cell.community.hidden:
 		display_community_check = false
 	
 	

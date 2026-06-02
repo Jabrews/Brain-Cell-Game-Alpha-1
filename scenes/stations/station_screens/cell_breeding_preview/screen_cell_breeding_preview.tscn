@@ -3,8 +3,6 @@
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="1_aunnx"]
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://reusable/shaders/scan_lines.gdshader" id="1_bijcn"]
 [ext_resource type="Script" uid="uid://khglf7jksg1f" path="res://scripts/stations/station_screens/cell_breeding_preview/screen_cell_breeding_preview.gd" id="1_id6es"]
-[ext_resource type="Script" uid="uid://b0u2gg0jplfd4" path="res://scripts/stations/station_screens/cell_breeding_preview/stat_display_updater_left.gd" id="2_j0y71"]
-[ext_resource type="Script" uid="uid://s3v4hmoan4ya" path="res://scripts/stations/station_screens/cell_breeding_preview/stat_display_updater_right.gd" id="3_e1hi8"]
 [ext_resource type="Shader" uid="uid://1h7isoi7cv3c" path="res://reusable/shaders/target_progress_bar.gdshader" id="3_nqtuf"]
 [ext_resource type="Script" uid="uid://dwop4id1c7ddk" path="res://scripts/stations/station_screens/cell_breeding_preview/stat_symbol_updater/stat_symbol_updater.gd" id="4_aar4a"]
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="4_m4sw7"]
@@ -16,12 +14,20 @@
 [ext_resource type="Texture2D" uid="uid://bv6urhadtuxp1" path="res://models/screens/breeding_symbols/arrow_DOWN.png" id="7_bijcn"]
 [ext_resource type="Script" uid="uid://bp26v5cv7meml" path="res://scripts/stations/station_screens/cell_breeding_preview/stat_symbol_updater/over_warning_updater.gd" id="7_gcq3a"]
 [ext_resource type="Script" uid="uid://bkwfhtsy443pu" path="res://scripts/stations/station_screens/cell_breeding_preview/stat_symbol_updater/question_mark_updater.gd" id="8_om075"]
+[ext_resource type="Script" uid="uid://b3iwy26amomw3" path="res://reusable/basic_receiver_screen/basic_receiver_screen.gd" id="9_huifb"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://reusable/shaders/hidden_stat_distort.gdshader" id="10_7fvsu"]
+[ext_resource type="Script" uid="uid://dgve5okrinx1j" path="res://reusable/basic_receiver_screen/helpers/reset_stat_display.gd" id="10_qkhw0"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="11_aar4a"]
+[ext_resource type="Script" uid="uid://bgifedwjyl0jb" path="res://reusable/basic_receiver_screen/helpers/handle_disabled_stats.gd" id="11_ogc5v"]
+[ext_resource type="Script" uid="uid://b24o4p2hdc818" path="res://reusable/basic_receiver_screen/helpers/display_target_cell.gd" id="12_r50k4"]
+[ext_resource type="Script" uid="uid://bhxfi2gu87akq" path="res://reusable/basic_receiver_screen/helpers/display_cell.gd" id="13_co1q8"]
 [ext_resource type="Texture2D" uid="uid://dvjrss36t8u0b" path="res://models/screens/breeding_symbols/question_mark.png" id="15_eghuf"]
 [ext_resource type="Script" uid="uid://clkastnnbfaca" path="res://scripts/stations/station_screens/cell_breeding_preview/arrow_sprite/breeding_arrow_sprite.gd" id="18_id2lt"]
 [ext_resource type="Texture2D" uid="uid://bxcsin2pypi3m" path="res://models/screens/breeding_symbols/extreme.png" id="19_gcq3a"]
 [ext_resource type="Texture2D" uid="uid://bjl3lcagjkgmv" path="res://models/screens/breeding_symbols/checkmark.png" id="20_oflmr"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="20_sh1ic"]
+[ext_resource type="PackedScene" uid="uid://jq2kvlbx7keh" path="res://reusable/basic_receiver_screen/placeholder_screens/cell_breeder/no_cell_left.tscn" id="21_ogc5v"]
+[ext_resource type="PackedScene" uid="uid://dr1ilt7lgs38k" path="res://reusable/basic_receiver_screen/placeholder_screens/cell_breeder/no_cell_right.tscn" id="22_r50k4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d6l72"]
 shader = ExtResource("1_bijcn")
@@ -30,7 +36,7 @@ shader_parameter/line_thickness = 1.0
 shader_parameter/line_spacing = 4.0
 shader_parameter/scroll_speed = 0.2
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_06rnu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xkdsf"]
 shader = ExtResource("3_nqtuf")
 shader_parameter/prisoner_value = 0.0
 shader_parameter/target_value = 0.0
@@ -39,7 +45,7 @@ shader_parameter/red_color = Color(0.29803923, 0.02745098, 0.06666667, 1)
 shader_parameter/overlap_opacity = 0.10000000475
 shader_parameter/edge_padding = 5.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_eghuf"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t5il4"]
 shader = ExtResource("10_7fvsu")
 shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
 shader_parameter/duration = 2.0
@@ -48,18 +54,12 @@ shader_parameter/distortion_speed = 2.0
 shader_parameter/noise_texture = ExtResource("11_aar4a")
 shader_parameter/noise_scale = 1.0
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3b57o"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tqrwa"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
 [node name="ScreenCellBreedingPreview" type="Node2D" unique_id=1548279592]
 texture_filter = 1
 script = ExtResource("1_id6es")
-
-[node name="StatDisplayUpdaterLeft" type="Node" parent="." unique_id=181775253]
-script = ExtResource("2_j0y71")
-
-[node name="StatDisplayUpdaterRight" type="Node" parent="." unique_id=1845516635]
-script = ExtResource("3_e1hi8")
 
 [node name="StatSymbolUpdater" type="Node" parent="." unique_id=1230411581]
 script = ExtResource("4_aar4a")
@@ -112,562 +112,786 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="CellLeftLoader" type="Control" parent="WaitingScreen" unique_id=1330460026]
+[node name="LeftReciverScreen" type="Node2D" parent="WaitingScreen" unique_id=724718654]
+script = ExtResource("9_huifb")
+invalid_cell_placeholder_screen = ExtResource("21_ogc5v")
+
+[node name="ResetStatDisplay" type="Node" parent="WaitingScreen/LeftReciverScreen" unique_id=212830192]
+script = ExtResource("10_qkhw0")
+
+[node name="HandleDisabledStats" type="Node" parent="WaitingScreen/LeftReciverScreen" unique_id=216930498]
+script = ExtResource("11_ogc5v")
+
+[node name="DisplayTargetCell" type="Node" parent="WaitingScreen/LeftReciverScreen" unique_id=694868084]
+script = ExtResource("12_r50k4")
+
+[node name="DisplayCell" type="Node" parent="WaitingScreen/LeftReciverScreen" unique_id=846407473]
+script = ExtResource("13_co1q8")
+
+[node name="Bg" type="ColorRect" parent="WaitingScreen/LeftReciverScreen" unique_id=26776135]
+offset_left = 55.0
+offset_top = 55.0
+offset_right = 219.0
+offset_bottom = 225.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="StatDisplay" type="Control" parent="WaitingScreen/LeftReciverScreen" unique_id=412575760]
+layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="LeftBG" type="ColorRect" parent="WaitingScreen/CellLeftLoader" unique_id=729739648]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 67.0
-offset_right = 218.0
-offset_bottom = 258.94
-color = Color(0.39748237, 4.5724212e-07, 1.6845763e-07, 1)
-
-[node name="Waiting" type="Label" parent="WaitingScreen/CellLeftLoader" unique_id=1358930755]
-layout_mode = 0
-offset_left = 22.0
-offset_top = 83.0
-offset_right = 162.0
-offset_bottom = 106.0
-theme_override_fonts/font = ExtResource("1_aunnx")
-theme_override_font_sizes/font_size = 10
-text = "Waiting For Cell..."
 metadata/_edit_use_anchors_ = true
 
-[node name="StatDisplay" type="Control" parent="WaitingScreen/CellLeftLoader" unique_id=1267529091]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PrisonerName" type="Label" parent="WaitingScreen/CellLeftLoader/StatDisplay" unique_id=1178808529]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -3.15
-anchor_top = 1.375
-anchor_right = -3.15
-anchor_bottom = 1.375
-offset_left = 154.0
-offset_top = 19.0
-offset_right = 328.0
-offset_bottom = 62.0
+[node name="CellName" type="Label" parent="WaitingScreen/LeftReciverScreen/StatDisplay" unique_id=179676983]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 60.0
+offset_right = 220.0
+offset_bottom = 103.0
 theme_override_fonts/font = ExtResource("1_aunnx")
-theme_override_font_sizes/font_size = 10
-text = "Sample
+theme_override_font_sizes/font_size = 15
+text = "None
 "
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
-[node name="StatDisplay" type="Control" parent="WaitingScreen/CellLeftLoader/StatDisplay" unique_id=1437482970]
+[node name="CellLifeSpan" type="Label" parent="WaitingScreen/LeftReciverScreen/StatDisplay" unique_id=1584857434]
+layout_mode = 0
+offset_left = 521.0
+offset_top = 6.0
+offset_right = 695.0
+offset_bottom = 52.97059
+theme_override_fonts/font = ExtResource("1_aunnx")
+theme_override_font_sizes/font_size = 12
+text = " Lifespan - 4
+"
+horizontal_alignment = 1
+
+[node name="DefectBars" type="Control" parent="WaitingScreen/LeftReciverScreen/StatDisplay" unique_id=1530602115]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="StrengthBar" type="Sprite2D" parent="WaitingScreen/CellLeftLoader/StatDisplay/StatDisplay" unique_id=729514795]
-texture_filter = 1
-material = SubResource("ShaderMaterial_06rnu")
-position = Vector2(116.00001, 115)
-scale = Vector2(0.59300005, 0.5150024)
-texture = ExtResource("4_m4sw7")
-
-[node name="IntelligenceBar" type="Sprite2D" parent="WaitingScreen/CellLeftLoader/StatDisplay/StatDisplay" unique_id=1852125743]
-texture_filter = 1
-material = SubResource("ShaderMaterial_06rnu")
-position = Vector2(117.00001, 169)
-scale = Vector2(0.59300005, 0.5150024)
-texture = ExtResource("4_m4sw7")
-
-[node name="CommunityBar" type="Sprite2D" parent="WaitingScreen/CellLeftLoader/StatDisplay/StatDisplay" unique_id=294557658]
-texture_filter = 1
-material = SubResource("ShaderMaterial_06rnu")
-position = Vector2(116.00001, 222)
-scale = Vector2(0.59300005, 0.5150024)
-texture = ExtResource("4_m4sw7")
-
-[node name="BarLabels" type="Control" parent="WaitingScreen/CellLeftLoader/StatDisplay" unique_id=102652429]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Strength" type="Control" parent="WaitingScreen/CellLeftLoader/StatDisplay/BarLabels" unique_id=1648996336]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="StengthLabel" type="Label" parent="WaitingScreen/CellLeftLoader/StatDisplay/BarLabels/Strength" unique_id=1619945406]
+[node name="DefectStrengthBar" type="TextureProgressBar" parent="WaitingScreen/LeftReciverScreen/StatDisplay/DefectBars" unique_id=2033451502]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.425
-anchor_top = 0.325
-anchor_right = 1.425
-anchor_bottom = 0.325
-offset_left = 22.0
-offset_top = 83.0
-offset_right = 162.0
-offset_bottom = 106.0
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 63.0
+offset_top = 104.0
+offset_right = 371.0
+offset_bottom = 114.0
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_cc22y")
+texture_progress = ExtResource("6_gckla")
+
+[node name="DefectIntelligenceBar" type="TextureProgressBar" parent="WaitingScreen/LeftReciverScreen/StatDisplay/DefectBars" unique_id=1527764447]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 63.0
+offset_top = 152.0
+offset_right = 371.0
+offset_bottom = 162.0
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_cc22y")
+texture_progress = ExtResource("6_gckla")
+
+[node name="DefectCommunityBar" type="TextureProgressBar" parent="WaitingScreen/LeftReciverScreen/StatDisplay/DefectBars" unique_id=1845891111]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 63.0
+offset_top = 200.00002
+offset_right = 371.0
+offset_bottom = 210.00002
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_cc22y")
+texture_progress = ExtResource("6_gckla")
+
+[node name="ProgressBars" type="Control" parent="WaitingScreen/LeftReciverScreen/StatDisplay" unique_id=1467444573]
+anchors_preset = 0
+
+[node name="StrengthBar" type="Sprite2D" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressBars" unique_id=1261779286]
+texture_filter = 1
+material = SubResource("ShaderMaterial_xkdsf")
+position = Vector2(138, 103.00001)
+scale = Vector2(0.48037094, 0.45749998)
+texture = ExtResource("4_m4sw7")
+
+[node name="IntelligenceBar" type="Sprite2D" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressBars" unique_id=1381149560]
+texture_filter = 1
+material = SubResource("ShaderMaterial_xkdsf")
+position = Vector2(138, 149.15)
+scale = Vector2(0.48037094, 0.45749998)
+texture = ExtResource("4_m4sw7")
+
+[node name="CommunityBar" type="Sprite2D" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressBars" unique_id=719801457]
+texture_filter = 1
+material = SubResource("ShaderMaterial_xkdsf")
+position = Vector2(138, 198)
+scale = Vector2(0.48037094, 0.45749998)
+texture = ExtResource("4_m4sw7")
+
+[node name="StengthLabel" type="Label" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressBars" unique_id=47486304]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 85.0
+offset_right = 240.0
+offset_bottom = 108.0
 theme_override_fonts/font = ExtResource("1_aunnx")
 theme_override_font_sizes/font_size = 8
 text = "Strength"
-metadata/_edit_use_anchors_ = true
 
-[node name="StrengthCurrLabel" type="Label" parent="WaitingScreen/CellLeftLoader/StatDisplay/BarLabels/Strength" unique_id=1242775389]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -4.775
-anchor_top = 0.725
-anchor_right = -4.775
-anchor_bottom = 0.725
-offset_left = 219.0
-offset_top = 73.0
-offset_right = 387.0
-offset_bottom = 96.0
-scale = Vector2(1, 1.2399988)
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
-theme_override_fonts/font = ExtResource("1_aunnx")
-theme_override_font_sizes/font_size = 7
-text = "100"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Intelligence" type="Control" parent="WaitingScreen/CellLeftLoader/StatDisplay/BarLabels" unique_id=369394659]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="IntelligenceLabel" type="Label" parent="WaitingScreen/CellLeftLoader/StatDisplay/BarLabels/Intelligence" unique_id=317683401]
+[node name="IntelligenceLabel" type="Label" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressBars" unique_id=1272712862]
 layout_mode = 0
-offset_left = 73.0
-offset_top = 150.0
-offset_right = 241.0
-offset_bottom = 173.0
+offset_left = 89.0
+offset_top = 131.0
+offset_right = 257.0
+offset_bottom = 154.0
 scale = Vector2(1, 1.2399988)
 theme_override_fonts/font = ExtResource("1_aunnx")
 theme_override_font_sizes/font_size = 7
 text = "Intelligence"
 
-[node name="IntelligenceCurrLabel" type="Label" parent="WaitingScreen/CellLeftLoader/StatDisplay/BarLabels/Intelligence" unique_id=48048443]
+[node name="CommunityLabel" type="Label" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressBars" unique_id=1784749889]
 layout_mode = 0
-offset_left = 30.0
-offset_top = 155.0
-offset_right = 198.0
-offset_bottom = 178.0
-scale = Vector2(1, 1.2399988)
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
-theme_override_fonts/font = ExtResource("1_aunnx")
-theme_override_font_sizes/font_size = 7
-text = "100"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Community" type="Control" parent="WaitingScreen/CellLeftLoader/StatDisplay/BarLabels" unique_id=331968340]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CommunityLabel" type="Label" parent="WaitingScreen/CellLeftLoader/StatDisplay/BarLabels/Community" unique_id=1616708571]
-layout_mode = 0
-offset_left = 77.0
-offset_top = 203.0
-offset_right = 217.0
-offset_bottom = 226.0
+offset_left = 95.0
+offset_top = 180.0
+offset_right = 235.0
+offset_bottom = 203.0
 theme_override_fonts/font = ExtResource("1_aunnx")
 theme_override_font_sizes/font_size = 8
 text = "Community"
 
-[node name="CommunityCurrLabel" type="Label" parent="WaitingScreen/CellLeftLoader/StatDisplay/BarLabels/Community" unique_id=59875689]
+[node name="HideStats" type="Control" parent="WaitingScreen/LeftReciverScreen/StatDisplay" unique_id=2014924575]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthHide" type="Sprite2D" parent="WaitingScreen/LeftReciverScreen/StatDisplay/HideStats" unique_id=787634540]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_t5il4")
+position = Vector2(138, 106)
+scale = Vector2(0.4825397, 0.65000004)
+texture = SubResource("CompressedTexture2D_tqrwa")
+
+[node name="IntelligenceHide" type="Sprite2D" parent="WaitingScreen/LeftReciverScreen/StatDisplay/HideStats" unique_id=2079331092]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_t5il4")
+position = Vector2(138.5, 152.5)
+scale = Vector2(0.48571426, 0.6749999)
+texture = SubResource("CompressedTexture2D_tqrwa")
+
+[node name="CommunityHide" type="Sprite2D" parent="WaitingScreen/LeftReciverScreen/StatDisplay/HideStats" unique_id=1745647043]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_t5il4")
+position = Vector2(138, 202.00002)
+scale = Vector2(0.48571426, 0.6749999)
+texture = SubResource("CompressedTexture2D_tqrwa")
+
+[node name="ProgressLabels" type="Control" parent="WaitingScreen/LeftReciverScreen/StatDisplay" unique_id=960681084]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MinMaxLabels" type="Control" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressLabels" unique_id=1252939053]
+anchors_preset = 0
+
+[node name="Strength" type="Control" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressLabels/MinMaxLabels" unique_id=276624610]
+anchors_preset = 0
+offset_top = -19.0
+offset_bottom = -19.0
+
+[node name="MaxLabel" type="Label" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressLabels/MinMaxLabels/Strength" unique_id=183994969]
 layout_mode = 0
-offset_left = 31.0
-offset_top = 209.0
-offset_right = 199.0
-offset_bottom = 232.0
+offset_left = 436.0
+offset_top = 47.0
+offset_right = 476.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(0.796243, 0.796243, 0.796243, 1)
+theme_override_fonts/font = ExtResource("20_sh1ic")
+theme_override_font_sizes/font_size = 16
+text = "150"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MinLabel" type="Label" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressLabels/MinMaxLabels/Strength" unique_id=1838991074]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 48.0
+offset_right = 172.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0.796243, 0.796243, 0.796243, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("20_sh1ic")
+theme_override_font_sizes/font_size = 18
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intelligence" type="Control" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressLabels/MinMaxLabels" unique_id=1780657216]
+anchors_preset = 0
+offset_top = -9.0
+offset_bottom = -9.0
+
+[node name="MaxLabel" type="Label" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressLabels/MinMaxLabels/Intelligence" unique_id=1011231043]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 113.0
+offset_right = 476.0
+offset_bottom = 149.0
+theme_override_colors/font_color = Color(0.796243, 0.796243, 0.796243, 1)
+theme_override_fonts/font = ExtResource("20_sh1ic")
+theme_override_font_sizes/font_size = 16
+text = "150"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MinLabel" type="Label" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressLabels/MinMaxLabels/Intelligence" unique_id=1123066119]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 114.0
+offset_right = 172.0
+offset_bottom = 150.0
+theme_override_colors/font_color = Color(0.796243, 0.796243, 0.796243, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("20_sh1ic")
+theme_override_font_sizes/font_size = 18
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="Control" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressLabels/MinMaxLabels" unique_id=176187424]
+anchors_preset = 0
+offset_top = -2.0
+offset_bottom = -2.0
+
+[node name="MaxLabel" type="Label" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressLabels/MinMaxLabels/Community" unique_id=1875767931]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 180.0
+offset_right = 476.0
+offset_bottom = 216.0
+theme_override_colors/font_color = Color(0.796243, 0.796243, 0.796243, 1)
+theme_override_fonts/font = ExtResource("20_sh1ic")
+theme_override_font_sizes/font_size = 16
+text = "150"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MinLabel" type="Label" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressLabels/MinMaxLabels/Community" unique_id=1186650036]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 181.0
+offset_right = 172.0
+offset_bottom = 217.0
+theme_override_colors/font_color = Color(0.796243, 0.796243, 0.796243, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("20_sh1ic")
+theme_override_font_sizes/font_size = 18
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrValueLabels" type="Control" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressLabels" unique_id=305700133]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthCurrLabel" type="Label" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressLabels/CurrValueLabels" unique_id=2120806324]
+layout_mode = 0
+offset_left = 219.0
+offset_top = 57.0
+offset_right = 387.0
+offset_bottom = 80.0
 scale = Vector2(1, 1.2399988)
 theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
 theme_override_fonts/font = ExtResource("1_aunnx")
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 11
 text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DefectBars" type="Control" parent="WaitingScreen/CellLeftLoader/StatDisplay" unique_id=1733259337]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="DefectStrengthBar" type="TextureProgressBar" parent="WaitingScreen/CellLeftLoader/StatDisplay/DefectBars" unique_id=913243343]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -3.15
-anchor_top = 1.55
-anchor_right = -1.1284454
-anchor_bottom = 1.55
-offset_left = 150.0
-offset_top = 65.0
-offset_right = 458.0
-offset_bottom = 92.0
-scale = Vector2(0.47317538, 0.24000245)
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("5_cc22y")
-texture_progress = ExtResource("6_gckla")
-
-[node name="DefectIntelligenceBar" type="TextureProgressBar" parent="WaitingScreen/CellLeftLoader/StatDisplay/DefectBars" unique_id=1620479216]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -3.125
-anchor_top = 2.775
-anchor_right = -1.1034462
-anchor_bottom = 2.775
-offset_left = 150.0
-offset_top = 69.0
-offset_right = 458.0
-offset_bottom = 96.0
-scale = Vector2(0.47317538, 0.24000245)
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("5_cc22y")
-texture_progress = ExtResource("6_gckla")
-
-[node name="DefectCommunityBar" type="TextureProgressBar" parent="WaitingScreen/CellLeftLoader/StatDisplay/DefectBars" unique_id=1898379947]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -3.15
-anchor_top = 4.0499997
-anchor_right = -1.0756118
-anchor_bottom = 4.05
-offset_left = 150.0
-offset_top = 71.0
-offset_right = 458.0
-offset_bottom = 98.0
-scale = Vector2(0.47317538, 0.24000245)
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("5_cc22y")
-texture_progress = ExtResource("6_gckla")
-
-[node name="HideStats" type="Control" parent="WaitingScreen/CellLeftLoader/StatDisplay" unique_id=681826382]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="StrengthHide" type="Sprite2D" parent="WaitingScreen/CellLeftLoader/StatDisplay/HideStats" unique_id=1610268959]
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_eghuf")
-position = Vector2(116, 119.00001)
-scale = Vector2(0.5901772, 0.6946373)
-texture = SubResource("CompressedTexture2D_3b57o")
-
-[node name="IntelligenceHide" type="Sprite2D" parent="WaitingScreen/CellLeftLoader/StatDisplay/HideStats" unique_id=1890847172]
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_eghuf")
-position = Vector2(115.99999, 173)
-scale = Vector2(0.5901772, 0.6946373)
-texture = SubResource("CompressedTexture2D_3b57o")
-
-[node name="CommunityHide" type="Sprite2D" parent="WaitingScreen/CellLeftLoader/StatDisplay/HideStats" unique_id=1762622094]
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_eghuf")
-position = Vector2(115.99999, 225)
-scale = Vector2(0.5901772, 0.6946373)
-texture = SubResource("CompressedTexture2D_3b57o")
-
-[node name="CellRightLoader" type="Control" parent="WaitingScreen" unique_id=1710700308]
-anchors_preset = 0
-offset_left = 250.0
-offset_right = 290.0
-offset_bottom = 40.0
-
-[node name="RightBG" type="ColorRect" parent="WaitingScreen/CellRightLoader" unique_id=85056]
+[node name="IntelligenceCurrLabel" type="Label" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressLabels/CurrValueLabels" unique_id=152705114]
 layout_mode = 0
-offset_left = 13.0
-offset_top = 67.0
-offset_right = 218.0
-offset_bottom = 258.94
-color = Color(0.39748237, 4.5724212e-07, 1.6845763e-07, 1)
-
-[node name="Waiting" type="Label" parent="WaitingScreen/CellRightLoader" unique_id=1462647245]
-layout_mode = 0
-offset_left = 22.0
-offset_top = 83.0
-offset_right = 162.0
-offset_bottom = 106.0
+offset_left = 219.0
+offset_top = 133.0
+offset_right = 387.0
+offset_bottom = 156.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
 theme_override_fonts/font = ExtResource("1_aunnx")
-theme_override_font_sizes/font_size = 10
-text = "Waiting For Cell..."
+theme_override_font_sizes/font_size = 11
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CommunityCurrLabel" type="Label" parent="WaitingScreen/LeftReciverScreen/StatDisplay/ProgressLabels/CurrValueLabels" unique_id=1684668197]
+layout_mode = 0
+offset_left = 219.0
+offset_top = 208.0
+offset_right = 387.0
+offset_bottom = 231.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("1_aunnx")
+theme_override_font_sizes/font_size = 11
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OffDisableLabels" type="Control" parent="WaitingScreen/LeftReciverScreen/StatDisplay" unique_id=2132381243]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthOffLabel" type="Label" parent="WaitingScreen/LeftReciverScreen/StatDisplay/OffDisableLabels" unique_id=320228149]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 90.0
+offset_right = 220.0
+offset_bottom = 113.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("1_aunnx")
+theme_override_font_sizes/font_size = 8
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntelligenceOffLabel" type="Label" parent="WaitingScreen/LeftReciverScreen/StatDisplay/OffDisableLabels" unique_id=67840532]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 137.0
+offset_right = 220.0
+offset_bottom = 160.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("1_aunnx")
+theme_override_font_sizes/font_size = 8
+text = "off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CommunityOffLabel" type="Label" parent="WaitingScreen/LeftReciverScreen/StatDisplay/OffDisableLabels" unique_id=618707826]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 186.0
+offset_right = 220.0
+offset_bottom = 209.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("1_aunnx")
+theme_override_font_sizes/font_size = 8
+text = "off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightReciverScreen" type="Node2D" parent="WaitingScreen" unique_id=1555501198]
+position = Vector2(209, 0)
+script = ExtResource("9_huifb")
+invalid_cell_placeholder_screen = ExtResource("22_r50k4")
+
+[node name="ResetStatDisplay" type="Node" parent="WaitingScreen/RightReciverScreen" unique_id=1008009177]
+script = ExtResource("10_qkhw0")
+
+[node name="HandleDisabledStats" type="Node" parent="WaitingScreen/RightReciverScreen" unique_id=706089056]
+script = ExtResource("11_ogc5v")
+
+[node name="DisplayTargetCell" type="Node" parent="WaitingScreen/RightReciverScreen" unique_id=2041755604]
+script = ExtResource("12_r50k4")
+
+[node name="DisplayCell" type="Node" parent="WaitingScreen/RightReciverScreen" unique_id=2075964774]
+script = ExtResource("13_co1q8")
+
+[node name="Bg" type="ColorRect" parent="WaitingScreen/RightReciverScreen" unique_id=323548124]
+offset_left = 55.0
+offset_top = 55.0
+offset_right = 219.0
+offset_bottom = 225.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="StatDisplay" type="Control" parent="WaitingScreen/RightReciverScreen" unique_id=216621719]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
 
-[node name="StatDisplay" type="Control" parent="WaitingScreen/CellRightLoader" unique_id=1399338253]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PrisonerName" type="Label" parent="WaitingScreen/CellRightLoader/StatDisplay" unique_id=163883105]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -3.15
-anchor_top = 1.375
-anchor_right = -3.15
-anchor_bottom = 1.375
-offset_left = 154.0
-offset_top = 19.0
-offset_right = 328.0
-offset_bottom = 62.0
+[node name="CellLifeSpan" type="Label" parent="WaitingScreen/RightReciverScreen/StatDisplay" unique_id=1629842381]
+layout_mode = 0
+offset_left = 308.0
+offset_top = 6.0
+offset_right = 482.0
+offset_bottom = 52.97059
 theme_override_fonts/font = ExtResource("1_aunnx")
-theme_override_font_sizes/font_size = 10
-text = "Sample
+theme_override_font_sizes/font_size = 12
+text = " Lifespan - 4
 "
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
-[node name="StatDisplay" type="Control" parent="WaitingScreen/CellRightLoader/StatDisplay" unique_id=1122016404]
+[node name="CellName" type="Label" parent="WaitingScreen/RightReciverScreen/StatDisplay" unique_id=1893158232]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 60.0
+offset_right = 220.0
+offset_bottom = 103.0
+theme_override_fonts/font = ExtResource("1_aunnx")
+theme_override_font_sizes/font_size = 15
+text = "None
+"
+horizontal_alignment = 1
+
+[node name="DefectBars" type="Control" parent="WaitingScreen/RightReciverScreen/StatDisplay" unique_id=1313334885]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="StrengthBar" type="Sprite2D" parent="WaitingScreen/CellRightLoader/StatDisplay/StatDisplay" unique_id=1065206808]
-texture_filter = 1
-material = SubResource("ShaderMaterial_06rnu")
-position = Vector2(116.00001, 115)
-scale = Vector2(0.59300005, 0.5150024)
-texture = ExtResource("4_m4sw7")
-
-[node name="IntelligenceBar" type="Sprite2D" parent="WaitingScreen/CellRightLoader/StatDisplay/StatDisplay" unique_id=1487823730]
-texture_filter = 1
-material = SubResource("ShaderMaterial_06rnu")
-position = Vector2(117.00001, 169)
-scale = Vector2(0.59300005, 0.5150024)
-texture = ExtResource("4_m4sw7")
-
-[node name="CommunityBar" type="Sprite2D" parent="WaitingScreen/CellRightLoader/StatDisplay/StatDisplay" unique_id=882287644]
-texture_filter = 1
-material = SubResource("ShaderMaterial_06rnu")
-position = Vector2(116.00001, 222)
-scale = Vector2(0.59300005, 0.5150024)
-texture = ExtResource("4_m4sw7")
-
-[node name="BarLabels" type="Control" parent="WaitingScreen/CellRightLoader/StatDisplay" unique_id=908763386]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Strength" type="Control" parent="WaitingScreen/CellRightLoader/StatDisplay/BarLabels" unique_id=1263249087]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="StengthLabel" type="Label" parent="WaitingScreen/CellRightLoader/StatDisplay/BarLabels/Strength" unique_id=1755787253]
+[node name="DefectStrengthBar" type="TextureProgressBar" parent="WaitingScreen/RightReciverScreen/StatDisplay/DefectBars" unique_id=159518556]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.425
-anchor_top = 0.325
-anchor_right = 1.425
-anchor_bottom = 0.325
-offset_left = 22.0
-offset_top = 83.0
-offset_right = 162.0
-offset_bottom = 106.0
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 63.0
+offset_top = 104.0
+offset_right = 371.0
+offset_bottom = 114.0
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_cc22y")
+texture_progress = ExtResource("6_gckla")
+
+[node name="DefectIntelligenceBar" type="TextureProgressBar" parent="WaitingScreen/RightReciverScreen/StatDisplay/DefectBars" unique_id=490260980]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 63.0
+offset_top = 152.0
+offset_right = 371.0
+offset_bottom = 162.0
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_cc22y")
+texture_progress = ExtResource("6_gckla")
+
+[node name="DefectCommunityBar" type="TextureProgressBar" parent="WaitingScreen/RightReciverScreen/StatDisplay/DefectBars" unique_id=1338417228]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 63.0
+offset_top = 200.00002
+offset_right = 371.0
+offset_bottom = 210.00002
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_cc22y")
+texture_progress = ExtResource("6_gckla")
+
+[node name="ProgressBars" type="Control" parent="WaitingScreen/RightReciverScreen/StatDisplay" unique_id=90399248]
+anchors_preset = 0
+
+[node name="StrengthBar" type="Sprite2D" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressBars" unique_id=1899744904]
+texture_filter = 1
+material = SubResource("ShaderMaterial_xkdsf")
+position = Vector2(138, 103.00001)
+scale = Vector2(0.48037094, 0.45749998)
+texture = ExtResource("4_m4sw7")
+
+[node name="IntelligenceBar" type="Sprite2D" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressBars" unique_id=293335580]
+texture_filter = 1
+material = SubResource("ShaderMaterial_xkdsf")
+position = Vector2(138, 149.15)
+scale = Vector2(0.48037094, 0.45749998)
+texture = ExtResource("4_m4sw7")
+
+[node name="CommunityBar" type="Sprite2D" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressBars" unique_id=392677398]
+texture_filter = 1
+material = SubResource("ShaderMaterial_xkdsf")
+position = Vector2(138, 198)
+scale = Vector2(0.48037094, 0.45749998)
+texture = ExtResource("4_m4sw7")
+
+[node name="StengthLabel" type="Label" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressBars" unique_id=1512736676]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 85.0
+offset_right = 240.0
+offset_bottom = 108.0
 theme_override_fonts/font = ExtResource("1_aunnx")
 theme_override_font_sizes/font_size = 8
 text = "Strength"
-metadata/_edit_use_anchors_ = true
 
-[node name="StrengthCurrLabel" type="Label" parent="WaitingScreen/CellRightLoader/StatDisplay/BarLabels/Strength" unique_id=581054792]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -4.775
-anchor_top = 0.725
-anchor_right = -4.775
-anchor_bottom = 0.725
-offset_left = 219.0
-offset_top = 73.0
-offset_right = 387.0
-offset_bottom = 96.0
-scale = Vector2(1, 1.2399988)
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
-theme_override_fonts/font = ExtResource("1_aunnx")
-theme_override_font_sizes/font_size = 7
-text = "100"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Intelligence" type="Control" parent="WaitingScreen/CellRightLoader/StatDisplay/BarLabels" unique_id=1344312397]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="IntelligenceLabel" type="Label" parent="WaitingScreen/CellRightLoader/StatDisplay/BarLabels/Intelligence" unique_id=1656066268]
+[node name="IntelligenceLabel" type="Label" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressBars" unique_id=1221676530]
 layout_mode = 0
-offset_left = 73.0
-offset_top = 150.0
-offset_right = 241.0
-offset_bottom = 173.0
+offset_left = 89.0
+offset_top = 131.0
+offset_right = 257.0
+offset_bottom = 154.0
 scale = Vector2(1, 1.2399988)
 theme_override_fonts/font = ExtResource("1_aunnx")
 theme_override_font_sizes/font_size = 7
 text = "Intelligence"
 
-[node name="IntelligenceCurrLabel" type="Label" parent="WaitingScreen/CellRightLoader/StatDisplay/BarLabels/Intelligence" unique_id=315790927]
+[node name="CommunityLabel" type="Label" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressBars" unique_id=1568198796]
 layout_mode = 0
-offset_left = 30.0
-offset_top = 155.0
-offset_right = 198.0
-offset_bottom = 178.0
-scale = Vector2(1, 1.2399988)
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
-theme_override_fonts/font = ExtResource("1_aunnx")
-theme_override_font_sizes/font_size = 7
-text = "100"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Community" type="Control" parent="WaitingScreen/CellRightLoader/StatDisplay/BarLabels" unique_id=1623642317]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CommunityLabel" type="Label" parent="WaitingScreen/CellRightLoader/StatDisplay/BarLabels/Community" unique_id=2126893462]
-layout_mode = 0
-offset_left = 77.0
-offset_top = 203.0
-offset_right = 217.0
-offset_bottom = 226.0
+offset_left = 95.0
+offset_top = 180.0
+offset_right = 235.0
+offset_bottom = 203.0
 theme_override_fonts/font = ExtResource("1_aunnx")
 theme_override_font_sizes/font_size = 8
 text = "Community"
 
-[node name="CommunityCurrLabel" type="Label" parent="WaitingScreen/CellRightLoader/StatDisplay/BarLabels/Community" unique_id=1545919632]
+[node name="HideStats" type="Control" parent="WaitingScreen/RightReciverScreen/StatDisplay" unique_id=790972870]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthHide" type="Sprite2D" parent="WaitingScreen/RightReciverScreen/StatDisplay/HideStats" unique_id=1782023216]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_t5il4")
+position = Vector2(138, 106)
+scale = Vector2(0.4825397, 0.65000004)
+texture = SubResource("CompressedTexture2D_tqrwa")
+
+[node name="IntelligenceHide" type="Sprite2D" parent="WaitingScreen/RightReciverScreen/StatDisplay/HideStats" unique_id=1752078189]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_t5il4")
+position = Vector2(138.5, 152.5)
+scale = Vector2(0.48571426, 0.6749999)
+texture = SubResource("CompressedTexture2D_tqrwa")
+
+[node name="CommunityHide" type="Sprite2D" parent="WaitingScreen/RightReciverScreen/StatDisplay/HideStats" unique_id=1318524488]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_t5il4")
+position = Vector2(138, 202.00002)
+scale = Vector2(0.48571426, 0.6749999)
+texture = SubResource("CompressedTexture2D_tqrwa")
+
+[node name="ProgressLabels" type="Control" parent="WaitingScreen/RightReciverScreen/StatDisplay" unique_id=1824660038]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MinMaxLabels" type="Control" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressLabels" unique_id=1927658974]
+anchors_preset = 0
+
+[node name="Strength" type="Control" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressLabels/MinMaxLabels" unique_id=1240630723]
+anchors_preset = 0
+offset_top = -19.0
+offset_bottom = -19.0
+
+[node name="MaxLabel" type="Label" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressLabels/MinMaxLabels/Strength" unique_id=1548764831]
 layout_mode = 0
-offset_left = 31.0
-offset_top = 209.0
-offset_right = 199.0
-offset_bottom = 232.0
+offset_left = 436.0
+offset_top = 47.0
+offset_right = 476.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(0.796243, 0.796243, 0.796243, 1)
+theme_override_fonts/font = ExtResource("20_sh1ic")
+theme_override_font_sizes/font_size = 16
+text = "150"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MinLabel" type="Label" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressLabels/MinMaxLabels/Strength" unique_id=2145380979]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 48.0
+offset_right = 172.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0.796243, 0.796243, 0.796243, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("20_sh1ic")
+theme_override_font_sizes/font_size = 18
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intelligence" type="Control" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressLabels/MinMaxLabels" unique_id=898672255]
+anchors_preset = 0
+offset_top = -9.0
+offset_bottom = -9.0
+
+[node name="MaxLabel" type="Label" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressLabels/MinMaxLabels/Intelligence" unique_id=323385834]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 113.0
+offset_right = 476.0
+offset_bottom = 149.0
+theme_override_colors/font_color = Color(0.796243, 0.796243, 0.796243, 1)
+theme_override_fonts/font = ExtResource("20_sh1ic")
+theme_override_font_sizes/font_size = 16
+text = "150"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MinLabel" type="Label" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressLabels/MinMaxLabels/Intelligence" unique_id=2036400969]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 114.0
+offset_right = 172.0
+offset_bottom = 150.0
+theme_override_colors/font_color = Color(0.796243, 0.796243, 0.796243, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("20_sh1ic")
+theme_override_font_sizes/font_size = 18
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="Control" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressLabels/MinMaxLabels" unique_id=1953481954]
+anchors_preset = 0
+offset_top = -2.0
+offset_bottom = -2.0
+
+[node name="MaxLabel" type="Label" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressLabels/MinMaxLabels/Community" unique_id=106001595]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 180.0
+offset_right = 476.0
+offset_bottom = 216.0
+theme_override_colors/font_color = Color(0.796243, 0.796243, 0.796243, 1)
+theme_override_fonts/font = ExtResource("20_sh1ic")
+theme_override_font_sizes/font_size = 16
+text = "150"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MinLabel" type="Label" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressLabels/MinMaxLabels/Community" unique_id=1952319262]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 181.0
+offset_right = 172.0
+offset_bottom = 217.0
+theme_override_colors/font_color = Color(0.796243, 0.796243, 0.796243, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("20_sh1ic")
+theme_override_font_sizes/font_size = 18
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrValueLabels" type="Control" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressLabels" unique_id=2012577952]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthCurrLabel" type="Label" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressLabels/CurrValueLabels" unique_id=667652739]
+layout_mode = 0
+offset_left = 219.0
+offset_top = 57.0
+offset_right = 387.0
+offset_bottom = 80.0
 scale = Vector2(1, 1.2399988)
 theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
 theme_override_fonts/font = ExtResource("1_aunnx")
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 11
 text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DefectBars" type="Control" parent="WaitingScreen/CellRightLoader/StatDisplay" unique_id=273357283]
+[node name="IntelligenceCurrLabel" type="Label" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressLabels/CurrValueLabels" unique_id=1206052755]
+layout_mode = 0
+offset_left = 219.0
+offset_top = 133.0
+offset_right = 387.0
+offset_bottom = 156.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("1_aunnx")
+theme_override_font_sizes/font_size = 11
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CommunityCurrLabel" type="Label" parent="WaitingScreen/RightReciverScreen/StatDisplay/ProgressLabels/CurrValueLabels" unique_id=851240668]
+layout_mode = 0
+offset_left = 219.0
+offset_top = 208.0
+offset_right = 387.0
+offset_bottom = 231.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("1_aunnx")
+theme_override_font_sizes/font_size = 11
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OffDisableLabels" type="Control" parent="WaitingScreen/RightReciverScreen/StatDisplay" unique_id=677423980]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="DefectStrengthBar" type="TextureProgressBar" parent="WaitingScreen/CellRightLoader/StatDisplay/DefectBars" unique_id=296364370]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -3.15
-anchor_top = 1.55
-anchor_right = -1.1284454
-anchor_bottom = 1.55
-offset_left = 150.0
-offset_top = 64.0
-offset_right = 458.0
-offset_bottom = 91.0
-scale = Vector2(0.47317538, 0.24000245)
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("5_cc22y")
-texture_progress = ExtResource("6_gckla")
+[node name="StrengthOffLabel" type="Label" parent="WaitingScreen/RightReciverScreen/StatDisplay/OffDisableLabels" unique_id=321013281]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 90.0
+offset_right = 220.0
+offset_bottom = 113.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("1_aunnx")
+theme_override_font_sizes/font_size = 8
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="DefectIntelligenceBar" type="TextureProgressBar" parent="WaitingScreen/CellRightLoader/StatDisplay/DefectBars" unique_id=1908000096]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -3.125
-anchor_top = 2.775
-anchor_right = -1.1034462
-anchor_bottom = 2.775
-offset_left = 150.0
-offset_top = 70.0
-offset_right = 458.0
-offset_bottom = 97.0
-scale = Vector2(0.47317538, 0.24000245)
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("5_cc22y")
-texture_progress = ExtResource("6_gckla")
+[node name="IntelligenceOffLabel" type="Label" parent="WaitingScreen/RightReciverScreen/StatDisplay/OffDisableLabels" unique_id=1671071942]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 137.0
+offset_right = 220.0
+offset_bottom = 160.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("1_aunnx")
+theme_override_font_sizes/font_size = 8
+text = "off"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="DefectCommunityBar" type="TextureProgressBar" parent="WaitingScreen/CellRightLoader/StatDisplay/DefectBars" unique_id=1188440212]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -3.15
-anchor_top = 4.0499997
-anchor_right = -1.0756118
-anchor_bottom = 4.05
-offset_left = 150.0
-offset_top = 71.000015
-offset_right = 458.0
-offset_bottom = 98.0
-scale = Vector2(0.47317538, 0.24000245)
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("5_cc22y")
-texture_progress = ExtResource("6_gckla")
-
-[node name="HideStats" type="Control" parent="WaitingScreen/CellRightLoader/StatDisplay" unique_id=1081356859]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="StrengthHide" type="Sprite2D" parent="WaitingScreen/CellRightLoader/StatDisplay/HideStats" unique_id=757847023]
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_eghuf")
-position = Vector2(115.99999, 118)
-scale = Vector2(0.5901772, 0.6946373)
-texture = SubResource("CompressedTexture2D_3b57o")
-
-[node name="IntelligenceHide" type="Sprite2D" parent="WaitingScreen/CellRightLoader/StatDisplay/HideStats" unique_id=924131993]
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_eghuf")
-position = Vector2(115.99999, 173)
-scale = Vector2(0.5901772, 0.6946373)
-texture = SubResource("CompressedTexture2D_3b57o")
-
-[node name="CommunityHide" type="Sprite2D" parent="WaitingScreen/CellRightLoader/StatDisplay/HideStats" unique_id=1109247332]
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_eghuf")
-position = Vector2(115.99999, 225)
-scale = Vector2(0.5901772, 0.6946373)
-texture = SubResource("CompressedTexture2D_3b57o")
+[node name="CommunityOffLabel" type="Label" parent="WaitingScreen/RightReciverScreen/StatDisplay/OffDisableLabels" unique_id=1026936379]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 186.0
+offset_right = 220.0
+offset_bottom = 209.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("1_aunnx")
+theme_override_font_sizes/font_size = 8
+text = "off"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BreedingRanOut" type="Control" parent="." unique_id=1891146969]
 visible = false
@@ -732,7 +956,7 @@ offset_bottom = 156.0
 [node name="Up" type="Sprite2D" parent="Symbols/Arrows/StrengthArrows" unique_id=1616639166]
 visible = false
 texture_filter = 1
-position = Vector2(1.1146291, 19.666645)
+position = Vector2(1.4999899, 9.833323)
 rotation = -1.5707964
 texture = ExtResource("6_7sksy")
 script = ExtResource("18_id2lt")
@@ -740,7 +964,7 @@ script = ExtResource("18_id2lt")
 [node name="Down" type="Sprite2D" parent="Symbols/Arrows/StrengthArrows" unique_id=510811977]
 visible = false
 texture_filter = 1
-position = Vector2(1.1146291, 19.666645)
+position = Vector2(1.4999899, 9.833323)
 rotation = -1.5707964
 texture = ExtResource("7_bijcn")
 script = ExtResource("18_id2lt")
@@ -755,7 +979,7 @@ offset_bottom = 210.0
 [node name="Up" type="Sprite2D" parent="Symbols/Arrows/IntelligenceArrows" unique_id=207468111]
 visible = false
 texture_filter = 1
-position = Vector2(1.4999897, 9)
+position = Vector2(1.4999897, -4.1666813)
 rotation = -1.5707964
 texture = ExtResource("6_7sksy")
 script = ExtResource("18_id2lt")
@@ -763,7 +987,7 @@ script = ExtResource("18_id2lt")
 [node name="Down" type="Sprite2D" parent="Symbols/Arrows/IntelligenceArrows" unique_id=1210727474]
 visible = false
 texture_filter = 1
-position = Vector2(1.4999897, 9)
+position = Vector2(1.4999897, -4.1666813)
 rotation = -1.5707964
 texture = ExtResource("7_bijcn")
 script = ExtResource("18_id2lt")
@@ -778,7 +1002,7 @@ offset_bottom = 264.0
 [node name="Up" type="Sprite2D" parent="Symbols/Arrows/CommunityArrows" unique_id=65843397]
 visible = false
 texture_filter = 1
-position = Vector2(-0.16667683, 0.6666565)
+position = Vector2(-0.16667683, -19.833347)
 rotation = -1.5707964
 texture = ExtResource("6_7sksy")
 script = ExtResource("18_id2lt")
@@ -786,7 +1010,7 @@ script = ExtResource("18_id2lt")
 [node name="Down" type="Sprite2D" parent="Symbols/Arrows/CommunityArrows" unique_id=321980935]
 visible = false
 texture_filter = 1
-position = Vector2(-0.16667683, 0.6666565)
+position = Vector2(-0.16667683, -19.833347)
 rotation = -1.5707964
 texture = ExtResource("7_bijcn")
 script = ExtResource("18_id2lt")
@@ -802,19 +1026,19 @@ scale = Vector2(1.2, 1.2)
 [node name="StrengthQuestionMark" type="Sprite2D" parent="Symbols/QuestionMarks" unique_id=975076863]
 visible = false
 texture_filter = 1
-position = Vector2(237.11464, 135.66666)
+position = Vector2(237.11464, 114.833336)
 texture = ExtResource("15_eghuf")
 
 [node name="IntelligenceQuestionMark" type="Sprite2D" parent="Symbols/QuestionMarks" unique_id=1734910350]
 visible = false
 texture_filter = 1
-position = Vector2(237.5, 179)
+position = Vector2(237.5, 158.16669)
 texture = ExtResource("15_eghuf")
 
 [node name="CommunityQuestionMark" type="Sprite2D" parent="Symbols/QuestionMarks" unique_id=2090651364]
 visible = false
 texture_filter = 1
-position = Vector2(235.83333, 225.66666)
+position = Vector2(235.83333, 204.83334)
 texture = ExtResource("15_eghuf")
 
 [node name="OverWarning" type="Control" parent="Symbols" unique_id=1843567651]
@@ -829,21 +1053,21 @@ scale = Vector2(1.2, 1.2)
 visible = false
 texture_filter = 1
 texture_repeat = 1
-position = Vector2(238.33331, 136.66666)
+position = Vector2(238.33331, 115.833336)
 texture = ExtResource("19_gcq3a")
 
 [node name="IntelligenceOverWarning" type="Sprite2D" parent="Symbols/OverWarning" unique_id=2119508534]
 visible = false
 texture_filter = 1
 texture_repeat = 1
-position = Vector2(237.5, 180)
+position = Vector2(237.5, 159.16669)
 texture = ExtResource("19_gcq3a")
 
 [node name="CommunityOverWarning" type="Sprite2D" parent="Symbols/OverWarning" unique_id=1000728916]
 visible = false
 texture_filter = 1
 texture_repeat = 1
-position = Vector2(238.33333, 225.83331)
+position = Vector2(238.33333, 205)
 texture = ExtResource("19_gcq3a")
 
 [node name="CheckMarks" type="Control" parent="Symbols" unique_id=1602673745]
@@ -859,19 +1083,19 @@ offset_bottom = 40.0
 [node name="StrengthCheckmark" type="Sprite2D" parent="Symbols/CheckMarks/LeftCellCheckmarks" unique_id=611135902]
 visible = false
 texture_filter = 1
-position = Vector2(15.5, 112)
+position = Vector2(55.5, 99)
 texture = ExtResource("20_oflmr")
 
 [node name="IntelligenceCheckmark" type="Sprite2D" parent="Symbols/CheckMarks/LeftCellCheckmarks" unique_id=754508263]
 visible = false
 texture_filter = 1
-position = Vector2(15.5, 166)
+position = Vector2(56, 145)
 texture = ExtResource("20_oflmr")
 
 [node name="CommunityCheckmark" type="Sprite2D" parent="Symbols/CheckMarks/LeftCellCheckmarks" unique_id=1303673301]
 visible = false
 texture_filter = 1
-position = Vector2(15.5, 220)
+position = Vector2(55, 195)
 texture = ExtResource("20_oflmr")
 
 [node name="RightCellCheckmarks" type="Control" parent="Symbols/CheckMarks" unique_id=807202033]
@@ -882,17 +1106,17 @@ offset_bottom = 40.0
 [node name="StrengthCheckmark" type="Sprite2D" parent="Symbols/CheckMarks/RightCellCheckmarks" unique_id=93515210]
 visible = false
 texture_filter = 1
-position = Vector2(265.5, 112)
+position = Vector2(265.5, 99)
 texture = ExtResource("20_oflmr")
 
 [node name="IntelligenceCheckmark" type="Sprite2D" parent="Symbols/CheckMarks/RightCellCheckmarks" unique_id=641360598]
 visible = false
 texture_filter = 1
-position = Vector2(265.5, 166)
+position = Vector2(265, 145)
 texture = ExtResource("20_oflmr")
 
 [node name="CommunityCheckmark" type="Sprite2D" parent="Symbols/CheckMarks/RightCellCheckmarks" unique_id=251463278]
 visible = false
 texture_filter = 1
-position = Vector2(265.5, 220)
+position = Vector2(265.5, 195.00002)
 texture = ExtResource("20_oflmr")
