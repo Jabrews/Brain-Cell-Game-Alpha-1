@@ -18,7 +18,7 @@ func _create(stat_constructor : StatConstructor) :
 	
 	stat_value = detect_and_apply_stap_cap(stat_value, stat_constructor.stat_cap_status)
 	
-	stat_value = clamp(stat_value, 0, IVCellCreator.max_stat_value) 
+	stat_value = clamp(stat_value, 1, IVCellCreator.max_stat_value) 
 	stat_value = round(stat_value* 10.0) / 10.0
 	
 	return BrainCellStat.new(

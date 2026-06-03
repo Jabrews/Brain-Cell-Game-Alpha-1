@@ -40,9 +40,5 @@ func _process(_delta: float) -> void:
 		var collected_array_len = len(cell_manager.collected_cells)
 		print('array len : ', str(collected_array_len))		
 		
-		for cell : BrainCell in cell_manager.collected_cells: 
-			print('name : ', cell.name, ' strength : ', str(cell.strength), ' strength-def : ', str(cell.strength_defect))
-			print(cell.intelligence_defect)
-		
 		print('DEBUG FINISHED')
 #

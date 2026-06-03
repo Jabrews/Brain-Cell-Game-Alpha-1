@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dc8l77lcjsnfi" path="res://scripts/stations/station_screens/cell_breeding_preview/stat_symbol_updater/checkmark_updater.gd" id="6_u67re"]
 [ext_resource type="Texture2D" uid="uid://bv6urhadtuxp1" path="res://models/screens/breeding_symbols/arrow_DOWN.png" id="7_bijcn"]
 [ext_resource type="Script" uid="uid://bp26v5cv7meml" path="res://scripts/stations/station_screens/cell_breeding_preview/stat_symbol_updater/over_warning_updater.gd" id="7_gcq3a"]
+[ext_resource type="Script" uid="uid://chojdm4kosndi" path="res://scripts/stations/station_screens/cell_breeding_preview/stat_symbol_updater/disabled_stat_updater.gd" id="7_r50k4"]
 [ext_resource type="Script" uid="uid://bkwfhtsy443pu" path="res://scripts/stations/station_screens/cell_breeding_preview/stat_symbol_updater/question_mark_updater.gd" id="8_om075"]
 [ext_resource type="Script" uid="uid://b3iwy26amomw3" path="res://reusable/basic_receiver_screen/basic_receiver_screen.gd" id="9_huifb"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://reusable/shaders/hidden_stat_distort.gdshader" id="10_7fvsu"]
@@ -75,6 +76,9 @@ script = ExtResource("7_gcq3a")
 
 [node name="QuestionMarkUpdater" type="Node" parent="StatSymbolUpdater" unique_id=64562877]
 script = ExtResource("8_om075")
+
+[node name="DisabledStatUpdater" type="Node" parent="StatSymbolUpdater" unique_id=1329056586]
+script = ExtResource("7_r50k4")
 
 [node name="BG" type="ColorRect" parent="." unique_id=1251067658]
 anchors_preset = 8

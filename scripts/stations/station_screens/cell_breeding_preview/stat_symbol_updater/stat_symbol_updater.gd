@@ -5,6 +5,7 @@ extends Node
 @onready var checkmark_updater : Node = $CheckmarkUpdater
 @onready var question_mark_updater : Node = $QuestionMarkUpdater
 @onready var over_warning_updater : Node = $OverWarningUpdater
+@onready var disabled_stat_updater : Node = $DisabledStatUpdater
 
 # display components 
 @onready var arrow_labels_parent : Control = $"../Symbols/Arrows"
@@ -49,6 +50,19 @@ func process_cell_symbols() :
 	var stat_dict = ['str', 'int', 'com']
 		
 	for key in stat_dict :
+		
+		
+		# 0. check disabled
+		var disabled_stat_active = disabled_stat_updater._handle_check_disabled(
+			key,
+			left_cell,
+			right_cell
+		)
+		
+		# dont continue if this is the case
+		if disabled_stat_active :
+			handle_display_icon(key, 'disabled')
+			continue
 		
 		# 1. hidden stat
 		var question_mark_active = question_mark_updater._handle_detect_question_mark(
@@ -100,9 +114,11 @@ func process_cell_symbols() :
 				
 func handle_display_icon(key : String, icon_type : String, arrow_phase = 0):
 	
+	if icon_type == 'disabled' :	
+		# if disabled we get no icons
+		return
 	
-	
-	if icon_type == 'question' :
+	elif icon_type == 'question' :
 		match key :
 			'str' :
 				question_mark_updater._display_question_mark('strength')

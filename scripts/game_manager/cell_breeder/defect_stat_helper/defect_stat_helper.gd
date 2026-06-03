@@ -7,9 +7,9 @@ extends Node
 func generate_defect_stats(cell_1 : BrainCell, cell_2 : BrainCell) -> Array[int] :
 
 	# find highest vs lowest stat
-	var str_stat_array : Array= get_highest_lowest_stat(cell_1.strength_defect, cell_2.strength_defect)
-	var int_stat_array : Array= get_highest_lowest_stat(cell_1.intelligence_defect, cell_2.intelligence_defect)
-	var com_stat_array : Array= get_highest_lowest_stat(cell_1.community_defect, cell_2.community_defect)
+	var str_stat_array : Array= get_highest_lowest_stat(cell_1.strength.defect, cell_2.strength.defect)
+	var int_stat_array : Array= get_highest_lowest_stat(cell_1.intelligence.defect, cell_2.intelligence.defect)
+	var com_stat_array : Array= get_highest_lowest_stat(cell_1.community.defect, cell_2.community.defect)
 	
 	# evaluate what % of highstat low stat should exist up to 
 	var str_increase_case_min = str_stat_array[0] * IVCellBreeding.defect_stat_increase_case_min

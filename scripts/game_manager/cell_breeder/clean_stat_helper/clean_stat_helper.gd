@@ -13,10 +13,21 @@ func _ready() -> void:
 
 func generate_clean_stats(cell_1 : BrainCell, cell_2 : BrainCell) -> Array[int] :
 
+
+	# check if any stats disabled. those dont change
+	var valid_stats = {
+		'strength': false,
+		'intelligence': false,	
+		'community': false,	
+	}
+	
+	# false : not valid (one or more disabled) | true : both enabled
+	valid_stats = verify_valid_stats(cell_1, cell_2, valid_stats)
+	
 	# find highest vs lowest stat
-	var str_stat_array : Array= get_highest_lowest_stat(cell_1.strength, cell_2.strength)
-	var int_stat_array : Array= get_highest_lowest_stat(cell_1.intelligence, cell_2.intelligence)
-	var com_stat_array : Array= get_highest_lowest_stat(cell_1.community, cell_2.community)
+	var str_stat_array : Array= get_highest_lowest_stat(cell_1.strength.value, cell_2.strength.value)
+	var int_stat_array : Array= get_highest_lowest_stat(cell_1.intelligence.value, cell_2.intelligence.value)
+	var com_stat_array : Array= get_highest_lowest_stat(cell_1.community.value, cell_2.community.value)
 	
 	# evaluate what % of highstat low stat should exist up to 
 	var str_increase_case_min = str_stat_array[0] * IVCellBreeding.clean_stat_increase_case_min
@@ -30,10 +41,48 @@ func generate_clean_stats(cell_1 : BrainCell, cell_2 : BrainCell) -> Array[int] 
 	var strength : float
 	var intelligence : float
 	var community : float
-	
-	strength = resolve_clean_stat(str_stat_array, target_cell.strength, str_increase_case_min)
-	intelligence = resolve_clean_stat(int_stat_array, target_cell.intelligence, int_increase_case_min)
-	community = resolve_clean_stat(com_stat_array, target_cell.community, com_increase_case_min)
+
+	# strength
+	if valid_stats["strength"]:
+		strength = resolve_clean_stat(
+			str_stat_array,
+			target_cell.strength.value,
+			str_increase_case_min
+		)
+	elif cell_1.strength.enabled:
+		strength = cell_1.strength.value
+	elif cell_2.strength.enabled:
+		strength = cell_2.strength.value
+	else:
+		strength = 0
+
+	# intelligence
+	if valid_stats["intelligence"]:
+		intelligence = resolve_clean_stat(
+			int_stat_array,
+			target_cell.intelligence.value,
+			int_increase_case_min
+		)
+	elif cell_1.intelligence.enabled:
+		intelligence = cell_1.intelligence.value
+	elif cell_2.intelligence.enabled:
+		intelligence = cell_2.intelligence.value
+	else:
+		intelligence = 0
+
+	# community
+	if valid_stats["community"]:
+		community = resolve_clean_stat(
+			com_stat_array,
+			target_cell.community.value,
+			com_increase_case_min
+		)
+	elif cell_1.community.enabled:
+		community = cell_1.community.value
+	elif cell_2.community.enabled:
+		community = cell_2.community.value
+	else:
+		community = 0
 	
 	return [strength, intelligence, community]
 	
@@ -41,8 +90,6 @@ func resolve_clean_stat(stat_array : Array, target_value : float, increase_case_
 	var stat_high = stat_array[0]
 	var stat_low = stat_array[1]
 	
-	
-
 	# increase case
 	if increase_case_min <= stat_low:
 		var result = increase_clean_stat_case.increase_clean_stat_case(stat_high, stat_low, target_value)
@@ -90,6 +137,19 @@ func handle_detect_early_stats(stat_high : float, stat_low : float, target_value
 		return false
 		
 		
+func verify_valid_stats(cell_1 : BrainCell , cell_2 : BrainCell, valid_stats) :
+	
+	if cell_1.strength.enabled and cell_2.strength.enabled :
+		valid_stats['strength'] = true
+		
+	if cell_1.intelligence.enabled and cell_2.intelligence.enabled :
+		valid_stats['intelligence'] = true
+		
+	if cell_1.community.enabled and cell_2.community.enabled :
+		valid_stats['community'] = true
+	
+	return valid_stats
+	
 	
 
 
