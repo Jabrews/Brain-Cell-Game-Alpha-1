@@ -4,7 +4,7 @@ extends Node
 
 ## logic components
 @onready var helper_increment_clean_range : Node = $HelperIncrementCleanRange
-@onready var helper_addition_clean_value : Node = $HelperAdditionCleanValue
+@onready var helper_addition_energy_value : Node = $HelperAdditionEnergyValue
 
 ## screen componnet
 @onready var screen_cap_control : Node2D = $RangeControl/CapControlTv/SubViewport/CapControll
@@ -16,6 +16,7 @@ extends Node
 # main range tect
 @onready var clean_stat_range_label : Label3D = $RangeControl/CurrStatDisplayLabelsl/CleanRange/CleanStatRange
 @onready var clean_stat_addition_label : Label3D = $RangeControl/CurrStatDisplayLabelsl/Addition/CleanStatAdditon
+@onready var energy_icon : Sprite3D = $RangeControl/CurrStatDisplayLabelsl/Addition/EnergyIcon3
 # on off btn stuff
 @onready var off_stat_label : Label3D = $RangeControl/CurrStatDisplayLabelsl/OffLabel
 # the label on the btn itself
@@ -52,6 +53,7 @@ func _handle_toggle_on_off(toggleValue : bool) :
 			clean_stat_range_label.visible = true
 			clean_stat_addition_label.visible = true
 			off_stat_label.visible = false
+			energy_icon.visible = true
 
 			on_off_btn_mesh.material_override = blue_material
 			
@@ -63,6 +65,7 @@ func _handle_toggle_on_off(toggleValue : bool) :
 			clean_stat_range_label.visible = false
 			clean_stat_addition_label.visible = false
 			off_stat_label.visible = true
+			energy_icon.visible = false
 
 			on_off_btn_mesh.material_override = red_material
 			
@@ -71,7 +74,7 @@ func _handle_toggle_on_off(toggleValue : bool) :
 			
 func _handle_stat_increment_btn(increment_direction : String) :
 	
-	if not stat_on : 
+	if not stat_on :
 		return
 	
 	# we count 5 points in each range
@@ -99,9 +102,9 @@ func _handle_stat_increment_btn(increment_direction : String) :
 	var new_clean_range = helper_increment_clean_range._handle_get_clean_range(current_stat_value)
 	clean_stat_range_label.text = new_clean_range
 	
-	# update addition range label (EX. +20)
-	var new_addition = helper_addition_clean_value._handle_get_add_value(current_stat_value, new_clean_range)
-	clean_stat_addition_label.text = '+ ' + str(new_addition)
+	# update energy range label (EX. +20)
+	var new_addition = helper_addition_energy_value._handle_get_energy_add_value(increment_direction)
+	clean_stat_addition_label.text = '- ' + str(new_addition)
 	
 	# tell screen about new value and update symbols
 	screen_cap_control.update_current_stat_value(current_stat_value, new_clean_range)
@@ -129,5 +132,3 @@ func update_target_stat() :
 
 func _toggle_alert_symbol(toggleValue : bool , symbol_type : String) :
 	prisoner_profiler_parent._toggle_alert_symbol(stat_type, toggleValue, symbol_type)
-	
-	

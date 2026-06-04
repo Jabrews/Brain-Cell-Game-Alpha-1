@@ -116,15 +116,12 @@ func handle_item_use(collider) -> void:
 		
 		handle_item_used_up(held_useable_item_obj)
 
-
 func handle_item_used_up(useable_item : UseableItemObject) -> void:
 
 	player_holding_item = false
 	held_useable_item_obj = null
 
 	toggle_ray_cast_manager(false)
-	
-	GLUseableItemManagerBus.emit_signal('useable_item_deleted', useable_item.item_id)
 
 
 func toggle_ray_cast_manager(toggleValue : bool) -> void:

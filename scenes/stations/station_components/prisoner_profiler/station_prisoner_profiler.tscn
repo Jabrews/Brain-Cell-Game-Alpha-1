@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="4_o6k36"]
 [ext_resource type="PackedScene" uid="uid://ctgv6es6pim8p" path="res://scenes/stations/station_screens/prisoner_profiler/screen_hidden_stat_quanity.tscn" id="5_cw20b"]
 [ext_resource type="PackedScene" uid="uid://c746r67f0tqyg" path="res://scenes/stations/station_screens/prisoner_spawner_limit/screen_pick_quanity.tscn" id="5_d5xot"]
+[ext_resource type="Script" uid="uid://dyu0i4q8ogq6r" path="res://scripts/stations/station_components/prisoner_profiler/handle_reset.gd" id="5_ixvqn"]
 [ext_resource type="Script" uid="uid://bovnevwtlncs4" path="res://scripts/stations/station_components/prisoner_profiler/btns/prisoner_quanity_btn.gd" id="7_5i3j4"]
 [ext_resource type="Script" uid="uid://brd5yl8fa6dn6" path="res://scripts/stations/station_components/prisoner_profiler/energy_panel/energy_panel.gd" id="7_dppm5"]
 [ext_resource type="PackedScene" uid="uid://c5tb2u3nb0fa0" path="res://scenes/hoverable_mesh_scenes/hidden_stat_reveal_btn.tscn" id="8_mtam1"]
@@ -118,6 +119,9 @@ script = ExtResource("2_a8ku5")
 
 [node name="EnergySpentUpdater" type="Node" parent="." unique_id=34105859]
 script = ExtResource("3_5fibo")
+
+[node name="HandleReset" type="Node" parent="." unique_id=1610780473]
+script = ExtResource("5_ixvqn")
 
 [node name="HiddenQuanityTV" type="Node3D" parent="." unique_id=451218265]
 transform = Transform3D(0.9974021, 0.0720371, -2.9724895e-08, -0.07203711, 0.99740195, 2.146873e-09, 2.9802322e-08, 0, 1.0000001, -0.30808276, 5.558966, 0)

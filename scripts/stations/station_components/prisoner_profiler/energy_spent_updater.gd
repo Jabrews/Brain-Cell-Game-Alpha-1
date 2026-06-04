@@ -25,15 +25,21 @@ func _handle_reset_prisoners_created() -> void:
 
 	prisoner_quantity_energy_spent = 10
 
-	get_total_energy_spent()
-
 
 func _handle_clean_stat_value_change(stat_type : String, new_value : float) -> void:
 	energy_spent[stat_type] = int(new_value * 0.05)
 	get_total_energy_spent()
 
-func _handle_toggle_clean_stat_disabled(stat_type : String, toggle_value : bool) -> void :
-	pass
+func _handle_toggle_clean_stat_disabled(stat_type : String, toggle_value : bool, original_value : float, orginal_stat_cap : String) -> void:
+	if toggle_value == true:
+		energy_spent[stat_type] = 0
+		stat_cap_status[stat_type] = "none"
+
+	if toggle_value == false:
+		energy_spent[stat_type] = int(original_value * 0.05)
+		stat_cap_status[stat_type] = orginal_stat_cap
+
+	get_total_energy_spent()
 
 
 func _handle_alert_symbol(stat_type : String, alert_type : String) -> void:
@@ -56,7 +62,7 @@ func _handle_prisoner_quanity(quantity : int) -> void:
 
 func get_total_energy_spent() -> int:
 	var total := prisoner_quantity_energy_spent
-
+	
 	for stat in energy_spent:
 		total += energy_spent[stat]
 
@@ -67,5 +73,5 @@ func get_total_energy_spent() -> int:
 				total += 40
 
 	energy_panel.handle_energy_to_spend_change(total)
-
+	
 	return total

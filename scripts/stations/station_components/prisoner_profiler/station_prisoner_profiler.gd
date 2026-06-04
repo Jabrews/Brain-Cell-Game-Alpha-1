@@ -3,7 +3,14 @@ extends Node
 # components
 @onready var convert_alert_symbol : Node =$ConvertAlertSymbol
 @onready var energy_spent_updater : Node = $EnergySpentUpdater
+@onready var energy_panel : Node3D = $EnergyPanel
 @onready var prisoner_quanitity_updater : Node = $PrisonerQuanityBtnUpdater
+@onready var stat_control_panels : Array[Node3D] = [
+	$StatControllPanels/StatControlPanel,
+	$StatControllPanels/StatControlPanel2,
+	$StatControllPanels/StatControlPanel3
+]
+@onready var handle_reset : Node = $HandleReset
 
 var clean_strength : float = 0.0
 var clean_intelligence: float = 0.0
@@ -73,15 +80,28 @@ func _update_clean_stat_value(type : String, new_value : float) :
 	energy_spent_updater._handle_clean_stat_value_change(type, new_value)
 
 func _toggle_stat_disabled(type : String, toggleValue : bool) :
+	
+	var original_value = 0.0
+	var original_stat_cap : String = 'none'
+
+	
 	match type :
 		'strength' :
 			strength_disabled = toggleValue
+			original_value = clean_strength
+			original_stat_cap = convert_alert_symbol.convert(strength_caution_active, strength_warning_active)
 		'intelligence' :
 			intelligence_disabled = toggleValue
+			original_value = clean_intelligence
+			original_stat_cap = convert_alert_symbol.convert(intelligence_caution_active, intelligence_warning_active )
 		'community' :
 			community_disabled = toggleValue
+			original_value = clean_community
+			original_stat_cap = convert_alert_symbol.convert(community_caution_active, community_warning_active)
+			
 	# update energy spent 
-	#energy_spent_updater.	
+	energy_spent_updater._handle_toggle_clean_stat_disabled(type,toggleValue,original_value, original_stat_cap)
+	
 	
 func _update_prisoner_quanity(quantity: int) :
 	prisoner_quantity = quantity
@@ -117,8 +137,11 @@ func _create_prisoners() -> void:
 		intelligence_stat_constructor,
 		community_stat_constructor
 	)
-
+	
+	handle_reset._reset()
+	
 	GLCellCreatorBus.emit_signal(
 		"create_prisoner_cells",
 		prisoner_cell_constructor
 	)
+	

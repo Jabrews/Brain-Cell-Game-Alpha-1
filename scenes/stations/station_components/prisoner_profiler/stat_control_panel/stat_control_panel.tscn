@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="2_bi6fm"]
 [ext_resource type="Script" uid="uid://bpvnn46d6sjq7" path="res://scripts/stations/station_components/prisoner_profiler/stat_control_panel/btns/stat_increment_btn.gd" id="2_omgri"]
 [ext_resource type="PackedScene" uid="uid://bm8mcmj3vxox3" path="res://scenes/hoverable_mesh_scenes/stat_control_panel_btn_hover.tscn" id="3_t631h"]
-[ext_resource type="Script" uid="uid://dcr11pffe0jm3" path="res://scripts/stations/station_components/prisoner_profiler/stat_control_panel/helper_addition_clean_value.gd" id="3_vusdx"]
+[ext_resource type="Script" uid="uid://dcr11pffe0jm3" path="res://scripts/stations/station_components/prisoner_profiler/stat_control_panel/helper_addition_energy_value.gd" id="3_vusdx"]
 [ext_resource type="PackedScene" uid="uid://b366gm7tg6uso" path="res://scenes/hoverable_mesh_scenes/stat_control_panel_on_off_panel_btn.tscn" id="4_47ykc"]
 [ext_resource type="Script" uid="uid://dkg7yllddtw66" path="res://scripts/stations/station_components/prisoner_profiler/stat_control_panel/btns/on_off_btn.gd" id="4_ppoxq"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="5_t631h"]
@@ -30,6 +30,9 @@ size = Vector3(0.02, 0.46619385, 0.36737794)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rwuya"]
 size = Vector3(0.01, 0.8, 0.64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vusdx"]
+load_path = "res://.godot/imported/energy_symbol.png-5626c71ab2f35397b3301af5cd47d48e.s3tc.ctex"
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_nmamy"]
 viewport_path = NodePath("StatCapControlScreens/StrengthCapControlTv3/SubViewport")
@@ -61,7 +64,7 @@ stat_type = "strength"
 [node name="HelperIncrementCleanRange" type="Node" parent="." unique_id=1678738128]
 script = ExtResource("2_b6u05")
 
-[node name="HelperAdditionCleanValue" type="Node" parent="." unique_id=1676648314]
+[node name="HelperAdditionEnergyValue" type="Node" parent="." unique_id=1676648314]
 script = ExtResource("3_vusdx")
 
 [node name="StatTypeLabel" type="Label3D" parent="." unique_id=1087668137]
@@ -157,16 +160,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20875105, 1.3645114, -0.50
 mesh = SubResource("BoxMesh_rwuya")
 
 [node name="Addition" type="Node3D" parent="RangeControl/CurrStatDisplayLabelsl" unique_id=947061713]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04037273, -0.020184755)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04037273, 0.05142796)
 
 [node name="CleanStatAdditon" type="Label3D" parent="RangeControl/CurrStatDisplayLabelsl/Addition" unique_id=221321268]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.2036186, 1.2662206, -0.48533148)
 texture_filter = 0
+modulate = Color(1, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
-text = "+ 1"
+text = "- 0"
 font = ExtResource("1_rk7hh")
 font_size = 33
 outline_size = 0
+
+[node name="EnergyIcon3" type="Sprite3D" parent="RangeControl/CurrStatDisplayLabelsl/Addition" unique_id=1990988346]
+transform = Transform3D(-3.934025e-08, 0, 0.9, 0, 0.9, 0, -0.9, 0, -3.934025e-08, -0.19064441, 1.2627908, -0.68640614)
+modulate = Color(1, 0, 0, 1)
+texture_filter = 0
+texture = SubResource("CompressedTexture2D_vusdx")
 
 [node name="CleanRange" type="Node3D" parent="RangeControl/CurrStatDisplayLabelsl" unique_id=75540933]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14523786, -0.0067284107)

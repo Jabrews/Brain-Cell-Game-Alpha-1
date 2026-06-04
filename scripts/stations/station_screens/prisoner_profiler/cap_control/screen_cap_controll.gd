@@ -48,7 +48,10 @@ func _handle_get_newest_target_cell(target_cell : BrainCell) :
 			update_target_stat(target_cell.intelligence.value)
 		'community' :
 			update_target_stat(target_cell.community.value)
-		
+
+func _handle_reset() :
+	bar.material.set_shader_parameter("prisoner_value", 0)
+	update_current_stat_value(0, 'none')
 		
 	
 	

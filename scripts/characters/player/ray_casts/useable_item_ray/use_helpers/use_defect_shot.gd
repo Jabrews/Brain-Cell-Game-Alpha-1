@@ -30,6 +30,5 @@ func use(collider : Node3D, held_useable_item_obj : UseableItemObject) :
 				held_useable_item_obj
 			)
 			
-			GLUseableItemManagerBus.emit_signal('useable_item_changed', held_useable_item_obj)
 			
 			return false

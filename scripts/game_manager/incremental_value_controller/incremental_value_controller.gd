@@ -6,11 +6,6 @@ var last_round : int = 0
 # components
 @onready var iv_helper_defect_event : Node = $IVHelperDefectEvent
 
-func _ready() -> void:
-	# this is only called by round manager station in creation zoo 
-	GLIncrementalValueControllerBus.connect('progression_change', change_progression_step)
-
-
 @warning_ignore("shadowed_global_identifier") # FUCK THIS WTF
 func change_progression_step(round : int, turn : int) :
 	
@@ -23,11 +18,6 @@ func change_progression_step(round : int, turn : int) :
 		last_round = round
 	
 	handle_turns(round, turn)
-	
-	# any event calls
-	GLGameManagerBus.emit_signal('next_turn_process')
-	
-	
 
 @warning_ignore("shadowed_global_identifier")
 func handle_round(round : int):
