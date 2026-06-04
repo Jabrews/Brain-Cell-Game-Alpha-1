@@ -3,11 +3,16 @@ extends Node
 # components
 @onready var cell_creator : Node = $CellCreator
 @onready var cell_manager : Node = $CellManager
+@onready var incremental_value_controller : Node = $IncrementalValueController
 
 
 func _ready() : 
 	connect_signals()
 	GLCellCreatorBus.emit_signal('create_target_cell')
+	
+	GLGameManagerBus.current_round = 1
+	GLGameManagerBus.curr_energy = 100
+	incremental_value_controller.handle_round(1)
 	
 ##### INIT HELPERS ######
 

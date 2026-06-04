@@ -42,19 +42,20 @@ func handle_create_target() -> void:
 
 # signal create_prisoner_cells(cell_constructor : CellConstructor)
 func handle_create_prisoners( cell_constructor : CellConstructor, prevent_update_incr_update : bool = false ) -> void:
+	
+	print(cell_constructor)
 
 	current_cell_constructor = cell_constructor
 
-	# TODO FIX PROGRESSION SYSTEM
-	#if not prevent_update_incr_update:
-		#var curr_round = GLGameManagerBus.current_round
-		#var curr_turn = GLGameManagerBus.current_turn
-#
-		#incrmental_value_controller.change_progression_step(
-			#curr_round,
-			#curr_turn
-		#)
-		
+	if not prevent_update_incr_update:
+		var curr_round = GLGameManagerBus.current_round
+		var curr_energy = GLGameManagerBus.curr_energy
+
+		incrmental_value_controller.change_progression_step(
+			curr_round,
+			curr_energy,
+		)
+		#
 	 #reset prisoners that may of been left
 	GLCellManagerBus.emit_signal('delete_remaining_prisoners')
 

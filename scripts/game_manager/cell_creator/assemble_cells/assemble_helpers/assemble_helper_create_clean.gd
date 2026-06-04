@@ -47,7 +47,7 @@ func get_corrisponding_target_stat(stat_type : String) -> float :
 
 func generate_random_stat_value(stat_base : float) :
 	
-	var random_change = randi_range(-50, 20)
+	var random_change = randi_range(-30, 30)
 	stat_base += random_change
 	
 	return stat_base

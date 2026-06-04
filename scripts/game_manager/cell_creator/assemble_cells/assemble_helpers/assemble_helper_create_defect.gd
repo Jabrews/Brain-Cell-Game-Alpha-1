@@ -14,7 +14,7 @@ func _create(stat: BrainCellStat, stat_cap_status : String) -> float:
 
 func generate_random_stat_value(stat_value : float) :
 	
-	var random_change = randi_range(-30, 50)
+	var random_change = randi_range(-40, 30)
 		
 	stat_value += random_change
 	

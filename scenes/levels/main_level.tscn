@@ -30,13 +30,14 @@
 [ext_resource type="Script" uid="uid://c8pkmawjyoqkg" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/assemble_helper_hidden.gd" id="19_rjaw8"]
 [ext_resource type="Script" uid="uid://2at8c3hwj8eb" path="res://scripts/game_manager/defect_event_manager/jolt_hidden_stat_interpreter.gd" id="20_5xq6v"]
 [ext_resource type="Script" uid="uid://md6nime7jqke" path="res://scripts/game_manager/defect_event_manager/jolt_cell_container.gd" id="21_eiw2m"]
-[ext_resource type="Script" uid="uid://cpwlh4yswfk85" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/helper_hidden_defect_trap.gd" id="21_mvdwn"]
 [ext_resource type="Script" uid="uid://cy8kcia20tw2y" path="res://scripts/game_manager/cell_creator/assemble_target/assemble_target.gd" id="22_dn28p"]
 [ext_resource type="Script" uid="uid://hi5lo6o7ob4j" path="res://scripts/game_manager/cell_creator/assemble_cells/offer_helpers/offer_five.gd" id="23_010mg"]
 [ext_resource type="Script" uid="uid://ddkmklgkuu4ca" path="res://scripts/game_manager/cell_creator/offer_helpers/offer_one.gd" id="24_j7s3e"]
 [ext_resource type="Script" uid="uid://tqdqm0u65kc7" path="res://scripts/game_manager/cell_creator/offer_helpers/offer_three.gd" id="25_8muua"]
 [ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="31_alpj0"]
 [ext_resource type="Script" uid="uid://s4grsq8leedn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_events.gd" id="32_m5ih7"]
+[ext_resource type="Script" uid="uid://c3hvpboppeuyk" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_prisoner_picks_per_batch.gd" id="34_mvdwn"]
+[ext_resource type="Script" uid="uid://cqi0u48rlfi5b" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_hidden_stats.gd" id="35_wv5kd"]
 [ext_resource type="PackedScene" uid="uid://cyugvlr5sgshv" path="res://scenes/shareholder_offer_manager/shareholder_offer_manager.tscn" id="38_wv5kd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_k57ag"]
@@ -297,9 +298,6 @@ script = ExtResource("18_v2xyd")
 [node name="HelperHidden" type="Node" parent="GameManager/CellCreator/AssembleCells/HiddenStatHelpers" unique_id=403974421]
 script = ExtResource("19_rjaw8")
 
-[node name="HelperHiddenDefectTrap" type="Node" parent="GameManager/CellCreator/AssembleCells/HiddenStatHelpers" unique_id=536300828]
-script = ExtResource("21_mvdwn")
-
 [node name="OfferHelpers" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=575333024]
 
 [node name="OfferFive" type="Node" parent="GameManager/CellCreator/AssembleCells/OfferHelpers" unique_id=1895900607]
@@ -348,6 +346,12 @@ script = ExtResource("31_alpj0")
 
 [node name="IVHelperDefectEvent" type="Node" parent="GameManager/IncrementalValueController" unique_id=2002699261]
 script = ExtResource("32_m5ih7")
+
+[node name="IVHelperPrisonerPicksPerBatch" type="Node" parent="GameManager/IncrementalValueController" unique_id=594699452]
+script = ExtResource("34_mvdwn")
+
+[node name="IVHelperHiddenStats" type="Node" parent="GameManager/IncrementalValueController" unique_id=235860088]
+script = ExtResource("35_wv5kd")
 
 [node name="UseableItemSpawnManager" type="Node" parent="." unique_id=622852825 node_paths=PackedStringArray("player")]
 script = ExtResource("16_44ape")

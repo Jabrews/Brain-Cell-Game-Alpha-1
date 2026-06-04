@@ -13,14 +13,37 @@ extends Node
 # helpers
 @onready var helper_stat_offer_active_toggle : Node = $HelperStatOfferActiveToggle
 
+var has_offered_stat : bool = false
+var has_offered_item : bool = false
+
 
 func _ready() -> void:
 	GLGameManagerBus.connect('proceed_next_round', _handle_next_round)
-	
+	GLGameManagerBus.connect('process_energy_changed', _handle_energy_changed)
+
+func _handle_energy_changed() :
+
+	var curr_energy = GLGameManagerBus.curr_energy
+
+	# stat offers have priority
+	if not has_offered_stat \
+	and curr_energy <= IVShareholderOffers.stat_offer_energy_percant:
+		has_offered_stat = true
+		GLShareholderOfferState.await_user_choose_shareholder_offer_before_create = true
+		handle_stat_offer()
+		return
+
+	# item offer only if stat offer wasn't triggered
+	if not has_offered_item \
+	and curr_energy <= IVShareholderOffers.item_offer_energy_percant:
+		has_offered_item = true
+		handle_item_offer()
+		return
 
 func _handle_next_round() :
 	helper_stat_offer_active_toggle._handle_reset_active_stat_offer()
-		
+	has_offered_item = false
+	has_offered_stat = false
 	
 func handle_item_offer() :
 	

@@ -10,3 +10,4 @@ var max_energy : int = 100
 
 
 signal proceed_next_round()
+signal process_energy_changed()

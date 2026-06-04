@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cdlyjs4or3d7u" path="res://scripts/shareholder_offer_manager/shareholder_offer_manager.gd" id="1_outj8"]
 [ext_resource type="Script" uid="uid://d3oi7fdoxjces" path="res://scripts/shareholder_offer_manager/helper_stat_offer_active_toggle.gd" id="2_gjcp8"]
-[ext_resource type="Shader" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="3_ten8p"]
+[ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="3_ten8p"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="4_05saj"]
 [ext_resource type="Texture2D" uid="uid://b7fpfcpiqgvw7" path="res://models/share_holder_offer_card/card_bg.png" id="5_gue60"]
 [ext_resource type="Script" uid="uid://brvd4uni8rnoo" path="res://scripts/shareholder_offer_manager/stat_offer_card.gd" id="6_5kdy1"]

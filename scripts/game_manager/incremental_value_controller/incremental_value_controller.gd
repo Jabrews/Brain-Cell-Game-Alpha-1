@@ -1,13 +1,15 @@
 extends Node
 
 var round_incr_values_set = false
-var last_round : int = 0
+var last_round : int = 1
 
 # components
 @onready var iv_helper_defect_event : Node = $IVHelperDefectEvent
+@onready var iv_helper_prisoner_picks_per_batch : Node =$IVHelperPrisonerPicksPerBatch
+@onready var iv_helper_hidden_stats : Node = $IVHelperHiddenStats
 
 @warning_ignore("shadowed_global_identifier") # FUCK THIS WTF
-func change_progression_step(round : int, turn : int) :
+func change_progression_step(round : int, curr_energy: int) :
 	
 	if last_round != round :
 		handle_round(round)
@@ -17,17 +19,21 @@ func change_progression_step(round : int, turn : int) :
 		
 		last_round = round
 	
-	handle_turns(round, turn)
+	
+	handle_energy(round, GLGameManagerBus.curr_energy)
+	
+	
+	GLGameManagerBus.emit_signal('process_energy_changed')
+	
 
 @warning_ignore("shadowed_global_identifier")
 func handle_round(round : int):
-
+	
 	match round :
 		1 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = false
-			## TURNS  ##
-			GLGameManagerBus.max_turns = 4
-			GLGameManagerBus.current_turn = 0
+			# ENERGY ##
+			GLGameManagerBus.curr_energy = 100
 			## BREEDING ##
 			IVCellBreeding.max_cell_breeding_attempts = 5
 			IVCellBreeding.curr_cell_breeding_attempt = 0
@@ -45,15 +51,14 @@ func handle_round(round : int):
 			IVUseableItemSpawner.steroids_to_spawn = 0
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
-			IVShareholderOffers.item_offer_turn = 3
-			IVShareholderOffers.stat_offer_turn = 2
+			IVShareholderOffers.item_offer_energy_percant= 75
+			IVShareholderOffers.stat_offer_energy_percant= 50		
 			
 		2 :
 
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = false
-			## TURNS ##
-			GLGameManagerBus.max_turns = 4
-			GLGameManagerBus.current_turn = 0
+			## ENERGY ##
+			GLGameManagerBus.curr_energy = 100
 			## BREEDING ##
 			IVCellBreeding.max_cell_breeding_attempts = 5
 			IVCellBreeding.curr_cell_breeding_attempt = 0
@@ -71,13 +76,12 @@ func handle_round(round : int):
 			IVUseableItemSpawner.steroids_to_spawn = 0
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
-			IVShareholderOffers.item_offer_turn = 3
-			IVShareholderOffers.stat_offer_turn = 2
+			IVShareholderOffers.item_offer_energy_percant= 75
+			IVShareholderOffers.stat_offer_energy_percant= 50		
 		3 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
-			## TURNS ##
-			GLGameManagerBus.max_turns = 5
-			GLGameManagerBus.current_turn = 0
+			## ENERGY ##
+			GLGameManagerBus.curr_energy = 100
 			## BREEDING ##
 			IVCellBreeding.max_cell_breeding_attempts = 6
 			IVCellBreeding.curr_cell_breeding_attempt = 0
@@ -90,13 +94,12 @@ func handle_round(round : int):
 			IVUseableItemSpawner.steroids_to_spawn = 0
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
-			IVShareholderOffers.item_offer_turn = 3
-			IVShareholderOffers.stat_offer_turn = 2
+			IVShareholderOffers.item_offer_energy_percant= 75
+			IVShareholderOffers.stat_offer_energy_percant= 50		
 		4 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
-			## TURNS ##
-			GLGameManagerBus.max_turns = 5
-			GLGameManagerBus.current_turn = 0
+			## ENERGY ##
+			GLGameManagerBus.curr_energy = 100
 			## BREEDING ##
 			IVCellBreeding.max_cell_breeding_attempts = 7
 			IVCellBreeding.curr_cell_breeding_attempt = 0
@@ -109,93 +112,12 @@ func handle_round(round : int):
 			IVUseableItemSpawner.steroids_to_spawn = 1
 			IVUseableItemSpawner.ice_cube_to_spawn = 1
 			## SHAREHOLDER OFFERS ##
-			IVShareholderOffers.item_offer_turn = 2
-			IVShareholderOffers.stat_offer_turn = 3		
+			IVShareholderOffers.item_offer_energy_percant= 75
+			IVShareholderOffers.stat_offer_energy_percant= 50		
 	
 @warning_ignore("shadowed_global_identifier")
-func handle_turns(round : int, turn : int) :
+func handle_energy(round : int, energy: int) :
 	
-	# helpers
-	iv_helper_defect_event.	update_defect_event_values(round, turn)
-	
-	match  round :
-		1 :
-			if turn == 0 :
-				GLGameManagerBus.current_turn = 0
-				IVPrisonerSpawner.max_picked_pris_per_turn = 1
-			elif turn == 1 :
-				GLGameManagerBus.current_turn = 1
-				IVPrisonerSpawner.max_picked_pris_per_turn = 1
-			elif turn == 2 :
-				GLGameManagerBus.current_turn = 2
-				IVPrisonerSpawner.max_picked_pris_per_turn = 1
-			elif turn == 3 :
-				GLGameManagerBus.current_turn = 3
-				IVPrisonerSpawner.max_picked_pris_per_turn = 1
-			elif turn == 4 :
-				GLGameManagerBus.current_turn = 4
-				IVPrisonerSpawner.max_picked_pris_per_turn = 2
-		2 :
-			if turn == 0 :
-				IVPrisonerSpawner.max_picked_pris_per_turn = 1
-				GLGameManagerBus.current_turn = 0
-			elif turn == 1 :
-				IVPrisonerSpawner.max_picked_pris_per_turn = 1
-				GLGameManagerBus.current_turn = 1
-			elif turn == 2 :
-				IVPrisonerSpawner.max_picked_pris_per_turn = 1
-				GLGameManagerBus.current_turn = 2
-			elif turn == 3:
-				IVPrisonerSpawner.max_picked_pris_per_turn = 1
-				GLGameManagerBus.current_turn = 3
-			elif turn == 4 :
-				IVPrisonerSpawner.max_picked_pris_per_turn = 2
-				GLGameManagerBus.current_turn = 4
-				
-		3 :
-			if turn == 0 :
-				IVPrisonerSpawner.max_picked_pris_per_turn = 1
-				GLGameManagerBus.current_turn = 0
-			elif turn == 1 :
-				IVPrisonerSpawner.max_picked_pris_per_turn = 1
-				GLGameManagerBus.current_turn = 1
-			elif turn == 2 :
-				IVPrisonerSpawner.max_picked_pris_per_turn = 2
-				GLGameManagerBus.current_turn = 2
-			elif turn == 3:
-				IVPrisonerSpawner.max_picked_pris_per_turn = 1
-				GLGameManagerBus.current_turn = 3
-			elif turn == 4 :
-				IVPrisonerSpawner.max_picked_pris_per_turn = 2
-				GLGameManagerBus.current_turn = 4
-			elif turn == 5 :
-				IVPrisonerSpawner.max_picked_pris_per_turn = 2
-				GLGameManagerBus.current_turn = 5
-				
-		4 :
-			if turn == 0 :
-				IVPrisonerSpawner.max_picked_pris_per_turn = 1
-				GLGameManagerBus.current_turn = 0
-
-			elif turn == 1 :
-				IVPrisonerSpawner.max_picked_pris_per_turn = 2
-				GLGameManagerBus.current_turn = 1
-			elif turn == 2 :
-				IVPrisonerSpawner.max_picked_pris_per_turn = 1
-				GLGameManagerBus.current_turn = 2
-			elif turn == 3:
-				IVPrisonerSpawner.max_picked_pris_per_turn = 2
-				GLGameManagerBus.current_turn = 3
-			elif turn == 4 :
-				IVPrisonerSpawner.max_picked_pris_per_turn = 2
-				GLGameManagerBus.current_turn = 4
-			elif turn == 5 :
-				IVPrisonerSpawner.max_picked_pris_per_turn = 2
-				GLGameManagerBus.current_turn = 5
-	
-	
-	
-	
-	
-	
-	
+	iv_helper_prisoner_picks_per_batch._prisoner_picks_per_batch()
+	iv_helper_defect_event._update_defect_event_values(round, energy)
+	iv_helper_hidden_stats._update_hidden_stat_values(round, energy)
