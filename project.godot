@@ -36,9 +36,9 @@ GLShareholderOfferState="*uid://k7qdsr8ygtxj"
 GLPlayerState="*uid://jf5412i666g2"
 IVShareholderOffers="*uid://2dhagbjx4xr0"
 IVItemStats="*uid://cvxq3etkgp5gc"
-IVHiddenStats="*uid://dc5cw8eedorhg"
 GLPrisonerPicksBus="*uid://b0rqj0ndtvmce"
 GLPrisonerProfilerComponentsBus="*uid://dnvsf1q2aqjpy"
+IVHiddenStats="*uid://dqwho0761iq4v"
 
 [debug]
 

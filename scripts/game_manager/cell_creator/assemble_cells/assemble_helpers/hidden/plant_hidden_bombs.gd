@@ -22,7 +22,6 @@ func _check_can_plant_bombs() :
 		return false
 	# else its okay to plant bomb
 	else :
-		print('chance to plant bomb')
 		# chance to still not plant bombs	
 		var random_chance = randi_range(0, 100)	
 		if random_chance >= 30 : 

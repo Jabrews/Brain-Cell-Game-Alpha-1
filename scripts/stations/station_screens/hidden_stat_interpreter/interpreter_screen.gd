@@ -17,7 +17,7 @@ var progress_increment : int = 1
 
 func _ready() -> void:
 	progress_timer.connect('timeout', _handle_progress_timer_timeout)
-	progress_bar.max_value = 30
+	progress_bar.max_value = total_duration
 	update_time_left_label(total_duration)
 	
 	
