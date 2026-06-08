@@ -11,6 +11,10 @@ var held_useable_item_obj : UseableItemObject
 @onready var use_hidden_shot : Node = $UseHiddenShot
 @onready var use_steroid : Node = $UseSteroid
 @onready var use_ice_cube : Node = $UseIceCube
+@onready var use_scissors : Node = $UseScissors
+
+func _ready() -> void:
+	GLUsableItemBus.connect('scissor_pop_up_chose_stat', _handle_scissor_pop_up_chose_stat)	
 
 
 func _process(_delta):
@@ -88,20 +92,20 @@ func handle_item_use(collider) -> void:
 
 		var item_used_up = use_defect_shot.use(collider, held_useable_item_obj)
 		if item_used_up :
-			handle_item_used_up(held_useable_item_obj)
+			handle_item_used_up()
 
 
 	## HIDDEN SHOT ###
 	elif held_useable_item_obj.item_type == 'hidden_shot':
 		
 		use_hidden_shot.use(collider, held_useable_item_obj)
-		handle_item_used_up(held_useable_item_obj)
+		handle_item_used_up()
 	
 	## STERIOD ###
 	elif held_useable_item_obj.item_type == 'steroid' :
 		
 		use_steroid.use(collider, held_useable_item_obj)
-		handle_item_used_up(held_useable_item_obj)
+		handle_item_used_up()
 	
 	
 	## ICE CUBE ##
@@ -114,9 +118,18 @@ func handle_item_use(collider) -> void:
 		use_ice_cube.use(collider, held_useable_item_obj)
 		
 		
-		handle_item_used_up(held_useable_item_obj)
+		handle_item_used_up()
+	
+	## SCISSORS ##
+	elif held_useable_item_obj.item_type == 'scissors' :
+		
+		# not used on prisoner
+		if collider.is_in_group("prisoner"):
+			return
+		
+		use_scissors.show_scissor_pop_up(collider, held_useable_item_obj)
 
-func handle_item_used_up(useable_item : UseableItemObject) -> void:
+func handle_item_used_up() -> void:
 
 	player_holding_item = false
 	held_useable_item_obj = null
@@ -131,3 +144,10 @@ func toggle_ray_cast_manager(toggleValue : bool) -> void:
 
 	else:
 		ray_cast_controller_parent.set_ray_mode('none')
+
+### Popup handlers ##
+func _handle_scissor_pop_up_chose_stat(selected_stat : String, selected_cell : BrainCell, useable_item_obj : UseableItemObject ) :
+	use_scissors.use(selected_stat, selected_cell, useable_item_obj)
+	handle_item_used_up()	
+	
+	

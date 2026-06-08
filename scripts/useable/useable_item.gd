@@ -14,6 +14,7 @@ var designated_useable_item_obj : UseableItemObject
 @onready var hidden_shot_png : Texture = preload("res://models/usable_items/serum_items/hidden_shot_item.png")
 @onready var steroid_png : Texture = preload("res://models/usable_items/steriod/steriod.png")
 @onready var ice_cube_png : Texture = preload("res://models/usable_items/ice_cube/ice_cube.png")
+@onready var scissors_png : Texture = preload("res://models/usable_items/scissors/scissors.png")
 
 func load_item(include_energy : bool, specified_energy_left = 0) -> void:
 	load_item_sprite()
@@ -38,6 +39,8 @@ func load_item_label():
 			item_label.text = 'Steroid'
 		'ice_cube' :
 			item_label.text = 'Ice Cube'
+		'scissors' :
+			item_label.text = 'Scissors'
 
 func load_item_name():
 	var raw_name : String = designated_useable_item_obj.item_type
@@ -47,7 +50,6 @@ func load_item_name():
 	
 	for part in parts:
 		final_name += part.capitalize() + " "
-	load_item_tip_text
 	name = final_name.strip_edges()
 
 func load_item_sprite():
@@ -60,6 +62,8 @@ func load_item_sprite():
 			useable_item_sprite.texture = steroid_png 
 		'ice_cube' :
 			useable_item_sprite.texture = ice_cube_png
+		'scissors' :
+			useable_item_sprite.texture = scissors_png 
 
 func load_item_energy():
 	# if already has energy (dropped item), respect it
@@ -95,6 +99,9 @@ func load_item_tip_text() :
 
 		'ice_cube':
 			tip_text = 'Freezes a cell for one turn. Frozen cells do not age, gain defects, or allow player interaction.'
+		
+		'scissors' :
+			tip_text = 'Cut off a chosen stat from a cell.'
 
 	useable_item_display.update_tip_label(
 		tip_text	

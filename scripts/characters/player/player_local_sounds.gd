@@ -12,6 +12,7 @@ extends Node
 @onready var s_pills_used : AudioStreamPlayer3D = $PillUsed
 @onready var s_axe_swing : AudioStreamPlayer3D = $AxeSwing
 @onready var s_ice_cube_used : AudioStreamPlayer3D = $IceCubeUsed
+@onready var s_scissor_snip : AudioStreamPlayer3D = $ScissorSnip
 
 
 func _ready() -> void:
@@ -38,6 +39,7 @@ func _ready() -> void:
 	GLPlayerLocalSoundsBus.connect('sound_pills_used', _handle_pills_used)
 	GLPlayerLocalSoundsBus.connect('sound_axe_swing', _handle_axe_swing)
 	GLPlayerLocalSoundsBus.connect('ice_cube_used', _handle_ice_cube_used)
+	GLPlayerLocalSoundsBus.connect('scissors_used', _handle_scissors_used)
 
 
 func _handle_sound_btn_press_failed() -> void:
@@ -75,6 +77,9 @@ func _handle_axe_swing() :
 
 func _handle_ice_cube_used() :
 	play_sound(s_ice_cube_used)
+
+func _handle_scissors_used() :
+	play_sound(s_scissor_snip)
 
 func play_sound(sound_player : AudioStreamPlayer3D) -> void:
 	

@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://dkrpoq7vr6q27" path="res://scripts/characters/player/player_axe.gd" id="11_3hnlq"]
 [ext_resource type="AudioStream" uid="uid://dao0axcmib5eh" path="res://sounds/player_local_sounds/interactable/pickup_item.mp3" id="11_hv5x3"]
 [ext_resource type="Script" uid="uid://bku4lmuuwtp6k" path="res://scripts/characters/player/ray_casts/useable_item_ray/use_helpers/use_ice_cube.gd" id="11_nt8su"]
+[ext_resource type="Script" uid="uid://c2mfspepurjj2" path="res://scripts/characters/player/ray_casts/useable_item_ray/use_helpers/use_scissors.gd" id="12_gpigg"]
 [ext_resource type="AudioStream" uid="uid://dbc0sn4gcabov" path="res://sounds/player_local_sounds/interactable/panel_cell_loaded.mp3" id="12_ykrpk"]
 [ext_resource type="AudioStream" uid="uid://bsbyb7sk1wftk" path="res://sounds/player_local_sounds/interactable/shot_used.mp3" id="14_hv5x3"]
 [ext_resource type="AudioStream" uid="uid://d3aj42ig37u6p" path="res://sounds/player_local_sounds/interactable/btn_press_success.mp3" id="15_ykrpk"]
@@ -29,6 +30,7 @@
 [ext_resource type="AudioStream" uid="uid://v65a064u7mp1" path="res://sounds/player_local_sounds/interactable/pill_used.mp3" id="20_8y75b"]
 [ext_resource type="AudioStream" uid="uid://dmhxj4tti0hkq" path="res://sounds/player_local_sounds/axe/axe_swing.mp3" id="24_d73qs"]
 [ext_resource type="AudioStream" uid="uid://b2ws1ps0f2keq" path="res://sounds/player_local_sounds/interactable/ice_cube_used.mp3" id="25_u6wme"]
+[ext_resource type="AudioStream" uid="uid://ufxpxrhtk0lf" path="res://sounds/player_local_sounds/interactable/scissor_snip.mp3" id="30_r0hd7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
 height = 3.0
@@ -109,6 +111,9 @@ script = ExtResource("10_gpigg")
 
 [node name="UseIceCube" type="Node" parent="CameraPivot/Camera3D/RayCastController/UseableItemRay" unique_id=155471022]
 script = ExtResource("11_nt8su")
+
+[node name="UseScissors" type="Node" parent="CameraPivot/Camera3D/RayCastController/UseableItemRay" unique_id=963826139]
+script = ExtResource("12_gpigg")
 
 [node name="AxeInteractRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1294195992]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09756696, 0)
@@ -204,6 +209,9 @@ pitch_scale = 0.9
 [node name="IceCubeUsed" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=1325868302]
 stream = ExtResource("25_u6wme")
 pitch_scale = 0.9
+
+[node name="ScissorSnip" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=39459678]
+stream = ExtResource("30_r0hd7")
 
 [connection signal="body_entered" from="CameraPivot/Camera3D/PlayerAxe/hurt_box" to="CameraPivot/Camera3D/PlayerAxe" method="_on_hurt_box_body_entered"]
 [connection signal="body_exited" from="CameraPivot/Camera3D/PlayerAxe/hurt_box" to="CameraPivot/Camera3D/PlayerAxe" method="_on_hurt_box_body_exited"]

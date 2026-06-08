@@ -11,6 +11,7 @@ func connect_signals() :
 	GLUsableItemBus.connect('use_hidden_shot', _handle_use_hidden_shot)
 	GLUsableItemBus.connect('use_steroid', _handle_use_steroid)
 	GLUsableItemBus.connect('use_ice_cube', _handle_use_icecube)
+	GLUsableItemBus.connect('use_scissors', _handle_use_scissors)
 
 
 func _handle_use_defect_shot(selected_brain_cell : BrainCell, _useable_item_obj : UseableItemObject) : 
@@ -51,5 +52,29 @@ func _handle_use_icecube(selected_brain_cell : BrainCell, _useable_item_obj : Us
 	GLCellManagerBus.emit_signal('cell_changed', selected_brain_cell)
 	
 	
+func _handle_use_scissors(selected_cell : BrainCell, useable_item_obj : UseableItemObject, selected_stat : String) :
+	
+	
+	match selected_stat :	
+		'strength' :
+			selected_cell.strength.enabled = false 	
+			selected_cell.strength.value = 0
+			selected_cell.strength.defect = 0
+			selected_cell.strength.hidden = false
+		'intelligence' :
+			selected_cell.intelligence.enabled = false 	
+			selected_cell.intelligence.value = 0
+			selected_cell.intelligence.defect = 0
+			selected_cell.intelligence.hidden = false
+		'community' :
+			selected_cell.community.enabled = false 	
+			selected_cell.community.value = 0
+			selected_cell.community.defect = 0
+			selected_cell.community.hidden = false
+		_ : 
+			push_error('invalid stat type for using scissors : ', selected_stat)
+		
+#	
+	GLCellManagerBus.emit_signal('cell_changed', selected_cell)
 	
 	

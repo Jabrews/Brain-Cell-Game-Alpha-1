@@ -72,7 +72,7 @@ func handle_round(round : int):
 			IVCellCreator.max_stat_value = 230
 			## USEABLE ITEMS ##
 			IVItemStats.defect_shot_decrease = 45
-			IVUseableItemSpawner.defect_shots_to_spawn = 1
+			IVUseableItemSpawner.defect_shots_to_spawn = 0
 			IVUseableItemSpawner.hidden_shots_to_spawn = 0
 			IVUseableItemSpawner.steroids_to_spawn = 0
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
@@ -91,10 +91,11 @@ func handle_round(round : int):
 			IVCellCreator.max_stat_value = 320
 			## USEABLE ITEMS ##
 			IVItemStats.defect_shot_decrease = 60
-			IVUseableItemSpawner.defect_shots_to_spawn = 1
-			IVUseableItemSpawner.hidden_shots_to_spawn = 6 # 1
+			IVUseableItemSpawner.defect_shots_to_spawn = 0
+			IVUseableItemSpawner.hidden_shots_to_spawn = 0
 			IVUseableItemSpawner.steroids_to_spawn = 0
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
+			IVUseableItemSpawner.scissors_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
 			IVShareholderOffers.item_offer_energy_percant= 75
 			IVShareholderOffers.stat_offer_energy_percant= 50		
@@ -110,10 +111,10 @@ func handle_round(round : int):
 			IVCellCreator.max_stat_value = 400
 			## USEABLE ITEMS ##
 			IVItemStats.defect_shot_decrease = 75
-			IVUseableItemSpawner.defect_shots_to_spawn = 1
-			IVUseableItemSpawner.hidden_shots_to_spawn = 1
-			IVUseableItemSpawner.steroids_to_spawn = 1
-			IVUseableItemSpawner.ice_cube_to_spawn = 1
+			IVUseableItemSpawner.defect_shots_to_spawn = 0
+			IVUseableItemSpawner.hidden_shots_to_spawn = 0
+			IVUseableItemSpawner.steroids_to_spawn = 0
+			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
 			IVShareholderOffers.item_offer_energy_percant= 75
 			IVShareholderOffers.stat_offer_energy_percant= 50		

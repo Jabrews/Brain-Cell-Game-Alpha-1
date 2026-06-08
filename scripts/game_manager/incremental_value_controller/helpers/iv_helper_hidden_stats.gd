@@ -1,5 +1,6 @@
 extends Node
 
+@warning_ignore("shadowed_global_identifier")
 func _update_hidden_stat_values(round : int , energy : int) :
 	
 	
@@ -34,6 +35,7 @@ func get_energy_danger_level(energy : int) -> int:
 	else:
 		return 3
 	
+@warning_ignore("shadowed_global_identifier")
 func update_hidden_stat_nax(round : int, danger_level : int) :
 	
 	if round == 1 :	

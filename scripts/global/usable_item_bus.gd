@@ -12,3 +12,8 @@ signal use_defect_shot(selected_cell : BrainCell, useable_item_obj : UseableItem
 signal use_hidden_shot(selected_cell : BrainCell, useable_item_obj : UseableItemObject)
 signal use_steroid(selected_cell : BrainCell, useable_item_obj : UseableItemObject)
 signal use_ice_cube(selected_cell : BrainCell, useable_item_obj : UseableItemObject)
+# scissors
+signal toggle_show_scissors_pop_up(toggle_value : bool, selected_cell : BrainCell, useable_item_obj : UseableItemObject)
+signal scissor_pop_up_chose_stat(selected_stat : String, selected_cell : BrainCell, useable_item_obj : UseableItemObject )
+
+signal use_scissors(selected_cell : BrainCell, useable_item_obj : UseableItemObject, selected_stat : String)
