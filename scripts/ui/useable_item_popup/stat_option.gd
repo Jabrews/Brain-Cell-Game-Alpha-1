@@ -18,12 +18,8 @@ func _process(_delta: float) -> void:
 	if stat_hovered_over :
 		if Input.is_action_just_pressed('attack') :
 			
-			var selected_cell = get_parent().selected_cell
-			var useable_item_obj  = get_parent().useable_item_obj
+			get_parent()._handle_pop_up_stat_selected(stat_type)
 			
-			GLUsableItemBus.emit_signal('defect_pop_up_chose_stat', stat_type, selected_cell, useable_item_obj )
-			GLUsableItemBus.emit_signal('toggle_show_defect_pop_up', false, null, null)
-
 	
 func _handle_mouse_entered() :
 	if stat_disabled :	

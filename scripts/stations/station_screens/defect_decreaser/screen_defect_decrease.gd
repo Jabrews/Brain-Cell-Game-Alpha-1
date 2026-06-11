@@ -97,6 +97,9 @@ func load_defect_bars(brain_cell : BrainCell) -> void:
 	else:
 		defect_community_bar.visible = false
 		community_label.visible = false
+		
+		
+	check_for_defect_gone_to_zero()
 	
 	
 func reset_defect_bars() -> void:
@@ -108,6 +111,22 @@ func reset_defect_bars() -> void:
 		defect_intelligence_bar,
 		defect_community_bar
 	]:
+		bar.material.set_shader_parameter("prior_defect_value", 0.0)
+		bar.material.set_shader_parameter("new_defect_value", 0.0)
+
+
+# whenever new decreased defect goes to 0 can look confusing to leave 'past' bar.
+# for this reason set both to zero
+func check_for_defect_gone_to_zero() -> void:
+	_check_bar_zero(defect_strength_bar)
+	_check_bar_zero(defect_intelligence_bar)
+	_check_bar_zero(defect_community_bar)
+
+
+func _check_bar_zero(bar : Sprite2D) -> void:
+	var new_defect_value : float = bar.material.get_shader_parameter("new_defect_value")
+
+	if is_equal_approx(new_defect_value, 0.0):
 		bar.material.set_shader_parameter("prior_defect_value", 0.0)
 		bar.material.set_shader_parameter("new_defect_value", 0.0)
 	

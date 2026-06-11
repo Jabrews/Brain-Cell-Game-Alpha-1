@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bbink7k6gloh3"]
+
+[ext_resource type="Script" uid="uid://i003iyh8ukpu" path="res://scripts/game_manager/cell_creator/helpers/name_manager.gd" id="1_6xcjc"]
+
+[node name="NameManager" type="Node" unique_id=822944812]
+script = ExtResource("1_6xcjc")

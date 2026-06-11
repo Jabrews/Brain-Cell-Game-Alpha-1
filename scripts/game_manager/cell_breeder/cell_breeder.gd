@@ -1,7 +1,6 @@
 extends Node
 
 # component helpers
-@onready var name_manager : Node = get_tree().get_first_node_in_group("NameManager")
 @onready var clean_stat_helper : Node = $CleanStatHelper
 @onready var defect_stat_helper : Node = $DefectStatHelper
 
@@ -17,12 +16,13 @@ func create_class_refrences() :
 	pass
 ########################
 
+# no signal directly called by breeding station
 func _handle_player_simulate_breeded_cells(cell_1 : BrainCell, cell_2 : BrainCell) -> BrainCell:
 	return _create_breeded_cell(cell_1, cell_2, false)
 
 
 func _handle_player_breeded_cells(cell_1 : BrainCell, cell_2 : BrainCell) -> void:
-
+	
 	var new_cell = _create_breeded_cell(cell_1, cell_2, true)
 
 	GLCellManagerBus.emit_signal(
@@ -53,7 +53,7 @@ func _create_breeded_cell(
 	var cell_name = "Simulation"
 
 	if generate_name:
-		cell_name = name_manager.pick_prisoner_names()
+		cell_name = GAMENameManager.pick_prisoner_names()
 
 	var new_cell = BrainCell.new(
 		cell_name,

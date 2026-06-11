@@ -13,7 +13,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void: 
 	if mouse_hovered_over :
 		if Input.is_action_just_pressed('attack') :
-			GLUsableItemBus.emit_signal('toggle_show_defect_pop_up', false, null, null)
+			get_parent().hide_popup()
 
 func _handle_mouse_entered() -> void:
 	_tween_scale(original_scale * 1.1)

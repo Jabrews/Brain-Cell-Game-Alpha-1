@@ -2,7 +2,6 @@ extends Node
 
 # components
 @onready var cell_manager : Node = $"../CellManager"
-@onready var name_manager : Node = $NameManager
 @onready var assemble_cells : Node = $AssembleCells
 @onready var assemble_target : Node = $AssembleTarget
 @onready var incrmental_value_controller : Node = $"../IncrementalValueController"

@@ -41,6 +41,7 @@ GLPrisonerProfilerComponentsBus="*uid://dnvsf1q2aqjpy"
 IVHiddenStats="*uid://dqwho0761iq4v"
 IVCellDefectDecreaser="*uid://bk0qwkq6easio"
 GAMECellBreeder="*uid://d0wtnetxi6per"
+GAMENameManager="*uid://bbink7k6gloh3"
 
 [debug]
 

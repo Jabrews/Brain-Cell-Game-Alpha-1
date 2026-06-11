@@ -9,8 +9,7 @@ extends Node
 func _ready() : 
 	connect_signals()
 	
-	GLGameManagerBus.current_round = 2
-	GLGameManagerBus.curr_energy = 100
+	GLGameManagerBus.current_round = 3
 	incremental_value_controller.change_progression_step(GLGameManagerBus.current_round, GLGameManagerBus.curr_energy)
 
 	

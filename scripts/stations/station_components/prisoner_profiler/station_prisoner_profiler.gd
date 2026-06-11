@@ -87,8 +87,8 @@ func _toggle_alert_symbol(stat_type :String, toggleValue : bool, symbol_type : S
 func _update_clean_stat_value(type : String, new_value : float) :
 
 	if power_out :
-		return
 		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
+		return
 	
 	# prevent changing value if quanity not selected
 	if prisoner_quantity == 0 :

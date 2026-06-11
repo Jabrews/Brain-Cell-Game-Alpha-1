@@ -2,24 +2,24 @@
 
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_fhjhg"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_6lsti"]
-[ext_resource type="Script" uid="uid://chuie0o8mf3fo" path="res://scripts/stations/station_screens/cell_breeding_2/seat_cell_loading/seat_cell_loader.gd" id="3_b0d77"]
+[ext_resource type="Script" uid="uid://chuie0o8mf3fo" path="res://scripts/stations/station_screens/cell_breeding/seat_cell_loading/seat_cell_loader.gd" id="3_b0d77"]
 [ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="3_m80wx"]
 [ext_resource type="Texture2D" uid="uid://dgpsdn572nveo" path="res://models/screens/infection_bar/progress_bar_over.png" id="4_vcjep"]
-[ext_resource type="Script" uid="uid://coe6bjaccccjx" path="res://scripts/stations/station_screens/cell_breeding_2/seat_cell_loading/display_cell.gd" id="4_xiqft"]
+[ext_resource type="Script" uid="uid://coe6bjaccccjx" path="res://scripts/stations/station_screens/cell_breeding/seat_cell_loading/display_cell.gd" id="4_xiqft"]
 [ext_resource type="Shader" uid="uid://1h7isoi7cv3c" path="res://scripts/shaders/target_progress_bar.gdshader" id="5_d2x7p"]
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="6_kcuv7"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="7_3jyb1"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="8_b0d77"]
 [ext_resource type="Texture2D" uid="uid://bjl3lcagjkgmv" path="res://models/screens/breeding_symbols/checkmark.png" id="9_m80wx"]
 [ext_resource type="Texture2D" uid="uid://dvjrss36t8u0b" path="res://models/screens/breeding_symbols/question_mark.png" id="10_3jyb1"]
-[ext_resource type="Script" uid="uid://cdmr8tj2imba6" path="res://scripts/stations/station_screens/cell_breeding_2/seat_cell_loading/label_press_to_see_result.gd" id="10_vcjep"]
-[ext_resource type="Script" uid="uid://ik08rwohsq4n" path="res://scripts/stations/station_screens/cell_breeding_2/seat_cell_loading/symbols/symbol_manager.gd" id="11_5yv6f"]
+[ext_resource type="Script" uid="uid://cdmr8tj2imba6" path="res://scripts/stations/station_screens/cell_breeding/seat_cell_loading/label_press_to_see_result.gd" id="10_vcjep"]
+[ext_resource type="Script" uid="uid://ik08rwohsq4n" path="res://scripts/stations/station_screens/cell_breeding/seat_cell_loading/symbols/symbol_manager.gd" id="11_5yv6f"]
 [ext_resource type="Texture2D" uid="uid://c5k5ibq6s2pn2" path="res://models/screens/breeding_symbols/arrow_UP.png" id="11_b0d77"]
-[ext_resource type="Script" uid="uid://bcp3lvytmlbmb" path="res://scripts/stations/station_screens/cell_breeding_2/seat_cell_loading/symbols/handle_checkmarks.gd" id="12_q1rk7"]
+[ext_resource type="Script" uid="uid://bcp3lvytmlbmb" path="res://scripts/stations/station_screens/cell_breeding/seat_cell_loading/symbols/handle_checkmarks.gd" id="12_q1rk7"]
 [ext_resource type="Texture2D" uid="uid://bv6urhadtuxp1" path="res://models/screens/breeding_symbols/arrow_DOWN.png" id="12_xiqft"]
-[ext_resource type="Script" uid="uid://0kji6fs6xf2m" path="res://scripts/stations/station_screens/cell_breeding_2/seat_cell_loading/symbols/handle_hidden.gd" id="13_besw2"]
-[ext_resource type="Script" uid="uid://n3lhs6hgtoxj" path="res://scripts/stations/station_screens/cell_breeding_2/seat_cell_loading/symbols/handle_arrow.gd" id="14_ma1s0"]
-[ext_resource type="Script" uid="uid://bgrg8ml7q2cat" path="res://scripts/stations/station_screens/cell_breeding_2/new_cell_preview/new_cell_preview.gd" id="20_3movu"]
+[ext_resource type="Script" uid="uid://0kji6fs6xf2m" path="res://scripts/stations/station_screens/cell_breeding/seat_cell_loading/symbols/handle_hidden.gd" id="13_besw2"]
+[ext_resource type="Script" uid="uid://n3lhs6hgtoxj" path="res://scripts/stations/station_screens/cell_breeding/seat_cell_loading/symbols/handle_arrow.gd" id="14_ma1s0"]
+[ext_resource type="Script" uid="uid://bgrg8ml7q2cat" path="res://scripts/stations/station_screens/cell_breeding/new_cell_preview/new_cell_preview.gd" id="20_3movu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bx7kg"]
 shader = ExtResource("1_fhjhg")
@@ -795,7 +795,6 @@ text = "Breeding Attempts Left -
 horizontal_alignment = 1
 
 [node name="SeatCellLoading" type="Node2D" parent="." unique_id=1806620269]
-visible = false
 
 [node name="LeftSeat" type="Node2D" parent="SeatCellLoading" unique_id=1026694676]
 script = ExtResource("3_b0d77")
@@ -1423,6 +1422,7 @@ horizontal_alignment = 1
 script = ExtResource("10_vcjep")
 
 [node name="NewCellPreview" type="Node2D" parent="." unique_id=1464893234]
+visible = false
 script = ExtResource("20_3movu")
 
 [node name="Bg" type="ColorRect" parent="NewCellPreview" unique_id=1699588346]

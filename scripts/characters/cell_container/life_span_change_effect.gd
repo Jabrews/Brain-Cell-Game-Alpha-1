@@ -8,34 +8,33 @@ extends  Node
 @onready var stat_display_mesh : MeshInstance3D = $"../StatDisplay/StatMesh"
 
 var last_lifespan : int = 0
+var designated_brain_cell : BrainCell
 
 var life_span_warning_tween : Tween
 
 
 func _ready() -> void:
-	last_lifespan = parent_cell_container.designated_brain_cell.life_span
+	designated_brain_cell = parent_cell_container.designated_brain_cell
+	last_lifespan = designated_brain_cell.life_span
 	
 	GLCellManagerBus.connect('cell_changed', _handle_cell_changed)
 
 
 func _handle_cell_changed(changed_brain_cell : BrainCell) -> void:
+	
+	if designated_brain_cell.name == changed_brain_cell.name :
+	
+		if last_lifespan != changed_brain_cell.life_span :
+		
+			# update cached value immediately
+			last_lifespan = changed_brain_cell.life_span
 
-	var lifespan_changed := (
-		last_lifespan != changed_brain_cell.life_span
-	)
-
-	# update cached value immediately
-	last_lifespan = changed_brain_cell.life_span
-
-	# play effect if lifespan changed and cell isn't dead
-	if lifespan_changed and changed_brain_cell.life_span > 0:
-		play_life_span_changed_effect()
-		shake_life_span_label()
-
+			# play effect if lifespan changed and cell isn't dead
+			if changed_brain_cell.life_span > 0:
+				play_life_span_changed_effect()
+				shake_life_span_label()
 
 func play_life_span_changed_effect() -> void:
-
-	print("effect")
 
 	var original_scale = parent_cell_container.scale
 

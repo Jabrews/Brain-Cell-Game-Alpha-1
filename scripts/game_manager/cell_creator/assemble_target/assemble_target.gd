@@ -1,7 +1,6 @@
 extends Node
 
 # componnets
-@onready var name_manager : Node = $"../NameManager"
 @onready var cell_manager
 
 
@@ -15,7 +14,7 @@ func assemble() :
 	var target_intelligence_value = randi_range(min_value, max_stat_value)
 	var target_community_value = randi_range(min_value, max_stat_value)
 	
-	var new_name = name_manager.pick_target_names()
+	var new_name = GAMENameManager.pick_target_names()
 	
 	var target_strength = BrainCellStat.new(
 		'strength', 		

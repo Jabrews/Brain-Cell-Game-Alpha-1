@@ -1,8 +1,5 @@
 extends Node
 
-# components
-@onready var name_manager : Node = $"../NameManager"
-
 # components helpers
 @onready var create_clean_stats : Node = $StatHelpers/HelperCreateClean
 @onready var create_defect_stats : Node = $StatHelpers/HelperCreateDefect
@@ -31,7 +28,7 @@ func assemble(cell_constructor : CellConstructor) -> Array[BrainCell]:
 		####################
 
 		### ESC ###
-		var new_name = name_manager.pick_prisoner_names()
+		var new_name = GAMENameManager.pick_prisoner_names()
 		var life_span = randi_range(2, 4)
 		###########
 

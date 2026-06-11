@@ -93,11 +93,6 @@ func resolve_clean_stat(stat_array : Array, target_value : float, increase_case_
 	# increase case
 	if increase_case_min <= stat_low:
 		var result = increase_clean_stat_case.increase_clean_stat_case(stat_high, stat_low, target_value)
-		
-		# over case
-		if stat_high >= target_value:
-			result = over_clean_stat_case.over_clean_stat_case(stat_high, stat_low, target_value)
-		
 		return result
 	
 	else : 
@@ -108,10 +103,9 @@ func resolve_clean_stat(stat_array : Array, target_value : float, increase_case_
 			var result = increase_clean_stat_case.increase_clean_stat_case(stat_high, stat_low, target_value)
 			return result
 		
-		
-		
-		# decrease case
-		return decrease_clean_stat_case.decrease_clean_stat_case(stat_high, stat_low, target_value)
+		else : 
+			# decrease case
+			return decrease_clean_stat_case.decrease_clean_stat_case(stat_high, stat_low, target_value)
 
 func get_highest_lowest_stat(stat_1, stat_2) :
 	var high_stat : float

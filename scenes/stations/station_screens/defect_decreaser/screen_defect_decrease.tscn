@@ -72,7 +72,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6h8ke"]
 shader = SubResource("Shader_7s2tk")
 shader_parameter/prior_defect_value = 0.7910000375725
-shader_parameter/new_defect_value = 0.48400002299
+shader_parameter/new_defect_value = 0.0
 shader_parameter/prior_defect_color = Color(0.85882354, 0.09803922, 0.20392157, 1)
 shader_parameter/new_defect_color = Color(1, 0.4908334, 0.35000002, 1)
 shader_parameter/overlap_opacity = 0.3
@@ -147,7 +147,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_avpus"]
 shader = SubResource("Shader_pv1fd")
-shader_parameter/prior_defect_value = 0.7910000375725
+shader_parameter/prior_defect_value = 0.0
 shader_parameter/new_defect_value = 0.48400002299
 shader_parameter/prior_defect_color = Color(0.85882354, 0.09803922, 0.20392157, 1)
 shader_parameter/new_defect_color = Color(1, 0.4908334, 0.35000002, 1)
@@ -284,6 +284,7 @@ scale = Vector2(1.2451613, 0.7749999)
 texture = ExtResource("3_pv1fd")
 
 [node name="StrengthHide" type="Sprite2D" parent="DefectDisplay" unique_id=1462158389]
+visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
 material = SubResource("ShaderMaterial_fnw41")
@@ -310,6 +311,7 @@ scale = Vector2(1.2451613, 0.725)
 texture = ExtResource("3_pv1fd")
 
 [node name="IntelligenceHide" type="Sprite2D" parent="DefectDisplay" unique_id=1947688622]
+visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
 material = SubResource("ShaderMaterial_fnw41")
@@ -335,6 +337,7 @@ scale = Vector2(1.2451613, 0.8)
 texture = ExtResource("3_pv1fd")
 
 [node name="CommunityHide" type="Sprite2D" parent="DefectDisplay" unique_id=154175610]
+visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
 material = SubResource("ShaderMaterial_fnw41")
