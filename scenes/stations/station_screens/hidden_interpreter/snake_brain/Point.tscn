@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://6rggjqwnbnb1"]
+
+[ext_resource type="Texture2D" uid="uid://dal6ojot6ps8y" path="res://models/screens/snake_brain/point.png" id="1_lfvjp"]
+[ext_resource type="Script" uid="uid://dvsbpdru10m0y" path="res://scripts/stations/station_screens/hidden_interpreter/snake_brain/point_spawner/point.gd" id="1_pc866"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfvjp"]
+size = Vector2(6, 6)
+
+[node name="Point" type="StaticBody2D" unique_id=1970286745]
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_pc866")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1234169468]
+texture_filter = 1
+position = Vector2(2.5, 2.5)
+texture = ExtResource("1_lfvjp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=336819466]
+position = Vector2(2.6666667, 2.6666667)
+shape = SubResource("RectangleShape2D_lfvjp")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1974163083]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=292460837]
+position = Vector2(2.6666667, 2.6666667)
+shape = SubResource("RectangleShape2D_lfvjp")
+
+[node name="RetryTimer" type="Timer" parent="." unique_id=216553529]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

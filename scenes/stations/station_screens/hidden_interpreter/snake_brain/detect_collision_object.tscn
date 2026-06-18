@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://df5tddrun16yp"]
+
+[ext_resource type="Script" uid="uid://eiju6pao4iwq" path="res://scripts/stations/station_screens/hidden_interpreter/snake_brain/find_valid_spawn/detect_collision_object.gd" id="1_pirlp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pirlp"]
+
+[node name="DetectCollisionObject" type="Node2D" unique_id=885819112]
+script = ExtResource("1_pirlp")
+
+[node name="DetectArea" type="Area2D" parent="." unique_id=943942107]
+collision_layer = 0
+collision_mask = 6
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectArea" unique_id=215576497]
+shape = SubResource("RectangleShape2D_pirlp")
+
+[connection signal="area_entered" from="DetectArea" to="." method="_on_detect_area_area_entered"]
+[connection signal="body_entered" from="DetectArea" to="." method="_on_detect_area_body_entered"]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://k4lxradq4u10"]
 
-[ext_resource type="FontFile" uid="uid://falf5rdnexev" path="res://models/fonts/3x3-pixel-font.otf" id="1_5dqjn"]
 [ext_resource type="Script" uid="uid://duhb1pgc8vbvd" path="res://scripts/stations/station_screens/hidden_interpreter/game_screen_timer/falling_label.gd" id="1_nilr3"]
+[ext_resource type="FontFile" uid="uid://ehsk4rh04d68" path="res://models/fonts/my 3x5 tiny mono pixel font.ttf" id="2_nilr3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dqjn"]
 size = Vector2(32, 16)
@@ -11,7 +11,7 @@ script = ExtResource("1_nilr3")
 
 [node name="FallingLabelText" type="Label" parent="." unique_id=174386839]
 texture_filter = 1
-theme_override_fonts/font = ExtResource("1_5dqjn")
+theme_override_fonts/font = ExtResource("2_nilr3")
 theme_override_font_sizes/font_size = 20
 text = "-1"
 

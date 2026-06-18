@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://5a1rtusg0sih"]
+
+[ext_resource type="Texture2D" uid="uid://cgwdnpcjuv0hx" path="res://models/screens/prisoner_profiler_symbols/energy_symbol.png" id="1_8o3pm"]
+[ext_resource type="Script" uid="uid://bhrkufdybuk8p" path="res://scripts/stations/station_components/hidden_interpreter/energy_decrease_symbol/energy_decrease_symbol.gd" id="2_a5xg8"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="2_khowm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_khowm"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = ExtResource("1_8o3pm")
+texture_filter = 0
+billboard_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5n5c6"]
+material = SubResource("StandardMaterial3D_khowm")
+size = Vector2(0.5, 0.5)
+orientation = 2
+
+[node name="EnergyDecreaseSymbol" type="MeshInstance3D" unique_id=909715283]
+mesh = SubResource("PlaneMesh_5n5c6")
+script = ExtResource("2_a5xg8")
+
+[node name="DecreaseLabel" type="Label3D" parent="." unique_id=1936961642]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38275743, 0, 0)
+billboard = 1
+modulate = Color(1, 0, 0, 1)
+text = "-10"
+font = ExtResource("2_khowm")
+font_size = 80
+outline_size = 0
+
+[node name="DeleteDelay" type="Timer" parent="." unique_id=1359708366]
+wait_time = 3.0

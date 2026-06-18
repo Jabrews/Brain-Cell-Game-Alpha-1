@@ -30,4 +30,5 @@ func _handle_timer_increment(current_value : int) :
 
 func _handle_timer_reset() :
 	idle_screen._reset_increment()
+
 	

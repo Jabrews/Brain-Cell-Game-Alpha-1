@@ -60,6 +60,7 @@ func _handle_increment(current_time_increment : int) :
 	game_screen_timer.call_deferred("_handle_increment", current_time_increment)
 	
 func _handle_brain_collected_points(point_amount) :
+	print('point collected')
 	total_points_collected += point_amount
 	progression_manager._update_progression(total_points_collected)
 	game_screen_timer.call_deferred("_handle_point_collected", point_amount)

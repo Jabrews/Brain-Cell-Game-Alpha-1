@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cwd4vikk6xrro"]
+
+[ext_resource type="Texture2D" uid="uid://cd2lw2b00fsmw" path="res://models/screens/snake_brain/wall13.png" id="1_jxmsv"]
+[ext_resource type="Script" uid="uid://mw6phk8asu22" path="res://scripts/stations/station_screens/hidden_interpreter/snake_brain/kill_area.gd" id="2_vgebp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmygt"]
+size = Vector2(11, 10.5)
+
+[node name="Wall" type="Node2D" unique_id=1326025874]
+scale = Vector2(2, 2)
+
+[node name="Wall" type="Sprite2D" parent="." unique_id=154657547]
+texture_filter = 1
+texture = ExtResource("1_jxmsv")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1306761030]
+collision_layer = 4
+script = ExtResource("2_vgebp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=60301058]
+position = Vector2(0, -0.25)
+shape = SubResource("RectangleShape2D_pmygt")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

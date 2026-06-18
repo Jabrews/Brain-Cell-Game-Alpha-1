@@ -24,6 +24,10 @@ var chance_for_multiple_hidden_stat_interpreter_jolt = 25
 
 # the value in which we increase
 var interpreter_jolt_defect_increase = 20
+var interpreter_jolt_energy_decrease_single = 3
+var interpreter_jolt_energy_decrease_multiple = 1
+
+
 ######################################
 
 ### jolt cell container ###

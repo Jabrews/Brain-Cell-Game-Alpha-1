@@ -25,6 +25,10 @@ func _process(_delta):
 	# if hover changed (INCLUDING to null)
 	# -----------------------------
 	if new_hovered != current_hovered:
+		
+		if GLHoldingDisplayBus.player_is_holding :
+			GLHoldingDisplayBus.emit_signal('player_interupted_hold')
+		
 
 		# exited hover
 		if current_hovered:

@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://cjiq6xqka7iyf"]
+
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_ejdgb"]
+[ext_resource type="Texture2D" uid="uid://dcqjk8yn0gxx0" path="res://models/screens/astroid_brain/ground.png" id="1_l6eeg"]
+[ext_resource type="Script" uid="uid://ct7ys88qaal52" path="res://scripts/stations/station_screens/hidden_interpreter/flappy_brain/start_screen_graphic.gd" id="2_l6eeg"]
+[ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="3_ahso5"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="4_4twl4"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="5_gpbm3"]
+[ext_resource type="Script" uid="uid://cdmr8tj2imba6" path="res://scripts/stations/station_screens/cell_breeding/seat_cell_loading/label_press_to_see_result.gd" id="6_6n0x7"]
+[ext_resource type="PackedScene" uid="uid://gypqhtbchrv6" path="res://scenes/stations/station_screens/hidden_interpreter/astroid_brain/ship/ship.tscn" id="8_ahso5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahso5"]
+size = Vector2(480, 20)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8yg07"]
+shader = ExtResource("3_ahso5")
+shader_parameter/blur_amount = 3.7690001790275
+shader_parameter/tint_strength = 0.17600000836
+shader_parameter/tint_color = Color(0.099985994, 0.099985994, 0.099985994, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a82iu"]
+shader = ExtResource("1_ejdgb")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[node name="AstroidBrain" type="Node2D" unique_id=480053016]
+
+[node name="BG" type="ColorRect" parent="." unique_id=527672367]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -28.0
+offset_right = 480.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.27178437, 0.14162505, 0.1788719, 1)
+
+[node name="TESTCAMERA" type="Camera2D" parent="." unique_id=592457317]
+position = Vector2(240, 150)
+zoom = Vector2(1.6, 1.6)
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=1461820539]
+position = Vector2(240, 274)
+collision_layer = 2
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground" unique_id=1768460162]
+texture = ExtResource("1_l6eeg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=278571586]
+shape = SubResource("RectangleShape2D_ahso5")
+
+[node name="StartScreenGraphic" type="Node2D" parent="." unique_id=870343489]
+visible = false
+script = ExtResource("2_l6eeg")
+
+[node name="ColorRect" type="ColorRect" parent="StartScreenGraphic" unique_id=1713327321]
+material = SubResource("ShaderMaterial_8yg07")
+offset_top = -30.0
+offset_right = 480.0
+offset_bottom = 271.0
+
+[node name="TitleCard" type="Label" parent="StartScreenGraphic" unique_id=1991524968]
+offset_left = 118.0
+offset_top = 70.0
+offset_right = 358.0
+offset_bottom = 93.0
+theme_override_fonts/font = ExtResource("4_4twl4")
+theme_override_font_sizes/font_size = 20
+text = "Astroid Brain"
+
+[node name="PressSpace" type="Label" parent="StartScreenGraphic" unique_id=821723061]
+offset_left = 126.0
+offset_top = 98.0
+offset_right = 366.0
+offset_bottom = 133.0
+theme_override_fonts/font = ExtResource("5_gpbm3")
+theme_override_font_sizes/font_size = 14
+text = "Press 'AD' to move
+press 'SPACE' to shoot"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_6n0x7")
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=114287097]
+visible = false
+material = SubResource("ShaderMaterial_a82iu")
+offset_top = -30.0
+offset_right = 480.0
+offset_bottom = 270.0
+
+[node name="Ship" parent="." unique_id=695462747 instance=ExtResource("8_ahso5")]
+position = Vector2(78, 256)
+collision_mask = 2

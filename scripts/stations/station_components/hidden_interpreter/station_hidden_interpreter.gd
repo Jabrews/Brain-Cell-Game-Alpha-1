@@ -19,8 +19,9 @@ var jolt_active : bool = false
 @onready var screen_hidden_interpreter: Node2D = $InterpreterTV/TvFrontPannel/SubViewport/ScreenHiddenInterpreter
 @onready var audio_manager : Node3D = $AudioManager
 
-# jolt particles
+# jolt 
 @onready var jolt_particles : GPUParticles3D = $JoltParticles
+@onready var energy_decrease_spawner : Node3D = $EnergyDecreaseSpawner
 
 
 ## this is the game screen the hidden stat interpreter loads
@@ -176,6 +177,7 @@ func _handle_defect_event_jolt(selected_interpreters : Array) :
 			jolt_particles.emitting = true
 			audio_manager.toggle_play_jolt(true)
 			jolt_active = true
+			energy_decrease_spawner._start_spawning_decrease_particles(selected_interpreters)
 			
 			if active_brain_cell_container :
 				active_brain_cell_container.switch_cell_state('jolt')
@@ -185,6 +187,7 @@ func _handle_stop_jolt_btn_pressed() :
 	jolt_active = false
 	audio_manager.toggle_play_jolt(false)
 	jolt_particles.emitting = false 
+	energy_decrease_spawner._stop_spawning_decrease_particles()
 	
 	if active_brain_cell_container : 
 		switch_screen('IDLE_SCREEN')	

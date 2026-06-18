@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dtnqsgpp8ysx1"]
+
+[ext_resource type="Script" uid="uid://cdhft2spgkbm2" path="res://scripts/stations/station_screens/hidden_interpreter/snake_brain/snake/snake_head.gd" id="1_oc5wg"]
+[ext_resource type="Texture2D" uid="uid://ck1rtp23uwudx" path="res://models/screens/snake_brain/snake-head.png" id="1_x6y8x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7nsk"]
+size = Vector2(2, 2)
+
+[node name="SnakeHead" type="CharacterBody2D" unique_id=1402006101 groups=["player"]]
+collision_mask = 0
+script = ExtResource("1_oc5wg")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=984655439]
+texture = ExtResource("1_x6y8x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=808753445]
+shape = SubResource("RectangleShape2D_c7nsk")

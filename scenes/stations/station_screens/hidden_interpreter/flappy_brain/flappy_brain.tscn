@@ -211,7 +211,7 @@ offset_right = 420.0
 offset_bottom = 121.0
 theme_override_fonts/font = ExtResource("19_2hnrm")
 theme_override_font_sizes/font_size = 14
-text = "Press Space to start"
+text = "Press Space to jump"
 script = ExtResource("20_w7mvy")
 
 [connection signal="timeout" from="ObstacleManager/SpawnObstacleDelay" to="ObstacleManager" method="_on_spawn_obstacle_delay_timeout"]

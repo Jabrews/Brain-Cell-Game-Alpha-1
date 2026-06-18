@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://gypqhtbchrv6"]
+
+[ext_resource type="Script" uid="uid://b4kqp1k7soeya" path="res://scripts/stations/station_screens/hidden_interpreter/astroid_brain/ship/ship.gd" id="1_2iwsn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmc7w"]
+size = Vector2(10, 15)
+
+[node name="Ship" type="CharacterBody2D" unique_id=695462747]
+script = ExtResource("1_2iwsn")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=144824911]
+offset_left = -5.0
+offset_top = 2.0
+offset_right = 5.0
+offset_bottom = 7.0
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=300435103]
+offset_left = -1.0
+offset_top = -7.0
+offset_right = 2.0
+offset_bottom = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=175630205]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_nmc7w")
+
+[node name="Bullets" type="Node" parent="." unique_id=2115046198]
+
+[node name="BulletSpawnPoint" type="Node2D" parent="." unique_id=386699812]
+position = Vector2(-1, -18)

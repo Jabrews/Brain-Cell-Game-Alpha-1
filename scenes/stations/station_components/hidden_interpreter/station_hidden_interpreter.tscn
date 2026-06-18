@@ -16,6 +16,8 @@
 [ext_resource type="AudioStream" uid="uid://c6pdl0o33b0rt" path="res://sounds/hidden_stat_interpreter/hidden_stat_accept.mp3" id="13_68u63"]
 [ext_resource type="AudioStream" uid="uid://b8vn2bineow4" path="res://sounds/hidden_stat_interpreter/jolt_start.mp3" id="15_34ok7"]
 [ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="17_2m55x"]
+[ext_resource type="PackedScene" uid="uid://5a1rtusg0sih" path="res://scenes/stations/station_components/hidden_interpreter/energy_decrease_symbol.tscn" id="17_nseoi"]
+[ext_resource type="Script" uid="uid://c37qtvh1gk3el" path="res://scripts/stations/station_components/hidden_interpreter/energy_decrease_symbol/energy_decrease_spawner.gd" id="18_nseoi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pqduu"]
 size = Vector3(2.11, 2.2, 3.5)
@@ -254,6 +256,27 @@ gizmo_extents = 0.07
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7144637, 0)
 emitting = false
 amount = 12
+lifetime = 0.4
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_nseoi")
 draw_pass_1 = SubResource("PlaneMesh_ayhvi")
+
+[node name="Node3D" parent="." unique_id=909715283 instance=ExtResource("17_nseoi")]
+
+[node name="EnergyDecreaseSpawner" type="Node3D" parent="." unique_id=1091227164]
+script = ExtResource("18_nseoi")
+energy_decrease_symbol_scene = ExtResource("17_nseoi")
+
+[node name="SpawnDelay" type="Timer" parent="EnergyDecreaseSpawner" unique_id=1762313123]
+wait_time = 5.0
+
+[node name="SpawnSpots" type="Node3D" parent="EnergyDecreaseSpawner" unique_id=1758889785]
+
+[node name="Spawn1" type="Node3D" parent="EnergyDecreaseSpawner/SpawnSpots" unique_id=1108703718]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 0, 2.3386102, 2.6281414)
+
+[node name="Spawn2" type="Node3D" parent="EnergyDecreaseSpawner/SpawnSpots" unique_id=1881562429]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 0, 2.1618297, -0.45434725)
+
+[node name="Spawn3" type="Node3D" parent="EnergyDecreaseSpawner/SpawnSpots" unique_id=1240467369]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -0.6352744, 2.3386102, 2.3282068)

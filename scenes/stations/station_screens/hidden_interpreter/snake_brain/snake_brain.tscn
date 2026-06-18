@@ -1,0 +1,221 @@
+[gd_scene format=3 uid="uid://dujkv70lngjrl"]
+
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_c7nsk"]
+[ext_resource type="Script" uid="uid://ba0cwqjuxyiim" path="res://scripts/stations/station_screens/hidden_interpreter/snake_brain/snake_brain.gd" id="1_dorrq"]
+[ext_resource type="Script" uid="uid://ct7ys88qaal52" path="res://scripts/stations/station_screens/hidden_interpreter/flappy_brain/start_screen_graphic.gd" id="2_nwad0"]
+[ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="3_dorrq"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="4_fyxu6"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="5_moasq"]
+[ext_resource type="Script" uid="uid://cdmr8tj2imba6" path="res://scripts/stations/station_screens/cell_breeding/seat_cell_loading/label_press_to_see_result.gd" id="6_5i7bd"]
+[ext_resource type="Script" uid="uid://dofuohcmkrtw2" path="res://scripts/stations/station_screens/hidden_interpreter/snake_brain/progression_manager.gd" id="7_bklrl"]
+[ext_resource type="PackedScene" uid="uid://dtnqsgpp8ysx1" path="res://scenes/stations/station_screens/hidden_interpreter/snake_brain/snake/snake_head.tscn" id="7_dorrq"]
+[ext_resource type="Script" uid="uid://ugq2elmim7fq" path="res://scripts/stations/station_screens/hidden_interpreter/snake_brain/snake/snake.gd" id="7_nwad0"]
+[ext_resource type="Script" uid="uid://mw6phk8asu22" path="res://scripts/stations/station_screens/hidden_interpreter/snake_brain/kill_area.gd" id="8_fyxu6"]
+[ext_resource type="Script" uid="uid://dy243s7cfnv71" path="res://scripts/stations/station_screens/hidden_interpreter/snake_brain/find_valid_spawn/find_valid_spawn_point.gd" id="8_pwp5p"]
+[ext_resource type="Script" uid="uid://pqwwgkp1yefw" path="res://scripts/stations/station_screens/hidden_interpreter/snake_brain/point_spawner/point_spawner.gd" id="9_moasq"]
+[ext_resource type="Script" uid="uid://bnpbnf0qyo427" path="res://scripts/stations/station_screens/hidden_interpreter/snake_brain/wall_spawner/wall_spawner.gd" id="9_pwp5p"]
+[ext_resource type="PackedScene" uid="uid://52dp45lrge66" path="res://scenes/stations/station_screens/hidden_interpreter/game_screen_timer/game_screen_timer.tscn" id="13_4wys5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nwad0"]
+size = Vector2(480, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dorrq"]
+size = Vector2(257, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyxu6"]
+size = Vector2(257, 12)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pwp5p"]
+shader = ExtResource("1_c7nsk")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4wys5"]
+shader = ExtResource("3_dorrq")
+shader_parameter/blur_amount = 3.7690001790275
+shader_parameter/tint_strength = 0.17600000836
+shader_parameter/tint_color = Color(0.099985994, 0.099985994, 0.099985994, 0)
+
+[node name="SnakeBrain" type="Node2D" unique_id=2030835125]
+script = ExtResource("1_dorrq")
+
+[node name="BG" type="ColorRect" parent="." unique_id=1681169914]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -28.0
+offset_right = 480.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.27178437, 0.14162505, 0.1788719, 1)
+
+[node name="Walls" type="Node2D" parent="." unique_id=170882100]
+
+[node name="Wall" type="StaticBody2D" parent="Walls" unique_id=1998910516]
+position = Vector2(0, 3)
+collision_layer = 6
+collision_mask = 0
+
+[node name="WallColorRect" type="ColorRect" parent="Walls/Wall" unique_id=451816472]
+offset_right = 480.0
+offset_bottom = 10.0
+color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall" unique_id=1644725013]
+position = Vector2(240, 5)
+shape = SubResource("RectangleShape2D_nwad0")
+
+[node name="KillArea" type="Area2D" parent="Walls/Wall" unique_id=636663477]
+collision_layer = 0
+script = ExtResource("8_fyxu6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall/KillArea" unique_id=995438104]
+position = Vector2(240, 6)
+shape = SubResource("RectangleShape2D_nwad0")
+
+[node name="Wall2" type="StaticBody2D" parent="Walls" unique_id=1615614888]
+position = Vector2(0, 260)
+collision_layer = 6
+collision_mask = 0
+
+[node name="WallColorRect" type="ColorRect" parent="Walls/Wall2" unique_id=642200857]
+offset_right = 480.0
+offset_bottom = 10.0
+color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2" unique_id=1360071393]
+position = Vector2(240, 5)
+shape = SubResource("RectangleShape2D_nwad0")
+
+[node name="KillArea" type="Area2D" parent="Walls/Wall2" unique_id=1686162335]
+collision_layer = 0
+script = ExtResource("8_fyxu6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2/KillArea" unique_id=650036609]
+position = Vector2(240, 6)
+shape = SubResource("RectangleShape2D_nwad0")
+
+[node name="Wall3" type="StaticBody2D" parent="Walls" unique_id=1234657566]
+position = Vector2(10, -8)
+rotation = 1.5707964
+collision_layer = 6
+collision_mask = 0
+
+[node name="WallColorRect" type="ColorRect" parent="Walls/Wall3" unique_id=58852846]
+offset_left = 10.014083
+offset_right = 267.95404
+offset_bottom = 10.0
+color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall3" unique_id=1618978680]
+position = Vector2(138.5, 4.9999986)
+shape = SubResource("RectangleShape2D_dorrq")
+
+[node name="KillArea" type="Area2D" parent="Walls/Wall3" unique_id=766596028]
+collision_layer = 0
+script = ExtResource("8_fyxu6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall3/KillArea" unique_id=1814097388]
+position = Vector2(138.5, 5.9999986)
+shape = SubResource("RectangleShape2D_fyxu6")
+
+[node name="Wall4" type="StaticBody2D" parent="Walls" unique_id=205229051]
+position = Vector2(480, -8)
+rotation = 1.5707964
+collision_layer = 6
+collision_mask = 0
+
+[node name="WallColorRect" type="ColorRect" parent="Walls/Wall4" unique_id=129153265]
+offset_left = 10.014083
+offset_right = 267.95407
+offset_bottom = 10.0
+color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall4" unique_id=1631914646]
+position = Vector2(138.5, 4.9999986)
+shape = SubResource("RectangleShape2D_dorrq")
+
+[node name="KillArea" type="Area2D" parent="Walls/Wall4" unique_id=430828935]
+collision_layer = 0
+script = ExtResource("8_fyxu6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall4/KillArea" unique_id=1228925500]
+position = Vector2(138.5, 5.9999986)
+shape = SubResource("RectangleShape2D_fyxu6")
+
+[node name="GameScreenTimer" parent="." unique_id=635672660 instance=ExtResource("13_4wys5")]
+position = Vector2(200, 2)
+scale = Vector2(0.7, 0.7)
+
+[node name="FindValidSpawnPoint" type="Node" parent="." unique_id=1126122909]
+script = ExtResource("8_pwp5p")
+
+[node name="TopLeft" type="Node2D" parent="FindValidSpawnPoint" unique_id=823623465]
+position = Vector2(16, 20)
+
+[node name="BottomRight" type="Node2D" parent="FindValidSpawnPoint" unique_id=299739262]
+position = Vector2(462, 254)
+
+[node name="PointSpawner" type="Node" parent="." unique_id=1186776500]
+script = ExtResource("9_moasq")
+
+[node name="Points" type="Node" parent="PointSpawner" unique_id=2120213510]
+
+[node name="WallSpawner" type="Node" parent="." unique_id=1914600034]
+script = ExtResource("9_pwp5p")
+
+[node name="SpawnWallDelay" type="Timer" parent="WallSpawner" unique_id=183517809]
+wait_time = 5.0
+
+[node name="Walls" type="Node" parent="WallSpawner" unique_id=500808453]
+
+[node name="ProgressionManager" type="Node" parent="." unique_id=16406578]
+script = ExtResource("7_bklrl")
+
+[node name="TESTCAMERA2" type="Camera2D" parent="." unique_id=523512696]
+position = Vector2(240, 136)
+
+[node name="SnakeManager" type="Node" parent="." unique_id=1005441901]
+script = ExtResource("7_nwad0")
+
+[node name="SnakeHead" parent="SnakeManager" unique_id=1402006101 instance=ExtResource("7_dorrq")]
+position = Vector2(231, 141)
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=24497807]
+material = SubResource("ShaderMaterial_pwp5p")
+offset_top = -30.0
+offset_right = 480.0
+offset_bottom = 270.0
+
+[node name="StartScreenGraphic" type="Node2D" parent="." unique_id=910373610]
+script = ExtResource("2_nwad0")
+
+[node name="ColorRect" type="ColorRect" parent="StartScreenGraphic" unique_id=706969864]
+material = SubResource("ShaderMaterial_4wys5")
+offset_top = -30.0
+offset_right = 480.0
+offset_bottom = 271.0
+
+[node name="TitleCard" type="Label" parent="StartScreenGraphic" unique_id=1188010553]
+offset_left = 118.0
+offset_top = 70.0
+offset_right = 358.0
+offset_bottom = 93.0
+theme_override_fonts/font = ExtResource("4_fyxu6")
+theme_override_font_sizes/font_size = 20
+text = "Snake Brain"
+
+[node name="PressSpace" type="Label" parent="StartScreenGraphic" unique_id=189251593]
+offset_left = 172.0
+offset_top = 98.0
+offset_right = 412.0
+offset_bottom = 121.0
+theme_override_fonts/font = ExtResource("5_moasq")
+theme_override_font_sizes/font_size = 14
+text = "Press 'WASD' to move"
+script = ExtResource("6_5i7bd")

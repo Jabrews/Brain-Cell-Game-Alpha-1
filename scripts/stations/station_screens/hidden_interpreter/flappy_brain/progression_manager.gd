@@ -5,9 +5,9 @@ func _update_progression(total_points_collected : int) :
 	
 	# tier one
 	if total_points_collected >= 0 :	
-		IVFlappyBrain.tube_speed = 120
+		IVFlappyBrain.tube_speed = 130
 		IVFlappyBrain.spawn_obstacle_delay_min = 2
-		IVFlappyBrain.spawn_obstacle_delay_max = 5
+		IVFlappyBrain.spawn_obstacle_delay_max = 3
 		IVFlappyBrain.gap_bewteen_tubes_min = 7
 		IVFlappyBrain.gap_bewteen_tubes_max = 9
 		IVFlappyBrain.center_y_unit_min = 2
@@ -15,8 +15,8 @@ func _update_progression(total_points_collected : int) :
 		
 		IVFlappyBrain.chance_to_generate_above_tube = 50
 		IVFlappyBrain.chance_to_generate_bewteen_tube = 25
-		IVFlappyBrain.chance_to_generate_bewteen_preload = 0
-		IVFlappyBrain.chance_to_generate_extreme_bewteen_preload = 25
+		IVFlappyBrain.chance_to_generate_bewteen_preload = 25
+		IVFlappyBrain.chance_to_generate_extreme_bewteen_preload = 0
 		
 		
 	

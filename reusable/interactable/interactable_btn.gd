@@ -6,6 +6,9 @@ func _ready() -> void:
 	set_collision_layer_value(1, false)
 	set_collision_mask_value(1, false)
 	add_to_group('interactable')
+	
+	_connect_signals()
+
 
 func handle_btn_interacted():
 	_on_btn_interacted()
@@ -13,3 +16,8 @@ func handle_btn_interacted():
 # over-ride this method on the buttons script
 func _on_btn_interacted():
 	pass
+
+# over-ride this method whenever adding signals
+func _connect_signals() : 
+	pass
+	

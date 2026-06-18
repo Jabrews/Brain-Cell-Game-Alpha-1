@@ -60,6 +60,8 @@ func handle_round(round : int):
 			## SHAREHOLDER OFFERS ##
 			IVShareholderOffers.item_offer_energy_percant= 75
 			IVShareholderOffers.stat_offer_energy_percant= 50		
+			## HIDDEN STATS ## 
+			IVHiddenStats.stats_to_hide = []
 			
 		2 :
 
@@ -86,6 +88,8 @@ func handle_round(round : int):
 			## SHAREHOLDER OFFERS ##
 			IVShareholderOffers.item_offer_energy_percant= 75
 			IVShareholderOffers.stat_offer_energy_percant= 50		
+			## HIDDEN STATS ## 
+			IVHiddenStats.stats_to_hide = ['strength']
 		3 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
 			## ENERGY ##
@@ -106,6 +110,8 @@ func handle_round(round : int):
 			## SHAREHOLDER OFFERS ##
 			IVShareholderOffers.item_offer_energy_percant= 75
 			IVShareholderOffers.stat_offer_energy_percant= 50		
+			## HIDDEN STATS ## 
+			IVHiddenStats.stats_to_hide = ['strength', 'intelligence']
 		4 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
 			## ENERGY ##
@@ -125,6 +131,8 @@ func handle_round(round : int):
 			## SHAREHOLDER OFFERS ##
 			IVShareholderOffers.item_offer_energy_percant= 75
 			IVShareholderOffers.stat_offer_energy_percant= 50		
+			## HIDDEN STATS ## 
+			IVHiddenStats.stats_to_hide = ['strength', 'intelligence', 'community']
 	
 @warning_ignore("shadowed_global_identifier")
 func handle_energy(round : int, energy: int) :

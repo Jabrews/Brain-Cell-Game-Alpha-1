@@ -41,43 +41,51 @@ func _handle_hidden(constructor : CellConstructor, new_prisoners : Array[BrainCe
 
 	return new_prisoners
 	
-func randomly_apply_hidden_stats(new_prisoners : Array[BrainCell], max_stats_to_hide : int) :
+func randomly_apply_hidden_stats(new_prisoners : Array[BrainCell], max_stats_to_hide : int) -> Array[BrainCell]:
 
-	var valid_targets = []
+	var stats_to_hide : Array = IVHiddenStats.stats_to_hide
+	var valid_targets : Array = []
+
+	# exit early if no stats are allowed to be hidden
+	if stats_to_hide.is_empty():
+		return new_prisoners
 
 	# build list of all possible hidden stat targets
 	for cell : BrainCell in new_prisoners:
 
-		if cell.strength.enabled and not cell.strength.hidden:
-			valid_targets.append({
-				"cell": cell,
-				"stat": "strength"
-			})
+		if "strength" in stats_to_hide:
+			if cell.strength.enabled and not cell.strength.hidden:
+				valid_targets.append({
+					"cell": cell,
+					"stat": "strength"
+				})
 
-		if cell.intelligence.enabled and not cell.intelligence.hidden:
-			valid_targets.append({
-				"cell": cell,
-				"stat": "intelligence"
-			})
+		if "intelligence" in stats_to_hide:
+			if cell.intelligence.enabled and not cell.intelligence.hidden:
+				valid_targets.append({
+					"cell": cell,
+					"stat": "intelligence"
+				})
 
-		if cell.community.enabled and not cell.community.hidden:
-			valid_targets.append({
-				"cell": cell,
-				"stat": "community"
-			})
+		if "community" in stats_to_hide:
+			if cell.community.enabled and not cell.community.hidden:
+				valid_targets.append({
+					"cell": cell,
+					"stat": "community"
+				})
 
 	# randomize order
 	valid_targets.shuffle()
 
 	# never try to hide more than exists
-	var hide_count = mini(max_stats_to_hide, valid_targets.size())
+	var hide_count : int = mini(max_stats_to_hide, valid_targets.size())
 
-	for i in hide_count:
+	for i : int in range(hide_count):
 
-		var target = valid_targets[i]
-		var cell : BrainCell = target.cell
+		var target : Dictionary = valid_targets[i]
+		var cell : BrainCell = target["cell"]
 
-		match target.stat:
+		match target["stat"]:
 
 			"strength":
 				cell.strength.hidden = true

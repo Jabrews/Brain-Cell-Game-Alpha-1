@@ -43,6 +43,11 @@ func _physics_process(delta: float) -> void:
 	if direction.length() > 0.0:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
+	
+		# for when holding btn for instance
+		if GLHoldingDisplayBus.player_is_holding == true : 	
+			GLHoldingDisplayBus.emit_signal('player_interupted_hold')					
+	
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)

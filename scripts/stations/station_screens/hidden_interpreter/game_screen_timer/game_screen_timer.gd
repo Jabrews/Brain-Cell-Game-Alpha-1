@@ -15,8 +15,11 @@ func _handle_increment(current_value: int) -> void:
 
 
 func _handle_point_collected(point_amount: int) -> void:
+	GLInterpreterGames.emit_signal('player_collected_point', point_amount, get_parent().get_parent().parent_station_interpreter.interpreter_type)
 	create_falling_label(point_amount)
 	animate_time_left_label()
+	
+	
 
 
 func create_falling_label(point_amount: int) -> void:

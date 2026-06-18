@@ -69,7 +69,3 @@ func create_and_switch_game_screen() :
 	
 	
 	
-	
-	
-	
-	

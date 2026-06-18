@@ -10,7 +10,7 @@ extends Node
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed('debug1') :	
 		
-		GLDefectEventMangerBus.emit_signal('event_hidden_stat_interpreter_jolt', ['strength'])
+		GLDefectEventMangerBus.emit_signal('event_hidden_stat_interpreter_jolt', ['strength', 'intelligence'])
 		
 		
 		#print('DEBUG ACTIVATED - printing cell collection via refrences')

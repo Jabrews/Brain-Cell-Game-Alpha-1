@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bupkdwu6c5g6r"]
+
+[ext_resource type="Texture2D" uid="uid://cm8k7vdjxuyi5" path="res://models/screens/snake_brain/snake-body.png" id="1_mwivy"]
+[ext_resource type="Script" uid="uid://81m1u5miwhxo" path="res://scripts/stations/station_screens/hidden_interpreter/snake_brain/snake/snake_body.gd" id="1_n6r58"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7nsk"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6r58"]
+size = Vector2(4, 4)
+
+[node name="SnakeBody" type="StaticBody2D" unique_id=1388315915]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_n6r58")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=432020178]
+texture = ExtResource("1_mwivy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1487308465]
+shape = SubResource("RectangleShape2D_c7nsk")
+
+[node name="KillPlayer" type="Area2D" parent="." unique_id=1699391162]
+collision_layer = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillPlayer" unique_id=1294235648]
+shape = SubResource("RectangleShape2D_n6r58")
+
+[connection signal="body_entered" from="KillPlayer" to="." method="_on_kill_player_body_entered"]

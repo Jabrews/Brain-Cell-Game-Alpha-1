@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c76td16ka86aa" path="res://scenes/axe_mount/axe_mount.tscn" id="11_v2xyd"]
 [ext_resource type="PackedScene" uid="uid://dth4itprcw7yn" path="res://scenes/stations/station_components/cell_breeding/station_cell_breeding.tscn" id="11_w7r6u"]
 [ext_resource type="Script" uid="uid://nk2lf7d5nvix" path="res://scripts/game_manager/cell_manager/cell_manager.gd" id="12_63vgv"]
+[ext_resource type="PackedScene" uid="uid://dujkv70lngjrl" path="res://scenes/stations/station_screens/hidden_interpreter/snake_brain/snake_brain.tscn" id="12_wv5kd"]
 [ext_resource type="Script" uid="uid://c1rgmnomu07eu" path="res://scripts/game_manager/useable_item_use_manager/useable_item_use_manager.gd" id="14_5ru7i"]
 [ext_resource type="PackedScene" uid="uid://c023cc2aha7id" path="res://scenes/ui/ui.tscn" id="14_c0gn3"]
 [ext_resource type="Script" uid="uid://di2ssc3ya2nmp" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_cells.gd" id="15_dn28p"]
@@ -160,7 +161,7 @@ navigation_mesh = SubResource("NavigationMesh_v2xyd")
 [node name="Characters" type="Node" parent="." unique_id=1683906565]
 
 [node name="Player" parent="Characters" unique_id=1124472616 instance=ExtResource("1_h7hv4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -4)
 
 [node name="ContainerParentNode" type="Node" parent="Characters" unique_id=1909441806]
 
@@ -210,7 +211,7 @@ game_screen_scene = ExtResource("11_mvdwn")
 [node name="HiddenInterpreter2" parent="Stations/ContainerStations/HiddenStatInterpreters" unique_id=1619378926 instance=ExtResource("38_5mews")]
 transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, 3, 0.6634282, -8)
 interpreter_type = "intelligence"
-game_screen_scene = ExtResource("11_5mews")
+game_screen_scene = ExtResource("12_wv5kd")
 
 [node name="HiddenInterpreter3" parent="Stations/ContainerStations/HiddenStatInterpreters" unique_id=105860181 instance=ExtResource("38_5mews")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.9, 0.6634282, -8)

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="BrainCellGameProtyping02"
-run/main_scene="uid://67iqy5ev4jbk"
+run/main_scene="uid://cjiq6xqka7iyf"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [audio]
@@ -45,6 +45,9 @@ GAMENameManager="*uid://bbink7k6gloh3"
 GLChairBus="*uid://dptbw5litabm1"
 GLInterpreterGames="*uid://bleuf4oh1igdo"
 IVFlappyBrain="*uid://c30hoeuma0kvb"
+GLHoldingDisplayBus="*uid://bx560aqp5rpi6"
+IVSnakeBrain="*uid://ds1cpm55tn8o0"
+IVAstroidBrain="*uid://ch03fe2qafsik"
 
 [debug]
 
@@ -134,7 +137,9 @@ attack={
 3d_navigation/layer_1="Floor"
 2d_physics/layer_2="tiles"
 3d_physics/layer_2="tiles"
+2d_physics/layer_3="gameplay_element"
 3d_physics/layer_3="cell_container"
+2d_physics/layer_4="astroid"
 3d_physics/layer_4="player_items"
 3d_physics/layer_5="hoverable"
 3d_physics/layer_6="interactable"

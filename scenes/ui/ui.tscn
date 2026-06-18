@@ -13,10 +13,12 @@
 [ext_resource type="Shader" uid="uid://dt7lkosoh8nsh" path="res://scripts/shaders/hold_display.gdshader" id="10_swkix"]
 [ext_resource type="Script" uid="uid://cjop1t15syvqd" path="res://scripts/ui/sit_in_chair.gd" id="10_y220t"]
 [ext_resource type="Texture2D" uid="uid://drr5m73c47u2f" path="res://models/cursor/holding_btn.png" id="11_hc5d0"]
+[ext_resource type="Script" uid="uid://d53x8j268to" path="res://scripts/ui/hold_display/hold_display.gd" id="12_hc5d0"]
+[ext_resource type="Script" uid="uid://bwy54p8t4ku4o" path="res://scripts/ui/hold_display/update_shader.gd" id="13_n3vwu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n3vwu"]
 shader = ExtResource("10_swkix")
-shader_parameter/progress = 0.17600000836
+shader_parameter/progress = 0.0
 shader_parameter/selected_color = Color(0.168607, 0.60320264, 0.621988, 1)
 shader_parameter/white_threshold = 0.85
 
@@ -89,10 +91,18 @@ texture = ExtResource("8_jcn1r")
 script = ExtResource("9_4kltc")
 
 [node name="HoldDisplay" type="Sprite2D" parent="." unique_id=515911858]
+visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_n3vwu")
 position = Vector2(431.515, 239.47)
 texture = ExtResource("11_hc5d0")
+script = ExtResource("12_hc5d0")
+
+[node name="UpdateShader" type="Node" parent="HoldDisplay" unique_id=2083716860]
+script = ExtResource("13_n3vwu")
+
+[node name="HoldIncrement" type="Timer" parent="HoldDisplay" unique_id=1681038714]
+one_shot = true
 
 [node name="UseableItemPopup" parent="." unique_id=1755211546 instance=ExtResource("9_uegxj")]
 visible = false
