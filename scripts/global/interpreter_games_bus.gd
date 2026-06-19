@@ -15,6 +15,7 @@ signal ship_collected_point(point_amount : int)
 signal ship_collected_bubble()
 signal parent_ship_died()
 signal child_ship_died(ship_instance : CharacterBody2D)
+signal astroid_killed()
 
 
 

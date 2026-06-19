@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://cjiq6xqka7iyf"]
 
-[ext_resource type="PackedScene" uid="uid://3is428gusns6" path="res://scenes/stations/station_screens/hidden_interpreter/astroid_brain/astroid/astroid.tscn" id="1_4twl4"]
 [ext_resource type="Script" uid="uid://1sidgjewiwjq" path="res://scripts/stations/station_screens/hidden_interpreter/astroid_brain/astroid_brain.gd" id="1_a82iu"]
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_ejdgb"]
 [ext_resource type="Texture2D" uid="uid://dcqjk8yn0gxx0" path="res://models/screens/astroid_brain/ground.png" id="1_l6eeg"]
 [ext_resource type="Script" uid="uid://ct7ys88qaal52" path="res://scripts/stations/station_screens/hidden_interpreter/flappy_brain/start_screen_graphic.gd" id="2_l6eeg"]
+[ext_resource type="Script" uid="uid://byvuxy8pd60vu" path="res://scripts/stations/station_screens/hidden_interpreter/astroid_brain/progression_manager.gd" id="2_y7ij6"]
 [ext_resource type="PackedScene" uid="uid://cnagu7ulq8yi7" path="res://scenes/stations/station_screens/hidden_interpreter/astroid_brain/ship/new_ship_bubble.tscn" id="3_3sl3r"]
 [ext_resource type="Script" uid="uid://dx3754fjwgux0" path="res://scripts/stations/station_screens/hidden_interpreter/astroid_brain/ground_detect_astroid_area.gd" id="3_6n0x7"]
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="3_ahso5"]
 [ext_resource type="Script" uid="uid://ckldvatv5vxun" path="res://scripts/stations/station_screens/hidden_interpreter/astroid_brain/wall_detect_astroid_area.gd" id="3_gpbm3"]
+[ext_resource type="Script" uid="uid://dnfx1xahgug54" path="res://scripts/stations/station_screens/hidden_interpreter/astroid_brain/astroid_spawner/astroid_spawner.gd" id="3_q7l3d"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="4_4twl4"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="5_gpbm3"]
 [ext_resource type="Script" uid="uid://cdmr8tj2imba6" path="res://scripts/stations/station_screens/cell_breeding/seat_cell_loading/label_press_to_see_result.gd" id="6_6n0x7"]
@@ -43,19 +44,19 @@ shader_parameter/scroll_speed = 0.2
 [node name="AstroidBrain" type="Node2D" unique_id=480053016]
 script = ExtResource("1_a82iu")
 
+[node name="ProgressionManager" type="Node" parent="." unique_id=971196115]
+script = ExtResource("2_y7ij6")
+
 [node name="AstroidSpawner" type="Node" parent="." unique_id=2133247715]
+script = ExtResource("3_q7l3d")
 
-[node name="Astroid2" parent="AstroidSpawner" unique_id=1214771190 instance=ExtResource("1_4twl4")]
-position = Vector2(217, 14)
-health = 5
-can_break_into_smaller = true
+[node name="LeftSpot" type="Node2D" parent="AstroidSpawner" unique_id=262531914]
+position = Vector2(112, 7)
 
-[node name="Astroid3" parent="AstroidSpawner" unique_id=935560697 instance=ExtResource("1_4twl4")]
-position = Vector2(217, 14)
+[node name="RightSpot" type="Node2D" parent="AstroidSpawner" unique_id=1740844604]
+position = Vector2(378, 7)
 
-[node name="Astroid4" parent="AstroidSpawner" unique_id=390062688 instance=ExtResource("1_4twl4")]
-position = Vector2(217, 14)
-health = 2
+[node name="Astroids" type="Node" parent="AstroidSpawner" unique_id=1262949359]
 
 [node name="PointSpawner" type="Node" parent="." unique_id=394144096]
 

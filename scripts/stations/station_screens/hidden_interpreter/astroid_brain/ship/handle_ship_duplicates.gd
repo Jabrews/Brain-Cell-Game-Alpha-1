@@ -15,30 +15,27 @@ func _ready() -> void:
 func _handle_ship_collected_bubble() -> void:
 	call_deferred("create_ship")
 
-func create_ship() :
-	var ship_instance : CharacterBody2D = ship_duplicate_scene.instantiate()
-	ship_duplicates_parent_node.add_child(ship_instance)	
-	
-	
-	# set ship position
-	var ship_y_position : float = ship_parent.global_position.y
-	var ship_x_position : float = 0.0
-	
-	# get x position
-	# if more than one extra ship
-	if len(current_ships) > 0 : 
-		var finale_index : int = len(current_ships) - 1
-		
-		# make sure its even on each side. so we add one ship on left and one ship on right
-		# use moduloso 
-		
-		ship_x_position = current_ships[finale_index].global_position.x + 15.5
-	# if just one
-	else : 
-		ship_x_position = ship_parent.global_position.x + 15.5 
+func create_ship() -> void:
+	var ship_instance: CharacterBody2D = ship_duplicate_scene.instantiate()
+	ship_duplicates_parent_node.add_child(ship_instance)
+
+	var spacing: float = 15.5
+	var ship_y_position: float = ship_parent.global_position.y
+
+	# current_ships.size() is how many duplicate ships already exist
+	var ship_number: int = current_ships.size() + 1
+
+	var distance_index: int = ceili(float(ship_number) / 2.0)
+
+	# odd ships go right, even ships go left
+	var direction: int = 1
+	if ship_number % 2 == 0:
+		direction = -1
+
+	var ship_x_position: float = ship_parent.global_position.x + spacing * distance_index * direction
 
 	ship_instance.global_position = Vector2(ship_x_position, ship_y_position)
-	
+
 	current_ships.append(ship_instance)
 
 func _shoot() :		

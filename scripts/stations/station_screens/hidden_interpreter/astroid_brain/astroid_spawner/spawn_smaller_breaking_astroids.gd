@@ -27,7 +27,7 @@ func _spawn(max_health : int, global_pos : Vector2) :
 		
 		# progression will allow medium astroid to break again into even smaller ones.
 		var ran_num = randi_range(0, 100)
-		if ran_num < IVAstroidBrain.chance_to_break_astroid_twice  :
+		if ran_num < IVAstroidBrain.twice_smaller_break_astroids_to_spawn:
 			astroid_instance.can_break_into_smaller = smaller_astroid_health > 2
 		
 		get_parent().get_parent().call_deferred("add_child", astroid_instance)		

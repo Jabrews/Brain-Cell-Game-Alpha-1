@@ -73,12 +73,16 @@ func pick_starting_direction() :
 		x_move_direction = -1
 
 func pick_outline() :
-	if points <= 2 :
+	if points == 0 :
+		sprite.material.set_shader_parameter('border_color', Color.TRANSPARENT)
+	elif points > 0 and points <= 2 :
 		sprite.material.set_shader_parameter('border_color', Color.WHITE)
 	elif points > 2 and points <= 4 :
 		sprite.material.set_shader_parameter('border_color', Color.YELLOW)
+		astroid_health_label.add_theme_color_override("font_color", Color.YELLOW)	
 	else :
 		sprite.material.set_shader_parameter('border_color', Color.RED)
+		astroid_health_label.add_theme_color_override("font_color", Color.RED)	
 
 
 func pick_speed() :
@@ -110,7 +114,7 @@ func _handle_hit_by_bullet() :
 			spawn_smaller_breaking_astroids._spawn(max_health, global_position)
 			
 		GLInterpreterGames.emit_signal('ship_collected_point', points)
-			
+		GLInterpreterGames.emit_signal('astroid_killed')			
 		queue_free()
 	
 		
@@ -118,4 +122,5 @@ func _handle_hit_by_bullet() :
 func _handle_hit_ground() -> void:
 	handle_astroid_hit_ground._handle(global_position, max_health)
 	
+	GLInterpreterGames.emit_signal('astroid_killed')			
 	queue_free()
