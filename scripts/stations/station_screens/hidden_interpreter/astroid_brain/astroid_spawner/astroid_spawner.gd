@@ -5,6 +5,7 @@ extends Node
 @onready var astroid_parent_node: Node = $Astroids
 @onready var left_spawn_spot: Node2D = $LeftSpot
 @onready var right_spawn_spot: Node2D = $RightSpot
+@onready var bubble_spawner : Node = $"../BubbleSpawner"
 
 var current_astroids: int = 0
 var waiting_for_next_batch: bool = false
@@ -12,8 +13,16 @@ var waiting_for_next_batch: bool = false
 
 func _ready() -> void:
 	GLInterpreterGames.connect("astroid_killed", _handle_astroid_killed)
-	generate_next_astroid_batch()
 
+func toggle_start(toggleValue : bool) :
+	if toggleValue :
+		await get_tree().create_timer(0.5).timeout 
+		current_astroids = 0
+		waiting_for_next_batch = false
+		generate_next_astroid_batch()
+	else : 
+		for astroid : Node2D in astroid_parent_node.get_children(): 
+			astroid.queue_free()
 
 func _handle_astroid_killed() -> void:
 	current_astroids -= 1
@@ -22,9 +31,11 @@ func _handle_astroid_killed() -> void:
 	if current_astroids <= 0 and not waiting_for_next_batch:
 		waiting_for_next_batch = true
 
-		await get_tree().create_timer(5.0).timeout
+		await get_tree().create_timer(1.0).timeout
 
 		generate_next_astroid_batch()
+		handle_spawn_bubble()
+		
 		waiting_for_next_batch = false
 
 
@@ -99,14 +110,34 @@ func spawn_astroid(astroid_instance: CharacterBody2D) -> void:
 
 	var random_x_offset: float = randf_range(
 		-x_spawn_randomness,
-		x_spawn_randomness,	
+		x_spawn_randomness,
 	)
 
 	var spawn_position: Vector2 = Vector2(
 		spawn_spot.global_position.x + random_x_offset,
-		spawn_spot.global_position.y 
+		spawn_spot.global_position.y
 	)
 
 	astroid_instance.global_position = spawn_position
 
 	astroid_parent_node.add_child(astroid_instance)
+	
+	
+func handle_spawn_bubble() :
+	
+	if IVAstroidBrain.can_spawn_bubble :
+		
+		var random_num = randi_range(0, 100)
+		
+		if random_num <= 99 :
+			bubble_spawner._spawn()
+			IVAstroidBrain.can_spawn_bubble = false
+		else :
+			return
+			
+			
+			
+		
+		
+	
+	

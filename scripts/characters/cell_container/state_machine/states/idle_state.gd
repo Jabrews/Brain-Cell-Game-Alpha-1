@@ -1,6 +1,6 @@
 extends Node
 
-
+var on_stat_interpreter : bool = false
 
 
 func state_start() -> void:

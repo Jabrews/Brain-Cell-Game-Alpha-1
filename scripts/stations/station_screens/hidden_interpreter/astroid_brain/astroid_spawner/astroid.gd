@@ -115,6 +115,7 @@ func _handle_hit_by_bullet() :
 			
 		GLInterpreterGames.emit_signal('ship_collected_point', points)
 		GLInterpreterGames.emit_signal('astroid_killed')			
+		
 		queue_free()
 	
 		

@@ -16,9 +16,9 @@ func _detect_overlap() -> bool:
 	return !found_overlap 
 
 
-func _on_detect_area_area_entered(area: Area2D) -> void:
+func _on_detect_area_area_entered(_area: Area2D) -> void:
 	found_overlap = true
 
 
-func _on_detect_area_body_entered(body: Node2D) -> void:
+func _on_detect_area_body_entered(_body: Node2D) -> void:
 	found_overlap = true

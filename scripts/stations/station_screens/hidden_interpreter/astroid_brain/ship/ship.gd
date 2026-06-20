@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
-var can_shoot : bool = true
+var can_shoot : bool = false 
+var can_move : bool = false
+
+var starting_pos : Vector2
 
 # components
 @onready var bullet_scene : PackedScene = preload("res://scenes/stations/station_screens/hidden_interpreter/astroid_brain/ship/bullet.tscn")
@@ -16,11 +19,14 @@ func _ready() -> void:
 	shoot_delay_timer.wait_time = IVAstroidBrain.shooting_delay_wait_time
 	shoot_delay_timer.connect('timeout', _handle_shoot_delay_timeout)
 	
+	starting_pos = global_position
+	
 	
 
 func _process(_delta: float) -> void:
 	
-	handle_movement()
+	if can_move :	
+		handle_movement()
 	
 	if Input.is_action_just_pressed('jump') and can_shoot:
 		shoot()
@@ -29,6 +35,8 @@ func _process(_delta: float) -> void:
 func shoot() :
 	handle_create_bullet()
 	can_shoot = false
+	
+	shoot_delay_timer.wait_time = IVAstroidBrain.shooting_delay_wait_time
 	shoot_delay_timer.start()	
 	
 	handle_ship_duplicates._shoot()
@@ -63,6 +71,22 @@ func handle_create_bullet() -> void:
 
 func _handle_ship_hit() :
 	GLInterpreterGames.emit_signal('parent_ship_died')
+	
+	
+func toggle_start(toggle_value : bool) :
+	if toggle_value :
+		can_move = true
+		can_shoot = true
+	else : 
+		can_move = false
+		shoot_delay_timer.stop()
+		can_shoot = false
+		handle_ship_duplicates.delete_all_ships()		
+		global_position = starting_pos
+		
+		
+		
+	
 	
 	
 #

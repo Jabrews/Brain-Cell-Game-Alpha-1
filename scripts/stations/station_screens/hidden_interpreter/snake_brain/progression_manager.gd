@@ -20,7 +20,7 @@ func _set_tier_1() -> void:
 	IVSnakeBrain.create_only_big_walls = false
 	IVSnakeBrain.wall_loading_time_to_place = 2.0
 	IVSnakeBrain.snake_speed = 90
-	IVSnakeBrain.avaible_point_tiers = [1]
+	IVSnakeBrain.avaible_point_tiers = [2]
 	IVSnakeBrain.spawn_two_walls = false
 	
 
@@ -36,7 +36,7 @@ func _set_tier_2() -> void:
 	IVSnakeBrain.create_only_big_walls = false
 	IVSnakeBrain.wall_loading_time_to_place = 3.5
 	IVSnakeBrain.snake_speed = 100
-	IVSnakeBrain.avaible_point_tiers = [1, 3]
+	IVSnakeBrain.avaible_point_tiers = [2, 3]
 
 	GLInterpreterGames.emit_signal("snake_spawn_second_point")
 	IVSnakeBrain.spawn_two_walls = false

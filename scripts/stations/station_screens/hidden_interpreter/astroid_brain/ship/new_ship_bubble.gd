@@ -4,7 +4,7 @@ extends CharacterBody2D
 var starting_position : Vector2
 
 var x_move_direction : int = 1
-var bubble_speed : float = 25.0
+var bubble_speed : float = 30.0
 
 var max_wall_bumps_to_delete : int = 2
 var curr_wall_bumps : int = 0

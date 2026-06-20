@@ -18,7 +18,7 @@ var astroids_to_spawn_large : int = 0
 var astroids_point_ranges = [0, 2, 3, 5]
 
 # bubble / duplicate ships
-var can_spawn_bubble : bool = false
+var can_spawn_bubble : bool = true 
 
 # ship
 var shooting_delay_wait_time : float = 0.2

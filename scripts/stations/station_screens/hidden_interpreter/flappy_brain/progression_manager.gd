@@ -5,7 +5,7 @@ func _update_progression(total_points_collected : int) :
 	
 	# tier one
 	if total_points_collected >= 0 :	
-		IVFlappyBrain.tube_speed = 130
+		IVFlappyBrain.tube_speed = 140
 		IVFlappyBrain.spawn_obstacle_delay_min = 2
 		IVFlappyBrain.spawn_obstacle_delay_max = 3
 		IVFlappyBrain.gap_bewteen_tubes_min = 7

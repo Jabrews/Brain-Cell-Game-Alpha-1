@@ -103,35 +103,39 @@ script = ExtResource("1_deefm")
 [node name="Particles" type="Node2D" parent="." unique_id=1220939795]
 
 [node name="WhiteParticle" type="GPUParticles2D" parent="Particles" unique_id=755433605]
-z_index = -1
+z_index = 4
 texture_filter = 1
-position = Vector2(0, -1)
 emitting = false
 amount = 20
 texture = ExtResource("2_7qjr5")
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
+visibility_rect = Rect2(-10000, -10000, 20000, 20000)
 process_material = SubResource("ParticleProcessMaterial_51cpt")
 
 [node name="RedParticle" type="GPUParticles2D" parent="Particles" unique_id=1388292642]
-z_index = -1
+z_index = 4
 texture_filter = 1
+position = Vector2(0, 1)
 emitting = false
 amount = 30
 texture = ExtResource("1_4e0dg")
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
+visibility_rect = Rect2(-10000, -10000, 20000, 20000)
 process_material = SubResource("ParticleProcessMaterial_wuj4l")
 
 [node name="OrangeParticle" type="GPUParticles2D" parent="Particles" unique_id=1345518970]
-z_index = -1
+z_index = 4
 texture_filter = 1
+position = Vector2(0, 1)
 emitting = false
 amount = 20
 texture = ExtResource("3_2hosr")
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
+visibility_rect = Rect2(-10000, -10000, 20000, 20000)
 process_material = SubResource("ParticleProcessMaterial_2hosr")

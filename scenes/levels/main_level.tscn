@@ -10,13 +10,13 @@
 [ext_resource type="Script" uid="uid://gdyxevxk1giy" path="res://scripts/game_manager/cell_creator/cell_creator.gd" id="10_c7w6w"]
 [ext_resource type="Script" uid="uid://btrk8thxj8lrw" path="res://scripts/game_manager/game_manager/game_manager.gd" id="10_erkku"]
 [ext_resource type="PackedScene" uid="uid://q3j8yhkrtm05" path="res://scenes/stations/station_components/defect_decreaser/station_defect_decreaser.tscn" id="11_1l4rw"]
-[ext_resource type="PackedScene" uid="uid://s5ru6g56753m" path="res://scenes/stations/station_screens/hidden_interpreter/test_scene/test_game_screen_scene.tscn" id="11_5mews"]
 [ext_resource type="PackedScene" uid="uid://cjfsbwq6outy8" path="res://scenes/stations/station_components/target_cell_comparison/station_target_cell_comparison.tscn" id="11_moggy"]
 [ext_resource type="PackedScene" uid="uid://cda1x50mugho5" path="res://scenes/stations/station_screens/hidden_interpreter/flappy_brain/flappy_brain.tscn" id="11_mvdwn"]
 [ext_resource type="PackedScene" uid="uid://c76td16ka86aa" path="res://scenes/axe_mount/axe_mount.tscn" id="11_v2xyd"]
 [ext_resource type="PackedScene" uid="uid://dth4itprcw7yn" path="res://scenes/stations/station_components/cell_breeding/station_cell_breeding.tscn" id="11_w7r6u"]
 [ext_resource type="Script" uid="uid://nk2lf7d5nvix" path="res://scripts/game_manager/cell_manager/cell_manager.gd" id="12_63vgv"]
 [ext_resource type="PackedScene" uid="uid://dujkv70lngjrl" path="res://scenes/stations/station_screens/hidden_interpreter/snake_brain/snake_brain.tscn" id="12_wv5kd"]
+[ext_resource type="PackedScene" uid="uid://cjiq6xqka7iyf" path="res://scenes/stations/station_screens/hidden_interpreter/astroid_brain/astroid_brain.tscn" id="13_wv5kd"]
 [ext_resource type="Script" uid="uid://c1rgmnomu07eu" path="res://scripts/game_manager/useable_item_use_manager/useable_item_use_manager.gd" id="14_5ru7i"]
 [ext_resource type="PackedScene" uid="uid://c023cc2aha7id" path="res://scenes/ui/ui.tscn" id="14_c0gn3"]
 [ext_resource type="Script" uid="uid://di2ssc3ya2nmp" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_cells.gd" id="15_dn28p"]
@@ -216,7 +216,7 @@ game_screen_scene = ExtResource("12_wv5kd")
 [node name="HiddenInterpreter3" parent="Stations/ContainerStations/HiddenStatInterpreters" unique_id=105860181 instance=ExtResource("38_5mews")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.9, 0.6634282, -8)
 interpreter_type = "community"
-game_screen_scene = ExtResource("11_5mews")
+game_screen_scene = ExtResource("13_wv5kd")
 
 [node name="CellBreeding2" parent="Stations/ContainerStations" unique_id=699940122 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("11_w7r6u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)

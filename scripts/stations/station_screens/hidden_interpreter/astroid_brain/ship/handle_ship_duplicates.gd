@@ -48,6 +48,12 @@ func _handle_child_ship_died(ship_child_instance : CharacterBody2D) :
 		if ship == ship_child_instance : 
 			current_ships.erase(ship)
 	
+func delete_all_ships() :
+	for ship : CharacterBody2D in current_ships :
+		current_ships.erase(ship)
+		ship.queue_free()
+	
+	
 	
 	
 	

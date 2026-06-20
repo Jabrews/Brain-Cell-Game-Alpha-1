@@ -20,10 +20,10 @@ func _get_pos(tube_preload: Node2D, tube_type: String) -> Vector2:
 	
 	if tube_type == "top":
 		# For the top tube, you usually want the bottom edge
-		y_pos = get_tube_bottom_y(tube) + 5.0
+		y_pos = get_tube_bottom_y(tube) + 21.0
 	else:
 		# For the bottom tube, you usually want the top edge
-		y_pos = get_tube_top_y(tube) - 12.0
+		y_pos = get_tube_top_y(tube) - 27.0
 	
 	return Vector2(x_pos, y_pos)
 

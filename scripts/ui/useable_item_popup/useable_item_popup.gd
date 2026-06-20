@@ -17,12 +17,17 @@ var active_useable_item_obj : UseableItemObject
 @onready var defect_shot_node : Control = $DefectShot
 @onready var charges_left_label : Label = $DefectShot/ChargestLeft
 
+#
+
 
 func _ready() -> void:
 	GLUsableItemBus.connect('show_useable_item_pop_up', _handle_show_useable_item_pop_up)
 	
 	if popup_type != 'defect_shot' :
 		defect_shot_node.queue_free()
+		
+		
+		
 	
 func _handle_show_useable_item_pop_up(selected_cell: BrainCell, useable_item_obj : UseableItemObject ) :
 	

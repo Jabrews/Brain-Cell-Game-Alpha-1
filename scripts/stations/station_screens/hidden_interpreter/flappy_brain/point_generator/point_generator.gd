@@ -32,8 +32,6 @@ func chance_passed(chance: int) -> bool:
 
 
 func try_generate_above_tube_points(tube_preload: Node2D) -> void:
-	if not chance_passed(IVFlappyBrain.chance_to_generate_above_tube):
-		return
 
 	var ran_num = randi_range(0 , 100)
 	if ran_num >= 50 :
@@ -88,7 +86,7 @@ func generate_above_tube_point(tube_preload: Node2D, direction: String) -> void:
 
 func generate_bewteen_tube_point(tube_preload: Node2D) -> void:
 	var spawn_pos: Vector2 = get_bewteen_tube_pos._get_pos(tube_preload)
-	spawn_point_goal._create_point_goal(tube_preload, spawn_pos, 1)
+	spawn_point_goal._create_point_goal(tube_preload, spawn_pos, 2)
 
 
 func generate_bewteen_preloads(tube_preload: Node2D) -> void:
@@ -97,7 +95,7 @@ func generate_bewteen_preloads(tube_preload: Node2D) -> void:
 		last_tube_preload_instance
 	)
 
-	spawn_point_goal._create_point_goal(tube_preload, spawn_pos, 1)
+	spawn_point_goal._create_point_goal(tube_preload, spawn_pos, 2)
 
 
 func extreme_generate_bewteen_preloads(tube_preload: Node2D) -> void:

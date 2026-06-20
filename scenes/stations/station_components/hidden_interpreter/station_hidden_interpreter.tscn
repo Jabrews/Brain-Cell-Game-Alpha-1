@@ -200,8 +200,10 @@ script = ExtResource("4_x71qd")
 
 [node name="SubViewport" type="SubViewport" parent="InterpreterTV/TvFrontPannel" unique_id=144568317]
 disable_3d = true
+scaling_3d_mode = 5
 canvas_item_default_texture_filter = 0
 size = Vector2i(480, 270)
+render_target_update_mode = 4
 
 [node name="ScreenHiddenInterpreter" parent="InterpreterTV/TvFrontPannel/SubViewport" unique_id=945761564 instance=ExtResource("8_tsedk")]
 

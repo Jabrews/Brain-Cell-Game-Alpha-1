@@ -70,7 +70,7 @@ func check_for_hidden_stat_min(potential_max_stats_to_hide : int) :
 	# do not display warning if original max is already 1
 	if potential_max_stats_to_hide == 1 and max_stats_to_hide != 1 :
 		
-		total_hidden_label.add_theme_color_override("font_color", Color.RED)
+		total_hidden_label.add_theme_color_override("font_color", Color.GREEN_YELLOW)
 		
 		# prevent stacking tweens
 		if shake_tween:

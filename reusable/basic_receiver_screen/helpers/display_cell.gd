@@ -74,6 +74,8 @@ func update_stat_bars(cell_stats_dic : Dictionary) -> void:
 				var target_stat : BrainCellStat = target_cell.get(stat_name)
 				if target_stat != null:
 					target_value = target_stat.value / max_value
+					
+					
 		
 		bar.material.set_shader_parameter("prisoner_value", prisoner_value)
 		bar.material.set_shader_parameter("target_value", target_value)

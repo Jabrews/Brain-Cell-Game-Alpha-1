@@ -64,6 +64,7 @@ shape = SubResource("BoxShape3D_ew3kw")
 [node name="FakePlayer" type="Node3D" parent="." unique_id=1799615296]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06796646, 1.5317947, 0)
 script = ExtResource("2_2ipt2")
+horizontal_look_range_degrees = 80.0
 vertical_min_degrees = -45.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="FakePlayer" unique_id=229143702]
