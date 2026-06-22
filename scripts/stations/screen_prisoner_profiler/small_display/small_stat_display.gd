@@ -4,6 +4,8 @@ extends Node2D
 @onready var selected_stat_label : Label3D = $"../../../SelectStat"
 @onready var bar : Sprite2D = $StatDisplay/Bar
 @onready var handle_switch_screen : Node = $SmallHandleSwitchScreen
+@onready var handle_symbols : Node = $"../../../../../Logic/HandleSymbols"
+
 
 var selected_stat_value : float
 var selected_stat_type : String
@@ -13,6 +15,8 @@ func _ready() -> void:
 	bar.material = bar.material.duplicate()
 
 func _update_stat(stat_type : String, stat_value : float, stat_enabled : bool) :
+	
+	print_stack()
 	
 	selected_stat_enabled = stat_enabled
 	
@@ -37,6 +41,7 @@ func _update_stat(stat_type : String, stat_value : float, stat_enabled : bool) :
 	
 	if selected_stat_enabled :
 		handle_switch_screen._switch('on')
+		update_symbols()
 	else :
 		handle_switch_screen._switch('off')
 	
@@ -61,3 +66,6 @@ func update_bar() :
 		
 		bar.material.set_shader_parameter('target_value', target_value)
 		bar.material.set_shader_parameter('prisoner_value', prisoner_value)
+
+func update_symbols() :
+	handle_symbols.small_stat_display_get_lock(selected_stat_type)

@@ -22,5 +22,8 @@ func toggle_screens_off() :
 	stat_display.visible = false
 	off_display.visible = false
 	none_display.visible = false
+
+
+
 	
 	

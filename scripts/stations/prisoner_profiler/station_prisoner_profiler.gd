@@ -10,7 +10,9 @@ var strength_enabled : bool = true
 var intelligence_enabled : bool = true
 var community_enabled : bool = true
 
-var lock_starting_value : int = 0
+var strength_lock_starting_value : int = 0
+var intelligence_lock_starting_value : int = 0
+var community_lock_starting_value : int = 0
 var inaccessible_starting_value : int = 0
 
 
@@ -33,6 +35,7 @@ func _ready() -> void:
 	# quick delay on startup for cell creation logic 
 	await get_tree().create_timer(1.0).timeout
 	handle_symbols._generate_inaccessible()
+	handle_symbols._generate_locks()
 	
 
 func update_selected_stat(stat_type : String) :
@@ -47,8 +50,24 @@ func _handle_stat_value_changed(stat_type : String, new_value : int) :
 	if stat_type_to_enabled(stat_type) == false :
 		return
 	
+	if new_value <= 0 :
+		new_value = 0
+	
 	if new_value >= inaccessible_starting_value :	
 		new_value = inaccessible_starting_value
+	
+	match stat_type :
+		'strength' : 
+			if new_value >= strength_lock_starting_value :
+				new_value = strength_lock_starting_value
+		'intelligence' : 
+			if new_value >= community_lock_starting_value:
+				new_value = community_lock_starting_value
+		'community' : 
+			if new_value >= intelligence_lock_starting_value:
+				new_value = intelligence_lock_starting_value
+	
+	
 	
 	
 	match stat_type : 
@@ -122,18 +141,11 @@ func _handle_next_turn() :
 	intelligence_enabled = true
 	community_value = 0
 	community_enabled = true
+	selected_stat = ''
+	screen_large_stat_displays[0]._update_stat(strength_value, strength_enabled)
+	screen_large_stat_displays[1]._update_stat(intelligence_value, intelligence_enabled)
+	screen_large_stat_displays[2]._update_stat(community_value, community_enabled)
+	handle_symbols._generate_locks()
 
 func _handle_next_round() :
 	handle_symbols._generate_inaccessible()
-	
-
-	
-
-	
-
-		
-
-
-	
-	
-	

@@ -71,6 +71,12 @@ shader_parameter/red_color = Color(0.29803923, 0.02745098, 0.06666667, 1)
 shader_parameter/overlap_opacity = 0.10000000475
 shader_parameter/edge_padding = 5.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0my48"]
+shader = ExtResource("5_0my48")
+shader_parameter/color_a = Color(0.5, 0, 0.07499981, 1)
+shader_parameter/color_b = Color(0, 0, 0, 1)
+shader_parameter/stripe_size = 2.0
+
 [sub_resource type="Shader" id="Shader_amfyt"]
 code = "shader_type canvas_item;
 
@@ -83,17 +89,11 @@ void fragment() {
 	COLOR = mix(color_a, color_b, stripe);
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ac2je"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hj7nw"]
 shader = SubResource("Shader_amfyt")
 shader_parameter/color_a = Color(0.37, 0.36630002, 0.3589, 0.23529412)
 shader_parameter/color_b = Color(0.21, 0.21, 0.21, 0.27058825)
 shader_parameter/stripe_size = 12.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0my48"]
-shader = ExtResource("5_0my48")
-shader_parameter/color_a = Color(0.5, 0, 0.07499981, 1)
-shader_parameter/color_b = Color(0, 0, 0, 1)
-shader_parameter/stripe_size = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_myrkw"]
 shader = ExtResource("2_8qqjc")
@@ -109,6 +109,7 @@ script = ExtResource("1_n76jy")
 script = ExtResource("2_le5d7")
 
 [node name="StatDisplay" type="Control" parent="." unique_id=818570420]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -120,27 +121,6 @@ material = SubResource("ShaderMaterial_q81ek")
 position = Vector2(420.49997, 122)
 scale = Vector2(2.7967741, 9.399999)
 texture = ExtResource("2_myrkw")
-
-[node name="Locked" type="Control" parent="StatDisplay" unique_id=63907477]
-anchors_preset = 0
-offset_top = 26.0
-offset_right = 40.0
-offset_bottom = 66.0
-
-[node name="InaccessibleBG" type="ColorRect" parent="StatDisplay/Locked" unique_id=139490499]
-material = SubResource("ShaderMaterial_ac2je")
-layout_mode = 0
-offset_left = 250.0
-offset_top = -26.0
-offset_right = 434.0
-offset_bottom = 237.0
-color = Color(1, 1, 1, 0.19607843)
-
-[node name="LockedSprite" type="Sprite2D" parent="StatDisplay/Locked" unique_id=548266078]
-texture_filter = 1
-position = Vector2(346, 110)
-scale = Vector2(1.2, 1.2)
-texture = ExtResource("6_hj7nw")
 
 [node name="Inaccessible" type="Control" parent="StatDisplay" unique_id=1992959435]
 anchors_preset = 0
@@ -154,6 +134,25 @@ layout_mode = 0
 offset_top = -26.0
 offset_bottom = 237.0
 color = Color(1, 1, 1, 0.19607843)
+
+[node name="Locked" type="Control" parent="StatDisplay" unique_id=1188463091]
+anchors_preset = 0
+offset_top = 26.0
+offset_right = 40.0
+offset_bottom = 66.0
+
+[node name="LockedBG" type="ColorRect" parent="StatDisplay/Locked" unique_id=1654305905]
+material = SubResource("ShaderMaterial_hj7nw")
+layout_mode = 0
+offset_top = -26.0
+offset_bottom = 237.0
+color = Color(1, 1, 1, 0.19607843)
+
+[node name="LockedSprite" type="Sprite2D" parent="StatDisplay/Locked" unique_id=421155729]
+visible = false
+texture_filter = 1
+position = Vector2(346, 110)
+texture = ExtResource("6_hj7nw")
 
 [node name="OffDisplay" type="Control" parent="." unique_id=1317743623]
 visible = false
@@ -180,7 +179,6 @@ theme_override_font_sizes/font_size = 134
 text = "Off"
 
 [node name="NoneDisplay" type="Control" parent="." unique_id=1679326453]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

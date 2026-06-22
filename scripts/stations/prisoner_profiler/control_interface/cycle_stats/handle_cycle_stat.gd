@@ -13,7 +13,6 @@ var stats : Array[String] = [
 	"strength",
 ]
 
-
 func _stat_cycle_btn_down(direction : String) -> void:
 	var index_direction : int = 0
 	
