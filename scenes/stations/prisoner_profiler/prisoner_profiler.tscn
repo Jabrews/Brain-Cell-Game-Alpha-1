@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://du7unuya06hdh" path="res://scripts/stations/prisoner_profiler/control_interface/increment_stats/handle_increment_stat.gd" id="3_c22aw"]
 [ext_resource type="Script" uid="uid://dt4e5g2vjsjuc" path="res://scripts/stations/station_components/prisoner_profiler/stat_control_panel/btns/on_off_mesh.gd" id="4_f05ry"]
 [ext_resource type="Script" uid="uid://ddekqvia23i1w" path="res://scripts/stations/prisoner_profiler/control_interface/increment_stats/increment_stats_btn.gd" id="4_r24ee"]
+[ext_resource type="Script" uid="uid://ben0wjhvj4shv" path="res://scripts/stations/prisoner_profiler/control_interface/cycle_stats/handle_symbols.gd" id="4_ysxly"]
 [ext_resource type="PackedScene" uid="uid://b366gm7tg6uso" path="res://scenes/hoverable_mesh_scenes/stat_control_panel_on_off_panel_btn.tscn" id="5_6nrc1"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="6_7qc6t"]
 [ext_resource type="PackedScene" uid="uid://cw3j1wx83t7s4" path="res://scenes/hoverable_mesh_scenes/choose_stat_btn.tscn" id="6_bsoe0"]
@@ -23,8 +24,8 @@
 [ext_resource type="PackedScene" uid="uid://dyb5kgt1yg02g" path="res://scenes/stations/prisoner_profiler_screens/large_stat_display.tscn" id="13_76fo1"]
 [ext_resource type="Script" uid="uid://cf6t4pqe1jbhl" path="res://scripts/stations/station_components/prisoner_profiler/btns/generate_btn.gd" id="14_d2mkq"]
 [ext_resource type="Script" uid="uid://brd5yl8fa6dn6" path="res://scripts/stations/station_components/prisoner_profiler/energy_panel/energy_panel.gd" id="14_kwr0x"]
-[ext_resource type="Texture2D" uid="uid://b7jxfe4gv0noj" path="res://models/screens/prisoner_profiler_symbols/caution_symbol.png" id="15_rute7"]
-[ext_resource type="Texture2D" uid="uid://r488pprmkb15" path="res://models/screens/prisoner_profiler_symbols/warning_symbol.png" id="16_d2mkq"]
+[ext_resource type="Texture2D" uid="uid://b7jxfe4gv0noj" path="res://models/screens/prisoner_profiler_symbols/old/caution_symbol.png" id="15_rute7"]
+[ext_resource type="Texture2D" uid="uid://r488pprmkb15" path="res://models/screens/prisoner_profiler_symbols/old/warning_symbol.png" id="16_d2mkq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l25tc"]
 size = Vector3(0.02, 0.46619385, 0.36737794)
@@ -235,6 +236,9 @@ script = ExtResource("1_d2mkq")
 
 [node name="HandleIncrementStat" type="Node" parent="Logic" unique_id=1064971111]
 script = ExtResource("3_c22aw")
+
+[node name="HandleSymbols" type="Node" parent="Logic" unique_id=1308455116]
+script = ExtResource("4_ysxly")
 
 [node name="ControlInterface" type="Node3D" parent="." unique_id=728610755]
 transform = Transform3D(0.8096126, 0, 0.5869646, 0, 1, 0, -0.5869646, 0, 0.8096126, 0, 1.8258047, 0)
@@ -558,7 +562,7 @@ transform = Transform3D(1.0000006, 0, 0, 0, 1, 0, 0, 0, 1.0000006, 0, 1.1855989,
 transform = Transform3D(1.0000004, 0, -5.9604645e-08, 0, 1, 0, 5.9604645e-08, 0, 1.0000004, 0.032910675, -2.3080442, 0.005812496)
 
 [node name="StatLabel" type="Label3D" parent="StatDisplay/StatPanels/StrengthStatPanel" unique_id=1899373653]
-transform = Transform3D(-0.51189876, 0, 0.8590477, 0, 1, 0, -0.8590477, 0, -0.51189876, -0.90136397, 3.7932847, 3.8056264)
+transform = Transform3D(-0.51189876, 0, 0.8590478, 0, 1, 0, -0.8590478, 0, -0.51189876, -0.90136397, 5.987939, 3.8056264)
 texture_filter = 0
 outline_modulate = Color(0, 0, 0, 0)
 text = "Strength"
@@ -567,7 +571,7 @@ font_size = 45
 outline_size = 0
 
 [node name="CapControlTv" type="MeshInstance3D" parent="StatDisplay/StatPanels/StrengthStatPanel" unique_id=1656340985]
-transform = Transform3D(0.8590476, 0, 0.5118987, 0, 1, 0, -0.5118987, 0, 0.8590476, -0.9166471, 3.3153977, 3.824794)
+transform = Transform3D(0.85904765, 0, 0.51189876, 0, 1, 0, -0.51189876, 0, 0.85904765, -0.91664684, 5.5100517, 3.8247936)
 mesh = SubResource("PlaneMesh_pvslh")
 script = ExtResource("6_7qc6t")
 
@@ -603,7 +607,7 @@ render_target_update_mode = 4
 selected_stat_type = "intelligence"
 
 [node name="CommunityStatPanel" type="Node3D" parent="StatDisplay/StatPanels" unique_id=2146956956]
-transform = Transform3D(1.0000008, 0, -5.9604645e-08, 0, 1, 0, 5.9604645e-08, 0, 1.0000008, 0.032910675, -0.11004162, 0.005812496)
+transform = Transform3D(1.000001, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, 1.000001, 0.032910675, -2.3118055, 0.005812496)
 
 [node name="StatLabel" type="Label3D" parent="StatDisplay/StatPanels/CommunityStatPanel" unique_id=1444076448]
 transform = Transform3D(-0.51189876, 0, 0.8590477, 0, 1, 0, -0.8590477, 0, -0.51189876, -0.90136397, 3.7932847, 3.8056264)
@@ -629,7 +633,7 @@ selected_stat_type = "community"
 [node name="ActiveMeshes" type="Node3D" parent="StatDisplay/StatPanels" unique_id=50093281]
 
 [node name="StrengthActive" type="MeshInstance3D" parent="StatDisplay/StatPanels/ActiveMeshes" unique_id=366248637]
-transform = Transform3D(0.859048, 0, 0.51189876, 0, 1, 0, -0.51189876, 0, 0.859048, -0.9055449, 0.9974847, 3.8277693)
+transform = Transform3D(0.85904807, 0, 0.51189876, 0, 1, 0, -0.51189876, 0, 0.85904807, -0.9055449, 3.2124333, 3.8277693)
 visible = false
 mesh = SubResource("PlaneMesh_d2mkq")
 
@@ -639,7 +643,7 @@ visible = false
 mesh = SubResource("PlaneMesh_d2mkq")
 
 [node name="CommunityActive" type="MeshInstance3D" parent="StatDisplay/StatPanels/ActiveMeshes" unique_id=465676926]
-transform = Transform3D(0.859048, 0, 0.51189876, 0, 1, 0, -0.51189876, 0, 0.859048, -0.9055449, 3.2196069, 3.8277693)
+transform = Transform3D(0.8590481, 0, 0.51189876, 0, 1, 0, -0.51189876, 0, 0.8590481, -0.9055449, 1.0046585, 3.8277693)
 visible = false
 mesh = SubResource("PlaneMesh_d2mkq")
 

@@ -62,6 +62,8 @@ func handle_round(round : int):
 			IVShareholderOffers.stat_offer_energy_percant= 50		
 			## HIDDEN STATS ## 
 			IVHiddenStats.stats_to_hide = []
+			## PRISONER PROFILER ##
+			IVPrisonerProfiler.stat_increment_amount = 10
 			
 		2 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = false
@@ -89,6 +91,8 @@ func handle_round(round : int):
 			IVShareholderOffers.stat_offer_energy_percant= 50		
 			## HIDDEN STATS ## 
 			IVHiddenStats.stats_to_hide = ['strength']
+			## PRISONER PROFILER ##
+			IVPrisonerProfiler.stat_increment_amount = 20
 		3 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
 			## ENERGY ##
@@ -111,6 +115,8 @@ func handle_round(round : int):
 			IVShareholderOffers.stat_offer_energy_percant= 50		
 			## HIDDEN STATS ## 
 			IVHiddenStats.stats_to_hide = ['strength', 'intelligence']
+			## PRISONER PROFILER ##
+			IVPrisonerProfiler.stat_increment_amount = 25
 		4 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
 			## ENERGY ##

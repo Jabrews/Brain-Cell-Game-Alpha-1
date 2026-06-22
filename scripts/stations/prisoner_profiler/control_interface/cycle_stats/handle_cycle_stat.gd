@@ -8,9 +8,9 @@ extends Node
 @onready var active_community_mesh : MeshInstance3D = $"../../StatDisplay/StatPanels/ActiveMeshes/CommunityActive"
 
 var stats : Array[String] = [
-	"strength",
+	"community",
 	"intelligence",
-	"community"
+	"strength",
 ]
 
 

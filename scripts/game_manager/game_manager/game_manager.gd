@@ -9,7 +9,7 @@ extends Node
 func _ready() : 
 	connect_signals()
 	
-	GLGameManagerBus.current_round = 2
+	GLGameManagerBus.current_round = 1
 	incremental_value_controller.change_progression_step(GLGameManagerBus.current_round, GLGameManagerBus.curr_energy)
 	GLCellCreatorBus.emit_signal('create_target_cell')
 	

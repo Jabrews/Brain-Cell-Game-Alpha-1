@@ -10,6 +10,9 @@ var strength_enabled : bool = true
 var intelligence_enabled : bool = true
 var community_enabled : bool = true
 
+var lock_starting_value : int = 0
+var inaccessible_starting_value : int = 0
+
 
 # componnets
 @onready var screen_large_stat_displays : Array[Node2D] = [
@@ -20,6 +23,18 @@ var community_enabled : bool = true
 @onready var screen_small_stat_display : Node2D = $ControlInterface/SmallStatDisplay/TvFrontPanel/SubViewport/SmallStatDisplay
 @onready var on_off_btn : StaticBody3D = $ControlInterface/Control/OnOffBtn
 
+# helper
+@onready var handle_symbols : Node = $Logic/HandleSymbols
+
+
+func _ready() -> void:
+	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_next_turn)
+	
+	# quick delay on startup for cell creation logic 
+	await get_tree().create_timer(1.0).timeout
+	handle_symbols._generate_inaccessible()
+	
+
 func update_selected_stat(stat_type : String) :
 	selected_stat = stat_type
 	screen_small_stat_display._update_stat(stat_type, stat_type_to_value(stat_type), stat_type_to_enabled(stat_type))
@@ -27,9 +42,14 @@ func update_selected_stat(stat_type : String) :
 
 func _handle_stat_value_changed(stat_type : String, new_value : int) :
 	
+	
 	# prevent disabled stats from incrementing
 	if stat_type_to_enabled(stat_type) == false :
 		return
+	
+	if new_value >= inaccessible_starting_value :	
+		new_value = inaccessible_starting_value
+	
 	
 	match stat_type : 
 		'strength' :
@@ -95,7 +115,16 @@ func stat_type_to_enabled(stat_type : String)  -> bool:
 		_ :
 			return 0.0
 
-		
+func _handle_next_turn() : 
+	strength_value = 0
+	strength_enabled = true
+	intelligence_value = 0
+	intelligence_enabled = true
+	community_value = 0
+	community_enabled = true
+
+func _handle_next_round() :
+	handle_symbols._generate_inaccessible()
 	
 
 	

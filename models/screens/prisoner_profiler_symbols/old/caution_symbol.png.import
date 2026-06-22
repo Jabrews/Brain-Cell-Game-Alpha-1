@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7jxfe4gv0noj"
-path.s3tc="res://.godot/imported/caution_symbol.png-c3889d845eeda8e45d895d66921b54f4.s3tc.ctex"
+path.s3tc="res://.godot/imported/caution_symbol.png-4670393438ee7728a581339fa3a41fc5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://models/screens/prisoner_profiler_symbols/caution_symbol.png"
-dest_files=["res://.godot/imported/caution_symbol.png-c3889d845eeda8e45d895d66921b54f4.s3tc.ctex"]
+source_file="res://models/screens/prisoner_profiler_symbols/old/caution_symbol.png"
+dest_files=["res://.godot/imported/caution_symbol.png-4670393438ee7728a581339fa3a41fc5.s3tc.ctex"]
 
 [params]
 

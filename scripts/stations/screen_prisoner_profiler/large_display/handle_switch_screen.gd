@@ -1,7 +1,7 @@
 extends Node
 
 # componnets
-@onready var bar : Sprite2D = $"../Bar"
+@onready var stat_display : Control = $"../StatDisplay"
 @onready var off_display : Control = $"../OffDisplay"
 
 
@@ -11,12 +11,12 @@ func _switch(screen_type : String) :
 	
 	match screen_type :	
 		'on' : 
-			bar.visible = true
+			stat_display.visible = true
 		'off' :
 			off_display.visible = true
 
 func toggle_screens_off() :
-	bar.visible = false
+	stat_display.visible = false
 	off_display.visible = false
 	
 	

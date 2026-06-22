@@ -1,7 +1,7 @@
 extends Node2D 
 
 # componets
-@onready var bar : Sprite2D = $Bar
+@onready var bar : Sprite2D = $StatDisplay/Bar
 @onready var handle_switch_screen : Node = $LargeHandleSwitchScreen
 
 @export var selected_stat_type : String

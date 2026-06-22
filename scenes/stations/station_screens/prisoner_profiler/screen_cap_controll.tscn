@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="4_kyvqp"]
 [ext_resource type="Shader" uid="uid://d0yj8rspbsydr" path="res://scripts/shaders/caution_cap_control_symbol_bg.gdshader" id="5_b3w7g"]
 [ext_resource type="Script" uid="uid://cyy335xyu6vam" path="res://scripts/stations/station_screens/prisoner_profiler/cap_control/helper_get_stats_clean_range.gd" id="5_frfhe"]
-[ext_resource type="Texture2D" uid="uid://b7jxfe4gv0noj" path="res://models/screens/prisoner_profiler_symbols/caution_symbol.png" id="6_frfhe"]
+[ext_resource type="Texture2D" uid="uid://b7jxfe4gv0noj" path="res://models/screens/prisoner_profiler_symbols/old/caution_symbol.png" id="6_frfhe"]
 [ext_resource type="Shader" uid="uid://cqykh8hjh2u4q" path="res://scripts/shaders/warning_cap_control_symbol.gdshader" id="7_j2l4a"]
-[ext_resource type="Texture2D" uid="uid://r488pprmkb15" path="res://models/screens/prisoner_profiler_symbols/warning_symbol.png" id="8_glob2"]
+[ext_resource type="Texture2D" uid="uid://r488pprmkb15" path="res://models/screens/prisoner_profiler_symbols/old/warning_symbol.png" id="8_glob2"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="10_o65vm"]
 
 [sub_resource type="Shader" id="Shader_k5fkp"]

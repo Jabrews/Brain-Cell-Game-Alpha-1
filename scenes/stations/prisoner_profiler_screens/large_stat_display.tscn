@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="1_h2v04"]
 [ext_resource type="Script" uid="uid://ct7ujsvxmxyts" path="res://scripts/stations/screen_prisoner_profiler/large_display/handle_switch_screen.gd" id="2_cmcy4"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="4_0w4hr"]
+[ext_resource type="Shader" uid="uid://cqykh8hjh2u4q" path="res://scripts/shaders/warning_cap_control_symbol.gdshader" id="4_jlsph"]
+[ext_resource type="Texture2D" uid="uid://b0qgq76ydwels" path="res://models/screens/prisoner_profiler_symbols/lock.png" id="5_jlsph"]
 
 [sub_resource type="Shader" id="Shader_8qqjc"]
 code = "shader_type canvas_item;
@@ -69,6 +71,30 @@ shader_parameter/red_color = Color(0.29803923, 0.02745098, 0.06666667, 1)
 shader_parameter/overlap_opacity = 0.10000000475
 shader_parameter/edge_padding = 5.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ewow"]
+shader = ExtResource("4_jlsph")
+shader_parameter/color_a = Color(0.5, 0, 0.07499981, 1)
+shader_parameter/color_b = Color(0, 0, 0, 1)
+shader_parameter/stripe_size = 2.0
+
+[sub_resource type="Shader" id="Shader_jlsph"]
+code = "shader_type canvas_item;
+
+uniform vec4 color_a : source_color = vec4(0.15, 0.15, 0.15, 1.0);
+uniform vec4 color_b : source_color = vec4(0.20, 0.20, 0.20, 1.0);
+uniform float stripe_size = 12.0;
+
+void fragment() {
+	float stripe = mod(floor((UV.x + UV.y) * stripe_size), 2.0);
+	COLOR = mix(color_a, color_b, stripe);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jlsph"]
+shader = SubResource("Shader_jlsph")
+shader_parameter/color_a = Color(0.37, 0.36630002, 0.3589, 0.23529412)
+shader_parameter/color_b = Color(0.21, 0.21, 0.21, 0.27058825)
+shader_parameter/stripe_size = 12.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h2v04"]
 shader = ExtResource("1_3x8uw")
 shader_parameter/line_opacity = 0.12
@@ -82,17 +108,52 @@ script = ExtResource("1_6pcaq")
 [node name="LargeHandleSwitchScreen" type="Node" parent="." unique_id=1302706607]
 script = ExtResource("2_cmcy4")
 
-[node name="Bar" type="Sprite2D" parent="." unique_id=1272989694]
+[node name="StatDisplay" type="Control" parent="." unique_id=1733810151]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bar" type="Sprite2D" parent="StatDisplay" unique_id=1272989694]
 texture_filter = 1
 material = SubResource("ShaderMaterial_6pcaq")
 position = Vector2(420.00003, 122)
 scale = Vector2(2.8064518, 9.399999)
 texture = ExtResource("1_h2v04")
 
-[node name="ScanLines" type="ColorRect" parent="." unique_id=149113758]
-material = SubResource("ShaderMaterial_h2v04")
-offset_right = 840.0
-offset_bottom = 270.0
+[node name="Inaccessible" type="Control" parent="StatDisplay" unique_id=412326992]
+anchors_preset = 0
+offset_top = 26.0
+offset_right = 40.0
+offset_bottom = 66.0
+
+[node name="InaccessibleBG" type="ColorRect" parent="StatDisplay/Inaccessible" unique_id=1077185429]
+material = SubResource("ShaderMaterial_4ewow")
+layout_mode = 0
+offset_top = -26.0
+offset_bottom = 237.0
+color = Color(1, 1, 1, 0.19607843)
+
+[node name="Locked" type="Control" parent="StatDisplay" unique_id=1824091348]
+anchors_preset = 0
+offset_top = 26.0
+offset_right = 40.0
+offset_bottom = 66.0
+
+[node name="InaccessibleBG" type="ColorRect" parent="StatDisplay/Locked" unique_id=710648022]
+material = SubResource("ShaderMaterial_jlsph")
+layout_mode = 0
+offset_left = 250.0
+offset_top = -26.0
+offset_right = 434.0
+offset_bottom = 237.0
+color = Color(1, 1, 1, 0.19607843)
+
+[node name="LockedSprite" type="Sprite2D" parent="StatDisplay/Locked" unique_id=1809729424]
+texture_filter = 1
+position = Vector2(346, 110)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("5_jlsph")
 
 [node name="OffDisplay" type="Control" parent="." unique_id=722291760]
 visible = false
@@ -117,3 +178,8 @@ offset_bottom = 200.0
 theme_override_fonts/font = ExtResource("4_0w4hr")
 theme_override_font_sizes/font_size = 134
 text = "Off"
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=149113758]
+material = SubResource("ShaderMaterial_h2v04")
+offset_right = 840.0
+offset_bottom = 270.0

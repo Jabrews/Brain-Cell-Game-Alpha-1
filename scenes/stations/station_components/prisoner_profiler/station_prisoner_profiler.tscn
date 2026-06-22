@@ -17,8 +17,8 @@
 [ext_resource type="Script" uid="uid://bhqn08nk2252k" path="res://scripts/stations/station_components/prisoner_profiler/screen_helpers/handle_prisoners_just_created.gd" id="8_ai7hr"]
 [ext_resource type="PackedScene" uid="uid://c5tb2u3nb0fa0" path="res://scenes/hoverable_mesh_scenes/hidden_stat_reveal_btn.tscn" id="8_mtam1"]
 [ext_resource type="PackedScene" uid="uid://dmtd6w1i541n8" path="res://reusable/hoverable/bouncing_sprite_scenes/key_e.tscn" id="9_5i3j4"]
-[ext_resource type="Texture2D" uid="uid://b7jxfe4gv0noj" path="res://models/screens/prisoner_profiler_symbols/caution_symbol.png" id="10_4ynva"]
-[ext_resource type="Texture2D" uid="uid://r488pprmkb15" path="res://models/screens/prisoner_profiler_symbols/warning_symbol.png" id="11_cr3jd"]
+[ext_resource type="Texture2D" uid="uid://b7jxfe4gv0noj" path="res://models/screens/prisoner_profiler_symbols/old/caution_symbol.png" id="10_4ynva"]
+[ext_resource type="Texture2D" uid="uid://r488pprmkb15" path="res://models/screens/prisoner_profiler_symbols/old/warning_symbol.png" id="11_cr3jd"]
 [ext_resource type="Script" uid="uid://cf6t4pqe1jbhl" path="res://scripts/stations/station_components/prisoner_profiler/btns/generate_btn.gd" id="11_vasud"]
 [ext_resource type="Script" uid="uid://c1ele68anq43w" path="res://scripts/stations/station_components/prisoner_profiler/prisoner_quanity_btn_updater.gd" id="12_080y5"]
 

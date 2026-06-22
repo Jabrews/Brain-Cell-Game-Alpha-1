@@ -48,6 +48,7 @@ IVFlappyBrain="*uid://c30hoeuma0kvb"
 GLHoldingDisplayBus="*uid://bx560aqp5rpi6"
 IVSnakeBrain="*uid://ds1cpm55tn8o0"
 IVAstroidBrain="*uid://ch03fe2qafsik"
+IVPrisonerProfiler="*uid://d2l2vol5dcd0u"
 
 [debug]
 

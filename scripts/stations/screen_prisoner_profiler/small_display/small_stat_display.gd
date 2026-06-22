@@ -2,7 +2,7 @@ extends Node2D
 
 # components
 @onready var selected_stat_label : Label3D = $"../../../SelectStat"
-@onready var bar : Sprite2D = $Bar
+@onready var bar : Sprite2D = $StatDisplay/Bar
 @onready var handle_switch_screen : Node = $SmallHandleSwitchScreen
 
 var selected_stat_value : float
