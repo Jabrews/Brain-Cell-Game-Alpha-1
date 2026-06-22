@@ -35,6 +35,17 @@ func _init(
 	self.turn_into_flesh_bug = turn_into_flesh_bug
 	self.cell_is_frozen = cell_is_frozen
 
+func get_stat(stat_type: String) -> BrainCellStat:
+	match stat_type:
+		"strength":
+			return strength
+		"intelligence":
+			return intelligence
+		"community":
+			return community
+		_:
+			push_error("Invalid stat_type: " + str(stat_type))
+			return null
 
 func _print():
 	@warning_ignore("incompatible_ternary")

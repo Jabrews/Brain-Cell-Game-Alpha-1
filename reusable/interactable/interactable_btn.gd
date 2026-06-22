@@ -8,6 +8,7 @@ func _ready() -> void:
 	add_to_group('interactable')
 	
 	_connect_signals()
+	_overide_ready()
 
 
 func handle_btn_interacted():
@@ -19,5 +20,8 @@ func _on_btn_interacted():
 
 # over-ride this method whenever adding signals
 func _connect_signals() : 
+	pass
+	
+func _overide_ready() :
 	pass
 	
