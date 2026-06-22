@@ -12,6 +12,8 @@ var designated_brain_cell : BrainCell
 @onready var picked_up_state : Node = $StateMachine/PickedUp # for ray cast
 @onready var idle_state : Node = $StateMachine/Idle
 
+var on_stat_interpreter : bool = false
+
 # when they die from breeding prevent
 var spawn_flesh_bug_on_death : bool = true
 
@@ -123,6 +125,13 @@ func _handle_cell_container_jolt(cell_name : String) :
 	
 	if cell_name != designated_brain_cell.name:
 		return
+	
+	# prevent indv. cell jolt from occuring
+	# we only want interpreter jolt to occur
+	# (which then reaches cell)
+	if on_stat_interpreter : 
+		return
+	
 		
 	state_machine.switch_state(state_machine.State.JOLT)
 
@@ -190,6 +199,12 @@ func check_for_cell_dead_on_update() :
 	############################
 
 
+# when on hidden stat intepreter 
+# this is a helper to prevent indiv. cell container jolt
+# NOTE : the hidden intepreters itself can still jolt and decrease cell
+func _toggle_cell_put_onto_hidden_interpreter(toggle_value) :
+	on_stat_interpreter = toggle_value
+
 func _on_offer_turn_into_flesh_bug_delay_timeout() -> void:
 	
 	GLCellManagerBus.emit_signal(
@@ -198,3 +213,6 @@ func _on_offer_turn_into_flesh_bug_delay_timeout() -> void:
 	)
 	
 	state_machine.switch_state(state_machine.State.DYING)
+	
+	
+	

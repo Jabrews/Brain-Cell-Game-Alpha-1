@@ -13,8 +13,6 @@ func _spawn(max_health: int, global_pos: Vector2) -> void:
 	# large asteroid creates medium asteroids
 	if max_health > 4:
 		smaller_astroid_health = 3
-	
-	# small asteroids should not break anymore
 	else:
 		return
 
@@ -23,12 +21,15 @@ func _spawn(max_health: int, global_pos: Vector2) -> void:
 		
 		astroid_instance.health = smaller_astroid_health
 		
-		# Medium asteroids can optionally break again into small ones.
+		astroid_instance.extra_astroid_no_points_extra = true
+		
 		var ran_num: int = randi_range(0, 100)
 		if ran_num < IVAstroidBrain.twice_smaller_break_astroids_to_spawn:
 			astroid_instance.can_break_into_smaller = smaller_astroid_health > 2
 		else:
 			astroid_instance.can_break_into_smaller = false
+		
+		
 		
 		get_parent().get_parent().call_deferred("add_child", astroid_instance)
 		

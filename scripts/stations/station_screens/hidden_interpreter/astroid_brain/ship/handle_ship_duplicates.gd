@@ -51,6 +51,7 @@ func _handle_child_ship_died(ship_child_instance : CharacterBody2D) :
 func delete_all_ships() :
 	for ship : CharacterBody2D in current_ships :
 		current_ships.erase(ship)
+	for ship : CharacterBody2D in ship_duplicates_parent_node.get_children() :
 		ship.queue_free()
 	
 	

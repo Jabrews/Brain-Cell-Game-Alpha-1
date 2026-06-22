@@ -7,6 +7,8 @@ var target_cell : BrainCell
 @onready var next_round_delay_timer : Timer = $NextRoundDelayTimer
 
 
+
+
 func _ready() -> void:
 	GLCellManagerBus.connect('target_cell_created', _handle_target_cell_created)
 	
@@ -51,8 +53,8 @@ func compare_cells(selected_brain_cell : BrainCell) :
 	if max_points >= 40: 
 		handle_compare_finished(true)
 	else :
+		handle_compare_finished(true)
 		#handle_compare_finished(false)
-		handle_compare_finished(false)
 	
 func compare_stat(target_stat : float, selected_stat : float) :
 	
@@ -86,13 +88,16 @@ func compare_stat(target_stat : float, selected_stat : float) :
 func handle_compare_finished(comparison_success : bool) :
 	if comparison_success:
 		screen_swap_handler.swap_screen('compare_passed')
+		get_parent().can_accept_cell = false		
 		next_round_delay_timer.start()
+		
 	else : 
 		screen_swap_handler.swap_screen('compare_failed')
 
 func _handle_next_round_delay_timer_timeout() :
 	GLGameManagerBus.emit_signal('proceed_next_round')
 	screen_swap_handler.swap_screen('target_stat_display')
+	get_parent().can_accept_cell = true 
 #######################
 
 func check_for_disabled_stats(selected_brain_cell : BrainCell) :

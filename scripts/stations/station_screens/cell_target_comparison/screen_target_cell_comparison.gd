@@ -26,12 +26,15 @@ extends Node2D
 ###############################
 var active_target_cell : BrainCell
 
+var can_accept_cell : bool =true
+
 func _ready() -> void:
 	GLCellManagerBus.connect('target_cell_created', _handle_target_cell_created)
 	
 ## STAT PROPIGATOR TO FINISHER MANAGER ##
 func _handle_panel_cell_recieved(panel_cell: BrainCell) :
-	comparison_finisher.compare_cells(panel_cell)
+	if can_accept_cell:
+		comparison_finisher.compare_cells(panel_cell)
 
 ## STAT VISUAL ##	
 func _handle_target_cell_created(target_cell : BrainCell) :

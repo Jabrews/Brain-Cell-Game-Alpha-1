@@ -19,6 +19,7 @@ var prisoner_quantity_energy_spent : int = 0 # default cost for quantity 4
 
 func _ready() -> void:
 	GLGameManagerBus.connect('energy_changed', _handle_energy_changed)
+	GLGameManagerBus.connect('proceed_next_round', _handle_next_round)
 
 
 func _handle_reset_prisoners_created() -> void:
@@ -93,4 +94,9 @@ func _validate_create_prisoner_batch() :
 	
 func _handle_energy_changed() :
 	get_total_energy_spent()
+	
+func _handle_next_round() :
+	#get_total_energy_spent()
+	pass
+	
 	

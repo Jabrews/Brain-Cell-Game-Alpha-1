@@ -129,6 +129,10 @@ func disable_stat_cap(symbol_type : String) -> void:
 
 func _handle_proceed_next_round() -> void:
 	
+	symbol_range_manager.toggle_hide_symbol('caution', true)
+	symbol_range_manager.toggle_hide_symbol('warning', true)
+	
+	
 	symbol_range_manager.caution_left_point_index = 1
 	symbol_range_manager.caution_right_point_index = 2
 	symbol_range_manager.set_symbol('caution')

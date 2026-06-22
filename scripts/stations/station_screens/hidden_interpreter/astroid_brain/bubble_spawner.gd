@@ -21,6 +21,11 @@ func _spawn():
 		bubble_spawn_delay_timer.start()	
 		await bubble_spawn_delay_timer.timeout
 		
+		# kinda hacky
+		# incase called multiple times before bubble cleared
+		if not IVAstroidBrain.can_spawn_bubble :
+			return
+		
 		var bubble_instance = bubble_scene.instantiate()	
 		
 		var bubble_y : float = 48.0
@@ -29,6 +34,8 @@ func _spawn():
 		bubble_instance.global_position = Vector2(bubble_x, bubble_y)
 		
 		add_child(bubble_instance)	
+		
+		IVAstroidBrain.can_spawn_bubble = false
 	
 func verify_duplicates() :	
 	if len(player_ship.handle_ship_duplicates.current_ships) >= 2 :

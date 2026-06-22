@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://c023cc2aha7id" path="res://scenes/ui/ui.tscn" id="14_c0gn3"]
 [ext_resource type="Script" uid="uid://di2ssc3ya2nmp" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_cells.gd" id="15_dn28p"]
 [ext_resource type="Script" uid="uid://ck1ee6agujp2p" path="res://scripts/useable/useable_item_spawn_manager.gd" id="16_44ape"]
+[ext_resource type="PackedScene" uid="uid://n1eekgv0lbkm" path="res://scenes/stations/prisoner_profiler/prisoner_profiler.tscn" id="16_w7r6u"]
 [ext_resource type="Script" uid="uid://dho0dsdpmn7e1" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/assemble_helper_create_clean.gd" id="17_m5ih7"]
 [ext_resource type="Script" uid="uid://dt7mr4gkrn8ip" path="res://debug/debug_keys/debug_keys.gd" id="18_44ape"]
 [ext_resource type="Script" uid="uid://d4a6fy8scdx18" path="res://scripts/game_manager/defect_event_manager/defect_event_manager.gd" id="18_58boi"]
@@ -224,6 +225,8 @@ cell_container_parent_node = NodePath("../../../Characters/ContainerParentNode")
 
 [node name="AxeMount" parent="Stations" unique_id=624783328 instance=ExtResource("11_v2xyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.442163, 2.623817, -3.1650834)
+
+[node name="PrisonerProfiler" parent="Stations" unique_id=261005381 instance=ExtResource("16_w7r6u")]
 
 [node name="GameManager" type="Node" parent="." unique_id=389759183]
 script = ExtResource("10_erkku")

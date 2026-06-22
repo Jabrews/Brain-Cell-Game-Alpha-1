@@ -12,14 +12,21 @@ var speed : float = 20.0
 
 var is_paused : bool = false
 
+var starting_postion : Vector3
+
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	starting_postion = global_position	
 	
 	# update char refrence state
 	GLPlayerState.player_refrence = self
 	
 	GLChairBus.connect('toggle_player_sat_on_interpreter_chair', _handle_toggle_player_sat_on_interpreter_chair)	
+	GLGameManagerBus.connect('reset_player_position', _handle_reset_player_position)	
+	
+	
 	
 	
 	
@@ -74,6 +81,9 @@ func _handle_toggle_player_sat_on_interpreter_chair(toggle_value : bool, _interp
 	else :
 		is_paused = false
 		visible = true
+	
+func _handle_reset_player_position() :
+	global_position = starting_postion
 	
 	
 	

@@ -16,11 +16,11 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_b6u05"]
 size = Vector3(0.02, 0.45756936, 0.35549256)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6k36"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vusdx"]
 albedo_color = Color(1, 1, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_dfncn"]
-material = SubResource("StandardMaterial3D_o6k36")
+material = SubResource("StandardMaterial3D_vusdx")
 size = Vector3(0.02, 0.345, 0.345)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7t2al"]
@@ -37,24 +37,24 @@ load_path = "res://.godot/imported/energy_symbol.png-5626c71ab2f35397b3301af5cd4
 [sub_resource type="ViewportTexture" id="ViewportTexture_nmamy"]
 viewport_path = NodePath("StatCapControlScreens/StrengthCapControlTv3/SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8ku5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_muwgl"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_nmamy")
 texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_dfncn"]
-material = SubResource("StandardMaterial3D_a8ku5")
+material = SubResource("StandardMaterial3D_muwgl")
 size = Vector2(2.5, 0.7)
 orientation = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y3v1h"]
 size = Vector3(0.02, 0.16701172, 0.29)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwe67"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f7q44"]
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_7v3ty"]
-material = SubResource("StandardMaterial3D_qwe67")
+material = SubResource("StandardMaterial3D_f7q44")
 size = Vector3(0.02, 0.17, 0.29)
 
 [node name="StatControlPanel" type="Node3D" unique_id=1645837205]

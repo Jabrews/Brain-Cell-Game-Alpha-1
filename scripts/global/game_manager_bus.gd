@@ -14,3 +14,6 @@ signal proceed_next_energy_turn()
 
 # when just the num changes
 signal energy_changed()
+
+# after round fade to black
+signal reset_player_position()

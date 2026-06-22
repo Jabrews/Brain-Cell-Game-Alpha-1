@@ -64,7 +64,6 @@ func handle_round(round : int):
 			IVHiddenStats.stats_to_hide = []
 			
 		2 :
-
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = false
 			## ENERGY ##
 			GLGameManagerBus.curr_energy = 100

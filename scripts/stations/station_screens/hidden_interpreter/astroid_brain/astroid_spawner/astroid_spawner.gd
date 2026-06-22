@@ -23,17 +23,19 @@ func toggle_start(toggleValue : bool) :
 	else : 
 		for astroid : Node2D in astroid_parent_node.get_children(): 
 			astroid.queue_free()
+		current_astroids = 0
 
 func _handle_astroid_killed() -> void:
 	current_astroids -= 1
 	current_astroids = max(current_astroids, 0)
 
-	if current_astroids <= 0 and not waiting_for_next_batch:
+	if current_astroids == 0 and not waiting_for_next_batch:
 		waiting_for_next_batch = true
 
 		await get_tree().create_timer(1.0).timeout
 
 		generate_next_astroid_batch()
+		
 		handle_spawn_bubble()
 		
 		waiting_for_next_batch = false
@@ -131,7 +133,6 @@ func handle_spawn_bubble() :
 		
 		if random_num <= 99 :
 			bubble_spawner._spawn()
-			IVAstroidBrain.can_spawn_bubble = false
 		else :
 			return
 			

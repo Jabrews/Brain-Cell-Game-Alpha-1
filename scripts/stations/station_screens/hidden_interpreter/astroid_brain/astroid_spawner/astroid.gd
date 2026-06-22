@@ -13,6 +13,9 @@ var max_health : int = 0
 
 @export var can_break_into_smaller : bool = false
 
+var extra_astroid_no_points_extra : bool 
+
+
 
 
 # components 
@@ -114,7 +117,9 @@ func _handle_hit_by_bullet() :
 			spawn_smaller_breaking_astroids._spawn(max_health, global_position)
 			
 		GLInterpreterGames.emit_signal('ship_collected_point', points)
-		GLInterpreterGames.emit_signal('astroid_killed')			
+		
+		if not extra_astroid_no_points_extra :	
+			GLInterpreterGames.emit_signal('astroid_killed')			
 		
 		queue_free()
 	
@@ -123,5 +128,7 @@ func _handle_hit_by_bullet() :
 func _handle_hit_ground() -> void:
 	handle_astroid_hit_ground._handle(global_position, max_health)
 	
-	GLInterpreterGames.emit_signal('astroid_killed')			
+	if not extra_astroid_no_points_extra :	
+		GLInterpreterGames.emit_signal('astroid_killed')			
+		
 	queue_free()

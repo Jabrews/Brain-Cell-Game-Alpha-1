@@ -3,6 +3,8 @@ extends Area3D
 # componnets
 @export var cell_reciever : Node 
 
+@export var is_hidden_interpreter_panel : bool = false
+
 var loaded_body : CharacterBody3D
 
 @export var disable_spawn_flesh_bug_on_cell_death : bool = false
@@ -28,6 +30,8 @@ func _handle_body_entered(body) :
 		cell_reciever._handle_panel_body_recieved(loaded_body)
 		if disable_spawn_flesh_bug_on_cell_death :
 			body.spawn_flesh_bug_on_death  = false	
+		if is_hidden_interpreter_panel : 
+			body._toggle_cell_put_onto_hidden_interpreter(true)
 		
 		GLPlayerLocalSoundsBus.emit_signal('sound_panel_cell_loaded')
 
@@ -38,6 +42,9 @@ func _handle_body_exited(body) :
 			loaded_body = null
 			if disable_spawn_flesh_bug_on_cell_death :
 				body.spawn_flesh_bug_on_death  = true
+			if is_hidden_interpreter_panel : 
+				body._toggle_cell_put_onto_hidden_interpreter(false)
+				
 			cell_reciever._handle_panel_body_recieved(loaded_body)
 
 

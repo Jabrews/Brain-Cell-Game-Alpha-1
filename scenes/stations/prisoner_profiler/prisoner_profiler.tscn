@@ -1,0 +1,958 @@
+[gd_scene format=3 uid="uid://n1eekgv0lbkm"]
+
+[ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="1_b4221"]
+[ext_resource type="Script" uid="uid://dqb4ysqv3alnd" path="res://scripts/stations/prisoner_profiler/control_interface/handle_cycle_stat.gd" id="1_d2mkq"]
+[ext_resource type="PackedScene" uid="uid://bm8mcmj3vxox3" path="res://scenes/hoverable_mesh_scenes/stat_control_panel_btn_hover.tscn" id="2_7qc6t"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="3_bsoe0"]
+[ext_resource type="Script" uid="uid://dt4e5g2vjsjuc" path="res://scripts/stations/station_components/prisoner_profiler/stat_control_panel/btns/on_off_mesh.gd" id="4_f05ry"]
+[ext_resource type="PackedScene" uid="uid://b366gm7tg6uso" path="res://scenes/hoverable_mesh_scenes/stat_control_panel_on_off_panel_btn.tscn" id="5_6nrc1"]
+[ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="6_7qc6t"]
+[ext_resource type="PackedScene" uid="uid://cw3j1wx83t7s4" path="res://scenes/hoverable_mesh_scenes/choose_stat_btn.tscn" id="6_bsoe0"]
+[ext_resource type="Script" uid="uid://cxe47p7g6bu00" path="res://scripts/stations/prisoner_profiler/control_interface/cycle_stat_btn.gd" id="6_rute7"]
+[ext_resource type="PackedScene" uid="uid://ctgv6es6pim8p" path="res://scenes/stations/station_screens/prisoner_profiler/screen_hidden_stat_quanity.tscn" id="8_6nrc1"]
+[ext_resource type="PackedScene" uid="uid://c746r67f0tqyg" path="res://scenes/stations/station_screens/prisoner_spawner_limit/screen_pick_quanity.tscn" id="9_pvslh"]
+[ext_resource type="Script" uid="uid://c1ele68anq43w" path="res://scripts/stations/station_components/prisoner_profiler/prisoner_quanity_btn_updater.gd" id="10_lbckn"]
+[ext_resource type="Script" uid="uid://bovnevwtlncs4" path="res://scripts/stations/station_components/prisoner_profiler/btns/prisoner_quanity_btn.gd" id="11_qt5yk"]
+[ext_resource type="PackedScene" uid="uid://c5tb2u3nb0fa0" path="res://scenes/hoverable_mesh_scenes/hidden_stat_reveal_btn.tscn" id="12_kwr0x"]
+[ext_resource type="Script" uid="uid://cf6t4pqe1jbhl" path="res://scripts/stations/station_components/prisoner_profiler/btns/generate_btn.gd" id="14_d2mkq"]
+[ext_resource type="Script" uid="uid://brd5yl8fa6dn6" path="res://scripts/stations/station_components/prisoner_profiler/energy_panel/energy_panel.gd" id="14_kwr0x"]
+[ext_resource type="Texture2D" uid="uid://b7jxfe4gv0noj" path="res://models/screens/prisoner_profiler_symbols/caution_symbol.png" id="15_rute7"]
+[ext_resource type="Texture2D" uid="uid://r488pprmkb15" path="res://models/screens/prisoner_profiler_symbols/warning_symbol.png" id="16_d2mkq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pvslh"]
+size = Vector3(0.02, 0.21641724, 0.24408326)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6k36"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rcxc2"]
+material = SubResource("StandardMaterial3D_o6k36")
+size = Vector3(0.02, 0.345, 0.345)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xeiop"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l25tc"]
+size = Vector3(0.02, 0.46619385, 0.36737794)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lbckn"]
+size = Vector3(0.01, 0.8, 0.64)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qt5yk"]
+load_path = "res://.godot/imported/energy_symbol.png-5626c71ab2f35397b3301af5cd47d48e.s3tc.ctex"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kwr0x"]
+size = Vector3(0.02, 0.16701172, 0.29)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwe67"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rute7"]
+material = SubResource("StandardMaterial3D_qwe67")
+size = Vector3(0.02, 0.17, 0.29)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f05ry"]
+albedo_color = Color(0, 0.5500002, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6nrc1"]
+material = SubResource("StandardMaterial3D_f05ry")
+size = Vector3(0.02, 0.16449708, 0.22937745)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7qc6t"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_keru6"]
+material = SubResource("StandardMaterial3D_7qc6t")
+size = Vector3(0.053, 0.772, 1.87)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_bsoe0"]
+viewport_path = NodePath("StatCapControlScreens/StrengthCapControlTv3/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8ku5"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_bsoe0")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f05ry"]
+material = SubResource("StandardMaterial3D_a8ku5")
+size = Vector2(2.3, 0.7)
+orientation = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_keru6"]
+albedo_color = Color(0.056291588, 0.056291603, 0.056291595, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qa1qv"]
+material = SubResource("StandardMaterial3D_keru6")
+size = Vector3(1, 1, 1.735)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
+size = Vector3(1, 1.2910156, 1.735)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b4221"]
+material = SubResource("StandardMaterial3D_keru6")
+size = Vector3(1, 1.2929688, 1.735)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f05ry"]
+material = SubResource("StandardMaterial3D_keru6")
+size = Vector3(1, 1, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6nrc1"]
+size = Vector3(1, 1, 0.4)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_f05ry"]
+viewport_path = NodePath("StatCapControlScreens/StrengthCapControlTv3/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6nrc1"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_f05ry")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pvslh"]
+material = SubResource("StandardMaterial3D_6nrc1")
+size = Vector2(3.5, 0.7)
+orientation = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kwr0x"]
+resource_local_to_scene = true
+metallic_specular = 0.0
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d2mkq"]
+material = SubResource("StandardMaterial3D_kwr0x")
+size = Vector2(3.6, 0.8)
+orientation = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b4221"]
+size = Vector3(3.7128906, 4.9628906, 0.26)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78gsp"]
+albedo_color = Color(0.25, 0.23875, 0.225, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7qc6t"]
+material = SubResource("StandardMaterial3D_78gsp")
+size = Vector3(3.7548828, 4.9647827, 0.26)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7qc6t"]
+size = Vector3(3.7563477, 1.4440308, 0.66919553)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5xq6v"]
+albedo_color = Color(0.25, 0.1375, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bsoe0"]
+material = SubResource("StandardMaterial3D_5xq6v")
+size = Vector3(3.7563477, 1.4470154, 0.67896116)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1en1e"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xeiop"]
+material = SubResource("StandardMaterial3D_1en1e")
+size = Vector3(0.1, 1.065, 1.3)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_l25tc"]
+viewport_path = NodePath("HiddenQuanityTV/TvFrontPannel/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7fjcn"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_l25tc")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lbckn"]
+material = SubResource("StandardMaterial3D_7fjcn")
+size = Vector2(1.145, 0.945)
+orientation = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5xot"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qt5yk"]
+material = SubResource("StandardMaterial3D_d5xot")
+size = Vector3(0.1, 1.065, 1.3)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kwr0x"]
+viewport_path = NodePath("MaxPickQuanityTV/TvFrontPannel/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vasud"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_kwr0x")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rute7"]
+material = SubResource("StandardMaterial3D_vasud")
+size = Vector2(1.145, 0.945)
+orientation = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fm2ka"]
+albedo_color = Color(0.73866665, 1, 0.01999998, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_iwmj8"]
+material = SubResource("StandardMaterial3D_fm2ka")
+size = Vector3(0.3, 0.1, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_psmjt"]
+size = Vector3(0.62, 0.1, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pl004"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_psmjt"]
+size = Vector3(0.01, 0.85, 1)
+subdivide_width = 16
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pl004"]
+load_path = "res://.godot/imported/energy_symbol.png-5626c71ab2f35397b3301af5cd47d48e.s3tc.ctex"
+
+[sub_resource type="BoxMesh" id="BoxMesh_76fo1"]
+size = Vector3(0.01, 1.4, 0.85)
+subdivide_width = 16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cr3jd"]
+albedo_color = Color(0.19434929, 0.19434926, 0.19434926, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c22aw"]
+material = SubResource("StandardMaterial3D_cr3jd")
+size = Vector3(0.01, 0.265, 0.78)
+subdivide_width = 16
+
+[sub_resource type="BoxMesh" id="BoxMesh_kwr0x"]
+material = SubResource("StandardMaterial3D_78gsp")
+size = Vector3(1.268219, 2.7602386, 0.26)
+
+[node name="PrisonerProfiler" type="Node3D" unique_id=672067400]
+
+[node name="Logic" type="Node" parent="." unique_id=2085216556]
+
+[node name="HandleCycleStat" type="Node" parent="Logic" unique_id=1465069877]
+script = ExtResource("1_d2mkq")
+
+[node name="ControlInterface" type="Node3D" parent="." unique_id=728610755]
+transform = Transform3D(0.8096126, 0, 0.5869646, 0, 1, 0, -0.5869646, 0, 0.8096126, 0, 1.8258047, 0)
+
+[node name="Control" type="Node3D" parent="ControlInterface" unique_id=1567785023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.43523097, 0)
+
+[node name="IncrementStatDown" type="StaticBody3D" parent="ControlInterface/Control" unique_id=36623911 groups=["interactable"]]
+transform = Transform3D(0.908624, -0.417615, 0, 0.41761503, 0.90862423, 0, 0, 0, 1, -0.31469175, 0.34432793, 0.56217194)
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlInterface/Control/IncrementStatDown" unique_id=971510570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.019040108, 0.019222245)
+shape = SubResource("BoxShape3D_pvslh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ControlInterface/Control/IncrementStatDown" unique_id=1197810995]
+transform = Transform3D(1, 0, 0, 0, 1.3352814, 0, 0, 0, 1.0675185, 0, 0.0188905, 0.016410917)
+mesh = SubResource("BoxMesh_rcxc2")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="ControlInterface/Control/IncrementStatDown" unique_id=1203226003 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_b4221")
+hover_mesh_scene = ExtResource("2_7qc6t")
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlInterface/Control/IncrementStatDown/HoverableMesh" unique_id=405727351]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0188905, 0.016410917)
+shape = SubResource("BoxShape3D_xeiop")
+
+[node name="DownArrowLabel" type="Label3D" parent="ControlInterface/Control/IncrementStatDown" unique_id=2052479335]
+transform = Transform3D(-4.666272e-08, 0, 1.0000001, 0, 1.3352814, 0, -1.0675186, 0, -4.3711392e-08, 0.030485347, 0.027899027, 0.041054517)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "<"
+font = ExtResource("3_bsoe0")
+font_size = 30
+outline_size = 0
+
+[node name="IncrementStatUp" type="StaticBody3D" parent="ControlInterface/Control" unique_id=1472330230 groups=["interactable"]]
+transform = Transform3D(0.908624, -0.417615, 0, 0.41761503, 0.90862423, 0, 0, 0, 1, -0.29266274, 0.35445213, -0.3893819)
+collision_layer = 0
+collision_mask = 32
+
+[node name="UpArrowLabel" type="Label3D" parent="ControlInterface/Control/IncrementStatUp" unique_id=1659728682]
+transform = Transform3D(-4.666272e-08, 0, 1.0000001, 0, 1.3352814, 0, -1.0675186, 0, -4.3711392e-08, 0.030485347, 0.027899027, -0.15769744)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = ">"
+font = ExtResource("3_bsoe0")
+font_size = 30
+outline_size = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlInterface/Control/IncrementStatUp" unique_id=989572263]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.020290732, -0.17951286)
+shape = SubResource("BoxShape3D_l25tc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ControlInterface/Control/IncrementStatUp" unique_id=237879923]
+transform = Transform3D(1, 0, 0, 0, 1.3352814, 0, 0, 0, 1.0675185, 0, 0.0188905, -0.18234098)
+mesh = SubResource("BoxMesh_rcxc2")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="ControlInterface/Control/IncrementStatUp" unique_id=259299007 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_b4221")
+hover_mesh_scene = ExtResource("2_7qc6t")
+orignal_mesh = NodePath("../MeshInstance3D")
+custom_b_sprite_pos = Vector3(0.2, 1, 0.8)
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlInterface/Control/IncrementStatUp/HoverableMesh" unique_id=1374677684]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0188905, -0.038982987)
+shape = SubResource("BoxShape3D_xeiop")
+
+[node name="CurrStatDisplayLabelsl" type="Node3D" parent="ControlInterface/Control" unique_id=785013194]
+transform = Transform3D(0.908624, -0.417615, 0, 0.41761503, 0.90862423, 0, 0, 0, 1, 0.42359334, -0.8024857, 0.5266521)
+
+[node name="DisplayMesh" type="MeshInstance3D" parent="ControlInterface/Control/CurrStatDisplayLabelsl" unique_id=122460375]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20875105, 1.3645114, -0.50881326)
+mesh = SubResource("BoxMesh_lbckn")
+
+[node name="EnergySpent" type="Node3D" parent="ControlInterface/Control/CurrStatDisplayLabelsl" unique_id=276084618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04037273, 0.05142796)
+
+[node name="CleanStatAdditon" type="Label3D" parent="ControlInterface/Control/CurrStatDisplayLabelsl/EnergySpent" unique_id=1548032390]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.2036186, 1.2662206, -0.48533148)
+texture_filter = 0
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "- 0"
+font = ExtResource("3_bsoe0")
+font_size = 33
+outline_size = 0
+
+[node name="EnergyIcon3" type="Sprite3D" parent="ControlInterface/Control/CurrStatDisplayLabelsl/EnergySpent" unique_id=326289034]
+transform = Transform3D(-3.934025e-08, 0, 0.9, 0, 0.9, 0, -0.9, 0, -3.934025e-08, -0.19064441, 1.2627908, -0.68640614)
+modulate = Color(1, 0, 0, 1)
+texture_filter = 0
+texture = SubResource("CompressedTexture2D_qt5yk")
+
+[node name="CleanRange" type="Node3D" parent="ControlInterface/Control/CurrStatDisplayLabelsl" unique_id=832219118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14523786, -0.0067284107)
+
+[node name="CleanStatRange" type="Label3D" parent="ControlInterface/Control/CurrStatDisplayLabelsl/CleanRange" unique_id=1130098963]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.2036186, 1.6455898, -0.51720345)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "low-mid
+"
+font = ExtResource("3_bsoe0")
+font_size = 33
+outline_size = 0
+
+[node name="OffLabel" type="Label3D" parent="ControlInterface/Control/CurrStatDisplayLabelsl" unique_id=838602477]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.2036186, 1.3497689, -0.52116287)
+visible = false
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "Off"
+font = ExtResource("3_bsoe0")
+font_size = 60
+outline_size = 0
+
+[node name="OnOffBtn" type="StaticBody3D" parent="ControlInterface/Control" unique_id=1821006752 groups=["interactable"]]
+transform = Transform3D(0.908624, -0.417615, 0, 0.41761503, 0.90862423, 0, 0, 0, 1, -0.21982256, 0.099659085, 0.052233562)
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlInterface/Control/OnOffBtn" unique_id=1073409324]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22551143, -0.011363089)
+shape = SubResource("BoxShape3D_kwr0x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ControlInterface/Control/OnOffBtn" unique_id=1348187780]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22637343, -0.011363089)
+mesh = SubResource("BoxMesh_rute7")
+script = ExtResource("4_f05ry")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="ControlInterface/Control/OnOffBtn" unique_id=1329292786 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_b4221")
+hover_mesh_scene = ExtResource("5_6nrc1")
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlInterface/Control/OnOffBtn/HoverableMesh" unique_id=1888937638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07366574, -0.011363089)
+shape = SubResource("BoxShape3D_xeiop")
+
+[node name="OnOffLabel" type="Label3D" parent="ControlInterface/Control/OnOffBtn" unique_id=6592047]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.018645227, -0.22676593, -0.015128493)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "on"
+font = ExtResource("3_bsoe0")
+font_size = 24
+outline_size = 0
+
+[node name="CycleStatUp" type="StaticBody3D" parent="ControlInterface/Control" unique_id=86079778 groups=["interactable"]]
+transform = Transform3D(0.908624, -0.417615, 0, 0.41761503, 0.90862423, 0, 0, 0, 1, -0.39293736, 0.4527309, -1.1708429)
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("6_rute7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlInterface/Control/CycleStatUp" unique_id=965643952]
+transform = Transform3D(1, -4.4703484e-08, 0, 1.4901161e-08, 1.0000006, 0, 0, -2.9802322e-08, 1, -1.1920929e-07, 0.0022497177, 0.011869192)
+shape = SubResource("BoxShape3D_pvslh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ControlInterface/Control/CycleStatUp" unique_id=1811823062]
+transform = Transform3D(1, -1.7881393e-07, 0, 1.4901161e-08, 1.3352823, 0, 0, -5.9604645e-08, 1.0675185, 0, 0.0009274483, 0.012953758)
+mesh = SubResource("BoxMesh_6nrc1")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="ControlInterface/Control/CycleStatUp" unique_id=612199740 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_b4221")
+hover_mesh_scene = ExtResource("6_bsoe0")
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlInterface/Control/CycleStatUp/HoverableMesh" unique_id=2098906387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0188905, 0.016410917)
+shape = SubResource("BoxShape3D_xeiop")
+
+[node name="DownArrowLabel" type="Label3D" parent="ControlInterface/Control/CycleStatUp" unique_id=1758997309]
+transform = Transform3D(-1.1920929e-07, -1.4901161e-08, 1.0000014, -5.9604645e-08, 1.3352823, 1.0430813e-07, -1.067519, -8.940697e-08, -2.0861626e-07, 0.010331333, 0.016070843, 0.009503365)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "↑"
+font = ExtResource("3_bsoe0")
+font_size = 24
+outline_size = 0
+
+[node name="CycleStatDown" type="StaticBody3D" parent="ControlInterface/Control" unique_id=487487762 groups=["interactable"]]
+transform = Transform3D(0.908624, -0.417615, 0, 0.41761503, 0.90862423, 0, 0, 0, 1, -0.252812, 0.12061, -1.1745696)
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("6_rute7")
+cycle_direction = "down"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlInterface/Control/CycleStatDown" unique_id=194990582]
+transform = Transform3D(1, -4.4703484e-08, 0, 1.4901161e-08, 1.0000006, 0, 0, -2.9802322e-08, 1, -1.1920929e-07, 0.0022497177, 0.011869192)
+shape = SubResource("BoxShape3D_pvslh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ControlInterface/Control/CycleStatDown" unique_id=1759015037]
+transform = Transform3D(1, -1.7881393e-07, 0, 1.4901161e-08, 1.3352823, 0, 0, -5.9604645e-08, 1.0675185, 0, 0.0009274483, 0.012953758)
+mesh = SubResource("BoxMesh_6nrc1")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="ControlInterface/Control/CycleStatDown" unique_id=857965930 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_b4221")
+hover_mesh_scene = ExtResource("6_bsoe0")
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlInterface/Control/CycleStatDown/HoverableMesh" unique_id=224336084]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0188905, 0.016410917)
+shape = SubResource("BoxShape3D_xeiop")
+
+[node name="DownArrowLabel" type="Label3D" parent="ControlInterface/Control/CycleStatDown" unique_id=836719364]
+transform = Transform3D(-1.1920929e-07, -1.4901161e-08, 1.0000014, -5.9604645e-08, 1.3352823, 1.0430813e-07, -1.067519, -8.940697e-08, -2.0861626e-07, 0.010331333, 0.016070843, 0.009503365)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "↓"
+font = ExtResource("3_bsoe0")
+font_size = 24
+outline_size = 0
+
+[node name="StatDisplay" type="Node3D" parent="ControlInterface" unique_id=1140972972]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07841942, -0.69148827, -0.069479264)
+
+[node name="TvBackPanel" type="MeshInstance3D" parent="ControlInterface/StatDisplay" unique_id=45172422]
+transform = Transform3D(1, 0, 1.4901161e-07, 0, 1, 0, -1.4901161e-07, 0, 1, -0.73422074, 1.3732584, 0.07022238)
+mesh = SubResource("BoxMesh_keru6")
+
+[node name="TvFrontPanel" type="MeshInstance3D" parent="ControlInterface/StatDisplay" unique_id=2025259433]
+transform = Transform3D(0.6668786, 0, 0, 0, 1, 0, 0, 0, 0.75848883, -0.6471921, 1.376776, 0.07894197)
+mesh = SubResource("PlaneMesh_f05ry")
+script = ExtResource("6_7qc6t")
+
+[node name="SubViewport" type="SubViewport" parent="ControlInterface/StatDisplay/TvFrontPanel" unique_id=21946426]
+size = Vector2i(852, 197)
+render_target_update_mode = 4
+
+[node name="Mesh" type="Node3D" parent="ControlInterface" unique_id=617226752]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.43523097, 0)
+
+[node name="Base" type="StaticBody3D" parent="ControlInterface/Mesh" unique_id=1943499907]
+transform = Transform3D(0.91874504, -0.3948514, 0, 0.39485142, 0.91874504, 0, -2.9802322e-08, 0, 1, -0.7861671, 0.05180192, -2.9802322e-08)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ControlInterface/Mesh/Base" unique_id=710501925]
+mesh = SubResource("BoxMesh_qa1qv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlInterface/Mesh/Base" unique_id=313037733]
+shape = SubResource("BoxShape3D_qa1qv")
+
+[node name="Base2" type="StaticBody3D" parent="ControlInterface/Mesh" unique_id=1920147953]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6158011, -0.6790956, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ControlInterface/Mesh/Base2" unique_id=2023607159]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14648438, 0)
+mesh = SubResource("BoxMesh_b4221")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlInterface/Mesh/Base2" unique_id=1324053548]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14550781, 0)
+shape = SubResource("BoxShape3D_qa1qv")
+
+[node name="Base4" type="StaticBody3D" parent="ControlInterface/Mesh" unique_id=1037374110]
+transform = Transform3D(0.91874504, -0.39485133, 0, 0.39485142, 0.91874504, 0, -2.9802322e-08, 1.4901161e-08, 1, -0.794265, 0.05180192, -0.49993452)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ControlInterface/Mesh/Base4" unique_id=2012882987]
+transform = Transform3D(1, 7.450581e-09, 6.2584877e-07, 2.0861626e-07, 1, 2.0563602e-06, 2.9802322e-08, 0, 1.0000002, -5.9604645e-08, -4.7683716e-07, -0.66750026)
+mesh = SubResource("BoxMesh_f05ry")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlInterface/Mesh/Base4" unique_id=1276274621]
+transform = Transform3D(1, 7.450581e-09, 4.7683716e-07, 2.0861626e-07, 1, 1.6987324e-06, 2.9802322e-08, 0, 1.0000002, -1.1920929e-07, -0.02470684, -0.66750026)
+shape = SubResource("BoxShape3D_6nrc1")
+
+[node name="StatDisplay" type="Node3D" parent="." unique_id=1636587425]
+transform = Transform3D(0.96592575, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.96592575, 0.38602185, 0, -0.3717737)
+
+[node name="StatPanels" type="Node3D" parent="StatDisplay" unique_id=1558001972]
+transform = Transform3D(1.0000006, 0, 0, 0, 1, 0, 0, 0, 1.0000006, 0, 1.1855989, 0)
+
+[node name="StrengthStatPanel" type="Node3D" parent="StatDisplay/StatPanels" unique_id=645887249]
+transform = Transform3D(1.0000004, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1.0000004, 0.032910675, -0.08892608, 0.005812496)
+
+[node name="StatLabel" type="Label3D" parent="StatDisplay/StatPanels/StrengthStatPanel" unique_id=1899373653]
+transform = Transform3D(-0.51189876, 0, 0.8590477, 0, 1, 0, -0.8590477, 0, -0.51189876, -0.90136397, 3.7932847, 3.8056264)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "Strength"
+font = ExtResource("3_bsoe0")
+font_size = 45
+outline_size = 0
+
+[node name="CapControlTv" type="MeshInstance3D" parent="StatDisplay/StatPanels/StrengthStatPanel" unique_id=1656340985]
+transform = Transform3D(0.8590476, 0, 0.5118987, 0, 1, 0, -0.5118987, 0, 0.8590476, -0.9166471, 3.3153977, 3.824794)
+mesh = SubResource("PlaneMesh_pvslh")
+script = ExtResource("6_7qc6t")
+
+[node name="SubViewport" type="SubViewport" parent="StatDisplay/StatPanels/StrengthStatPanel/CapControlTv" unique_id=1299822974]
+size = Vector2i(852, 197)
+render_target_update_mode = 4
+
+[node name="IntelligenceStatPanel" type="Node3D" parent="StatDisplay/StatPanels" unique_id=1201688492]
+transform = Transform3D(1.0000005, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1.0000005, 0.032910675, -1.2221677, 0.005812496)
+
+[node name="StatLabel" type="Label3D" parent="StatDisplay/StatPanels/IntelligenceStatPanel" unique_id=884920614]
+transform = Transform3D(-0.51189876, 0, 0.8590477, 0, 1, 0, -0.8590477, 0, -0.51189876, -0.90136397, 3.7932847, 3.8056264)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "Intelligence"
+font = ExtResource("3_bsoe0")
+font_size = 45
+outline_size = 0
+
+[node name="CapControlTv" type="MeshInstance3D" parent="StatDisplay/StatPanels/IntelligenceStatPanel" unique_id=1765918988]
+transform = Transform3D(0.8590476, 0, 0.5118987, 0, 1, 0, -0.5118987, 0, 0.8590476, -0.9166471, 3.3153977, 3.824794)
+mesh = SubResource("PlaneMesh_pvslh")
+script = ExtResource("6_7qc6t")
+
+[node name="SubViewport" type="SubViewport" parent="StatDisplay/StatPanels/IntelligenceStatPanel/CapControlTv" unique_id=34937792]
+size = Vector2i(852, 197)
+render_target_update_mode = 4
+
+[node name="CommunityStatPanel" type="Node3D" parent="StatDisplay/StatPanels" unique_id=2146956956]
+transform = Transform3D(1.0000007, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1.0000007, 0.032910675, -2.3117645, 0.005812496)
+
+[node name="StatLabel" type="Label3D" parent="StatDisplay/StatPanels/CommunityStatPanel" unique_id=1444076448]
+transform = Transform3D(-0.51189876, 0, 0.8590477, 0, 1, 0, -0.8590477, 0, -0.51189876, -0.90136397, 3.7932847, 3.8056264)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "Intelligence"
+font = ExtResource("3_bsoe0")
+font_size = 45
+outline_size = 0
+
+[node name="CapControlTv" type="MeshInstance3D" parent="StatDisplay/StatPanels/CommunityStatPanel" unique_id=2079228386]
+transform = Transform3D(0.8590476, 0, 0.5118987, 0, 1, 0, -0.5118987, 0, 0.8590476, -0.9166471, 3.3153977, 3.824794)
+mesh = SubResource("PlaneMesh_pvslh")
+script = ExtResource("6_7qc6t")
+
+[node name="SubViewport" type="SubViewport" parent="StatDisplay/StatPanels/CommunityStatPanel/CapControlTv" unique_id=1161410242]
+size = Vector2i(852, 197)
+render_target_update_mode = 4
+
+[node name="ActiveMeshes" type="Node3D" parent="StatDisplay/StatPanels" unique_id=50093281]
+
+[node name="StrengthActive" type="MeshInstance3D" parent="StatDisplay/StatPanels/ActiveMeshes" unique_id=366248637]
+transform = Transform3D(0.85904795, 0, 0.51189876, 0, 1, 0, -0.51189876, 0, 0.85904795, -0.9055449, 3.224804, 3.8277693)
+mesh = SubResource("PlaneMesh_d2mkq")
+
+[node name="IntelligenceActive" type="MeshInstance3D" parent="StatDisplay/StatPanels/ActiveMeshes" unique_id=1808312592]
+transform = Transform3D(0.8590479, 0, 0.51189876, 0, 1, 0, -0.51189876, 0, 0.8590479, -0.9055449, 2.099658, 3.8277693)
+mesh = SubResource("PlaneMesh_d2mkq")
+
+[node name="CommunityActive" type="MeshInstance3D" parent="StatDisplay/StatPanels/ActiveMeshes" unique_id=465676926]
+transform = Transform3D(0.85904795, 0, 0.51189876, 0, 1, 0, -0.51189876, 0, 0.85904795, -0.9055449, 0.98885155, 3.8277693)
+mesh = SubResource("PlaneMesh_d2mkq")
+
+[node name="Mesh" type="Node3D" parent="StatDisplay" unique_id=1847592840]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0.22929311, 0)
+
+[node name="TableBack" type="StaticBody3D" parent="StatDisplay/Mesh" unique_id=766015728]
+transform = Transform3D(0.5097732, 0, -0.8603089, 0, 1, 0, 0.8603089, 0, 0.5097732, -1.7287605, 1.6279283, 2.7231119)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StatDisplay/Mesh/TableBack" unique_id=1630688814]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3935546, 0.7657714, 0)
+shape = SubResource("BoxShape3D_b4221")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StatDisplay/Mesh/TableBack" unique_id=722044570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3725585, 0.7682061, 4.7683716e-07)
+mesh = SubResource("BoxMesh_7qc6t")
+
+[node name="Table" type="StaticBody3D" parent="StatDisplay/Mesh" unique_id=867704524 groups=["nav_mesh_coll"]]
+transform = Transform3D(0.5129333, 0, -0.85842836, 0, 1, 0, 0.85842836, 0, 0.5129333, -0.39495918, 0.7398715, 3.526333)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StatDisplay/Mesh/Table" unique_id=647787378]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3841858e-07, -0.07798457, 0.26540184)
+shape = SubResource("BoxShape3D_7qc6t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StatDisplay/Mesh/Table" unique_id=1764045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3841858e-07, -0.07649231, 0.26051927)
+mesh = SubResource("BoxMesh_bsoe0")
+
+[node name="HiddenQuanityTV" type="Node3D" parent="StatDisplay" unique_id=2141506857]
+transform = Transform3D(0.96939087, 0.07001394, 0.23533958, -0.07203709, 0.99740195, 6.334063e-09, -0.23472792, -0.016953161, 0.9719157, -2.3369558, 3.4565606, 1.628624)
+
+[node name="TvBackPannel" type="MeshInstance3D" parent="StatDisplay/HiddenQuanityTV" unique_id=1831334693]
+mesh = SubResource("BoxMesh_xeiop")
+
+[node name="TvFrontPannel" type="MeshInstance3D" parent="StatDisplay/HiddenQuanityTV" unique_id=1838062654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05915284, 0, 0)
+mesh = SubResource("PlaneMesh_lbckn")
+script = ExtResource("6_7qc6t")
+
+[node name="SubViewport" type="SubViewport" parent="StatDisplay/HiddenQuanityTV/TvFrontPannel" unique_id=1552920783]
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="ScreenHiddenStatQuanity" parent="StatDisplay/HiddenQuanityTV/TvFrontPannel/SubViewport" unique_id=981638018 instance=ExtResource("8_6nrc1")]
+
+[node name="MaxPickQuanityTV" type="Node3D" parent="StatDisplay" unique_id=1749620393]
+transform = Transform3D(0.9696082, 0.06693436, 0.23533945, -0.06886851, 0.99762607, 3.4448782e-09, -0.2347807, -0.01620745, 0.9719158, -2.211272, 4.5909214, 1.5981913)
+
+[node name="TvBackPannel" type="MeshInstance3D" parent="StatDisplay/MaxPickQuanityTV" unique_id=1810339472]
+mesh = SubResource("BoxMesh_qt5yk")
+
+[node name="TvFrontPannel" type="MeshInstance3D" parent="StatDisplay/MaxPickQuanityTV" unique_id=1143367538]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05915284, 0, 0)
+mesh = SubResource("PlaneMesh_rute7")
+script = ExtResource("6_7qc6t")
+
+[node name="SubViewport" type="SubViewport" parent="StatDisplay/MaxPickQuanityTV/TvFrontPannel" unique_id=586633684]
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="ScreenPickQuanity" parent="StatDisplay/MaxPickQuanityTV/TvFrontPannel/SubViewport" unique_id=1842729366 instance=ExtResource("9_pvslh")]
+
+[node name="PrisonerQuanityBtns" type="Node3D" parent="StatDisplay" unique_id=1238914837]
+transform = Transform3D(0.83359665, 0, 0.55237406, 0, 1, 0, -0.55237406, 0, 0.83359665, -1.5456412, 0.8376827, 3.0558877)
+script = ExtResource("10_lbckn")
+
+[node name="TwoPrisonerBtn" type="StaticBody3D" parent="StatDisplay/PrisonerQuanityBtns" unique_id=595396692]
+transform = Transform3D(0.9990834, 0, -0.042809337, 0, 1, 0, 0.042809337, 0, 0.9990834, 0.3620813, 0.81201017, 2.5812814)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("11_qt5yk")
+prisoner_quanity = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StatDisplay/PrisonerQuanityBtns/TwoPrisonerBtn" unique_id=1537381332]
+mesh = SubResource("BoxMesh_iwmj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StatDisplay/PrisonerQuanityBtns/TwoPrisonerBtn" unique_id=197908549]
+shape = SubResource("BoxShape3D_psmjt")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="StatDisplay/PrisonerQuanityBtns/TwoPrisonerBtn" unique_id=569198293 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_b4221")
+hover_mesh_scene = ExtResource("12_kwr0x")
+hover_mesh_scale = 0.1
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StatDisplay/PrisonerQuanityBtns/TwoPrisonerBtn/HoverableMesh" unique_id=554796969]
+shape = SubResource("BoxShape3D_pl004")
+
+[node name="2QuanityLabel" type="Label3D" parent="StatDisplay/PrisonerQuanityBtns/TwoPrisonerBtn" unique_id=1360506210]
+transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, 0.391194, -0.16624272, 0.030728817)
+outline_modulate = Color(0, 0, 0, 0)
+text = "2"
+font = ExtResource("3_bsoe0")
+font_size = 30
+outline_size = 0
+
+[node name="FourPrisonerBtn" type="StaticBody3D" parent="StatDisplay/PrisonerQuanityBtns" unique_id=1933091737]
+transform = Transform3D(0.9990834, 0, -0.042809337, 0, 1, 0, 0.042809337, 0, 0.9990834, 0.3904066, 0.81201017, 1.9202249)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("11_qt5yk")
+prisoner_quanity = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StatDisplay/PrisonerQuanityBtns/FourPrisonerBtn" unique_id=1584113334]
+mesh = SubResource("BoxMesh_iwmj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StatDisplay/PrisonerQuanityBtns/FourPrisonerBtn" unique_id=1228043196]
+shape = SubResource("BoxShape3D_psmjt")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="StatDisplay/PrisonerQuanityBtns/FourPrisonerBtn" unique_id=821049600 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_b4221")
+hover_mesh_scene = ExtResource("12_kwr0x")
+hover_mesh_scale = 0.1
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StatDisplay/PrisonerQuanityBtns/FourPrisonerBtn/HoverableMesh" unique_id=2086117747]
+shape = SubResource("BoxShape3D_pl004")
+
+[node name="4QuanityLabel" type="Label3D" parent="StatDisplay/PrisonerQuanityBtns/FourPrisonerBtn" unique_id=7409261]
+transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, 0.39119387, -0.16624272, 0.030728817)
+outline_modulate = Color(0, 0, 0, 0)
+text = "4"
+font = ExtResource("3_bsoe0")
+font_size = 30
+outline_size = 0
+
+[node name="QuanityLabel" type="Label3D" parent="StatDisplay/PrisonerQuanityBtns" unique_id=1721610078]
+transform = Transform3D(2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, 2.9802322e-08, 0.74654543, 0.44852912, 2.264459)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Prisoner Quanity"
+font = ExtResource("3_bsoe0")
+font_size = 30
+outline_size = 0
+
+[node name="GenerateBtn" type="StaticBody3D" parent="StatDisplay" unique_id=99151446]
+transform = Transform3D(0.8649762, 0, 0.50181437, 0, 1, 0, -0.50181437, 0, 0.8649762, -1.1799294, 1.6696789, 2.7507951)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("14_d2mkq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StatDisplay/GenerateBtn" unique_id=1049605634]
+mesh = SubResource("BoxMesh_iwmj8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StatDisplay/GenerateBtn" unique_id=316708212]
+shape = SubResource("BoxShape3D_psmjt")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="StatDisplay/GenerateBtn" unique_id=598896314 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_b4221")
+hover_mesh_scene = ExtResource("12_kwr0x")
+hover_mesh_scale = 0.1
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StatDisplay/GenerateBtn/HoverableMesh" unique_id=753994266]
+shape = SubResource("BoxShape3D_pl004")
+
+[node name="GenerateLabel" type="Label3D" parent="StatDisplay/GenerateBtn" unique_id=527814177]
+transform = Transform3D(-8.940697e-08, 0, 1, 0, 1, 0, -1, 0, -8.940697e-08, 0.36826384, -0.18659365, -0.018082023)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Generate"
+font = ExtResource("3_bsoe0")
+font_size = 30
+outline_size = 0
+
+[node name="EnergyDisplay" type="Node3D" parent="." unique_id=946562269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6743927, -0.3012457, -1.0394893)
+
+[node name="EnergyPanel" type="Node3D" parent="EnergyDisplay" unique_id=1703143683]
+transform = Transform3D(0.7999007, 0, 0.60013235, 0, 1, 0, -0.60013235, 0, 0.7999007, -1.8739052, 1.2350975, 0.64510167)
+script = ExtResource("14_kwr0x")
+
+[node name="PanelMesh" type="MeshInstance3D" parent="EnergyDisplay/EnergyPanel" unique_id=691634004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20875105, 1.346806, -1.4977629)
+mesh = SubResource("BoxMesh_psmjt")
+
+[node name="CurrEnergy" type="Label3D" parent="EnergyDisplay/EnergyPanel" unique_id=1167149738]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2036186, 1.6335578, -1.7969787)
+texture_filter = 0
+modulate = Color(1, 1, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "0"
+font = ExtResource("3_bsoe0")
+font_size = 25
+outline_size = 0
+
+[node name="CurrEnergyText" type="Label3D" parent="EnergyDisplay/EnergyPanel" unique_id=1902378262]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.20219159, 1.6439011, -1.3558362)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "Curr Energy :"
+font = ExtResource("3_bsoe0")
+font_size = 25
+outline_size = 0
+
+[node name="EnergyUsed" type="Label3D" parent="EnergyDisplay/EnergyPanel" unique_id=1501917476]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2036186, 1.2964927, -1.3646531)
+texture_filter = 0
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "0"
+font = ExtResource("3_bsoe0")
+font_size = 24
+outline_size = 0
+
+[node name="EnergyUsedText" type="Label3D" parent="EnergyDisplay/EnergyPanel" unique_id=343386387]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2036186, 1.3047554, -1.1471994)
+texture_filter = 0
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Use :"
+font = ExtResource("3_bsoe0")
+font_size = 24
+outline_size = 0
+
+[node name="EnerfyLeft" type="Label3D" parent="EnergyDisplay/EnergyPanel" unique_id=907096244]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.19186175, 1.1441736, -1.7374852)
+texture_filter = 0
+modulate = Color(1, 1, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "0"
+font = ExtResource("3_bsoe0")
+font_size = 24
+outline_size = 0
+
+[node name="EnerfyLeftText" type="Label3D" parent="EnergyDisplay/EnergyPanel" unique_id=10184664]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.19186175, 1.1441736, -1.3364177)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "Left Energy :"
+font = ExtResource("3_bsoe0")
+font_size = 24
+outline_size = 0
+
+[node name="EnergyIcon" type="Sprite3D" parent="EnergyDisplay/EnergyPanel" unique_id=1516457544]
+transform = Transform3D(-3.934025e-08, 0, 0.9, 0, 0.9, 0, -0.9, 0, -3.934025e-08, -0.19064441, 1.639981, -1.9151633)
+texture_filter = 0
+texture = SubResource("CompressedTexture2D_pl004")
+
+[node name="EnergyIcon2" type="Sprite3D" parent="EnergyDisplay/EnergyPanel" unique_id=421952897]
+transform = Transform3D(-3.059797e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.059797e-08, -0.19064441, 1.2949381, -1.4729738)
+modulate = Color(1, 0, 0, 1)
+texture_filter = 0
+texture = SubResource("CompressedTexture2D_pl004")
+
+[node name="EnergyIcon3" type="Sprite3D" parent="EnergyDisplay/EnergyPanel" unique_id=842208383]
+transform = Transform3D(-3.934025e-08, 0, 0.9, 0, 0.9, 0, -0.9, 0, -3.934025e-08, -0.19064441, 1.1386921, -1.8565712)
+texture_filter = 0
+texture = SubResource("CompressedTexture2D_pl004")
+
+[node name="EnergyKey" type="Node3D" parent="EnergyDisplay" unique_id=1850570514]
+transform = Transform3D(0.7999007, 0, 0.60013235, 0, 1, 0, -0.60013235, 0, 0.7999007, -1.2448435, 0.7682284, 1.4835616)
+
+[node name="PanelMesh2" type="MeshInstance3D" parent="EnergyDisplay/EnergyKey" unique_id=1737352214]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20875105, 3.1042702, -2.5484068)
+mesh = SubResource("BoxMesh_76fo1")
+
+[node name="BG" type="Node3D" parent="EnergyDisplay/EnergyKey" unique_id=2113647284]
+
+[node name="PanelMesh" type="MeshInstance3D" parent="EnergyDisplay/EnergyKey/BG" unique_id=776624995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20831592, 3.5789592, -2.5484068)
+mesh = SubResource("BoxMesh_c22aw")
+
+[node name="PanelMesh2" type="MeshInstance3D" parent="EnergyDisplay/EnergyKey/BG" unique_id=1029126129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20831592, 3.292872, -2.5484068)
+mesh = SubResource("BoxMesh_c22aw")
+
+[node name="PanelMesh3" type="MeshInstance3D" parent="EnergyDisplay/EnergyKey/BG" unique_id=1357550156]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20831592, 3.0080087, -2.5484068)
+mesh = SubResource("BoxMesh_c22aw")
+
+[node name="PanelMesh4" type="MeshInstance3D" parent="EnergyDisplay/EnergyKey/BG" unique_id=1636482178]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20831592, 2.6937156, -2.5484068)
+mesh = SubResource("BoxMesh_c22aw")
+
+[node name="2PrisonersGenerated" type="Label3D" parent="EnergyDisplay/EnergyKey" unique_id=1508454114]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2006721, 3.5766497, -2.393968)
+texture_filter = 0
+modulate = Color(0.94677585, 0.95643777, 0.9975652, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "2 Prisoners
+Generated"
+font = ExtResource("3_bsoe0")
+font_size = 19
+outline_size = 0
+
+[node name="2PrisonersGeneratedCost" type="Label3D" parent="EnergyDisplay/EnergyKey" unique_id=1283040437]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2006721, 3.5766497, -2.7970502)
+texture_filter = 0
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "- 10"
+font = ExtResource("3_bsoe0")
+font_size = 26
+outline_size = 0
+
+[node name="4PrisonersGenerated" type="Label3D" parent="EnergyDisplay/EnergyKey" unique_id=657247143]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2006721, 3.2673368, -2.393968)
+texture_filter = 0
+modulate = Color(0.94677585, 0.95643777, 0.9975652, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "4 Prisoners
+Generated"
+font = ExtResource("3_bsoe0")
+font_size = 19
+outline_size = 0
+
+[node name="4PrisonersGeneratedCost" type="Label3D" parent="EnergyDisplay/EnergyKey" unique_id=1677951440]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2006721, 3.2712903, -2.7970502)
+texture_filter = 0
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "- 20"
+font = ExtResource("3_bsoe0")
+font_size = 26
+outline_size = 0
+
+[node name="CautionIcon" type="Sprite3D" parent="EnergyDisplay/EnergyKey" unique_id=1706675489]
+transform = Transform3D(-1.8795896e-08, 0, 0.3, 0, 0.3, 0, -0.43, 0, -1.3113417e-08, -0.20080984, 2.9979577, -2.4003854)
+texture_filter = 0
+texture = ExtResource("15_rute7")
+
+[node name="CautionCost" type="Label3D" parent="EnergyDisplay/EnergyKey" unique_id=21035334]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2006721, 3.0249357, -2.7970502)
+texture_filter = 0
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "- 10"
+font = ExtResource("3_bsoe0")
+font_size = 26
+outline_size = 0
+
+[node name="WarningIcon" type="Sprite3D" parent="EnergyDisplay/EnergyKey" unique_id=1051622151]
+transform = Transform3D(-1.857734e-08, 0, 0.3, 0, 0.3, 0, -0.425, 0, -1.3113417e-08, -0.20080984, 2.6999507, -2.4003854)
+texture_filter = 0
+texture = ExtResource("16_d2mkq")
+
+[node name="CautionCost2" type="Label3D" parent="EnergyDisplay/EnergyKey" unique_id=1504938862]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2006721, 2.708388, -2.7970502)
+texture_filter = 0
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "- 20"
+font = ExtResource("3_bsoe0")
+font_size = 26
+outline_size = 0
+
+[node name="Mesh" type="Node3D" parent="EnergyDisplay" unique_id=929564916]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -6.072657, 0.22929311, -2.2208562)
+
+[node name="TableBack" type="StaticBody3D" parent="EnergyDisplay/Mesh" unique_id=514719038]
+transform = Transform3D(0.6069555, 0, -0.7947358, 0, 1, 0, 0.7947358, 0, 0.6069555, 2.3092217, 1.6279283, 0.9482455)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnergyDisplay/Mesh/TableBack" unique_id=27203774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3935546, 0.7657714, 0)
+shape = SubResource("BoxShape3D_b4221")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnergyDisplay/Mesh/TableBack" unique_id=1260433936]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1643519, 1.4398446, 9.536743e-07)
+mesh = SubResource("BoxMesh_kwr0x")

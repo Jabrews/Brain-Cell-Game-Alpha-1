@@ -10,7 +10,7 @@ func _handle_next_round() :
 	last_pick_quanity_was_2 = false
 
 func _handle_generate_next_max_prisoners_created() :
-
+	
 	## CURR PRISONERS PICKED ##
 	GLPrisonerPicksBus.max_picked_pris_per_turn = GLPrisonerPicksBus.next_max_picked_pris_per_turn
 	GLPrisonerPicksBus.curr_picked_pris_per_turn = 0

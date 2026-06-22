@@ -109,6 +109,7 @@ func _handle_interpreter_timer_reset() -> void:
 func _handle_panel_body_recieved(cell_container: CharacterBody3D) -> void:
 	
 	active_brain_cell_container = cell_container
+	
 
 	if not active_brain_cell_container:
 		switch_screen("INFO_SCREEN", "NO_CELL_DETECTED")
