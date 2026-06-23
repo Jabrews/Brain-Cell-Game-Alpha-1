@@ -1,3 +1,3 @@
 extends Node
 
-signal player_tried_creating_with_invalid_energy()
+signal station_feedback_requested(feedback_type: String, data: Dictionary)

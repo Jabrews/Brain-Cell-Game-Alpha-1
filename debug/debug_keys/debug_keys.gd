@@ -10,8 +10,11 @@ extends Node
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed('debug1') :	
 		
+		
+		#GLGameManagerBus.emit_signal('proceed_next_round')		
+		
 		#GLDefectEventMangerBus.emit_signal('event_hidden_stat_interpreter_jolt', ['strength'])
-		pass
+		#pass
 		
 		
 		#GLGameManagerBus.curr_energy += 50	'intelligence'
@@ -19,16 +22,16 @@ func _process(_delta: float) -> void:
 		
 		
 		
-		#var new_cell = BrainCell.new(
-			#'test_cell',
-			#BrainCellStat.new('strength', true, 150, 0, false),
-			#BrainCellStat.new('intelligence', true, 150, 0, false),
-			#BrainCellStat.new('community', true, 150, 0, false),
-			#100,
-			#false,
-		#)
-		#
-		#GLCellManagerBus.emit_signal('prisoner_picked_by_player', new_cell)
+		var new_cell = BrainCell.new(
+			'test_cell',
+			BrainCellStat.new('strength', true, 50, 0, false),
+			BrainCellStat.new('intelligence', true, 150, 0, false),
+			BrainCellStat.new('community', true, 0, 0, false),
+			100,
+			false,
+		)
+		
+		GLCellManagerBus.emit_signal('prisoner_picked_by_player', new_cell)
 		
 		
 		
@@ -57,6 +60,9 @@ func _process(_delta: float) -> void:
 	
 	
 	if Input.is_action_just_pressed('debug2') :	
+		
+		GLGameManagerBus.emit_signal('proceed_next_round')			
+		
 		pass
 		
 		#print('max energy : ', IV)		

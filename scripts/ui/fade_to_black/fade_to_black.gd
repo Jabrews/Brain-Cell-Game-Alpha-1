@@ -16,8 +16,6 @@ func _ready() -> void:
 
 func _handle_next_round() -> void:
 	
-	print_stack()
-	
 	if opacity_tween:
 		opacity_tween.kill()
 	

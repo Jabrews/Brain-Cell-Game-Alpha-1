@@ -29,6 +29,7 @@ func change_progression_step(round : int, curr_energy: int) :
 	
 	
 	GLGameManagerBus.emit_signal('proceed_next_energy_turn')
+	GLGameManagerBus.emit_signal('process_next_round')
 	
 
 @warning_ignore("shadowed_global_identifier")
@@ -64,6 +65,10 @@ func handle_round(round : int):
 			IVHiddenStats.stats_to_hide = []
 			## PRISONER PROFILER ##
 			IVPrisonerProfiler.stat_increment_amount = 10
+			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
+			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
+			IVPrisonerProfiler.community_stat_lock_percant_index= 0
+			IVPrisonerProfiler.stat_lock_percantages = [0.25, 0.50, 0.75, 1.00,]			
 			
 		2 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = false
@@ -93,6 +98,12 @@ func handle_round(round : int):
 			IVHiddenStats.stats_to_hide = ['strength']
 			## PRISONER PROFILER ##
 			IVPrisonerProfiler.stat_increment_amount = 20
+			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
+			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
+			IVPrisonerProfiler.community_stat_lock_percant_index= 0
+			IVPrisonerProfiler.stat_lock_percantages = [0.25, 0.50, 0.75, 1.00,]			
+			
+			
 		3 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
 			## ENERGY ##
@@ -117,6 +128,10 @@ func handle_round(round : int):
 			IVHiddenStats.stats_to_hide = ['strength', 'intelligence']
 			## PRISONER PROFILER ##
 			IVPrisonerProfiler.stat_increment_amount = 25
+			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
+			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
+			IVPrisonerProfiler.community_stat_lock_percant_index= 0
+			IVPrisonerProfiler.stat_lock_percantages = [0.25, 0.50, 0.75, 1.00,]			
 		4 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
 			## ENERGY ##
@@ -138,6 +153,12 @@ func handle_round(round : int):
 			IVShareholderOffers.stat_offer_energy_percant= 50		
 			## HIDDEN STATS ## 
 			IVHiddenStats.stats_to_hide = ['strength', 'intelligence', 'community']
+			## PRISONER PROFILER ##
+			IVPrisonerProfiler.stat_increment_amount = 25
+			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
+			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
+			IVPrisonerProfiler.community_stat_lock_percant_index= 0
+			IVPrisonerProfiler.stat_lock_percantages = [0.25, 0.50, 0.75, 1.00,]			
 	
 @warning_ignore("shadowed_global_identifier")
 func handle_energy(round : int, energy: int) :

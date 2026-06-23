@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="2_myrkw"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="4_q81ek"]
 [ext_resource type="Shader" uid="uid://cqykh8hjh2u4q" path="res://scripts/shaders/warning_cap_control_symbol.gdshader" id="5_0my48"]
+[ext_resource type="Script" uid="uid://b4b34tdk7yj63" path="res://scripts/stations/screen_prisoner_profiler/lock_background.gd" id="5_hj7nw"]
 [ext_resource type="Texture2D" uid="uid://b0qgq76ydwels" path="res://models/screens/prisoner_profiler_symbols/lock.png" id="6_hj7nw"]
 
 [sub_resource type="Shader" id="Shader_myrkw"]
@@ -91,7 +92,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hj7nw"]
 shader = SubResource("Shader_amfyt")
-shader_parameter/color_a = Color(0.37, 0.36630002, 0.3589, 0.23529412)
+shader_parameter/color_a = Color(0.37, 0.36630002, 0.3589, 0.58431375)
 shader_parameter/color_b = Color(0.21, 0.21, 0.21, 0.27058825)
 shader_parameter/stripe_size = 12.0
 
@@ -147,9 +148,9 @@ layout_mode = 0
 offset_top = -26.0
 offset_bottom = 237.0
 color = Color(1, 1, 1, 0.19607843)
+script = ExtResource("5_hj7nw")
 
 [node name="LockedSprite" type="Sprite2D" parent="StatDisplay/Locked" unique_id=421155729]
-visible = false
 texture_filter = 1
 position = Vector2(346, 110)
 texture = ExtResource("6_hj7nw")

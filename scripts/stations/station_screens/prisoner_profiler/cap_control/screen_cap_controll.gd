@@ -12,7 +12,7 @@ func _ready() -> void:
 	
 	# update target stat on startup
 	GLCellManagerBus.connect('target_cell_created', _handle_get_newest_target_cell)	
-	GLPrisonerProfilerComponentsBus.connect('player_tried_creating_with_invalid_energy', _handle_player_tried_creating_with_invalid_energy)
+	#GLPrisonerProfilerComponentsBus.connect('player_tried_creating_with_invalid_energy', _handle_player_tried_creating_with_invalid_energy)
 	
 func _toggle_display_off_screen(toggleValue : bool) :
 	if toggleValue :

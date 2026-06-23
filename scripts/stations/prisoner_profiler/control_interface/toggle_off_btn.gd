@@ -23,7 +23,6 @@ func set_colors() -> void:
 
 
 func _on_btn_interacted() :
-	print('yp')
 	parent_station._handle_toggle_stat_enabled()
 	update_toggle_off_btn()
 

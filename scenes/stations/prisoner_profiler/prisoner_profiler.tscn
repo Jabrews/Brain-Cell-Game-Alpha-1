@@ -8,8 +8,11 @@
 [ext_resource type="Script" uid="uid://du7unuya06hdh" path="res://scripts/stations/prisoner_profiler/control_interface/increment_stats/handle_increment_stat.gd" id="3_c22aw"]
 [ext_resource type="Script" uid="uid://dt4e5g2vjsjuc" path="res://scripts/stations/station_components/prisoner_profiler/stat_control_panel/btns/on_off_mesh.gd" id="4_f05ry"]
 [ext_resource type="Script" uid="uid://ddekqvia23i1w" path="res://scripts/stations/prisoner_profiler/control_interface/increment_stats/increment_stats_btn.gd" id="4_r24ee"]
-[ext_resource type="Script" uid="uid://ben0wjhvj4shv" path="res://scripts/stations/prisoner_profiler/control_interface/cycle_stats/handle_symbols.gd" id="4_ysxly"]
+[ext_resource type="Script" uid="uid://cjqc0l6ujd1ag" path="res://scripts/stations/prisoner_profiler/control_interface/symbols/_handle_inaccessible.gd" id="4_reulp"]
+[ext_resource type="Script" uid="uid://choaa8b8xw6ju" path="res://scripts/stations/prisoner_profiler/control_interface/symbols/lock/_handle_lock.gd" id="4_xndck"]
 [ext_resource type="PackedScene" uid="uid://b366gm7tg6uso" path="res://scenes/hoverable_mesh_scenes/stat_control_panel_on_off_panel_btn.tscn" id="5_6nrc1"]
+[ext_resource type="Script" uid="uid://bwidmi1qf3ul1" path="res://scripts/stations/prisoner_profiler/control_interface/symbols/lock/lock_small_stat_display.gd" id="5_6u0qw"]
+[ext_resource type="Script" uid="uid://ccumqfwpkjt41" path="res://scripts/stations/prisoner_profiler/control_interface/symbols/lock/update_with_collected_cell.gd" id="6_6u0qw"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="6_7qc6t"]
 [ext_resource type="PackedScene" uid="uid://cw3j1wx83t7s4" path="res://scenes/hoverable_mesh_scenes/choose_stat_btn.tscn" id="6_bsoe0"]
 [ext_resource type="Script" uid="uid://cxe47p7g6bu00" path="res://scripts/stations/prisoner_profiler/control_interface/cycle_stats/cycle_stat_btn.gd" id="6_rute7"]
@@ -237,8 +240,19 @@ script = ExtResource("1_d2mkq")
 [node name="HandleIncrementStat" type="Node" parent="Logic" unique_id=1064971111]
 script = ExtResource("3_c22aw")
 
-[node name="HandleSymbols" type="Node" parent="Logic" unique_id=1308455116]
-script = ExtResource("4_ysxly")
+[node name="Symbols" type="Node" parent="Logic" unique_id=460213634]
+
+[node name="HandleLock" type="Node" parent="Logic/Symbols" unique_id=756191861]
+script = ExtResource("4_xndck")
+
+[node name="LockSmallStatDisplay" type="Node" parent="Logic/Symbols/HandleLock" unique_id=399798358]
+script = ExtResource("5_6u0qw")
+
+[node name="UpdateWithCollectedCell" type="Node" parent="Logic/Symbols/HandleLock" unique_id=1091295976]
+script = ExtResource("6_6u0qw")
+
+[node name="HandleInaccessible" type="Node" parent="Logic/Symbols" unique_id=216486329]
+script = ExtResource("4_reulp")
 
 [node name="ControlInterface" type="Node3D" parent="." unique_id=728610755]
 transform = Transform3D(0.8096126, 0, 0.5869646, 0, 1, 0, -0.5869646, 0, 0.8096126, 0, 1.8258047, 0)
