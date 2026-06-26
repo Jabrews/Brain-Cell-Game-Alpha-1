@@ -1,20 +1,47 @@
 extends Node
 
 @warning_ignore("shadowed_global_identifier")
-func _update_hidden_stat_values(round : int , energy : int) :
+func _update_spare_progression(round : int , energy : int) :
 	
 	
 	if round == 1 :	
-		pass
+		IVPrisonerProfiler.spare_symbols_avaible = [
+			{'defect' : ['up', 'down']}	,
+			{'good_mutation' : ['up', 'down']},
+			{'bad_mutation' : ['up', 'down']},
+			{'energy' : ['up', 'down']},
+		]
+		IVPrisonerProfiler.spare_symbol_minimum_created = 3
+		IVPrisonerProfiler.spare_symbol_max_created = 3
+		IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_min = 3
+		IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_max = 5
+		
+		
 	
 	elif round == 2 :
-		pass
+		IVPrisonerProfiler.spare_symbols_avaible = [
+			#{'defect' : ['up', 'down']}	,
+			#{'good_mutation' : ['up', 'down']},
+			#{'bad_mutation' : ['up', 'down']},
+			{'energy' : ['up', 'down']},
+		]
 	
 	elif round == 3 :
-		pass
+		IVPrisonerProfiler.spare_symbols_avaible = [
+			{'defect' : ['up', 'down']}	,
+			{'good_mutation' : ['up', 'down']},
+			{'bad_mutation' : ['up', 'down']},
+			{'energy' : ['up', 'down']},
+		]
+		
 	
 	elif round == 4 : 
-		pass
+		IVPrisonerProfiler.spare_symbols_avaible = [
+			{'defect' : ['up', 'down']}	,
+			{'good_mutation' : ['up', 'down']},
+			{'bad_mutation' : ['up', 'down']},
+			{'energy' : ['up', 'down']},
+		]
 	
 	var danger_level = get_energy_danger_level(energy)		
 	update_hidden_stat_nax(round, danger_level)

@@ -40,10 +40,21 @@ func _reset() :
 		saved_arrow_instance.queue_free()
 
 
-func _handle_feed_back_requested(type : String, data : Dictionary) -> void:
+func _handle_feed_back_requested(type: String, data: Dictionary) -> void:
+	if type != "spare_icon":
+		return
 	
-	pass
-	#match type : 	
+	var icon_type: String = data["data"]["icon_type"]
+	var stat_type: String = data["data"]["stat_type"]
+	
+	if icon_type != background_type:
+		return
+	
+	if stat_type != display_parent.selected_stat_type:
+		return
+	
+	shake_sprite()
+	
 
 func shake_sprite() -> void:
 	if sprite_is_shaking:

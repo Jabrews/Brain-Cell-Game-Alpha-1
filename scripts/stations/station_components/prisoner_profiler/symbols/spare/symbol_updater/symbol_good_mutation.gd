@@ -5,4 +5,4 @@ extends Node
 	$"../../../../../StatDisplay/StatPanels/IntelligenceStatPanel/CapControlTv/SubViewport/LargeStatDisplay/StatDisplay/SpareSymbols/GoodMutation/MutationBG",
 	$"../../../../../StatDisplay/StatPanels/CommunityStatPanel/CapControlTv/SubViewport/LargeStatDisplay/StatDisplay/SpareSymbols/GoodMutation/MutationBG",
 ]
-@onready var small_stat_screens_mutation_background : ColorRect = $"../../../../../ControlInterface/SmallStatDisplay/TvFrontPanel/SubViewport/SmallStatDisplay/StatDisplay/SpareSymbols/GoodMutation/MutationBG"
+@onready var small_stat_screens_good_mutation_background : ColorRect = $"../../../../../ControlInterface/SmallStatDisplay/TvFrontPanel/SubViewport/SmallStatDisplay/StatDisplay/SpareSymbols/GoodMutation/MutationBG"

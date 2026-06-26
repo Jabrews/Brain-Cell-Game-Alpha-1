@@ -44,6 +44,7 @@ var inaccessible_starting_value : int = 0
 # symbols
 @onready var handle_inaccesible : Node = $Logic/Symbols/HandleInaccessible
 @onready var handle_spare_symbols: Node = $Logic/Symbols/HandleSpareSymbols
+@onready var spare_symbol_evaluator : Node = $Logic/Symbols/HandleSpareSymbols/SpareSymbolEvaluator
 @onready var handle_lock : Node = $Logic/Symbols/HandleLock
 # energy
 @onready var handle_energy : Node = $Logic/HandleEnergy
@@ -63,6 +64,7 @@ func _ready() -> void:
 	handle_lock._generate_locks()
 	handle_spare_symbols._generate_spare()
 	
+
 func _update_prisoner_quanity(new_prisoner_quanity : int) :
 	current_prisoner_quanity = new_prisoner_quanity
 	
@@ -91,8 +93,6 @@ func update_selected_stat(stat_type : String) :
 
 func _handle_stat_value_changed(stat_type : String, new_value : int) :
 	
-
-	
 	# prevent disabled stats from incrementing
 	var stat_enabled = util_stat_type_to.stat_type_to_enabled(stat_type)
 	
@@ -115,15 +115,20 @@ func _handle_stat_value_changed(stat_type : String, new_value : int) :
 	
 	## lock checking ##
 	var lock_limit : float = util_stat_type_to.stat_type_to_lock_limit(stat_type)
-	var lock_soft_range : int = 10
+	var lock_soft_range = IVPrisonerProfiler.stat_increment_amount
 	
-	# If close to the lock, but not past it, clamp right before the lock.
-	if new_value < lock_limit and new_value >= lock_limit - lock_soft_range:
-		@warning_ignore("narrowing_conversion")
-		new_value = lock_limit - 1
+	 #If close to the lock, but not past it, clamp right before the lock.
+	if lock_soft_range == 10 :
+		if new_value < lock_limit and new_value >= lock_limit - lock_soft_range:
+			@warning_ignore("narrowing_conversion")
+			new_value = lock_limit - 1
+	elif lock_soft_range == 20 :
+		if new_value < lock_limit and new_value >= lock_limit - lock_soft_range:
+			@warning_ignore("narrowing_conversion")
+			new_value = lock_limit - 5
+	
 		
 	stat_values_inside_lock_range[stat_type] = new_value >= lock_limit
-	
 	
 	if stat_values_inside_lock_range[stat_type]:
 		GLPrisonerProfilerComponentsBus.emit_signal(
@@ -133,6 +138,16 @@ func _handle_stat_value_changed(stat_type : String, new_value : int) :
 		)
 		audio_manager.play_lock_shake()
 	###################
+	
+	## spare smymbol evalutor ##	
+	spare_symbol_evaluator._handle_value_changed(
+		selected_stat,
+		new_value, # new value
+		util_stat_type_to.stat_type_to_value(selected_stat) # old value
+	)
+	#############################
+	
+	
 	
 	match stat_type :
 		'strength' :

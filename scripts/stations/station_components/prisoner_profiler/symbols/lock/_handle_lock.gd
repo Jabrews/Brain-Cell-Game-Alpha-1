@@ -103,8 +103,8 @@ func _generate_single_lock(
 	var lock_width: float = inaccessible_x - lock_x
 	lock_width = max(lock_width, 0.0)
 	
-	lock_background.position.x = lock_x
-	lock_background.size.x = lock_width
+	lock_background.position.x = lock_x - 10
+	lock_background.size.x = lock_width + 10
 	
 	# this tells it to place lock in middle
 	lock_background._place_sprite()

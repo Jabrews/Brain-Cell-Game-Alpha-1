@@ -6,6 +6,8 @@ extends Node
 @onready var s_lock_shake : AudioStreamPlayer3D = $LockShake
 @onready var s_on_off : AudioStreamPlayer3D = $OnOffClick
 @onready var s_generate : AudioStreamPlayer3D = $Generate
+@onready var s_spare_enter : AudioStreamPlayer3D = $SpareEnter
+@onready var s_spare_exit : AudioStreamPlayer3D = $SpareExit
 
 func play_cycle_stat() :
 	s_cycle_stat.play()
@@ -26,3 +28,11 @@ func play_lock_shake() :
 	s_increment.stop()
 	s_lock_shake.stop()
 	s_lock_shake.play()
+
+func play_spare_enter() :
+	s_spare_exit.stop()
+	s_spare_enter.play()
+
+func play_spare_exit() :
+	s_spare_enter.stop()
+	s_spare_exit.play()

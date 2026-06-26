@@ -5,6 +5,7 @@ extends Node2D
 @onready var bar : Sprite2D = $StatDisplay/Bar
 @onready var handle_switch_screen : Node = $SmallHandleSwitchScreen
 @onready var handle_lock_small_stat_display : Node = $"../../../../../Logic/Symbols/HandleLock/LockSmallStatDisplay"
+@onready var spare_symbol_updater : Node = $"../../../../../Logic/Symbols/HandleSpareSymbols/SpareSymbolsUpdater"
 
 var selected_stat_value : float
 var selected_stat_type : String
@@ -52,3 +53,4 @@ func update_bar() :
 
 func update_symbols() :
 	handle_lock_small_stat_display.small_stat_display_get_lock(selected_stat_type)
+	spare_symbol_updater.small_stat_display_get_spare(selected_stat_type )	

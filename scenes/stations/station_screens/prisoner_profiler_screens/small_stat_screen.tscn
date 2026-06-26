@@ -8,10 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://b0qgq76ydwels" path="res://models/screens/prisoner_profiler_symbols/lock.png" id="6_km0gl"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="7_0sfsv"]
 [ext_resource type="Texture2D" uid="uid://chyb1sra7gn6f" path="res://models/screens/prisoner_profiler_symbols/defect.png" id="7_ckc08"]
+[ext_resource type="Script" uid="uid://c1jo3u8lgya3u" path="res://scripts/stations/station_screens/screen_prisoner_profiler/spare_symbol_background.gd" id="7_skvep"]
 [ext_resource type="Texture2D" uid="uid://64xdf1eyalih" path="res://models/screens/prisoner_profiler_symbols/energy.png" id="8_82d6v"]
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="8_hdu51"]
 [ext_resource type="Texture2D" uid="uid://uv314a4i73tl" path="res://models/screens/prisoner_profiler_symbols/mutation.png" id="9_skvep"]
 [ext_resource type="Texture2D" uid="uid://ce77j707dch2x" path="res://models/screens/prisoner_profiler_symbols/bad_mutation.png" id="11_8u0ry"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="12_8u0ry"]
+[ext_resource type="Script" uid="uid://lee2ip6e6i4s" path="res://scripts/stations/station_screens/screen_prisoner_profiler/small_display/spare_feedback_label.gd" id="12_f434o"]
 
 [sub_resource type="Shader" id="Shader_myrkw"]
 code = "shader_type canvas_item;
@@ -114,7 +117,6 @@ script = ExtResource("1_up7kf")
 script = ExtResource("2_x7j1j")
 
 [node name="StatDisplay" type="Control" parent="." unique_id=818570420]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -162,78 +164,107 @@ texture_filter = 1
 position = Vector2(346, 110)
 texture = ExtResource("6_km0gl")
 
-[node name="SpareSymbols" type="Control" parent="StatDisplay" unique_id=900842298]
+[node name="SpareSymbols" type="Control" parent="StatDisplay" unique_id=682613152]
+anchors_preset = 0
+offset_top = 26.0
+offset_right = 40.0
+offset_bottom = 66.0
+
+[node name="Defect" type="Control" parent="StatDisplay/SpareSymbols" unique_id=1899445143]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Defect" type="Control" parent="StatDisplay/SpareSymbols" unique_id=2049470525]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="DefectBG" type="ColorRect" parent="StatDisplay/SpareSymbols/Defect" unique_id=946999420]
+[node name="DefectBG" type="ColorRect" parent="StatDisplay/SpareSymbols/Defect" unique_id=1199275275 node_paths=PackedStringArray("symbol_sprite", "display_parent")]
 layout_mode = 0
 offset_top = -26.0
-offset_bottom = 237.0
-color = Color(0.15294118, 0.56078434, 0.88235295, 0.23529412)
+offset_bottom = 237.16
+color = Color(0.7806854, 6.745525e-05, 3.7349462e-05, 0.20392157)
+script = ExtResource("7_skvep")
+symbol_sprite = NodePath("../SymbolSprite")
+display_parent = NodePath("../../../..")
+background_type = "defect"
 
-[node name="SymbolSprite" type="Sprite2D" parent="StatDisplay/SpareSymbols/Defect" unique_id=1329415499]
+[node name="SymbolSprite" type="Sprite2D" parent="StatDisplay/SpareSymbols/Defect" unique_id=531727518]
 visible = false
 texture_filter = 1
 position = Vector2(346, 110)
 texture = ExtResource("7_ckc08")
 
-[node name="Energy" type="Control" parent="StatDisplay/SpareSymbols" unique_id=1499240635]
+[node name="Energy" type="Control" parent="StatDisplay/SpareSymbols" unique_id=182199608]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="EnergyBG" type="ColorRect" parent="StatDisplay/SpareSymbols/Energy" unique_id=737749488]
+[node name="EnergyBG" type="ColorRect" parent="StatDisplay/SpareSymbols/Energy" unique_id=999086291 node_paths=PackedStringArray("symbol_sprite", "display_parent")]
 layout_mode = 0
 offset_top = -26.0
 offset_bottom = 237.0
-color = Color(0.6862321, 0.5085446, 0, 0.23529412)
+color = Color(0.6074447, 0.44974083, 1.92523e-07, 0.20392157)
+script = ExtResource("7_skvep")
+symbol_sprite = NodePath("../SymbolSprite")
+display_parent = NodePath("../../../..")
+background_type = "energy"
 
-[node name="SymbolSprite" type="Sprite2D" parent="StatDisplay/SpareSymbols/Energy" unique_id=999219659]
-visible = false
+[node name="SymbolSprite" type="Sprite2D" parent="StatDisplay/SpareSymbols/Energy" unique_id=396199824]
 texture_filter = 1
 position = Vector2(346, 110)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("8_82d6v")
 
-[node name="GoodMutation" type="Control" parent="StatDisplay/SpareSymbols" unique_id=1958759316]
+[node name="GoodMutation" type="Control" parent="StatDisplay/SpareSymbols" unique_id=1051310956]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="MutationBG" type="ColorRect" parent="StatDisplay/SpareSymbols/GoodMutation" unique_id=473305987]
+[node name="MutationBG" type="ColorRect" parent="StatDisplay/SpareSymbols/GoodMutation" unique_id=1180725026 node_paths=PackedStringArray("symbol_sprite", "display_parent")]
 layout_mode = 0
 offset_top = -26.0
 offset_bottom = 237.0
 color = Color(0.15294118, 0.56078434, 0.88235295, 0.20392157)
+script = ExtResource("7_skvep")
+symbol_sprite = NodePath("../SymbolSprite")
+display_parent = NodePath("../../../..")
+background_type = "good_mutation"
 
-[node name="SymbolSprite" type="Sprite2D" parent="StatDisplay/SpareSymbols/GoodMutation" unique_id=1992436205]
+[node name="SymbolSprite" type="Sprite2D" parent="StatDisplay/SpareSymbols/GoodMutation" unique_id=2065432486]
 visible = false
 texture_filter = 1
 position = Vector2(346, 110)
 texture = ExtResource("9_skvep")
 
-[node name="BadMutation" type="Control" parent="StatDisplay/SpareSymbols" unique_id=364362885]
+[node name="BadMutation" type="Control" parent="StatDisplay/SpareSymbols" unique_id=291582884]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="MutationBG" type="ColorRect" parent="StatDisplay/SpareSymbols/BadMutation" unique_id=908909543]
+[node name="MutationBG" type="ColorRect" parent="StatDisplay/SpareSymbols/BadMutation" unique_id=213471776 node_paths=PackedStringArray("symbol_sprite", "display_parent")]
 layout_mode = 0
 offset_top = -26.0
 offset_bottom = 237.0
 color = Color(1, 0.047058824, 0.011764706, 0.20392157)
+script = ExtResource("7_skvep")
+symbol_sprite = NodePath("../SymbolSprite")
+display_parent = NodePath("../../../..")
+background_type = "bad_mutation"
 
-[node name="SymbolSprite" type="Sprite2D" parent="StatDisplay/SpareSymbols/BadMutation" unique_id=1840607383]
+[node name="SymbolSprite" type="Sprite2D" parent="StatDisplay/SpareSymbols/BadMutation" unique_id=1350077028]
 visible = false
 texture_filter = 1
 position = Vector2(346, 110)
 texture = ExtResource("11_8u0ry")
+
+[node name="FeedbackLabel" type="Label" parent="StatDisplay/SpareSymbols" unique_id=176144179]
+visible = false
+layout_mode = 0
+offset_top = 185.0
+offset_right = 840.0
+offset_bottom = 237.0
+theme_override_fonts/font = ExtResource("12_8u0ry")
+theme_override_font_sizes/font_size = 40
+text = "Increase Chance of mutation"
+horizontal_alignment = 1
+script = ExtResource("12_f434o")
 
 [node name="OffDisplay" type="Control" parent="." unique_id=1317743623]
 visible = false
@@ -260,6 +291,7 @@ theme_override_font_sizes/font_size = 134
 text = "Off"
 
 [node name="NoneDisplay" type="Control" parent="." unique_id=1679326453]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

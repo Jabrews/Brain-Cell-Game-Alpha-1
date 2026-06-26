@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://myco72tshqap" path="res://scripts/stations/station_components/prisoner_profiler/symbols/spare/handle_spare_symbols.gd" id="9_xv7qh"]
 [ext_resource type="Script" uid="uid://biba1t5gxf334" path="res://scripts/stations/station_components/prisoner_profiler/energy/update_energy_panel.gd" id="10_5kdf7"]
 [ext_resource type="Script" uid="uid://fd0tgqcsjd74" path="res://scripts/stations/station_components/prisoner_profiler/symbols/spare/symbol_updater/spare_symbols_updater.gd" id="10_gbx2x"]
+[ext_resource type="Script" uid="uid://b4srqtxgxbe3v" path="res://scripts/stations/station_components/prisoner_profiler/symbols/spare/handle_spare_symbol_evaluator.gd" id="10_maiyk"]
 [ext_resource type="Script" uid="uid://dew5isas4qseq" path="res://scripts/stations/station_components/prisoner_profiler/control_interface.gd" id="11_d5oif"]
 [ext_resource type="PackedScene" uid="uid://dn4jj2fmxhgsm" path="res://scenes/stations/station_screens/prisoner_profiler_screens/small_stat_screen.tscn" id="11_pl004"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="11_psmjt"]
@@ -32,6 +33,7 @@
 [ext_resource type="Script" uid="uid://dlxq0kk6nxyqd" path="res://scripts/stations/station_components/prisoner_profiler/symbols/spare/symbol_updater/symbol_good_mutation.gd" id="13_3pai2"]
 [ext_resource type="PackedScene" uid="uid://dyb5kgt1yg02g" path="res://scenes/stations/station_screens/prisoner_profiler_screens/large_stat_screen.tscn" id="13_76fo1"]
 [ext_resource type="Script" uid="uid://bmphqa7d6mod2" path="res://scripts/stations/station_components/prisoner_profiler/symbols/spare/symbol_updater/symbol_bad_mutation.gd" id="14_sow2j"]
+[ext_resource type="Script" uid="uid://7oeja8q1kxvq" path="res://scripts/stations/station_components/prisoner_profiler/symbols/spare/symbol_effects/handle_spare_symbols_effects.gd" id="16_jheh3"]
 [ext_resource type="PackedScene" uid="uid://ctgv6es6pim8p" path="res://scenes/stations/station_screens/prisoner_profiler_screens/screen_hidden_stat_quanity.tscn" id="25_8fl20"]
 [ext_resource type="Script" uid="uid://cpkt7xbbhhmy6" path="res://scripts/stations/station_components/prisoner_profiler/prisoner_quanity_btn/prisoner_quanity_btn_updater.gd" id="27_4wtoc"]
 [ext_resource type="Script" uid="uid://dvipqotjclmf4" path="res://scripts/stations/station_components/prisoner_profiler/prisoner_quanity_btn/prisoner_quanity_btn.gd" id="27_5vb5l"]
@@ -43,6 +45,12 @@
 [ext_resource type="AudioStream" uid="uid://boiulgfftjxux" path="res://sounds/prisoner_profiler/lock_shake.mp3" id="36_yurqg"]
 [ext_resource type="AudioStream" uid="uid://dir6uc32l8eqr" path="res://sounds/prisoner_profiler/generate.mp3" id="37_7xsnp"]
 [ext_resource type="AudioStream" uid="uid://1qc1petsn4is" path="res://sounds/prisoner_profiler/on_off_click.mp3" id="37_pjm26"]
+[ext_resource type="Texture2D" uid="uid://ce77j707dch2x" path="res://models/screens/prisoner_profiler_symbols/bad_mutation.png" id="37_xqjj3"]
+[ext_resource type="Texture2D" uid="uid://uv314a4i73tl" path="res://models/screens/prisoner_profiler_symbols/mutation.png" id="38_maiyk"]
+[ext_resource type="Texture2D" uid="uid://chyb1sra7gn6f" path="res://models/screens/prisoner_profiler_symbols/defect.png" id="39_jot7m"]
+[ext_resource type="Texture2D" uid="uid://64xdf1eyalih" path="res://models/screens/prisoner_profiler_symbols/energy.png" id="40_2knjx"]
+[ext_resource type="AudioStream" uid="uid://b6ihexdrmip4x" path="res://sounds/prisoner_profiler/spare_symbol/spare_enter.mp3" id="49_2knjx"]
+[ext_resource type="AudioStream" uid="uid://d316ed6lx2umo" path="res://sounds/prisoner_profiler/spare_symbol/spare_exit.mp3" id="50_jheh3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l25tc"]
 size = Vector3(0.02, 0.46619385, 0.36737794)
@@ -237,7 +245,7 @@ subdivide_width = 16
 load_path = "res://.godot/imported/energy_symbol.png-5626c71ab2f35397b3301af5cd47d48e.s3tc.ctex"
 
 [sub_resource type="BoxMesh" id="BoxMesh_76fo1"]
-size = Vector3(0.01, 1.4, 0.85)
+size = Vector3(0.01, 1.500293, 0.85)
 subdivide_width = 16
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cr3jd"]
@@ -246,6 +254,11 @@ albedo_color = Color(0.19434929, 0.19434926, 0.19434926, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_c22aw"]
 material = SubResource("StandardMaterial3D_cr3jd")
 size = Vector3(0.01, 0.265, 0.78)
+subdivide_width = 16
+
+[sub_resource type="BoxMesh" id="BoxMesh_jheh3"]
+material = SubResource("StandardMaterial3D_cr3jd")
+size = Vector3(0.01, 0.22304687, 0.78)
 subdivide_width = 16
 
 [sub_resource type="BoxMesh" id="BoxMesh_kwr0x"]
@@ -297,6 +310,12 @@ script = ExtResource("13_3pai2")
 
 [node name="BadMutation" type="Node" parent="Logic/Symbols/HandleSpareSymbols/SpareSymbolsUpdater" unique_id=565654022]
 script = ExtResource("14_sow2j")
+
+[node name="SpareSymbolEvaluator" type="Node" parent="Logic/Symbols/HandleSpareSymbols" unique_id=937460291]
+script = ExtResource("10_maiyk")
+
+[node name="SpareSymbolEffects" type="Node" parent="Logic/Symbols/HandleSpareSymbols" unique_id=1838110966]
+script = ExtResource("16_jheh3")
 
 [node name="HandleEnergy" type="Node" parent="Logic" unique_id=417109098]
 script = ExtResource("8_5vb5l")
@@ -555,7 +574,6 @@ script = ExtResource("6_7qc6t")
 
 [node name="SubViewport" type="SubViewport" parent="ControlInterface/SmallStatDisplay/TvFrontPanel" unique_id=21946426]
 size = Vector2i(840, 270)
-render_target_update_mode = 4
 
 [node name="SmallStatDisplay" parent="ControlInterface/SmallStatDisplay/TvFrontPanel/SubViewport" unique_id=1265361871 instance=ExtResource("11_pl004")]
 
@@ -644,7 +662,6 @@ script = ExtResource("6_7qc6t")
 
 [node name="SubViewport" type="SubViewport" parent="StatDisplay/StatPanels/StrengthStatPanel/CapControlTv" unique_id=1299822974]
 size = Vector2i(840, 270)
-render_target_update_mode = 4
 
 [node name="LargeStatDisplay" parent="StatDisplay/StatPanels/StrengthStatPanel/CapControlTv/SubViewport" unique_id=1264641169 instance=ExtResource("13_76fo1")]
 selected_stat_type = "strength"
@@ -668,7 +685,6 @@ script = ExtResource("6_7qc6t")
 
 [node name="SubViewport" type="SubViewport" parent="StatDisplay/StatPanels/IntelligenceStatPanel/CapControlTv" unique_id=34937792]
 size = Vector2i(840, 270)
-render_target_update_mode = 4
 
 [node name="LargeStatDisplay" parent="StatDisplay/StatPanels/IntelligenceStatPanel/CapControlTv/SubViewport" unique_id=1035610517 instance=ExtResource("13_76fo1")]
 selected_stat_type = "intelligence"
@@ -692,7 +708,6 @@ script = ExtResource("6_7qc6t")
 
 [node name="SubViewport" type="SubViewport" parent="StatDisplay/StatPanels/CommunityStatPanel/CapControlTv" unique_id=1161410242]
 size = Vector2i(840, 270)
-render_target_update_mode = 4
 
 [node name="LargeStatDisplay" parent="StatDisplay/StatPanels/CommunityStatPanel/CapControlTv/SubViewport" unique_id=487226957 instance=ExtResource("13_76fo1")]
 selected_stat_type = "community"
@@ -975,7 +990,7 @@ texture = SubResource("CompressedTexture2D_pl004")
 transform = Transform3D(0.7999007, 0, 0.60013235, 0, 1, 0, -0.60013235, 0, 0.7999007, -1.2448435, 0.7682284, 1.4835616)
 
 [node name="PanelMesh2" type="MeshInstance3D" parent="EnergyDisplay/EnergyKey" unique_id=1737352214]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20875105, 3.1042702, -2.5484068)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2087509, 3.0541234, -2.548407)
 mesh = SubResource("BoxMesh_76fo1")
 
 [node name="BG" type="Node3D" parent="EnergyDisplay/EnergyKey" unique_id=2113647284]
@@ -987,6 +1002,18 @@ mesh = SubResource("BoxMesh_c22aw")
 [node name="PanelMesh2" type="MeshInstance3D" parent="EnergyDisplay/EnergyKey/BG" unique_id=1029126129]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20831592, 3.292872, -2.5484068)
 mesh = SubResource("BoxMesh_c22aw")
+
+[node name="PanelMesh3" type="MeshInstance3D" parent="EnergyDisplay/EnergyKey/BG" unique_id=1677006071]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20831591, 3.0060897, -2.5484068)
+mesh = SubResource("BoxMesh_jheh3")
+
+[node name="PanelMesh4" type="MeshInstance3D" parent="EnergyDisplay/EnergyKey/BG" unique_id=67177502]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20831591, 2.7473907, -2.5484068)
+mesh = SubResource("BoxMesh_jheh3")
+
+[node name="PanelMesh5" type="MeshInstance3D" parent="EnergyDisplay/EnergyKey/BG" unique_id=1496479907]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20831591, 2.4749908, -2.5484068)
+mesh = SubResource("BoxMesh_jheh3")
 
 [node name="2PrisonersGenerated" type="Label3D" parent="EnergyDisplay/EnergyKey" unique_id=1508454114]
 transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2006721, 3.5766497, -2.393968)
@@ -1029,6 +1056,71 @@ text = "- 20"
 font = ExtResource("3_bsoe0")
 font_size = 26
 outline_size = 0
+
+[node name="Mutation" type="Node3D" parent="EnergyDisplay/EnergyKey" unique_id=1602278946]
+
+[node name="BadMuationSprite3D" type="Sprite3D" parent="EnergyDisplay/EnergyKey/Mutation" unique_id=1851850794]
+transform = Transform3D(7.450581e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, 7.450581e-09, -0.19970077, 3.000587, -2.2530296)
+texture_filter = 0
+texture = ExtResource("37_xqjj3")
+
+[node name="GoodMuationSprite3D" type="Sprite3D" parent="EnergyDisplay/EnergyKey/Mutation" unique_id=1972857999]
+transform = Transform3D(7.450581e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, 7.450581e-09, -0.20297086, 3.000587, -2.3792048)
+texture_filter = 0
+texture = ExtResource("38_maiyk")
+
+[node name="4PrisonersGenerated" type="Label3D" parent="EnergyDisplay/EnergyKey/Mutation" unique_id=1228102417]
+transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.19833827, 3.0064583, -2.6742449)
+pixel_size = 0.004
+texture_filter = 0
+modulate = Color(0.94677585, 0.95643777, 0.9975652, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "un-stable Vs stable
+chance of cell mutation"
+font = ExtResource("3_bsoe0")
+font_size = 12
+outline_size = 0
+autowrap_trim_flags = 128
+
+[node name="Defect" type="Node3D" parent="EnergyDisplay/EnergyKey" unique_id=1689616591]
+
+[node name="DefectSprite3D" type="Sprite3D" parent="EnergyDisplay/EnergyKey/Defect" unique_id=1434012309]
+transform = Transform3D(7.450581e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, 7.450581e-09, -0.20137584, 2.741888, -2.304363)
+texture_filter = 0
+texture = ExtResource("39_jot7m")
+
+[node name="4PrisonersGenerated" type="Label3D" parent="EnergyDisplay/EnergyKey/Defect" unique_id=2117584093]
+transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.19833827, 2.7477593, -2.6742449)
+pixel_size = 0.004
+texture_filter = 0
+modulate = Color(0.94677585, 0.95643777, 0.9975652, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "chance of cell
+ defect "
+font = ExtResource("3_bsoe0")
+font_size = 12
+outline_size = 0
+autowrap_trim_flags = 128
+
+[node name="Energy" type="Node3D" parent="EnergyDisplay/EnergyKey" unique_id=1310184007]
+
+[node name="EnergySprite3D" type="Sprite3D" parent="EnergyDisplay/EnergyKey/Energy" unique_id=1236502611]
+transform = Transform3D(1.1175871e-08, 0, 0.13, 0, 0.13, 0, -0.13, 0, 1.1175871e-08, -0.20137578, 2.4733734, -2.304363)
+texture_filter = 0
+texture = ExtResource("40_2knjx")
+
+[node name="4PrisonersGenerated" type="Label3D" parent="EnergyDisplay/EnergyKey/Energy" unique_id=2061632896]
+transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.19833827, 2.4753594, -2.6742449)
+pixel_size = 0.004
+texture_filter = 0
+modulate = Color(0.94677585, 0.95643777, 0.9975652, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "chance of cell
+using more or less energy"
+font = ExtResource("3_bsoe0")
+font_size = 12
+outline_size = 0
+autowrap_trim_flags = 128
 
 [node name="Mesh" type="Node3D" parent="EnergyDisplay" unique_id=929564916]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -6.072657, 0.22929311, -2.2208562)
@@ -1078,4 +1170,16 @@ unit_size = 5.0
 [node name="Generate" type="AudioStreamPlayer3D" parent="ProfilerAudioManager" unique_id=688116883]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37035954, -0.72622895, 0.28649735)
 stream = ExtResource("37_7xsnp")
+unit_size = 5.0
+
+[node name="SpareEnter" type="AudioStreamPlayer3D" parent="ProfilerAudioManager" unique_id=608908295]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37035954, -0.72622895, 0.28649735)
+stream = ExtResource("49_2knjx")
+volume_db = -10.0
+unit_size = 5.0
+
+[node name="SpareExit" type="AudioStreamPlayer3D" parent="ProfilerAudioManager" unique_id=1569123113]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37035954, -0.72622895, 0.28649735)
+stream = ExtResource("50_jheh3")
+volume_db = -10.0
 unit_size = 5.0

@@ -19,5 +19,7 @@ func _handle_recieve_profiler_spare_icons(stat_selected_icons : Dictionary) :
 	
 	spare_symbol_updater._update_large_stat_screens(selected_stat_selected_icons)
 
+
+
 	
 	

@@ -10,7 +10,6 @@ func _handle_increment_btn_down(increment_direction : String):
 	if parent_station.selected_stat == '' :
 		return
 	
-	
 	var direction : int = 0	
 	
 	if increment_direction == 'up' :

@@ -69,8 +69,7 @@ func handle_round(round : int):
 			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
 			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
 			IVPrisonerProfiler.community_stat_lock_percant_index= 0
-			#IVPrisonerProfiler.stat_lock_percantages = [1.00,]			
-			IVPrisonerProfiler.stat_lock_percantages = [0.25, 0.50, 0.75, 1.00,]			
+			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.55, 0.80, 1.01,]			
 			IVPrisonerProfiler.per_stat_increment_energy_decrease = 2
 			
 		2 :
@@ -100,11 +99,11 @@ func handle_round(round : int):
 			## HIDDEN STATS ## 
 			IVHiddenStats.stats_to_hide = ['strength']
 			## PRISONER PROFILER ##
-			IVPrisonerProfiler.stat_increment_amount = 20
+			IVPrisonerProfiler.stat_increment_amount = 10
 			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
 			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
 			IVPrisonerProfiler.community_stat_lock_percant_index= 0
-			IVPrisonerProfiler.stat_lock_percantages = [0.25, 0.50, 0.75, 1.00,]			
+			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.55, 0.80, 1.01,]			
 			IVPrisonerProfiler.per_stat_increment_energy_decrease = 2
 			
 			
@@ -131,12 +130,12 @@ func handle_round(round : int):
 			## HIDDEN STATS ## 
 			IVHiddenStats.stats_to_hide = ['strength', 'intelligence']
 			## PRISONER PROFILER ##
-			IVPrisonerProfiler.stat_increment_amount = 25
+			IVPrisonerProfiler.stat_increment_amount = 20
 			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
 			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
 			IVPrisonerProfiler.community_stat_lock_percant_index= 0
-			IVPrisonerProfiler.stat_lock_percantages = [0.25, 0.50, 0.75, 1.00,]			
-			IVPrisonerProfiler.per_stat_increment_energy_decreUpdateEnergyPanelase = 2
+			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.55, 0.80, 1.01,]			
+			IVPrisonerProfiler.per_stat_increment_energy_decrease = 2
 		4 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
 			## ENERGY ##
@@ -159,11 +158,11 @@ func handle_round(round : int):
 			## HIDDEN STATS ## 
 			IVHiddenStats.stats_to_hide = ['strength', 'intelligence', 'community']
 			## PRISONER PROFILER ##
-			IVPrisonerProfiler.stat_increment_amount = 25
+			IVPrisonerProfiler.stat_increment_amount = 20
 			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
 			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
 			IVPrisonerProfiler.community_stat_lock_percant_index= 0
-			IVPrisonerProfiler.stat_lock_percantages = [0.25, 0.50, 0.75, 1.00,]			
+			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.55, 0.80, 1.01,]			
 			IVPrisonerProfiler.per_stat_increment_energy_decrease = 2
 	
 @warning_ignore("shadowed_global_identifier")
@@ -171,7 +170,7 @@ func handle_energy(round : int, energy: int) :
 	
 	iv_helper_defect_event._update_defect_event_values(round, energy)
 	iv_helper_hidden_stats._update_hidden_stat_values(round, energy)
-	iv_helper_profiler_spare_progression._update_hidden_stat_values(round, energy)
+	iv_helper_profiler_spare_progression._update_spare_progression(round, energy)
 	
 
 func _handle_energy_changed() :

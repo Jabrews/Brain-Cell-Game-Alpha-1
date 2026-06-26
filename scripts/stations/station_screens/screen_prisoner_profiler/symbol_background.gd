@@ -14,10 +14,13 @@ func _ready() -> void:
 
 func _place_sprite() -> void:
 	
-	if size.x == 0.0:
+	#if size.x <= 10.0:
+	if size.x <= 10.0 	 :
 		symbol_sprite.visible = false 
+		visible = false
 	else:
 		symbol_sprite.visible = true 
+		visible = true
 		var rect_middle: Vector2 = global_position + size / 2.0
 		symbol_sprite.global_position = rect_middle
 

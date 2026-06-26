@@ -8,10 +8,8 @@ extends Node
 @onready var helper_handle_energy : Node = $".."
 
 func _update() :
-	var total : int = helper_handle_energy.prisoner_quanity_btn_energy_used 
 	
-	for stat in helper_handle_energy.stat_value_energy_used :
-		total += helper_handle_energy.stat_value_energy_used[stat]
+	var total = helper_handle_energy.get_total_energy_used()
 	
 	curr_energy_label.text = str(GLGameManagerBus.curr_energy)
 	handle_update_energy_used(total)

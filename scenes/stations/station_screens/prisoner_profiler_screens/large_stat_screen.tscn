@@ -207,6 +207,7 @@ background_type = "energy"
 [node name="SymbolSprite" type="Sprite2D" parent="StatDisplay/SpareSymbols/Energy" unique_id=2059423483]
 texture_filter = 1
 position = Vector2(346, 110)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("8_6aein")
 
 [node name="GoodMutation" type="Control" parent="StatDisplay/SpareSymbols" unique_id=1045809982]
