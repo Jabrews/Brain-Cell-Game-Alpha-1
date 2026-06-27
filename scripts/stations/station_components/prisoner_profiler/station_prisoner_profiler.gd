@@ -43,12 +43,18 @@ var inaccessible_starting_value : int = 0
 # helpers
 # symbols
 @onready var handle_inaccesible : Node = $Logic/Symbols/HandleInaccessible
-@onready var handle_spare_symbols: Node = $Logic/Symbols/HandleSpareSymbols
-@onready var spare_symbol_evaluator : Node = $Logic/Symbols/HandleSpareSymbols/SpareSymbolEvaluator
 @onready var handle_lock : Node = $Logic/Symbols/HandleLock
+# spare symbols
+# for getting them and setting with global game manager class
+@onready var handle_spare_symbols: Node = $Logic/Symbols/HandleSpareSymbols 
+# happens after each stat increment to check status
+@onready var spare_symbol_evaluator : Node = $Logic/Symbols/HandleSpareSymbols/SpareSymbolEvaluator 
+# where we hold the finale stat of stat status and its consquences
+@onready var spare_symbol_effects : Node = $Logic/Symbols/HandleSpareSymbols/SpareSymbolEffects 
+
 # energy
 @onready var handle_energy : Node = $Logic/HandleEnergy
-# extra
+# extra helpers
 @onready var util_stat_type_to : Node = $Logic/UtilStatTypeTo
 @onready var handle_cycle_stat : Node = $Logic/HandleCycleStat
 @onready var audio_manager : Node3D = $ProfilerAudioManager
@@ -291,21 +297,22 @@ func handle_generate_btn_pressed() :
 	var strength_stat_constructor = StatConstructor.new(
 		"strength",
 		strength_value,
-		'none',
+		spare_symbol_effects.strength_spare_symbol,
 		strength_enabled
 	)
 	var intelligence_stat_constructor = StatConstructor.new(
 		"intelligence",
 		intelligence_value,
-		'none',
+		spare_symbol_effects.intelligence_spare_symbol,
 		intelligence_enabled
 	)
 	var community_stat_constructor = StatConstructor.new(
 		"community",
 		community_value,
-		'none',
+		spare_symbol_effects.community_spare_symbol,
 		community_enabled
 	)
+	
 	
 	var prisoner_cell_constructor : CellConstructor = CellConstructor.new(
 		current_prisoner_quanity,
@@ -313,6 +320,8 @@ func handle_generate_btn_pressed() :
 		intelligence_stat_constructor,
 		community_stat_constructor
 	)
+	
+	
 	
 	GLCellCreatorBus.emit_signal(
 		"create_prisoner_cells",

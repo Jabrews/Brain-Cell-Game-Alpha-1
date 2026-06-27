@@ -14,7 +14,7 @@ func _create(stat_constructor : StatConstructor) -> BrainCellStat :
 	
 	var stat_value = generate_random_stat_value(stat_constructor.stat_base_clean_value)
 	
-	stat_value = detect_and_apply_stap_cap(stat_value, stat_constructor.stat_cap_status)
+	stat_value = apply_spare_symbol(stat_value, stat_constructor.spare_symbol)
 	
 	stat_value = clamp(stat_value, 1, IVCellCreator.max_stat_value) 
 	stat_value = round(stat_value* 10.0) / 10.0
@@ -45,11 +45,10 @@ func generate_random_stat_value(stat_base : float) :
 	
 	return stat_base
 
-func detect_and_apply_stap_cap(stat_value : float, stat_cap_status : String ) -> float:
+func apply_spare_symbol(stat_value : float, spare_symbol : StatSpareSymbol ) -> float:
 
-	if stat_cap_status == "none":
+	if spare_symbol.type == "none":
 		return stat_value
 
 	else:
-		push_error("invalid stat cap: %s" % stat_cap_status)
 		return stat_value

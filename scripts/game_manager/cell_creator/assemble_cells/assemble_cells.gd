@@ -43,19 +43,19 @@ func assemble(cell_constructor : CellConstructor) -> Array[BrainCell]:
 		### DEFECT STATS ###
 		var defect_strength = create_defect_stats._create(
 			new_prisoner_cell.strength,
-			cell_constructor.strength.stat_cap_status,
+			cell_constructor.strength.spare_symbol,
 		)
 		new_prisoner_cell.strength.defect = defect_strength		
 		
 		var defect_intelligence = create_defect_stats._create(
 			new_prisoner_cell.intelligence,
-			cell_constructor.intelligence.stat_cap_status,
+			cell_constructor.intelligence.spare_symbol,
 		)
 		new_prisoner_cell.intelligence.defect = defect_intelligence 
 		
 		var defect_community = create_defect_stats._create(
 			new_prisoner_cell.community,
-			cell_constructor.community.stat_cap_status,
+			cell_constructor.community.spare_symbol,
 		)
 		new_prisoner_cell.community.defect = defect_community 
 		####################

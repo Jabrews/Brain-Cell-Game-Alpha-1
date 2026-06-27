@@ -104,9 +104,6 @@ func _update_spare_symbol_energy_used(stat_type : String, new_value : int) -> vo
 	helper_update_energy_panel._update()
 	
 	
-	
-
-
 func _update_energy_toggle_stat_value_enabled(stat_type : String, toggle_value : bool, last_value : int) -> void:
 	# turned on
 	if toggle_value == true:

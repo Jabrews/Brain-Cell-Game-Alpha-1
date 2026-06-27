@@ -2,9 +2,9 @@ extends Node
 
 # these carry into assembler
 # other than energy
-var strength_spare_icon : String = 'none'
-var intelligence_spare_icon : String = 'none'
-var community_spare_icon : String = 'none'
+var strength_spare_symbol : StatSpareSymbol = StatSpareSymbol.new('none', '')
+var intelligence_spare_symbol : StatSpareSymbol = StatSpareSymbol.new('none', '')
+var community_spare_symbol : StatSpareSymbol = StatSpareSymbol.new('none', '')
 
 @onready var handle_energy : Node = $"../../../HandleEnergy"
 
@@ -14,25 +14,23 @@ func _activate(toggle_value : bool, selected_icon : Dictionary) -> void:
 	match selected_icon['stat']:	
 		'strength':
 			if not toggle_value:			
-				strength_spare_icon = 'none'			
+				strength_spare_symbol = StatSpareSymbol.new('none', '')
 			else: 
-				strength_spare_icon = selected_icon['type']
+				strength_spare_symbol = StatSpareSymbol.new(selected_icon['type'], selected_icon['direction'])
 
 		'intelligence':
 			if not toggle_value:			
-				intelligence_spare_icon = 'none'			
+				intelligence_spare_symbol= StatSpareSymbol.new('none', '')
 			else: 
-				intelligence_spare_icon = selected_icon['type']
+				intelligence_spare_symbol = StatSpareSymbol.new(selected_icon['type'], selected_icon['direction'])
 
 		'community':
 			if not toggle_value:			
-				community_spare_icon = 'none'			
+				community_spare_symbol= StatSpareSymbol.new('none', '')
 			else: 
-				community_spare_icon = selected_icon['type']
+				community_spare_symbol= StatSpareSymbol.new(selected_icon['type'], selected_icon['direction'])
 	
 	handle_energy_spare_symbol_activated(toggle_value, selected_icon)
-				
-				
 				
 				
 func handle_energy_spare_symbol_activated(toggle_value: bool, selected_icon: Dictionary) -> void:

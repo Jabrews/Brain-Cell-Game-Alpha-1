@@ -1,6 +1,6 @@
 extends Node
 
-func _create(stat: BrainCellStat, stat_cap_status : String) -> float:
+func _create(stat: BrainCellStat, spare_symbol : StatSpareSymbol) -> float:
 	
 	# if disabled no defect value	
 	if stat.enabled == false :
@@ -8,7 +8,7 @@ func _create(stat: BrainCellStat, stat_cap_status : String) -> float:
 		
 	var stat_value = generate_random_stat_value(stat.value)
 	
-	stat_value = detect_and_apply_stap_cap(stat_value, stat_cap_status)
+	stat_value = apply_spare_symbol(stat_value, spare_symbol)
 	
 	return stat_value
 
@@ -29,13 +29,23 @@ func generate_random_stat_value(stat_base: float) :
 	
 	return stat_base
 
-func detect_and_apply_stap_cap(stat_value : float, stat_cap_status : String):
+func apply_spare_symbol(stat_value : float, spare_symbol : StatSpareSymbol):
 	
-	if stat_cap_status == "none":
+	if spare_symbol.type == "none":
+		return stat_value
+	
+	if spare_symbol.type == 'defect' :
+		
+		if spare_symbol.direction == 'up' :		
+			stat_value += randi_range(30, 50)
+		elif spare_symbol.direction == 'down' :
+			stat_value -= randi_range(30, 50)
+		else :
+			push_error('direction not found for spare symbol : ', spare_symbol)
+			
 		return stat_value
 
 	else:
-		push_error("invalid stat cap: %s" % stat_cap_status)
 		return stat_value
 
 	
