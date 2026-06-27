@@ -11,13 +11,14 @@ func _ready() -> void:
 
 
 func _handle_feedback(type: String, data: Dictionary) -> void:
+	
 	if type != "spare_label":
 		return
 	
-	var selected_icon: Dictionary = data["data"]
+	var selected_spare_item_constructor : SpareIconConstuctor = data["data"]
 	
-	var spare_symbol_type: String = selected_icon["type"]
-	var direction: String = selected_icon["direction"]
+	var spare_symbol_type: String = selected_spare_item_constructor.type
+	var direction: String = selected_spare_item_constructor.direction
 	
 	initiate_label(spare_symbol_type, direction)
 

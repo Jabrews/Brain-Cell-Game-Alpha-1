@@ -8,22 +8,22 @@ extends Node
 @onready var handle_spare_symbols: Node = $".."
 
 
-func _update_large_stat_screens(stat_selected_icons: Dictionary) -> void:
+func _update_large_stat_screens(spare_item_constructors: Array[SpareIconConstuctor]) -> void:
+	
 	reset_large_screens()
 	
-	for stat_type: String in stat_selected_icons:
-		var selected_icon: Dictionary = stat_selected_icons[stat_type]
+	for spare_icon_constructor : SpareIconConstuctor in spare_item_constructors:
 
-		if selected_icon["type"] == "none":
+		if spare_icon_constructor.type == "none":
 			continue
 
-		var stat_index: int = _get_stat_index(stat_type)
+		var stat_index: int = _get_stat_index(spare_icon_constructor.stat)
 
 		if stat_index == -1:
 			continue
 
 		var large_stat_screen_background: ColorRect = _get_large_background_for_icon(
-			selected_icon["type"],
+			spare_icon_constructor.type,
 			stat_index
 		)
 
@@ -31,10 +31,10 @@ func _update_large_stat_screens(stat_selected_icons: Dictionary) -> void:
 			continue
 
 		set_position(
-			selected_icon["start"],
-			selected_icon["stop"],
+			spare_icon_constructor.start,
+			spare_icon_constructor.stop,
 			large_stat_screen_background,
-			selected_icon["direction"],
+			spare_icon_constructor.direction,
 			840.0
 		)
 
@@ -42,29 +42,37 @@ func _update_large_stat_screens(stat_selected_icons: Dictionary) -> void:
 func small_stat_display_get_spare(stat_type: String) -> void:
 	reset_small_screens()
 	
-	var stat_selected_icons: Dictionary = handle_spare_symbols.selected_stat_selected_icons
 	
-	if not stat_selected_icons.has(stat_type):
+	var spare_icon_constuctors : Array[SpareIconConstuctor] = handle_spare_symbols.selected_spare_icon_constructors
+	
+	# make sure it has stat type in constructor
+	# then select it 
+	var selected_spare_icon_constructor : SpareIconConstuctor
+	
+	for spare_icon_consuctor : SpareIconConstuctor in spare_icon_constuctors :
+		if spare_icon_consuctor.stat == stat_type :
+			selected_spare_icon_constructor = spare_icon_consuctor
+			
+	if not selected_spare_icon_constructor : 
 		push_error("No spare icon data for stat type: " + stat_type)
 		return
 	
-	var selected_icon: Dictionary = stat_selected_icons[stat_type]
-	
-	if selected_icon["type"] == "none":
+	# if type is none do nothign
+	if selected_spare_icon_constructor.type == "none":
 		return
 	
 	var small_stat_screen_background: ColorRect = _get_small_background_for_icon(
-		selected_icon["type"]
+		selected_spare_icon_constructor.type
 	)
 	
 	if small_stat_screen_background == null:
 		return
 	
 	set_position(
-		selected_icon["start"],
-		selected_icon["stop"],
+		selected_spare_icon_constructor.start,
+		selected_spare_icon_constructor.stop,
 		small_stat_screen_background,
-		selected_icon["direction"],
+		selected_spare_icon_constructor.direction,
 		840.0
 	)
 
