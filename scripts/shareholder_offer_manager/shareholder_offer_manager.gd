@@ -1,13 +1,13 @@
 extends Node
 
 # componnets
-@onready var serve_stat_offer_parent : Control = $ServeStatOffer
+#@onready var serve_stat_offer_parent : Control = $ServeStatOffer
 @onready var serve_item_offer_parent : Control = $ServeItemOffer
 @onready var header_label : Label = $HeaderLabel
 @onready var blur_bg : ColorRect = $BlurBg
 # cards 
-@onready var stat_offer_card_1 : TextureRect = $ServeStatOffer/Card1Container
-@onready var stat_offer_card_2 : TextureRect = $ServeStatOffer/Card2Container
+#@onready var stat_offer_card_1 : TextureRect = $ServeStatOffer/Card1Container
+#@onready var stat_offer_card_2 : TextureRect = $ServeStatOffer/Card2Container
 @onready var item_offer_card_1 : TextureRect = $ServeItemOffer/Card1Container
 @onready var item_offer_card_2 : TextureRect = $ServeItemOffer/Card2Container
 # helpers
@@ -28,17 +28,7 @@ func _handle_energy_turn_changed() :
 
 	var energy_percent : float = (curr_energy / float(max_energy)) * 100.0
 
-	# stat offers have priority
-	if not has_offered_stat \
-	and energy_percent <= IVShareholderOffers.stat_offer_energy_percant:
-		has_offered_stat = true
-		GLShareholderOfferState.await_user_choose_shareholder_offer_before_create = true
-		handle_stat_offer()
-		return
-
-	# item offer only if stat offer wasn't triggered
-	if not has_offered_item \
-	and energy_percent <= IVShareholderOffers.item_offer_energy_percant:
+	if energy_percent <= IVShareholderOffers.item_offer_energy_percant :
 		has_offered_item = true
 		handle_item_offer()
 		return
@@ -66,33 +56,6 @@ func handle_item_offer() :
 	toggle_display_lock(true)
 	serve_item_offer_parent.visible = true
 
-func handle_stat_offer() :
-	
-	var shareholder_stat_offer : Array[StatOfferItem]
-	
-	# get correct card offers for each round
-	var curr_round  = GLGameManagerBus.current_round
-	
-	match curr_round :
-		1 :
-			shareholder_stat_offer = GLShareholderOfferState.round_1_stat_offers
-		2 :
-			shareholder_stat_offer = GLShareholderOfferState.round_2_stat_offers
-		3 :
-			shareholder_stat_offer = GLShareholderOfferState.round_3_stat_offers
-		4 : 
-			shareholder_stat_offer = GLShareholderOfferState.round_4_stat_offers
-		_ :
-			push_error('unable to find round : ', str(curr_round), ' for handle_shareholder_card_offer')
-		
-	
-	# set cards
-	stat_offer_card_1.update(shareholder_stat_offer[0])	
-	stat_offer_card_2.update(shareholder_stat_offer[1])	
-	toggle_display_lock(true)
-	serve_stat_offer_parent.visible = true
-	
-
 func handle_card_picked(offer_type : String, offer_card : TextureRect) :
 	
 	var tween = create_tween()
@@ -118,17 +81,6 @@ func handle_card_picked(offer_type : String, offer_card : TextureRect) :
 
 	toggle_display_lock(false)
 
-	if offer_type == "stat":
-		# toggle visible 
-		serve_stat_offer_parent.visible = false
-		# put stat offer card to where it belongs
-		# get stat offer objects
-		var stat_offer: StatOfferItem = offer_card.designated_stat_offer 
-		# use helper to toggle vars
-		helper_stat_offer_active_toggle._handle_toggle_active_stat_offer(stat_offer.offer_id)
-		# let creator know its okay to create cells again	
-		GLShareholderOfferState.emit_signal('create_prisoner_cells_user_chose_shareholder_offer')
-		
 	if offer_type == 'item' :
 		serve_item_offer_parent.visible = false
 		var item_offer : UseableOfferItem = offer_card.designated_useable_item_offer 

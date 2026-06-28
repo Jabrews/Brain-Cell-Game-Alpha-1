@@ -31,9 +31,6 @@
 [ext_resource type="Script" uid="uid://md6nime7jqke" path="res://scripts/game_manager/defect_event_manager/jolt_cell_container.gd" id="21_eiw2m"]
 [ext_resource type="Script" uid="uid://b41xpxdsy0vba" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/plant_hidden_bombs.gd" id="21_w7r6u"]
 [ext_resource type="Script" uid="uid://cy8kcia20tw2y" path="res://scripts/game_manager/cell_creator/assemble_target/assemble_target.gd" id="22_dn28p"]
-[ext_resource type="Script" uid="uid://hi5lo6o7ob4j" path="res://scripts/game_manager/cell_creator/assemble_cells/offer_helpers/offer_five.gd" id="23_010mg"]
-[ext_resource type="Script" uid="uid://ddkmklgkuu4ca" path="res://scripts/game_manager/cell_creator/offer_helpers/offer_one.gd" id="24_j7s3e"]
-[ext_resource type="Script" uid="uid://tqdqm0u65kc7" path="res://scripts/game_manager/cell_creator/offer_helpers/offer_three.gd" id="25_8muua"]
 [ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="31_alpj0"]
 [ext_resource type="Script" uid="uid://s4grsq8leedn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_events.gd" id="32_m5ih7"]
 [ext_resource type="Script" uid="uid://b3i424haratdn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_profiler_spare_progression.gd" id="35_w7r6u"]
@@ -254,21 +251,8 @@ script = ExtResource("20_wv5kd")
 [node name="PlantHiddenBombs" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperHidden" unique_id=772278210]
 script = ExtResource("21_w7r6u")
 
-[node name="OfferHelpers" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=575333024]
-
-[node name="OfferFive" type="Node" parent="GameManager/CellCreator/AssembleCells/OfferHelpers" unique_id=1895900607]
-script = ExtResource("23_010mg")
-
 [node name="AssembleTarget" type="Node" parent="GameManager/CellCreator" unique_id=670645036]
 script = ExtResource("22_dn28p")
-
-[node name="OfferHelpers" type="Node" parent="GameManager/CellCreator" unique_id=175279693]
-
-[node name="OfferOne" type="Node" parent="GameManager/CellCreator/OfferHelpers" unique_id=458556621]
-script = ExtResource("24_j7s3e")
-
-[node name="OfferThree" type="Node" parent="GameManager/CellCreator/OfferHelpers" unique_id=1525152730]
-script = ExtResource("25_8muua")
 
 [node name="CellManager" type="Node" parent="GameManager" unique_id=612656315]
 script = ExtResource("12_63vgv")
@@ -322,6 +306,5 @@ script = ExtResource("14_5ru7i")
 
 [node name="UI" parent="." unique_id=885223017 instance=ExtResource("14_c0gn3")]
 
-[node name="DEBUG" type="Node" parent="." unique_id=882007240 node_paths=PackedStringArray("cell_manager")]
+[node name="DEBUG" type="Node" parent="." unique_id=882007240]
 script = ExtResource("18_44ape")
-cell_manager = NodePath("../GameManager/CellManager")

@@ -246,6 +246,7 @@ func _handle_next_round() :
 	handle_spare_symbols._generate_spare()
 	
 func reset_assembler() :
+	current_prisoner_quanity = 0
 	strength_value = 0
 	strength_enabled = true
 	intelligence_value = 0

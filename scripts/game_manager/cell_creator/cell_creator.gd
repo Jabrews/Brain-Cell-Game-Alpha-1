@@ -6,10 +6,6 @@ extends Node
 @onready var assemble_target : Node = $AssembleTarget
 @onready var incrmental_value_controller : Node = $"../IncrementalValueController"
 
-# offer helpers
-@onready var offer_one : Node = $OfferHelpers/OfferOne
-@onready var offer_three : Node = $OfferHelpers/OfferThree
-
 var current_cell_constructor : CellConstructor
 
 
@@ -73,14 +69,6 @@ func handle_create_prisoners( cell_constructor : CellConstructor, prevent_update
 	###### shareholder offers #####
 	if GLShareholderOfferState.await_user_choose_shareholder_offer_before_create:
 		return
-
-	#new_prisoner_cells = offer_one.handle_offer_1(
-		#new_prisoner_cells
-	#)
-#
-	#new_prisoner_cells = offer_three.handle_offer_3(
-		#new_prisoner_cells
-	#)
 	#################################
 
 

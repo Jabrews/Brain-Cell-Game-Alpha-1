@@ -12,13 +12,6 @@ func _handle_jolt() :
 	var ran_num = randi_range(1, 100)
 	var all_jolt_chance = IVDefectEventManager.chance_for_multiple_hidden_stat_interpreter_jolt
 	
-	## offer six ##
-	# we increase all jolt event chance by 15%
-	if GLShareholderOfferState.offer_6_active :
-		if GLShareholderOfferState.display_stat_offer_active_debug_messages :
-			print_debug('offer 6')
-			all_jolt_chance += 15
-	
 	# all interpreters jolt
 	if ran_num <= all_jolt_chance:
 		

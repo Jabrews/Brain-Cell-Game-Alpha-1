@@ -4,8 +4,6 @@ extends Node
 @onready var create_clean_stats : Node = $StatHelpers/HelperCreateClean
 @onready var create_defect_stats : Node = $StatHelpers/HelperCreateDefect
 @onready var create_hidden_stats : Node = $HelperHidden
-# offer helpers
-@onready var offer_five : Node = $OfferHelpers/OfferFive
 
 func assemble(cell_constructor : CellConstructor) -> Array[BrainCell]:
 

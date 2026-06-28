@@ -17,15 +17,6 @@ func increase_clean_stat_case(stat_high : float, stat_low : float, target_stat :
 	# 0.5 add value is halfway to target
 	var add_percant = possible_add_value / target_stat
 	
-	## case two ##
-	# clean stat should give max returns
-	# this always caueses high increase
-	if GLShareholderOfferState.offer_2_active :
-		if GLShareholderOfferState.display_stat_offer_active_debug_messages :
-			print_debug('offer 2')
-		add_percant = 0.7
-	##############
-	
 	
 	## create finale value	
 	# low (under 0.5)

@@ -18,8 +18,6 @@ func _ready() -> void:
 	GLCellManagerBus.connect('delete_cells_for_next_round', _handle_delete_cells_for_next_round)
 	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_energy_turn_changed_increment_life_span)
 	GLCellManagerBus.connect('defect_decreaser_used', _handle_defect_decreaser_used)
-	# shareholder offers
-	GLShareholderOfferState.connect('offer_8_activated', _handle_offer_8_activated)
 	
 	## OTHER ZOOS
 	GLCellManagerBus.connect('debug_collected_cells_and_target_create', _handle_debug)
@@ -240,13 +238,6 @@ func _handle_interpreter_jolt_increase_cell_defect(selected_cell : BrainCell, se
 			
 	var jolt_defect_increase_amount = IVDefectEventManager.interpreter_jolt_defect_increase
 	
-	## offer 7 ##
-	# increase jolt by 25%
-	if GLShareholderOfferState.offer_7_active :
-		if GLShareholderOfferState.display_stat_offer_active_debug_messages :
-			print_debug('offer 7')
-		jolt_defect_increase_amount += int((jolt_defect_increase_amount * 0.25))
-	
 	match selected_stat :
 		'strength' :
 			selected_cell.strength.defect += jolt_defect_increase_amount
@@ -281,11 +272,6 @@ func _handle_delete_cells_for_next_round() :
 	set_collected_cells([])
 	set_prisoner_cells([])
 
-func _handle_offer_8_activated() :
-	for cell in collected_cells :
-		cell.life_span = 1
-		update_collected_cells([cell])
-	
 func _handle_energy_turn_changed_increment_life_span() :
 	
 	#decrease lifespan on collected cells
