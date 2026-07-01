@@ -1,18 +1,21 @@
 [gd_scene format=3 uid="uid://cyugvlr5sgshv"]
 
-[ext_resource type="Script" uid="uid://cdlyjs4or3d7u" path="res://scripts/shareholder_offer_manager/shareholder_offer_manager.gd" id="1_outj8"]
+[ext_resource type="Script" uid="uid://c2tqv0ysfvhpq" path="res://scripts/shareholder_offer_manager/shareholder_offer_manager.gd" id="1_vj8rc"]
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="3_ten8p"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="4_05saj"]
-[ext_resource type="Texture2D" uid="uid://b7fpfcpiqgvw7" path="res://models/share_holder_offer_card/card_bg.png" id="5_gue60"]
-[ext_resource type="Script" uid="uid://brvd4uni8rnoo" path="res://scripts/shareholder_offer_manager/stat_offer_card.gd" id="6_5kdy1"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="7_73nie"]
-[ext_resource type="Texture2D" uid="uid://b2vqkhvvch5hx" path="res://models/share_holder_offer_card/prisoner_effect.png" id="8_ka1nv"]
 [ext_resource type="Texture2D" uid="uid://bsjekw3rerm0s" path="res://models/share_holder_offer_card/card_hover.png" id="9_3ji3s"]
-[ext_resource type="Texture2D" uid="uid://dytqlp8nnogkl" path="res://models/share_holder_offer_card/effects_breeding.png" id="10_vj8rc"]
 [ext_resource type="Texture2D" uid="uid://uol8k4qh6ujx" path="res://models/share_holder_offer_card/item_card_bg.png" id="11_05saj"]
-[ext_resource type="Script" uid="uid://tr8wpxp11wct" path="res://scripts/shareholder_offer_manager/item_offer_card.gd" id="12_5kdy1"]
+[ext_resource type="Script" uid="uid://tr8wpxp11wct" path="res://scripts/shareholder_offer_manager/item_offer/item_offer_card.gd" id="12_5kdy1"]
 [ext_resource type="Texture2D" uid="uid://dq0mvp0t01m" path="res://models/share_holder_offer_card/item_steroid.png" id="13_5kdy1"]
 [ext_resource type="Texture2D" uid="uid://cfo745i5iwjge" path="res://models/share_holder_offer_card/item_ice_cube.png" id="13_gue60"]
+[ext_resource type="Shader" uid="uid://1h7isoi7cv3c" path="res://scripts/shaders/target_progress_bar.gdshader" id="14_73nie"]
+[ext_resource type="Script" uid="uid://biokcax5yeanx" path="res://scripts/shareholder_offer_manager/next_offer_request/serve_next_offer_request.gd" id="14_vj8rc"]
+[ext_resource type="Script" uid="uid://ggtyyimdk4mh" path="res://scripts/shareholder_offer_manager/next_offer_request/stat_request.gd" id="15_3nfp3"]
+[ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="15_ka1nv"]
+[ext_resource type="Texture2D" uid="uid://qg03gb4bsm4h" path="res://models/screens/station_item_offer_manager/no_stat_required.png" id="16_3ji3s"]
+[ext_resource type="Texture2D" uid="uid://cgwdnpcjuv0hx" path="res://models/screens/prisoner_profiler_symbols/energy_symbol.png" id="17_ka1nv"]
+[ext_resource type="Script" uid="uid://ch4v278bsachl" path="res://scripts/shareholder_offer_manager/next_offer_request/confirm_btn.gd" id="20_3nfp3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mvdwn"]
 shader = ExtResource("3_ten8p")
@@ -20,8 +23,17 @@ shader_parameter/blur_amount = 3.0000001425
 shader_parameter/tint_strength = 0.638000030305
 shader_parameter/tint_color = Color(0, 0, 0, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vj8rc"]
+shader = ExtResource("14_73nie")
+shader_parameter/prisoner_value = 0.0
+shader_parameter/target_value = 0.0
+shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/red_color = Color(0.29803923, 0.02745098, 0.06666667, 1)
+shader_parameter/overlap_opacity = 0.10000000475
+shader_parameter/edge_padding = 5.0
+
 [node name="ShareholderOfferManager" type="Node" unique_id=1195344226]
-script = ExtResource("1_outj8")
+script = ExtResource("1_vj8rc")
 
 [node name="BlurBg" type="ColorRect" parent="." unique_id=1588655198]
 visible = false
@@ -36,6 +48,7 @@ color = Color(1, 1, 1, 0)
 
 [node name="HeaderLabel" type="Label" parent="." unique_id=1733478266]
 visible = false
+texture_filter = 1
 offset_left = 109.0
 offset_top = 11.0
 offset_right = 755.0
@@ -45,113 +58,6 @@ theme_override_font_sizes/font_size = 26
 text = "Shareholder Offer -"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="ServeStatOffer" type="Control" parent="." unique_id=248903557]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Card1Container" type="TextureRect" parent="ServeStatOffer" unique_id=607106160]
-process_mode = 3
-texture_filter = 1
-custom_minimum_size = Vector2(160, 250)
-layout_mode = 0
-offset_left = 200.0
-offset_top = 115.0
-offset_right = 360.0
-offset_bottom = 365.0
-texture = ExtResource("5_gue60")
-script = ExtResource("6_5kdy1")
-
-[node name="FlavorText" type="Label" parent="ServeStatOffer/Card1Container" unique_id=1536332035]
-layout_mode = 0
-offset_left = 17.5
-offset_top = 161.0
-offset_right = 144.5
-offset_bottom = 228.0
-theme_override_colors/font_color = Color(0.7652549, 0.77916974, 0.8167452, 1)
-theme_override_constants/line_spacing = 0
-theme_override_constants/paragraph_spacing = 0
-theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("7_73nie")
-theme_override_font_sizes/font_size = 10
-text = "Flavor Text is acutally really cool and i love it. it looks so great in this pixel font. omg nvm pls kill "
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="TypeImage" type="TextureRect" parent="ServeStatOffer/Card1Container" unique_id=488049580]
-layout_mode = 0
-offset_left = 24.5
-offset_top = 20.0
-offset_right = 134.5
-offset_bottom = 120.0
-texture = ExtResource("8_ka1nv")
-
-[node name="CardHover" type="TextureRect" parent="ServeStatOffer/Card1Container" unique_id=861998723]
-visible = false
-layout_mode = 0
-offset_left = -1.5
-offset_top = 2.0
-offset_right = 160.5
-offset_bottom = 254.0
-texture = ExtResource("9_3ji3s")
-
-[node name="Card2Container" type="TextureRect" parent="ServeStatOffer" unique_id=1817488624]
-process_mode = 3
-texture_filter = 1
-custom_minimum_size = Vector2(160, 250)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 76.0
-offset_top = -125.0
-offset_right = 236.0
-offset_bottom = 125.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_gue60")
-script = ExtResource("6_5kdy1")
-
-[node name="TypeImage" type="TextureRect" parent="ServeStatOffer/Card2Container" unique_id=1820843972]
-layout_mode = 0
-offset_left = 24.5
-offset_top = 20.0
-offset_right = 134.5
-offset_bottom = 120.0
-texture = ExtResource("10_vj8rc")
-
-[node name="CardHover" type="TextureRect" parent="ServeStatOffer/Card2Container" unique_id=180150561]
-visible = false
-layout_mode = 0
-offset_left = -1.5
-offset_top = 2.0
-offset_right = 160.5
-offset_bottom = 254.0
-texture = ExtResource("9_3ji3s")
-
-[node name="FlavorText" type="Label" parent="ServeStatOffer/Card2Container" unique_id=1593060695]
-layout_mode = 0
-offset_left = 17.5
-offset_top = 161.0
-offset_right = 144.5
-offset_bottom = 228.0
-theme_override_colors/font_color = Color(0.7652549, 0.77916974, 0.8167452, 1)
-theme_override_constants/line_spacing = 0
-theme_override_constants/paragraph_spacing = 0
-theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("7_73nie")
-theme_override_font_sizes/font_size = 10
-text = "Flavor Text is acutally really cool and i love it. it looks so great in this pixel font. omg nvm pls kill "
-vertical_alignment = 1
-autowrap_mode = 2
 
 [node name="ServeItemOffer" type="Control" parent="." unique_id=1484797283]
 visible = false
@@ -259,3 +165,425 @@ theme_override_font_sizes/font_size = 10
 text = "Flavor Text is acutally really cool and i love it. it looks so great in this pixel font. omg nvm pls kill "
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="ServeNextOfferRequest" type="Control" parent="." unique_id=200640187]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 82.99999
+offset_top = -20.000004
+offset_right = 122.99999
+offset_bottom = 19.999996
+scale = Vector2(0.8, 0.8)
+script = ExtResource("14_vj8rc")
+
+[node name="ThoughLabel" type="Label" parent="ServeNextOfferRequest" unique_id=1524880465]
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 93.0
+offset_right = 654.0
+offset_bottom = 127.0
+theme_override_fonts/font = ExtResource("4_05saj")
+theme_override_font_sizes/font_size = 20
+text = "Next offer request "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ThoughLabel2" type="Label" parent="ServeNextOfferRequest" unique_id=1609565587]
+texture_filter = 1
+layout_mode = 0
+offset_left = 297.0
+offset_top = 93.0
+offset_right = 943.0
+offset_bottom = 127.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_05saj")
+theme_override_font_sizes/font_size = 20
+text = "requires -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RequestScreens" type="Control" parent="ServeNextOfferRequest" unique_id=55801849]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StatRequest" type="Control" parent="ServeNextOfferRequest/RequestScreens" unique_id=491251656]
+anchors_preset = 0
+offset_left = 86.25001
+offset_top = 141.25
+offset_right = 126.25001
+offset_bottom = 181.25
+script = ExtResource("15_3nfp3")
+
+[node name="BG" type="ColorRect" parent="ServeNextOfferRequest/RequestScreens/StatRequest" unique_id=494534587]
+layout_mode = 0
+offset_left = -34.749985
+offset_top = 2.75
+offset_right = 681.49994
+offset_bottom = 222.74997
+color = Color(0, 0, 0, 1)
+
+[node name="CleanBars" type="Control" parent="ServeNextOfferRequest/RequestScreens/StatRequest" unique_id=112787344]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Labels" type="Control" parent="ServeNextOfferRequest/RequestScreens/StatRequest/CleanBars" unique_id=1757995776]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StengthLabel" type="Label" parent="ServeNextOfferRequest/RequestScreens/StatRequest/CleanBars/Labels" unique_id=802459251]
+texture_filter = 1
+layout_mode = 0
+offset_left = -32.0
+offset_top = 33.0
+offset_right = 108.0
+offset_bottom = 56.0
+theme_override_fonts/font = ExtResource("4_05saj")
+theme_override_font_sizes/font_size = 12
+text = "Strength -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntelligenceLabel" type="Label" parent="ServeNextOfferRequest/RequestScreens/StatRequest/CleanBars/Labels" unique_id=1332976593]
+texture_filter = 1
+layout_mode = 0
+offset_left = -49.0
+offset_top = 100.0
+offset_right = 119.0
+offset_bottom = 123.0
+theme_override_fonts/font = ExtResource("4_05saj")
+theme_override_font_sizes/font_size = 9
+text = "Intelligence -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CommunityLabel" type="Label" parent="ServeNextOfferRequest/RequestScreens/StatRequest/CleanBars/Labels" unique_id=1769545405]
+texture_filter = 1
+layout_mode = 0
+offset_left = -35.0
+offset_top = 174.0
+offset_right = 105.0
+offset_bottom = 197.0
+theme_override_fonts/font = ExtResource("4_05saj")
+theme_override_font_sizes/font_size = 12
+text = "Community -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bars" type="Control" parent="ServeNextOfferRequest/RequestScreens/StatRequest/CleanBars" unique_id=1403465823]
+anchors_preset = 0
+offset_left = 9.0
+offset_right = 49.0
+offset_bottom = 40.0
+
+[node name="StrengthBar" type="Sprite2D" parent="ServeNextOfferRequest/RequestScreens/StatRequest/CleanBars/Bars" unique_id=1055673585]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vj8rc")
+position = Vector2(381.99997, 43)
+scale = Vector2(1.7903227, 1.4518751)
+texture = ExtResource("15_ka1nv")
+
+[node name="IntelligenceBar" type="Sprite2D" parent="ServeNextOfferRequest/RequestScreens/StatRequest/CleanBars/Bars" unique_id=1612334927]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vj8rc")
+position = Vector2(381.99997, 112.000015)
+scale = Vector2(1.7903227, 1.4268752)
+texture = ExtResource("15_ka1nv")
+
+[node name="CommunityBar" type="Sprite2D" parent="ServeNextOfferRequest/RequestScreens/StatRequest/CleanBars/Bars" unique_id=510197433]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vj8rc")
+position = Vector2(380.99997, 184)
+scale = Vector2(1.7903227, 1.4268746)
+texture = ExtResource("15_ka1nv")
+
+[node name="ValueLabel" type="Control" parent="ServeNextOfferRequest/RequestScreens/StatRequest/CleanBars" unique_id=952687586]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthCurrLabel" type="Label" parent="ServeNextOfferRequest/RequestScreens/StatRequest/CleanBars/ValueLabel" unique_id=557829911]
+texture_filter = 1
+layout_mode = 0
+offset_left = 207.0
+offset_top = 33.0
+offset_right = 555.0
+offset_bottom = 53.96776
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("4_05saj")
+theme_override_font_sizes/font_size = 16
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntelligenceCurrLabel" type="Label" parent="ServeNextOfferRequest/RequestScreens/StatRequest/CleanBars/ValueLabel" unique_id=1654048098]
+texture_filter = 1
+layout_mode = 0
+offset_left = 208.0
+offset_top = 102.0
+offset_right = 556.0
+offset_bottom = 122.96776
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("4_05saj")
+theme_override_font_sizes/font_size = 16
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CommunityCurrLabel" type="Label" parent="ServeNextOfferRequest/RequestScreens/StatRequest/CleanBars/ValueLabel" unique_id=753048995]
+texture_filter = 1
+layout_mode = 0
+offset_left = 209.0
+offset_top = 176.0
+offset_right = 557.0
+offset_bottom = 196.96776
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("4_05saj")
+theme_override_font_sizes/font_size = 16
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NoStatRequired" type="Control" parent="ServeNextOfferRequest/RequestScreens/StatRequest" unique_id=1881989586]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Strength" type="Control" parent="ServeNextOfferRequest/RequestScreens/StatRequest/NoStatRequired" unique_id=1616741698]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite" type="Sprite2D" parent="ServeNextOfferRequest/RequestScreens/StatRequest/NoStatRequired/Strength" unique_id=1564913179]
+modulate = Color(1, 0.13, 0.13, 1)
+texture_filter = 1
+position = Vector2(392.25, 41.25)
+scale = Vector2(1.5760564, 1.3837209)
+texture = ExtResource("16_3ji3s")
+
+[node name="OffLabel" type="Label" parent="ServeNextOfferRequest/RequestScreens/StatRequest/NoStatRequired/Strength" unique_id=194126948]
+texture_filter = 1
+layout_mode = 0
+offset_left = 207.0
+offset_top = 31.0
+offset_right = 555.0
+offset_bottom = 54.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_05saj")
+theme_override_font_sizes/font_size = 12
+text = "Stat Not Required"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intelligence" type="Control" parent="ServeNextOfferRequest/RequestScreens/StatRequest/NoStatRequired" unique_id=48080138]
+visible = false
+anchors_preset = 0
+offset_top = 75.0
+offset_right = 40.0
+offset_bottom = 115.0
+
+[node name="Sprite2" type="Sprite2D" parent="ServeNextOfferRequest/RequestScreens/StatRequest/NoStatRequired/Intelligence" unique_id=2004950886]
+modulate = Color(1, 0.13, 0.13, 1)
+texture_filter = 1
+position = Vector2(392, 36)
+scale = Vector2(1.5760564, 1.3837209)
+texture = ExtResource("16_3ji3s")
+
+[node name="OffLabel" type="Label" parent="ServeNextOfferRequest/RequestScreens/StatRequest/NoStatRequired/Intelligence" unique_id=1462553900]
+texture_filter = 1
+layout_mode = 0
+offset_left = 208.0
+offset_top = 24.0
+offset_right = 556.0
+offset_bottom = 47.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_05saj")
+theme_override_font_sizes/font_size = 12
+text = "Stat Not Required"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="Control" parent="ServeNextOfferRequest/RequestScreens/StatRequest/NoStatRequired" unique_id=441882894]
+visible = false
+anchors_preset = 0
+offset_top = 149.0
+offset_right = 40.0
+offset_bottom = 189.0
+
+[node name="OffLabel" type="Label" parent="ServeNextOfferRequest/RequestScreens/StatRequest/NoStatRequired/Community" unique_id=1704893460]
+texture_filter = 1
+layout_mode = 0
+offset_left = 208.0
+offset_top = 25.0
+offset_right = 556.0
+offset_bottom = 48.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_05saj")
+theme_override_font_sizes/font_size = 12
+text = "Stat Not Required"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2" type="Sprite2D" parent="ServeNextOfferRequest/RequestScreens/StatRequest/NoStatRequired/Community" unique_id=261508253]
+modulate = Color(1, 0.13, 0.13, 1)
+texture_filter = 1
+position = Vector2(392, 36)
+scale = Vector2(1.5760564, 1.3837209)
+texture = ExtResource("16_3ji3s")
+
+[node name="EnergyTillCancel" type="Control" parent="ServeNextOfferRequest" unique_id=36416744]
+anchors_preset = 0
+offset_left = 68.0
+offset_top = -11.0
+offset_right = 108.0
+offset_bottom = 29.0
+
+[node name="BG" type="ColorRect" parent="ServeNextOfferRequest/EnergyTillCancel" unique_id=1478216908]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 389.75003
+offset_right = 375.0
+offset_bottom = 501.00003
+color = Color(0.3217281, 0.32172796, 0.32172793, 1)
+
+[node name="EnergySprite" type="Sprite2D" parent="ServeNextOfferRequest/EnergyTillCancel" unique_id=921416703]
+modulate = Color(1, 0, 0, 1)
+texture_filter = 1
+position = Vector2(351.25003, 452.5)
+scale = Vector2(4.9166665, 4.357143)
+texture = ExtResource("17_ka1nv")
+
+[node name="HeaderLabel" type="Label" parent="ServeNextOfferRequest/EnergyTillCancel" unique_id=614712824]
+texture_filter = 1
+layout_mode = 0
+offset_left = 25.750011
+offset_top = 391.0
+offset_right = 239.5
+offset_bottom = 472.0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("7_73nie")
+theme_override_font_sizes/font_size = 29
+text = "max Energy
+to spend
+till automatic cancel"
+vertical_alignment = 1
+
+[node name="EnergyNum" type="Label" parent="ServeNextOfferRequest/EnergyTillCancel" unique_id=965286443]
+layout_mode = 0
+offset_left = 263.25
+offset_top = 409.75003
+offset_right = 343.25
+offset_bottom = 491.75003
+theme_override_colors/font_color = Color(0.85, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_73nie")
+theme_override_font_sizes/font_size = 72
+text = "20"
+vertical_alignment = 1
+
+[node name="Reward" type="Control" parent="ServeNextOfferRequest" unique_id=605550613]
+anchors_preset = 0
+offset_left = 433.0
+offset_top = -10.0
+offset_right = 473.0
+offset_bottom = 30.0
+
+[node name="BG" type="ColorRect" parent="ServeNextOfferRequest/Reward" unique_id=1991427974]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 388.75
+offset_right = 364.0
+offset_bottom = 501.25
+color = Color(0.3217281, 0.32172796, 0.32172793, 1)
+
+[node name="HeaderLabel" type="Label" parent="ServeNextOfferRequest/Reward" unique_id=1318086679]
+texture_filter = 1
+layout_mode = 0
+offset_left = 26.99997
+offset_top = 390.0
+offset_right = 250.99997
+offset_bottom = 471.0
+theme_override_fonts/font = ExtResource("7_73nie")
+theme_override_font_sizes/font_size = 29
+text = "Energy
+Reward
+Once hit"
+vertical_alignment = 1
+
+[node name="EnergySprite" type="Sprite2D" parent="ServeNextOfferRequest/Reward" unique_id=1873103942]
+texture_filter = 1
+position = Vector2(331.50003, 450)
+scale = Vector2(4.9166665, 4.357143)
+texture = ExtResource("17_ka1nv")
+
+[node name="EnergyNum" type="Label" parent="ServeNextOfferRequest/Reward" unique_id=856367787]
+layout_mode = 0
+offset_left = 241.25003
+offset_top = 408.75
+offset_right = 321.25003
+offset_bottom = 490.75
+theme_override_colors/font_color = Color(0, 0.7529412, 0, 1)
+theme_override_fonts/font = ExtResource("7_73nie")
+theme_override_font_sizes/font_size = 72
+text = "20"
+vertical_alignment = 1
+
+[node name="Plus" type="Label" parent="ServeNextOfferRequest/Reward" unique_id=2111934200]
+layout_mode = 0
+offset_left = 199.50003
+offset_top = 410.0
+offset_right = 279.50003
+offset_bottom = 486.0
+theme_override_colors/font_color = Color(0, 0.7529412, 0, 1)
+theme_override_fonts/font = ExtResource("7_73nie")
+theme_override_font_sizes/font_size = 56
+text = "+"
+vertical_alignment = 1
+
+[node name="ThoughLabel3" type="Label" parent="ServeNextOfferRequest" unique_id=1309384017]
+texture_filter = 1
+custom_maximum_size = Vector2(255, 92)
+layout_mode = 0
+offset_left = 522.5
+offset_top = 500.0
+offset_right = 777.5
+offset_bottom = 592.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.31764707)
+theme_override_fonts/font = ExtResource("4_05saj")
+theme_override_font_sizes/font_size = 16
+text = "notice - can be viewed anytime via the station"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ConfirmBtn" type="ColorRect" parent="ServeNextOfferRequest" unique_id=1258463385]
+layout_mode = 0
+offset_left = 336.25
+offset_top = 520.0
+offset_right = 513.75
+offset_bottom = 575.0
+color = Color(0.7674316, 0.6775237, 0.12399972, 1)
+script = ExtResource("20_3nfp3")
+
+[node name="Label" type="Label" parent="ServeNextOfferRequest/ConfirmBtn" unique_id=792753537]
+layout_mode = 0
+offset_left = 24.999998
+offset_top = 3.7499995
+offset_right = 157.0
+offset_bottom = 50.75
+theme_override_fonts/font = ExtResource("7_73nie")
+theme_override_font_sizes/font_size = 41
+text = "Proceed"

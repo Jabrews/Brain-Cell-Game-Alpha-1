@@ -38,7 +38,7 @@
 [ext_resource type="Script" uid="uid://cqi0u48rlfi5b" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_hidden_stats.gd" id="35_wv5kd"]
 [ext_resource type="Script" uid="uid://bkyh33rt7innt" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_cell_stat_creation.gd" id="36_87p7k"]
 [ext_resource type="Script" uid="uid://dbvt85r7b0cge" path="res://scripts/game_manager/profiler_spare_symbol_generator/profiler_spare_symbol_generator.gd" id="37_1l4rw"]
-[ext_resource type="Script" uid="uid://dt54n7ye7aevd" path="res://scripts/game_manager/item_offer_demand_generator/item_offer_demand_generator.gd" id="37_87p7k"]
+[ext_resource type="Script" uid="uid://dt54n7ye7aevd" path="res://scripts/game_manager/item_offer_demand_generator/shareholder_offer_demand_generator.gd" id="37_87p7k"]
 [ext_resource type="Script" uid="uid://d2xucncxk5ke6" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_shareholder_items.gd" id="37_ngeto"]
 [ext_resource type="PackedScene" uid="uid://dttes4islfno1" path="res://scenes/stations/station_components/hidden_interpreter/station_hidden_interpreter.tscn" id="38_5mews"]
 [ext_resource type="PackedScene" uid="uid://cyugvlr5sgshv" path="res://scenes/shareholder_offer_manager/shareholder_offer_manager.tscn" id="38_wv5kd"]
@@ -277,7 +277,7 @@ script = ExtResource("37_ngeto")
 [node name="ProfilerSpareSymbolGenerator" type="Node" parent="GameManager" unique_id=1523404149]
 script = ExtResource("37_1l4rw")
 
-[node name="ItemOfferDemandGenerator" type="Node" parent="GameManager" unique_id=240364795]
+[node name="ShareholderOfferDemandGenerator" type="Node" parent="GameManager" unique_id=240364795]
 script = ExtResource("37_87p7k")
 
 [node name="UseableItemSpawnManager" type="Node" parent="." unique_id=622852825 node_paths=PackedStringArray("player")]

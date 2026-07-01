@@ -34,7 +34,7 @@ func _process(_delta: float) -> void:
 			up_down_tween.kill()
 			# reset position. this is important for when card re-appears, getting it in the right pos
 			position = starting_pos
-			shareholder_offer_manager.handle_card_picked('item', self)
+			shareholder_offer_manager.handle_card_picked(self)
 
 func update(useable_item_offer : UseableOfferItem) :
 	

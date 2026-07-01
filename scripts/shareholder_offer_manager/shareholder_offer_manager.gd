@@ -1,22 +1,24 @@
 extends Node
 
 # componnets
-#@onready var serve_stat_offer_parent : Control = $ServeStatOffer
 @onready var serve_item_offer_parent : Control = $ServeItemOffer
 @onready var header_label : Label = $HeaderLabel
 @onready var blur_bg : ColorRect = $BlurBg
 # cards 
-#@onready var stat_offer_card_1 : TextureRect = $ServeStatOffer/Card1Container
-#@onready var stat_offer_card_2 : TextureRect = $ServeStatOffer/Card2Container
 @onready var item_offer_card_1 : TextureRect = $ServeItemOffer/Card1Container
 @onready var item_offer_card_2 : TextureRect = $ServeItemOffer/Card2Container
 
-var has_offered_item : bool = false
+
+var has_served_energy_based_card : bool = false
+var has_served_second_card : bool = false
+
 
 
 func _ready() -> void:
-	GLGameManagerBus.connect('proceed_next_round', _handle_next_round)
+	#GLGameManagerBus.connect('proceed_next_round', _handle_next_round)
 	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_energy_turn_changed)
+	GLGameManagerBus.connect('energy_changed', _handle_energy_turn_changed)
+	GLShareholderOfferState.connect('item_offer_success', _handle_item_offer_success)
 
 func _handle_energy_turn_changed() :
 
@@ -25,15 +27,24 @@ func _handle_energy_turn_changed() :
 
 	var energy_percent : float = (curr_energy / float(max_energy)) * 100.0
 
-	if energy_percent <= IVShareholderOffers.item_offer_energy_percant :
-		has_offered_item = true
-		handle_item_offer()
-		return
+	if energy_percent <= IVShareholderOffers.item_offer_energy_percant and not has_served_energy_based_card:
+		serve_item_cards()
+		has_served_energy_based_card = true
+	
+	# first round doesnt care about request just give another card after first one 
+	elif energy_percent <= IVShareholderOffers.first_round_item_offer_energy_percant and not has_served_second_card : 
+		serve_item_cards()
+	
 
 func _handle_next_round() :
-	has_offered_item = false
+	has_served_energy_based_card = false
+	has_served_second_card = false
+
+func serve_item_cards() :
 	
-func handle_item_offer() :
+	toggle_display_lock(true)
+	
+	serve_item_offer_parent.visible = true
 	
 	var item_to_offer_copy = GLShareholderOfferState.items_to_offer
 	
@@ -48,10 +59,8 @@ func handle_item_offer() :
 	# set cards
 	item_offer_card_1.update(item_1)	
 	item_offer_card_2.update(item_2)	
-	toggle_display_lock(true)
-	serve_item_offer_parent.visible = true
-
-func handle_card_picked(offer_type : String, offer_card : TextureRect) :
+	
+func handle_card_picked(offer_card : TextureRect) :
 	
 	var tween = create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
@@ -71,18 +80,20 @@ func handle_card_picked(offer_type : String, offer_card : TextureRect) :
 		0.0,
 		0.8
 	)
-
+	
 	await tween.finished
-
-	toggle_display_lock(false)
-
-	if offer_type == 'item' :
-		serve_item_offer_parent.visible = false
-		var item_offer : UseableOfferItem = offer_card.designated_useable_item_offer 
-		GLShareholderOfferState.emit_signal('spawn_item_to_offer', item_offer)
 		
+	serve_item_offer_parent.visible = false	
+		
+	var item_offer : UseableOfferItem = offer_card.designated_useable_item_offer 
+	GLShareholderOfferState.emit_signal('spawn_item_to_offer', item_offer)
 	
 	
+	if not has_served_second_card and not GLGameManagerBus.current_round == 1 : # first round doesnt care
+		GLShareholderOfferState.emit_signal('create_item_offer_demand')
+	else : 
+		toggle_display_lock(false)
+		
 func toggle_display_lock(toggleValue : bool) :
 	
 	if toggleValue :
@@ -95,14 +106,12 @@ func toggle_display_lock(toggleValue : bool) :
 		blur_bg.visible = false 
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		get_tree().paused = false 
+		
+		
+func _handle_item_offer_success() :
+	serve_item_cards()
 
-
-
-
-
-
-
-	
+		
 		
 		
 		

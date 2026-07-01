@@ -10,6 +10,7 @@ signal spawn_item_to_offer(useable_offer_item : UseableOfferItem)
 
 signal create_item_offer_demand()
 signal recieve_item_offer_demand(demand_constructor : ItemOfferDemandConstructor)
+signal item_offer_success()
 
 
 ##### item offer #####

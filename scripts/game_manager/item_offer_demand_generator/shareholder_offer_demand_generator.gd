@@ -2,11 +2,9 @@ extends Node
 
 
 func _ready() -> void:
+	GLShareholderOfferState.connect('create_item_offer_demand', _create_demand)
 	
-	await get_tree().create_timer(3.0).timeout
 	
-	_create_demand()
-
 func _create_demand() :
 	
 	var demand_cell : BrainCell = generate_demand_cell()	
@@ -22,8 +20,7 @@ func _create_demand() :
 	
 	GLShareholderOfferState.emit_signal('recieve_item_offer_demand', item_offer_constructor )
 	
-	
-	
+
 func generate_demand_cell() -> BrainCell:
 	var strength_value: float = randi_range(0, IVCellCreator.max_stat_value)
 	var intelligence_value: float = randi_range(0, IVCellCreator.max_stat_value)
@@ -31,13 +28,18 @@ func generate_demand_cell() -> BrainCell:
 	
 	const MAX_DISABLED_STATS: int = 1
 	
-	var disabled_stats: Array[String] = []
-	var stat_types: Array[String] = ["strength", "intelligence", "community"]
+	var stat_types: Array[String] = [
+		"strength",
+		"intelligence",
+		"community"
+	]
+	
 	stat_types.shuffle()
 	
-	var disabled_amount: int = randi_range(0, MAX_DISABLED_STATS)
+	var disabled_amount: int = clamp(MAX_DISABLED_STATS, 0, stat_types.size())
+	var disabled_stats: Array[String] = []
 	
-	for i in disabled_amount:
+	for i in range(disabled_amount):
 		disabled_stats.append(stat_types[i])
 	
 	var strength_enabled: bool = not disabled_stats.has("strength")
@@ -73,17 +75,7 @@ func generate_demand_cell() -> BrainCell:
 		strength_stat,
 		intelligence_stat,
 		community_stat,
-		false,
+		false
 	)
 	
 	return demand_cell
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	

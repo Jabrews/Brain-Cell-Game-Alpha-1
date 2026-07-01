@@ -6,6 +6,14 @@
 [ext_resource type="Script" uid="uid://beg3fnl2m5c85" path="res://reusable/load_panel/load_panel_body.gd" id="2_jjvyv"]
 [ext_resource type="PackedScene" uid="uid://dgavvcd15iwji" path="res://scenes/stations/screen_item_offer_manager/screen_energy_left_to_claims.tscn" id="3_i5gpp"]
 [ext_resource type="PackedScene" uid="uid://tmx711wuc1en" path="res://scenes/stations/screen_item_offer_manager/screen_energy_reward.tscn" id="4_7l762"]
+[ext_resource type="Script" uid="uid://b1m66gvocabcy" path="res://scripts/stations/item_offer_manager/audio_manager.gd" id="7_4m568"]
+[ext_resource type="AudioStream" uid="uid://bpvjnnxgbpqv8" path="res://sounds/station_item_offer_demand/fail_sound.mp3" id="8_uiiye"]
+[ext_resource type="AudioStream" uid="uid://fxvj7ggynljk" path="res://sounds/station_item_offer_demand/success_sound.mp3" id="9_fgh6q"]
+[ext_resource type="Script" uid="uid://dti5xymtsdufx" path="res://scripts/stations/item_offer_manager/confirm_btn.gd" id="10_0v6uq"]
+[ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="11_lg71w"]
+[ext_resource type="PackedScene" uid="uid://c5tb2u3nb0fa0" path="res://scenes/hoverable_mesh_scenes/hidden_stat_reveal_btn.tscn" id="12_7mwfe"]
+[ext_resource type="PackedScene" uid="uid://dmtd6w1i541n8" path="res://reusable/hoverable/bouncing_sprite_scenes/key_e.tscn" id="13_yvgg7"]
+[ext_resource type="AudioStream" uid="uid://s4gimaovwlok" path="res://sounds/station_item_offer_demand/completed.mp3" id="14_lg71w"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5gpp"]
 albedo_color = Color(0, 0, 0, 1)
@@ -70,6 +78,18 @@ size = Vector3(1, 0.05, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7l762"]
 size = Vector3(1.5, 0.03720703, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_njhqc"]
+albedo_color = Color(0.8867241, 0.8878624, 0.20849493, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8xpmp"]
+material = SubResource("StandardMaterial3D_njhqc")
+size = Vector3(0.55, 0.55, 0.55)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_shluj"]
+size = Vector3(0.6, 0.6, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1fwsp"]
 
 [node name="ItemOfferManager" type="Node3D" unique_id=359772628]
 script = ExtResource("1_dsfi4")
@@ -139,11 +159,12 @@ mesh = SubResource("BoxMesh_keru6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23626709, 0.5496826, 0)
 shape = SubResource("BoxShape3D_qa1qv")
 
-[node name="LoadPanelCellBody" type="Area3D" parent="PanelTable" unique_id=1503001430]
+[node name="LoadPanelCellBody" type="Area3D" parent="PanelTable" unique_id=1503001430 node_paths=PackedStringArray("cell_reciever")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7723937, 0.27641124, 0.13352501)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("2_jjvyv")
+cell_reciever = NodePath("../..")
 disable_spawn_flesh_bug_on_cell_death = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PanelTable/LoadPanelCellBody" unique_id=1094126365]
@@ -161,3 +182,46 @@ mesh = SubResource("BoxMesh_i5gpp")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PanelTable/LoadPanelCellBody/PannelCollision" unique_id=249297987]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.006396532, 0)
 shape = SubResource("BoxShape3D_7l762")
+
+[node name="ConfirmBtn" type="StaticBody3D" parent="." unique_id=1760138103]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9728862, 0.67545664, 1.4394135)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("10_0v6uq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ConfirmBtn" unique_id=1120763610]
+mesh = SubResource("BoxMesh_8xpmp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ConfirmBtn" unique_id=1706893397]
+shape = SubResource("BoxShape3D_shluj")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ConfirmBtn" unique_id=2049548160]
+shape = SubResource("BoxShape3D_shluj")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="ConfirmBtn" unique_id=1328245372 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("11_lg71w")
+hover_mesh_scene = ExtResource("12_7mwfe")
+hover_mesh_scale = 0.3
+hover_mesh_scale_x = 0.2
+orignal_mesh = NodePath("../MeshInstance3D")
+bouncing_sprite_scene = ExtResource("13_yvgg7")
+custom_b_sprite_pos = Vector3(0.1, 1, -0.715)
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ConfirmBtn/HoverableMesh" unique_id=518832125]
+shape = SubResource("BoxShape3D_1fwsp")
+
+[node name="AudioManager" type="Node3D" parent="." unique_id=299794264]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.9230137, 0)
+script = ExtResource("7_4m568")
+
+[node name="Fail" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1209952576]
+stream = ExtResource("8_uiiye")
+
+[node name="Success" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1867097952]
+stream = ExtResource("9_fgh6q")
+
+[node name="Confirm" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1415207068]
+stream = ExtResource("14_lg71w")

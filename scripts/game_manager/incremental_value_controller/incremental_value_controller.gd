@@ -62,7 +62,7 @@ func handle_round(round : int):
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
 			IVShareholderOffers.item_offer_energy_percant= 75
-			IVShareholderOffers.stat_offer_energy_percant= 50		
+			IVShareholderOffers.first_round_item_offer_energy_percant = 40
 			## HIDDEN STATS ## 
 			IVHiddenStats.stats_to_hide = []
 			## PRISONER PROFILER ##
@@ -98,7 +98,6 @@ func handle_round(round : int):
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
 			IVShareholderOffers.item_offer_energy_percant= 75
-			IVShareholderOffers.stat_offer_energy_percant= 50		
 			## HIDDEN STATS ## 
 			IVHiddenStats.stats_to_hide = ['strength']
 			## PRISONER PROFILER ##
@@ -131,7 +130,6 @@ func handle_round(round : int):
 			IVUseableItemSpawner.scissors_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
 			IVShareholderOffers.item_offer_energy_percant= 75
-			IVShareholderOffers.stat_offer_energy_percant= 50		
 			## HIDDEN STATS ## 
 			IVHiddenStats.stats_to_hide = ['strength', 'intelligence']
 			## PRISONER PROFILER ##
@@ -161,7 +159,6 @@ func handle_round(round : int):
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
 			IVShareholderOffers.item_offer_energy_percant= 75
-			IVShareholderOffers.stat_offer_energy_percant= 50		
 			## HIDDEN STATS ## 
 			IVHiddenStats.stats_to_hide = ['strength', 'intelligence', 'community']
 			## PRISONER PROFILER ##
